@@ -17,8 +17,7 @@ public class WeatherForecastProfile : Profile
         //  in the Query Request.
         CreateMap<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>()
              .ForMember(dest => dest.FromDate, opt => opt.MapFrom(src => ISO8601Date.From(src.FromDate)))
-             .ForMember(dest => dest.NumberOfDays, opt => opt.MapFrom(src => PositiveInt.From(src.NumberOfDays)))
-             .ForMember(dest => dest.IsStubbed, opt => opt.MapFrom(x => _isStubbed));
+             .ForMember(dest => dest.NumberOfDays, opt => opt.MapFrom(src => PositiveInt.From(src.NumberOfDays)));
 
         CreateMap<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>()
              .ForMember(dest => dest.ForecastCount, opt => opt.MapFrom(src => PositiveInt.From((int)src.ForecastCount)));

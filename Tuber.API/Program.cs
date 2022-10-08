@@ -26,11 +26,9 @@ app.UseHttpsRedirection();
 
 app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIRequest,
     [FromServices] IMediator mediator,
-    [FromServices] IMapper mapper,
-    [FromServices] IConfiguration config) =>
+    [FromServices] IMapper mapper) =>
 {
     var queryRequest = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
-    queryRequest.IsStubbed = (config["Mode"] == "Stub");
     
     var queryResponse = await mediator.Send(queryRequest);
 
