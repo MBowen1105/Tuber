@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.API.WeatherForecasts.Domains;
+﻿using Tuber.Core.ValueObjects;
+using Tuber.Domain.API.WeatherForecasts.Domains;
 
 namespace Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
 public class GetWeatherForecastQueryStub
@@ -10,7 +11,7 @@ public class GetWeatherForecastQueryStub
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
             };
 
-        var forecast = Enumerable.Range(1, request.NumberOfDays).Select(index =>
+        var forecast = Enumerable.Range(1, request.NumberOfDays.Value).Select(index =>
            new WeatherForecastDomain
            {
                Date = DateTime.Now.AddDays(index),

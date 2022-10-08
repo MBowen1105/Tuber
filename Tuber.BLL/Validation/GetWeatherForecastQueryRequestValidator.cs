@@ -10,6 +10,6 @@ public class GetWeatherForecastQueryRequestValidator : AbstractValidator<GetWeat
 			.NotEmpty();
 
 		RuleFor(x => x.NumberOfDays)
-			.InclusiveBetween(1, 10);
+			.NotEmpty();
     }
 }

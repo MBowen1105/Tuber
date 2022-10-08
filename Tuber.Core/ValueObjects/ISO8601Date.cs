@@ -28,6 +28,6 @@ public class ISO8601Date : ValueOf<string, ISO8601Date>
 
     public static implicit operator ISO8601Date(string v)
     {
-        throw new NotImplementedException();
+       return v;
     }
 }

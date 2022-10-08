@@ -20,7 +20,7 @@ public class GetWeatherForecastQueryStub_UnitTests
         var request = new GetWeatherForecastQueryRequest
         {
             FromDate = ISO8601Date.From("20220101"),
-            NumberOfDays = numOfDays
+            NumberOfDays = PositiveInt.From(numOfDays)
         };
 
         var result = await GetWeatherForecastQueryStub.Stub(request);

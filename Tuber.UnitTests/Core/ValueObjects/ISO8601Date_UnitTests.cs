@@ -16,9 +16,9 @@ public class ISO8601Date_UnitTests
     [TestCase("2022010")]
     [TestCase("202201011")]
     [TestCase("202201DD")]
-    public void ISO8601Date_RejectsInvalidLengthAndType(string invalidDate)
+    public void ISO8601Date_RejectsInvalidLengthAndType(string invalidValue)
     {
-            Assert.Throws<InvalidISO8601DateFormatException>(()=> ISO8601Date.From(invalidDate));
+            Assert.Throws<InvalidISO8601DateFormatException>(()=> ISO8601Date.From(invalidValue));
     }
 
     [Test]
@@ -28,8 +28,8 @@ public class ISO8601Date_UnitTests
     [TestCase("20221301")]
     [TestCase("20220229")]
 
-    public void ISO8601Date_RejectsInvalidDates(string invalidDate)
+    public void ISO8601Date_RejectsInvalidDates(string invalidValue)
     {
-        Assert.Throws<InvalidISO8601DateValueException>(() => ISO8601Date.From(invalidDate));
+        Assert.Throws<InvalidISO8601DateValueException>(() => ISO8601Date.From(invalidValue));
     }
 }
