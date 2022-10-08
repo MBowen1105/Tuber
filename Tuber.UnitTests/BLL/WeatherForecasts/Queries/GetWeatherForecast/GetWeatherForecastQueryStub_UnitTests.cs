@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
+using Tuber.Core.ValueObjects;
 
 namespace Tuber.UnitTests.BLL.WeatherForecasts.Queries.GetWeatherForecast;
 
@@ -14,11 +15,11 @@ public class GetWeatherForecastQueryStub_UnitTests
     [TestCase(0)]
     [TestCase(1)]
     [TestCase(10)]
-    public async Task Test1(int numOfDays)
+    public async Task Stub_ReturnsCorrectNumberOfForecastDays(int numOfDays)
     {
         var request = new GetWeatherForecastQueryRequest
         {
-            FromDate = "20220101",
+            FromDate = ISO8601Date.From("20220101"),
             NumberOfDays = numOfDays
         };
 
@@ -26,7 +27,5 @@ public class GetWeatherForecastQueryStub_UnitTests
 
         result.ForecastCount.Should().Be(numOfDays);
         result.Forecast.Length.Should().Be(numOfDays);
-
-        Assert.Pass();
     }
 }
