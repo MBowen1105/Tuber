@@ -15,7 +15,7 @@ public class GetWeatherForecastQueryStub
            new WeatherForecastDomain
            {
                Date = DateTime.Now.AddDays(index),
-               TemperatureC = Random.Shared.Next(-20, 55),
+               TemperatureC = Celcius.From(Random.Shared.Next(-20, 55)),
                Summary = summaries[Random.Shared.Next(summaries.Length)]
            })
         .ToArray();

@@ -25,7 +25,7 @@ public class GetWeatherForecastQueryStub_UnitTests
 
         var result = await GetWeatherForecastQueryStub.Stub(request);
 
-        result.ForecastCount.Should().Be(numOfDays);
+        result.ForecastCount.Value.Should().Be(numOfDays);
         result.Forecast.Length.Should().Be(numOfDays);
     }
 }

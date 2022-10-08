@@ -2,7 +2,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
-using Tuber.Domain.API;
 using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
 
 var builder = WebApplication.CreateBuilder(args);
