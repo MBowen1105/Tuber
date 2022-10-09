@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Tuber.Core.ValueObjects;
+using Tuber.Domain.API.AppConfig;
 using Tuber.Domain.API.WeatherForecasts.Domains;
 
 namespace Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast
@@ -11,7 +12,10 @@ namespace Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast
 
         public GetWeatherForecastQueryHandler(IConfiguration config)
         {
-            bool.TryParse(config["IsStubbed"], out _isStubbed);
+            var myPoco = new AppConfigDomain();
+            config.GetSection("AppConfig").Bind(myPoco, c => c.BindNonPublicProperties = true);
+
+            _isStubbed = myPoco.IsStubbed;
         }
 
         public Task<GetWeatherForecastQueryResponse> Handle(GetWeatherForecastQueryRequest request, CancellationToken cancellationToken)
