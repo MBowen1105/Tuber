@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using MediatR;
-using FluentValidation;
-using Tuber.BLL.PipelineBehaviours;
 
 namespace Tuber.BLL;
 public static class DependencyInjection

@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.BLL.DependencyInjection.AddDependencyInjection(builder.Services);
+Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services);
 
 var app = builder.Build();
 
@@ -29,15 +30,21 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper) =>
 {
-    var queryRequest = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
-    
-    var queryResponse = await mediator.Send(queryRequest);
+    //  Validate incoming API Request.
+    var validationFailures = APIRequest.GetValidationFailures();
+    if (validationFailures.Any())
+        return Results.BadRequest(validationFailures);
 
-    var APIResponse = mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse);
+    //  Map validated API request to appropriate query request and call handler.
+    var queryResponse = await mediator.Send(
+        mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest));
 
-    return APIResponse is null
-    ? Results.BadRequest(APIResponse)
-    : Results.Ok(APIResponse);
+    if (queryResponse.Errors.Any())
+        return Results.BadRequest(queryResponse.Errors);
+
+    //  Map Handler response to API Response and return.
+    return Results.Ok(
+        mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse));
 })
 .WithName("GetWeatherForecast");
 

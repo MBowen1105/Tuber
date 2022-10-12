@@ -2,8 +2,8 @@
 using Tuber.Domain.API.WeatherForecasts.Domains;
 
 namespace Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
-public class GetWeatherForecastQueryResponse
+public class GetWeatherForecastQueryResponse : QueryResponseBase
 {
     public PositiveInt? ForecastCount { get; init; }
-    public WeatherForecastDomain[] Forecast { get; init; }
+    public WeatherForecastDomain[]? Forecast { get; init; }
 }

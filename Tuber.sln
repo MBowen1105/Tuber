@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.BLL", "Tuber.BLL\Tube
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Core", "Tuber.Core\Tuber.Core.csproj", "{1893CC76-3953-4530-B59A-43033BF626B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests", "Tuber.UnitTests\Tuber.UnitTests.csproj", "{069E67C7-8BAA-4122-BD8F-343D36547136}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests", "Tuber.UnitTests\Tuber.UnitTests.csproj", "{069E67C7-8BAA-4122-BD8F-343D36547136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.DAL", "Tuber.DAL\Tuber.DAL.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{069E67C7-8BAA-4122-BD8F-343D36547136}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{069E67C7-8BAA-4122-BD8F-343D36547136}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{069E67C7-8BAA-4122-BD8F-343D36547136}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{481DC610-DFC4-48DA-AF0E-9D17F451B61B} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 		{1893CC76-3953-4530-B59A-43033BF626B0} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 		{069E67C7-8BAA-4122-BD8F-343D36547136} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
+		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8BFB0F4-500E-42BB-B29A-C384FB244FAD}
