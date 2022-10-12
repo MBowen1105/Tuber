@@ -11,16 +11,17 @@ public class PositiveInteger_UnitTests
     }
 
     [Test]
+    [TestCase(0)]
     [TestCase(-1)]
-    public void PositiveInteger_RejectsNegativeNumbers(int invalidValue)
+    public void PositiveInteger_RejectsZeroAndNegativeNumbers(int invalidValue)
     {
         Assert.Throws<InvalidPositiveIntegerException>(() => PositiveInt.From(invalidValue));
     }
 
     [Test]
-    [TestCase(0)]
     [TestCase(1)]
-    public void PositiveInteger_AcceptsPositiveAndZeroNumbers(int testValue)
+    [TestCase(int.MaxValue)]
+    public void PositiveInteger_AcceptsPositiveNumbers(int testValue)
     {
         Assert.DoesNotThrow(() => PositiveInt.From(testValue));
     }

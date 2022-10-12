@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BLL\WeatherForecasts\Queries\GetWeatherForecast\" />
+  </ItemGroup>
+
 </Project>
