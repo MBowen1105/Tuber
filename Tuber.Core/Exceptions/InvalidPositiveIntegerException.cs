@@ -2,7 +2,7 @@
 public class InvalidPositiveIntegerException : Exception
 {
     public InvalidPositiveIntegerException(int badValue)
-        : base($"Positive Integer cannot be negative: \"{badValue}\"")
+        : base($"Positive Integers must be greater than zero: \"{badValue}\"")
     {
 
     }

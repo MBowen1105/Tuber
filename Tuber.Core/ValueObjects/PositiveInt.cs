@@ -7,7 +7,7 @@ public class PositiveInt : ValueOf<int, PositiveInt>
 {
     protected override void Validate()
     {
-        if (Value < 0)
+        if (Value < 1)
             throw new InvalidPositiveIntegerException(Value);
     }
 

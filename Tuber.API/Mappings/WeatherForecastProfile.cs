@@ -7,8 +7,6 @@ namespace Tuber.API.Mappings;
 
 public class WeatherForecastProfile : Profile
 {
-    private readonly bool _isStubbed = true;
-
     public WeatherForecastProfile()
     {
    
