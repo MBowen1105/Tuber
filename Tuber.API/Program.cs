@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
@@ -35,7 +36,7 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
     var APIResponse = mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse);
 
     return APIResponse is null
-    ? Results.NotFound(APIResponse)
+    ? Results.BadRequest(APIResponse)
     : Results.Ok(APIResponse);
 })
 .WithName("GetWeatherForecast");
