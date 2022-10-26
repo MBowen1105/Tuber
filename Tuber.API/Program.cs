@@ -35,12 +35,14 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
     if (validationFailures.Any())
         return Results.BadRequest(validationFailures);
 
-    //  Map validated API request to appropriate query request and call handler.
-    var queryResponse = await mediator.Send(
-        mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest));
+    //  Map validated API request to appropriate query
+    var query = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
 
-    if (queryResponse.Errors.Any())
-        return Results.BadRequest(queryResponse.Errors);
+    // Call query handler.
+    var queryResponse = await mediator.Send(query);
+
+    //if (queryResponse.Errors.Any())
+    //    return Results.BadRequest(queryResponse.Errors);
 
     //  Map Handler response to API Response and return.
     return Results.Ok(
