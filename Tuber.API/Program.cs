@@ -2,9 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Http.ModelBinding;
+using Tuber.API.Extensions;
 using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
 using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
 
@@ -43,7 +41,7 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
         .ToList();
 
     if (validationFailures.Any())
-        return Results.BadRequest(validationFailures);
+        return Results.BadRequest(validationFailures.ToBadRequestResponse());
 
     //  Map validated API request to query
     var query = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
