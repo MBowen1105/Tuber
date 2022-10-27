@@ -30,23 +30,24 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper) =>
 {
-    //  Validate incoming API Request.
+    //  Validate incoming API Request. TODO: Move API request validation into Validation Pipeline
     var validationFailures = APIRequest.GetValidationFailures();
     if (validationFailures.Any())
         return Results.BadRequest(validationFailures);
 
-    //  Map validated API request to appropriate query
+    //  Map validated API request to query
     var query = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
 
     // Call query handler.
     var queryResponse = await mediator.Send(query);
 
-    //if (queryResponse.Errors.Any())
-    //    return Results.BadRequest(queryResponse.Errors);
+    if (queryResponse.HasExceptions)
+        return Results.BadRequest(queryResponse.Exceptions);
 
     //  Map Handler response to API Response and return.
-    return Results.Ok(
-        mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse));
+    var apiResponse = mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse);
+    
+    return Results.Ok(apiResponse);
 })
 .WithName("GetWeatherForecast");
 

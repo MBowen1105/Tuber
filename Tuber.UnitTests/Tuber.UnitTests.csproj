@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tuber.API\Tuber.API.csproj" />
     <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
   </ItemGroup>
 
