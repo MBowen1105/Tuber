@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.BLL.PipelineBehaviours;
 
 namespace Tuber.BLL;
 public static class DependencyInjection
@@ -13,7 +14,7 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(assembly);
 
-        //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviours<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
         services.AddMediatR(assembly);
 

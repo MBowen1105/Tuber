@@ -2,6 +2,9 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Http.ModelBinding;
 using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
 using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
 
@@ -28,17 +31,24 @@ app.UseHttpsRedirection();
 
 app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIRequest,
     [FromServices] IMediator mediator,
-    [FromServices] IMapper mapper) =>
+    [FromServices] IMapper mapper,
+    [FromServices] IEnumerable<IValidator<GetWeatherForecastAPIRequest>> validators) =>
 {
-    //  Validate incoming API Request. TODO: Move API request validation into Validation Pipeline
-    var validationFailures = APIRequest.GetValidationFailures();
+    //  Validate incoming APIRequest.
+    var context = new ValidationContext<GetWeatherForecastAPIRequest>(APIRequest);
+    var validationFailures = validators
+        .Select(x => x.Validate(context))
+        .SelectMany(x => x.Errors)
+        .Where(x => x != null)
+        .ToList();
+
     if (validationFailures.Any())
         return Results.BadRequest(validationFailures);
 
     //  Map validated API request to query
     var query = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
 
-    // Call query handler.
+    // Call query handler. This first invokes the pipeline behaviour.
     var queryResponse = await mediator.Send(query);
 
     if (queryResponse.HasExceptions)
@@ -46,7 +56,7 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
 
     //  Map Handler response to API Response and return.
     var apiResponse = mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse);
-    
+
     return Results.Ok(apiResponse);
 })
 .WithName("GetWeatherForecast");
