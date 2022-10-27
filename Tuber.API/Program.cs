@@ -40,6 +40,8 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
         .Where(x => x != null)
         .ToList();
 
+    //  If the incoming API request has validation failures, convert them to the 
+    //  BadRequest response and return a 400 Http Exception
     if (validationFailures.Any())
         return Results.BadRequest(validationFailures.ToBadRequestResponse());
 
