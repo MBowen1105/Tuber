@@ -2,7 +2,7 @@
 using Tuber.API.Mappings;
 
 namespace Tuber.UnitTests.API.Mappings;
-public class WeatherForecastProfile_UnitTests
+internal class WeatherForecastProfile_UnitTests
 {
     [Test]
     public void WeatherForecastProfile_IsValid()

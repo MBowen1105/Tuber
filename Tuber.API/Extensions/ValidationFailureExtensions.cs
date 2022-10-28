@@ -4,7 +4,7 @@ using Tuber.Domain.API.Common;
 namespace Tuber.API.Extensions;
 public static class ValidationFailureExtensions
 {
-    public static IEnumerable<BadRequestResponse> ToBadRequestResponse(
+    public static BadRequestResponse[] ToBadRequestResponse(
         this IEnumerable<ValidationFailure> validationFailures)
     {
         return validationFailures.Select(x=> 
@@ -13,6 +13,6 @@ public static class ValidationFailureExtensions
                 x.PropertyName,
                 x.AttemptedValue,
                 x.Severity)
-            );
+            ).ToArray();
     }
 }
