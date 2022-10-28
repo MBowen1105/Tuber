@@ -8,8 +8,8 @@ public class GetWeatherForecastAPIRequestValidator : AbstractValidator<GetWeathe
 	{
         RuleFor(x => x.FromDate)
             .NotEmpty()
-            .Length(8);
-        //TODO: Add ISO8601Date Custom validation
+            .Length(8)
+            .Matches(@"^\d{8}$");
 
         RuleFor(x => x.NumberOfDays)
             .NotEmpty()

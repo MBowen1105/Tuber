@@ -6,14 +6,14 @@ public class GetWeatherForecastQueryRequestValidator : AbstractValidator<GetWeat
 {
 	public GetWeatherForecastQueryRequestValidator()
 	{
-        RuleFor(x => x.NumberOfDays.Value)
-            .NotEmpty()
-            .InclusiveBetween(1, 10)
-                .WithMessage("Number of days must be between 1 and 10 only");
-
         RuleFor(x => x.FromDate.Value)
             .NotEmpty()
             .Length(8);
-        //TODO: Add ISO8601Date Custom validation
+
+        RuleFor(x => x.NumberOfDays.Value)
+            .NotEmpty()
+            .InclusiveBetween(1, 10);
+
+        
     }
 }
