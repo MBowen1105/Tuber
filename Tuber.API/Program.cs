@@ -3,8 +3,9 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.API.Extensions;
-using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
-using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
+using Tuber.BLL.Banks.Queries.GetBank;
+using Tuber.Domain.API.Banks.GetBank;
+using Tuber.Domain.API.Banks.GetBank;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,13 +28,13 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIRequest,
+app.MapPut("/bank/get", async (GetBankAPIRequest APIRequest,
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper,
-    [FromServices] IEnumerable<IValidator<GetWeatherForecastAPIRequest>> validators) =>
+    [FromServices] IEnumerable<IValidator<GetBankAPIRequest>> validators) =>
 {
     //  Validate incoming APIRequest.
-    var context = new ValidationContext<GetWeatherForecastAPIRequest>(APIRequest);
+    var context = new ValidationContext<GetBankAPIRequest>(APIRequest);
     var validationFailures = validators
         .Select(x => x.Validate(context))
         .SelectMany(x => x.Errors)
@@ -46,7 +47,7 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
         return Results.BadRequest(validationFailures.ToBadRequestResponse());
 
     //  Map validated API request to query
-    var query = mapper.Map<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>(APIRequest);
+    var query = mapper.Map<GetBankAPIRequest, GetBankQueryRequest>(APIRequest);
 
     // Call query handler. This first invokes the pipeline behaviour.
     var queryResponse = await mediator.Send(query);
@@ -55,11 +56,11 @@ app.MapPut("/weatherforecast/get", async (GetWeatherForecastAPIRequest APIReques
         return Results.BadRequest(queryResponse.Exceptions);
 
     //  Map Handler response to API Response and return.
-    var apiResponse = mapper.Map<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>(queryResponse);
+    var apiResponse = mapper.Map<GetBankQueryResponse, GetBankAPIResponse>(queryResponse);
 
     return Results.Ok(apiResponse);
 })
-.WithName("GetWeatherForecast");
+.WithName("GetBank");
 
 app.Run();
 

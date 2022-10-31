@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
-using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
+using Tuber.Domain.API.Banks.GetBank;
 
-namespace Tuber.API.Validation;
-public class GetWeatherForecastAPIRequestValidator : AbstractValidator<GetWeatherForecastAPIRequest>
+namespace Tuber.API.Validators;
+public class GetBankAPIRequestValidator : AbstractValidator<GetBankAPIRequest>
 {
-	public GetWeatherForecastAPIRequestValidator()
+	public GetBankAPIRequestValidator()
 	{
         RuleFor(x => x.FromDate)
             .NotEmpty()

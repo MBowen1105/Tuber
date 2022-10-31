@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37441188-A686-487B-A9FC-C950FB7B29A7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{601BA5A4-59BF-4E10-B498-0B55783AC9C9}"
@@ -20,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Core", "Tuber.Core\Tu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests", "Tuber.UnitTests\Tuber.UnitTests.csproj", "{069E67C7-8BAA-4122-BD8F-343D36547136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.DAL", "Tuber.DAL\Tuber.DAL.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.DAL", "Tuber.DAL\Tuber.DAL.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

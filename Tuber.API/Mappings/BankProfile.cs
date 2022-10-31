@@ -1,23 +1,23 @@
 ﻿using AutoMapper;
-using Tuber.BLL.WeatherForecasts.Queries.GetWeatherForecast;
+using Tuber.BLL.Banks.Queries.GetBank;
 using Tuber.Core.ValueObjects;
-using Tuber.Domain.API.WeatherForecasts.GetWeatherForecast;
+using Tuber.Domain.API.Banks.GetBank;
 
 namespace Tuber.API.Mappings;
 
-public class WeatherForecastProfile : Profile
+public class BankProfile : Profile
 {
-    public WeatherForecastProfile()
+    public BankProfile()
     {
    
         //  Has to go from a (string date) "YYYYMMDD" in the API request to an (ISO8601) FromDate in the
         //  Query Request. Also from an (int) NumberOfDays in the API request, to an (PositiveInt) NumberOfDays
         //  in the Query Request.
-        CreateMap<GetWeatherForecastAPIRequest, GetWeatherForecastQueryRequest>()
+        CreateMap<GetBankAPIRequest, GetBankQueryRequest>()
              .ForMember(dest => dest.FromDate, opt => opt.MapFrom(src => ISO8601Date.From(src.FromDate)))
              .ForMember(dest => dest.NumberOfDays, opt => opt.MapFrom(src => PositiveInt.From(src.NumberOfDays)));
 
-        CreateMap<GetWeatherForecastQueryResponse, GetWeatherForecastAPIResponse>()
-             .ForMember(dest => dest.ForecastCount, opt => opt.MapFrom(src => PositiveInt.From((int)src.ForecastCount)));
+        CreateMap<GetBankQueryResponse, GetBankAPIResponse>()
+             .ForMember(dest => dest.BankCount, opt => opt.MapFrom(src => PositiveInt.From((int)src.BankCount)));
     }
 }

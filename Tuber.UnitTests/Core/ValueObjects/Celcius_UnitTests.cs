@@ -1,7 +1,7 @@
 using Tuber.Core.Exceptions;
 using Tuber.Core.ValueObjects;
 
-namespace Tuber.UnitTests.BLL.WeatherForecasts.Queries.GetWeatherForecast;
+namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 
 public class Celcius_UnitTests
 {
