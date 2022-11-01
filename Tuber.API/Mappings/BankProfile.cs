@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Banks.Queries.GetBank;
 using Tuber.Core.ValueObjects;
-using Tuber.Domain.API.Banks.GetBank;
+using Tuber.Domain.Banks.GetBank;
 
 namespace Tuber.API.Mappings;
 

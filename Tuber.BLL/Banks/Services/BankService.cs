@@ -1,5 +1,5 @@
 ﻿using Tuber.Domain;
-using Tuber.Domain.API.Banks.Models;
+using Tuber.Domain.Banks.Models;
 using Tuber.Domain.DAL;
 
 namespace Tuber.BLL.Banks.Services;

@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.API.Banks.Models;
+﻿using Tuber.Domain.Banks.Models;
 
 namespace Tuber.Domain.DAL;
 public interface IBankRepo

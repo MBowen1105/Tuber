@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.API.Banks.Models;
+﻿namespace Tuber.Domain.Banks.Models;
 public class BankModel
 {
     public DateTime Date { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Tuber.Core.Common;
-using Tuber.Domain.API.Banks.Models;
+using Tuber.Domain.Banks.Models;
 
 namespace Tuber.BLL.Banks.Queries.GetBank;
 public class GetBankQueryResponse : PagedQueryResponseBase

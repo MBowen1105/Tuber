@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.API.Banks.Models;
+using Tuber.Domain.Banks.Models;
 
 namespace Tuber.DAL;
 public class ApplicationDbContext

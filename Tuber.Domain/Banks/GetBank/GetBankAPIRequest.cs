@@ -1,6 +1,6 @@
 ﻿using Tuber.Domain.API.Common;
 
-namespace Tuber.Domain.API.Banks.GetBank
+namespace Tuber.Domain.Banks.GetBank
 {
     public class GetBankAPIRequest : PagedAPIRequest
     {

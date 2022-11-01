@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.API.Extensions;
 using Tuber.BLL.Banks.Queries.GetBank;
-using Tuber.Domain.API.Banks.GetBank;
+using Tuber.Domain.Banks.GetBank;
 
 var builder = WebApplication.CreateBuilder(args);
 
