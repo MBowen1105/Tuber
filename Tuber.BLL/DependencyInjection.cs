@@ -3,7 +3,9 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.BLL.Banks.Services;
 using Tuber.BLL.PipelineBehaviours;
+using Tuber.Domain;
 
 namespace Tuber.BLL;
 public static class DependencyInjection
@@ -19,6 +21,8 @@ public static class DependencyInjection
         services.AddMediatR(assembly);
 
         services.AddAutoMapper(assembly);
+
+        services.AddSingleton<IBankService, BankService>();
 
         var config = new MapperConfiguration(cfg =>
         {

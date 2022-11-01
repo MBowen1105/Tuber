@@ -1,16 +1,15 @@
 ﻿using MediatR;
-using Tuber.Core.ValueObjects;
-using Tuber.Domain.DAL;
+using Tuber.Domain;
 
 namespace Tuber.BLL.Banks.Queries.GetBank
 {
     public class GetBankQueryHandler : IRequestHandler<GetBankQueryRequest, GetBankQueryResponse>
     {
-        private readonly IBankRepo _bankRepo;
+        private readonly IBankService _bankService;
 
-        public GetBankQueryHandler(IBankRepo bankRepo)
+        public GetBankQueryHandler(IBankService bankService)
         {
-            _bankRepo = bankRepo;
+            _bankService = bankService;
         }
 
         public Task<GetBankQueryResponse> Handle(GetBankQueryRequest request, CancellationToken cancellationToken)
@@ -18,8 +17,8 @@ namespace Tuber.BLL.Banks.Queries.GetBank
             var response = new GetBankQueryResponse
             {
                 BankCount = request.PageSize,
-                Banks = _bankRepo.Get(request.PageNumber, request.PageSize),
-                TotalPages = 10
+                Banks = _bankService.GetPaged(request.PageNumber, request.PageSize),
+                TotalPages = _bankService.CountPages(request.PageSize)
             };
 
             return Task.FromResult(response);
