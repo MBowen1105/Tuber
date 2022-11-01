@@ -1,4 +1,10 @@
-﻿namespace Tuber.Domain.API.Banks.GetBank
+﻿using Tuber.Core.Interfaces;
+
+namespace Tuber.Domain.API.Banks.GetBank
 {
-    public record GetBankAPIRequest(string FromDate, int NumberOfDays);
+    public class GetBankAPIRequest : IPagedAPIQuery
+    {
+        public int PageNumber { get; init; } = 1;
+        public int PageSize { get; init; } = 5;
+    }
 }

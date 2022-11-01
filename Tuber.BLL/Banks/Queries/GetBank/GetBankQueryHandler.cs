@@ -16,8 +16,8 @@ namespace Tuber.BLL.Banks.Queries.GetBank
         {
             return Task.FromResult(new GetBankQueryResponse
             {
-                BankCount = request.NumberOfDays,
-                Bank = _bankRepo.Get(request.FromDate, request.NumberOfDays)
+                BankCount = request.PageSize,
+                Bank = _bankRepo.Get(request.PageNumber, request.PageSize)
             });
         }
     }

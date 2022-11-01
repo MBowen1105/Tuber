@@ -8,6 +8,7 @@ internal class BankProfile_UnitTests
     public void BankProfile_IsValid()
     {
         var config = new MapperConfiguration(cfg => cfg.AddProfile<BankProfile>());
+
         config.AssertConfigurationIsValid();
     }
 }

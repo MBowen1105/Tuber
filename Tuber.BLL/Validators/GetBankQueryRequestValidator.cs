@@ -6,13 +6,13 @@ public class GetBankQueryRequestValidator : AbstractValidator<GetBankQueryReques
 {
 	public GetBankQueryRequestValidator()
 	{
-        RuleFor(x => x.FromDate.Value)
+        RuleFor(x => x.PageNumber.Value)
             .NotEmpty()
-            .Length(8);
+            .GreaterThanOrEqualTo(1);
 
-        RuleFor(x => x.NumberOfDays.Value)
+        RuleFor(x => x.PageSize.Value)
             .NotEmpty()
-            .InclusiveBetween(1, 10);
+            .GreaterThanOrEqualTo(1);
 
         
     }

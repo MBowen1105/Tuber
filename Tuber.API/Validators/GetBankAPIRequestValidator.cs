@@ -6,16 +6,13 @@ public class GetBankAPIRequestValidator : AbstractValidator<GetBankAPIRequest>
 {
 	public GetBankAPIRequestValidator()
 	{
-        RuleFor(x => x.FromDate)
+        RuleFor(x => x.PageNumber)
             .NotEmpty()
-            .Length(8)
-            .Matches(@"^\d{8}$");
+            .GreaterThanOrEqualTo(1);
 
-        RuleFor(x => x.NumberOfDays)
+        RuleFor(x => x.PageSize)
             .NotEmpty()
-            .InclusiveBetween(1, 10)
-                .WithMessage("Number of days must be between 1 and 10 only");
-
+            .GreaterThanOrEqualTo(1);
         
     }
 }

@@ -4,6 +4,6 @@ using Tuber.Core.ValueObjects;
 namespace Tuber.BLL.Banks.Queries.GetBank;
 public class GetBankQueryRequest : IRequest<GetBankQueryResponse>
 {
-    public ISO8601Date FromDate { get; set; }
-    public PositiveInt NumberOfDays { get; set; }
+    public PositiveInt PageNumber { get; set; } = PositiveInt.From(1);
+    public PositiveInt PageSize { get; set; } = PositiveInt.From(5);
 }

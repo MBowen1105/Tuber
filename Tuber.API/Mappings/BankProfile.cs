@@ -14,8 +14,8 @@ public class BankProfile : Profile
         //  Query Request. Also from an (int) NumberOfDays in the API request, to an (PositiveInt) NumberOfDays
         //  in the Query Request.
         CreateMap<GetBankAPIRequest, GetBankQueryRequest>()
-             .ForMember(dest => dest.FromDate, opt => opt.MapFrom(src => ISO8601Date.From(src.FromDate)))
-             .ForMember(dest => dest.NumberOfDays, opt => opt.MapFrom(src => PositiveInt.From(src.NumberOfDays)));
+             .ForMember(dest => dest.PageNumber, opt => opt.MapFrom(src => PositiveInt.From(src.PageNumber)))
+             .ForMember(dest => dest.PageSize, opt => opt.MapFrom(src => PositiveInt.From(src.PageSize)));
 
         CreateMap<GetBankQueryResponse, GetBankAPIResponse>()
              .ForMember(dest => dest.BankCount, opt => opt.MapFrom(src => PositiveInt.From((int)src.BankCount)));
