@@ -1,7 +1,7 @@
-using Tuber.Core.Exceptions;
-using Tuber.Core.ValueObjects;
+using Tuber.Domain.Exceptions;
+using Tuber.Domain.ValueObjects;
 
-namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
+namespace Tuber.UnitTests.Domain.ValueObjects;
 
 public class Celcius_UnitTests
 {

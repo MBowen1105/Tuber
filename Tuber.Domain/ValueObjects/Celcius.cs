@@ -1,7 +1,7 @@
-﻿using Tuber.Core.Exceptions;
+﻿using Tuber.Domain.Exceptions;
 using ValueOf;
 
-namespace Tuber.Core.ValueObjects;
+namespace Tuber.Domain.ValueObjects;
 
 public class Celcius : ValueOf<double, Celcius>
 {

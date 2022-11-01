@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Tuber.Domain\Tuber.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>
