@@ -6,11 +6,11 @@ public class GetBankQueryRequestValidator : AbstractValidator<GetBankQueryReques
 {
 	public GetBankQueryRequestValidator()
 	{
-        RuleFor(x => x.PageNumber.Value)
+        RuleFor(x => x.PageNumber)
             .NotEmpty()
             .GreaterThanOrEqualTo(1);
 
-        RuleFor(x => x.PageSize.Value)
+        RuleFor(x => x.PageSize)
             .NotEmpty()
             .GreaterThanOrEqualTo(1);
 

@@ -19,7 +19,7 @@ namespace Tuber.BLL.Banks.Queries.GetBank
             {
                 BankCount = request.PageSize,
                 Banks = _bankRepo.Get(request.PageNumber, request.PageSize),
-                TotalPages = PositiveInt.From(10)
+                TotalPages = 10
             };
 
             return Task.FromResult(response);

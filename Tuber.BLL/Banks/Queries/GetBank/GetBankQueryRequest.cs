@@ -1,9 +1,7 @@
 ﻿using MediatR;
-using Tuber.Core.ValueObjects;
+using Tuber.Domain.API.Common;
 
 namespace Tuber.BLL.Banks.Queries.GetBank;
-public class GetBankQueryRequest : IRequest<GetBankQueryResponse>
+public class GetBankQueryRequest : PagedRequest, IRequest<GetBankQueryResponse>
 {
-    public PositiveInt PageNumber { get; set; } = PositiveInt.From(1);
-    public PositiveInt PageSize { get; set; } = PositiveInt.From(5);
 }
