@@ -5,5 +5,5 @@ namespace Tuber.BLL.Banks.Queries.GetBank;
 public class GetBankQueryResponse : QueryResponseBase
 {
     public PositiveInt? BankCount { get; init; }
-    public BankDomain[]? Bank { get; init; }
+    public List<BankDomain> Banks { get; init; } = new List<BankDomain>();
 }

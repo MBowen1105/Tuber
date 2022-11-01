@@ -2,7 +2,7 @@
 using Tuber.Domain.API.Banks.Domains;
 
 namespace Tuber.Domain.DAL;
-public interface IRepo
+public interface IBankRepo
 {
-    BankDomain[] Get(PositiveInt pageNumber, PositiveInt pageSize);
+    List<BankDomain> Get(PositiveInt pageNumber, PositiveInt pageSize);
 }

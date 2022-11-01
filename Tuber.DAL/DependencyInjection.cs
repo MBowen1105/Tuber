@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
         
-        services.AddSingleton<IRepo, BankRepo>();
+        services.AddSingleton<IBankRepo, BankRepo>();
 
         return services;
     }

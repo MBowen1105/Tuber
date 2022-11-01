@@ -5,9 +5,9 @@ namespace Tuber.BLL.Banks.Queries.GetBank
 {
     public class GetBankQueryHandler : IRequestHandler<GetBankQueryRequest, GetBankQueryResponse>
     {
-        private readonly IRepo _bankRepo;
+        private readonly IBankRepo _bankRepo;
 
-        public GetBankQueryHandler(IRepo bankRepo)
+        public GetBankQueryHandler(IBankRepo bankRepo)
         {
             _bankRepo = bankRepo;
         }
@@ -17,7 +17,7 @@ namespace Tuber.BLL.Banks.Queries.GetBank
             return Task.FromResult(new GetBankQueryResponse
             {
                 BankCount = request.PageSize,
-                Bank = _bankRepo.Get(request.PageNumber, request.PageSize)
+                Banks = _bankRepo.Get(request.PageNumber, request.PageSize)
             });
         }
     }

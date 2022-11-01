@@ -3,9 +3,9 @@ using Tuber.Domain.API.Banks.Domains;
 using Tuber.Domain.DAL;
 
 namespace Tuber.DAL;
-public class BankRepo : IRepo
+public class BankRepo : IBankRepo
 {
-    public BankDomain[] Get(PositiveInt pageNumber, PositiveInt pageSize)
+    public List<BankDomain> Get(PositiveInt pageNumber, PositiveInt pageSize)
     {
         var bankNames = new[]
             {
@@ -18,6 +18,6 @@ public class BankRepo : IRepo
                     Date = DateTime.Now.AddDays(index),
                     Name = bankNames[Random.Shared.Next(bankNames.Length)]
                 })
-            .ToArray();
+            .ToList();
     }
 }
