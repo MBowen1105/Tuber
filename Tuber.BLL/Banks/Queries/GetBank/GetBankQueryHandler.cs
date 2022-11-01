@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Tuber.Core.ValueObjects;
 using Tuber.Domain.DAL;
 
 namespace Tuber.BLL.Banks.Queries.GetBank
@@ -14,11 +15,14 @@ namespace Tuber.BLL.Banks.Queries.GetBank
 
         public Task<GetBankQueryResponse> Handle(GetBankQueryRequest request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new GetBankQueryResponse
+            var response = new GetBankQueryResponse
             {
                 BankCount = request.PageSize,
-                Banks = _bankRepo.Get(request.PageNumber, request.PageSize)
-            });
+                Banks = _bankRepo.Get(request.PageNumber, request.PageSize),
+                TotalPages = PositiveInt.From(10)
+            };
+
+            return Task.FromResult(response);
         }
     }
 }
