@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.BLL.DependencyInjection.AddDependencyInjection(builder.Services);
-Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services);
+Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
