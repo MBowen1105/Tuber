@@ -10,7 +10,10 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddDbContextPool<ApplicationDbContext>(options => options.UseInMemoryDatabase("TuberDb"));
+        var cs = "server=(localDb)\\\\MSSQLLocalDb;database=TuberDb;Trusted_Connection=true;";
+
+        services.AddDbContextPool<ApplicationDbContext>(options =>
+             options.UseSqlServer(cs));
 
         services.AddSingleton<IBankRepo, BankRepo>();
 
