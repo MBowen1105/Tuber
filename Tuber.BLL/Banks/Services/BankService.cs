@@ -17,13 +17,14 @@ internal class BankService : IBankService
 
     public int CountPages(int pageSize)
     {
-        return _bankRepository.CountPages(pageSize);
+        return _bankRepository
+            .CountPages(pageSize);
     }
 
     public List<BankDto> GetPaged(int pageNumber, int pageSize)
     {
-        var modelList = _bankRepository.GetPaged(pageNumber, pageSize);
+        List<BankModel> bankModelList = _bankRepository.GetPaged(pageNumber, pageSize);
 
-        return _mapper.Map<List<BankModel>, List<BankDto>>(modelList);
+        return _mapper.Map<List<BankModel>, List<BankDto>>(bankModelList);
     }
 }

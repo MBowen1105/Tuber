@@ -14,10 +14,12 @@ namespace Tuber.BLL.Banks.Queries.GetBank
 
         public Task<GetBankQueryResponse> Handle(GetBankQueryRequest request, CancellationToken cancellationToken)
         {
+            var banks = _bankService.GetPaged(request.PageNumber, request.PageSize);
+
             var response = new GetBankQueryResponse
             {
-                BankCount = request.PageSize,
-                Banks = _bankService.GetPaged(request.PageNumber, request.PageSize),
+                BankCount = banks.Count,
+                Banks = banks,
                 TotalPages = _bankService.CountPages(request.PageSize)
             };
 

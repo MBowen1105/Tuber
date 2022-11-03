@@ -1,7 +1,7 @@
-﻿namespace Tuber.Domain.Banks.Models;
-public class BankDto
+﻿using Tuber.Domain.Entities;
+
+namespace Tuber.Domain.Banks.Models;
+public class BankDto : EntityBase
 {
-    public Guid Id { get; init; }    
-    public DateTime Date { get; init; }
-    public string Name { get; init; } = "";
+    public string? Name { get; set; } = "";
 }

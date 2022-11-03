@@ -11,7 +11,12 @@ public class BankRepository : Repository<BankModel>, IBankRepository
 
     public int CountPages(int pageSize)
     {
-        return 25;
+        var itemCount = _context.Set<BankModel>()
+            .Count(x => x.IsArchived == false);
+
+        var pages = itemCount / (pageSize * 1.0);
+
+        return (int)Math.Ceiling(pages);
     }
 
     public ApplicationDbContext ApplicationDbContext
