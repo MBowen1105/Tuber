@@ -12,8 +12,8 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221102144357_added-entity-base")]
-    partial class addedentitybase
+    [Migration("20221103120152_seeded-bank")]
+    partial class seededbank
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace Tuber.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
@@ -42,7 +39,15 @@ namespace Tuber.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banks");
+                    b.ToTable("Bank", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            IsArchived = false,
+                            Name = "Co-Op Bank"
+                        });
                 });
 #pragma warning restore 612, 618
         }

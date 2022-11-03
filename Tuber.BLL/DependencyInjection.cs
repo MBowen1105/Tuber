@@ -22,7 +22,7 @@ public static class DependencyInjection
 
         services.AddAutoMapper(assembly);
 
-        services.AddSingleton<IBankService, BankService>();
+        services.AddScoped<IBankService, BankService>();
 
         var config = new MapperConfiguration(cfg =>
         {

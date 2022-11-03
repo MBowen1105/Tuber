@@ -12,8 +12,8 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221101163401_init")]
-    partial class init
+    [Migration("20221102175214_Initial-Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,12 +34,15 @@ namespace Tuber.DAL.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banks");
+                    b.ToTable("Bank", (string)null);
                 });
 #pragma warning restore 612, 618
         }

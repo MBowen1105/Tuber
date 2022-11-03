@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tuber.DAL;
 
@@ -11,9 +12,11 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221103114510_removed-date-from-bank-model")]
+    partial class removeddatefrombankmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,14 +40,6 @@ namespace Tuber.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Bank", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            IsArchived = false,
-                            Name = "Co-Op Bank"
-                        });
                 });
 #pragma warning restore 612, 618
         }

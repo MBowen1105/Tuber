@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Domain.DAL;
+using Tuber.DAL.Repositories;
+using Tuber.Domain.Interfaces.Repositories;
 
 namespace Tuber.DAL;
 public static class DependencyInjection
@@ -14,10 +15,12 @@ public static class DependencyInjection
 
         var cs = config.GetConnectionString("ApplicationDbConnection");
 
-        services.AddDbContextPool<ApplicationDbContext>(options =>
-             options.UseSqlServer(cs));
+        services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(cs,
+    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-        services.AddSingleton<IBankRepo, BankRepo>();
+        services.AddScoped<IBankRepository, BankRepository>();
+        services.AddScoped<IBankRepository, BankRepository>();
 
         return services;
     }
