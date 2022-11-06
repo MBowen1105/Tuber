@@ -14,7 +14,7 @@ namespace Tuber.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Banks",
+                name: "Bank",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -24,11 +24,11 @@ namespace Tuber.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Banks", x => x.Id);
+                    table.PrimaryKey("PK_Bank", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "BankAccounts",
+                name: "BankAccount",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -39,17 +39,17 @@ namespace Tuber.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BankAccounts", x => x.Id);
+                    table.PrimaryKey("PK_BankAccount", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BankAccounts_Banks_BankId",
+                        name: "FK_BankAccount_Bank_BankId",
                         column: x => x.BankId,
-                        principalTable: "Banks",
+                        principalTable: "Bank",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Banks",
+                table: "Bank",
                 columns: new[] { "Id", "IsArchived", "Name", "OrderBy" },
                 values: new object[,]
                 {
@@ -59,7 +59,7 @@ namespace Tuber.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "BankAccounts",
+                table: "BankAccount",
                 columns: new[] { "Id", "BankId", "IsArchived", "Name", "OrderBy" },
                 values: new object[,]
                 {
@@ -69,8 +69,8 @@ namespace Tuber.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BankAccounts_BankId",
-                table: "BankAccounts",
+                name: "IX_BankAccount_BankId",
+                table: "BankAccount",
                 column: "BankId");
         }
 
@@ -78,10 +78,10 @@ namespace Tuber.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BankAccounts");
+                name: "BankAccount");
 
             migrationBuilder.DropTable(
-                name: "Banks");
+                name: "Bank");
         }
     }
 }

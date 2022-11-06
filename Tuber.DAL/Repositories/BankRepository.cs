@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Models;
 using Tuber.Domain.Interfaces.Repositories;
+using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Repositories;
 public class BankRepository : Repository<Bank>, IBankRepository
@@ -14,6 +14,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
     {
         return _context.Set<Bank>()
             .Where(x => x.IsArchived == false)
+            .Include("BankAccounts")
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .OrderBy(x => x.OrderBy)

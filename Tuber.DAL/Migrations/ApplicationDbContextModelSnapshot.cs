@@ -39,7 +39,7 @@ namespace Tuber.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banks", (string)null);
+                    b.ToTable("Bank", (string)null);
 
                     b.HasData(
                         new
@@ -87,7 +87,7 @@ namespace Tuber.DAL.Migrations
 
                     b.HasIndex("BankId");
 
-                    b.ToTable("BankAccounts", (string)null);
+                    b.ToTable("BankAccount", (string)null);
 
                     b.HasData(
                         new

@@ -17,12 +17,12 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.Entity<Bank>(entity =>
         {
-            entity.ToTable("Banks");
+            entity.ToTable("Bank");
         });
 
         modelBuilder.Entity<BankAccount>(entity =>
         {
-            entity.ToTable("BankAccounts");
+            entity.ToTable("BankAccount");
         });
 
         modelBuilder.SeedBanks();
