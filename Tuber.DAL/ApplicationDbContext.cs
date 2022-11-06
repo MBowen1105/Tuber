@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Domain.BankAccounts.Models;
 using Tuber.Domain.Banks.Models;
 
 namespace Tuber.DAL;
@@ -11,6 +12,7 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<BankModel> Banks { get; set; }
+    public DbSet<BankAccountModel> BankAccounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,7 +22,15 @@ public class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Id);
         });
 
+        modelBuilder.Entity<BankAccountModel>(entity =>
+        {
+            entity.ToTable("BankAccount");
+            entity.HasKey(e => e.Id);
+        });
+
         modelBuilder.SeedBanks();
+
+        modelBuilder.SeedBankAccounts();
 
         base.OnModelCreating(modelBuilder);
     }
