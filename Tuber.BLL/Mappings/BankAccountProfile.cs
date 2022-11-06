@@ -3,7 +3,7 @@ using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Mappings;
-internal class BankAccountProfile : Profile
+public class BankAccountProfile : Profile
 {
 	public BankAccountProfile()
 	{
