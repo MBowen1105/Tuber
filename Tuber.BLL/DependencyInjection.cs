@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tuber.BLL.Banks.Services;
 using Tuber.BLL.PipelineBehaviours;
-using Tuber.Domain;
+using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.BLL;
 public static class DependencyInjection

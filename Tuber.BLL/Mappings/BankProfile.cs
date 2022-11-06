@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
-using Tuber.Domain.Banks.Models;
+using Tuber.Domain.Dtos;
+using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Mappings;
 internal class BankProfile : Profile
 {
 	public BankProfile()
 	{
-        CreateMap<BankModel, BankDto>().ReverseMap();
+        CreateMap<Bank, BankDto>().ReverseMap();
     }
     
 }

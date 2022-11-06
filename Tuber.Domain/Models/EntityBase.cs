@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Entities;
+﻿namespace Tuber.Domain.Models;
 public class EntityBase
 {
     public Guid Id { get; set; }

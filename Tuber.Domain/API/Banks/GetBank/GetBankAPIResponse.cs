@@ -1,5 +1,5 @@
-﻿using Tuber.Domain.Banks.Models;
-using Tuber.Domain.API.Common;
+﻿using Tuber.Domain.API.Common;
+using Tuber.Domain.Dtos;
 
 namespace Tuber.Domain.Banks.GetBank;
 public class GetBankAPIResponse : PagedAPIResponse

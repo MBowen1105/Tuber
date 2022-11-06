@@ -12,8 +12,8 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106155521_AddedBankAccountTable")]
-    partial class AddedBankAccountTable
+    [Migration("20221106170044_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,50 @@ namespace Tuber.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Tuber.Domain.BankAccounts.Models.BankAccountModel", b =>
+            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banks", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            IsArchived = false,
+                            Name = "Co-Op Bank",
+                            OrderBy = 10
+                        },
+                        new
+                        {
+                            Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
+                            IsArchived = false,
+                            Name = "Lloyds Bank",
+                            OrderBy = 20
+                        },
+                        new
+                        {
+                            Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
+                            IsArchived = false,
+                            Name = "Barclays Bank",
+                            OrderBy = 30
+                        });
+                });
+
+            modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +88,9 @@ namespace Tuber.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BankAccount", (string)null);
+                    b.HasIndex("BankId");
+
+                    b.ToTable("BankAccounts", (string)null);
 
                     b.HasData(
                         new
@@ -74,47 +119,20 @@ namespace Tuber.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Banks.Models.BankModel", b =>
+            modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Tuber.Domain.Models.Bank", "Bank")
+                        .WithMany("BankAccounts")
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<bool>("IsArchived")
-                        .HasColumnType("bit");
+                    b.Navigation("Bank");
+                });
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bank", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            IsArchived = false,
-                            Name = "Co-Op Bank",
-                            OrderBy = 10
-                        },
-                        new
-                        {
-                            Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
-                            IsArchived = false,
-                            Name = "Lloyds Bank",
-                            OrderBy = 20
-                        },
-                        new
-                        {
-                            Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
-                            IsArchived = false,
-                            Name = "Barclays Bank",
-                            OrderBy = 30
-                        });
+            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+                {
+                    b.Navigation("BankAccounts");
                 });
 #pragma warning restore 612, 618
         }

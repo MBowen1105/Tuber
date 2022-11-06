@@ -1,9 +1,8 @@
-﻿using Tuber.Domain.Banks.Models;
-using Tuber.Domain.Repositories.Interfaces;
+﻿using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Interfaces.Repositories;
-public interface IBankRepository : IRepository<BankModel>
+public interface IBankRepository : IRepository<Bank>
 {
-    List<BankModel> GetPaged(int pageNumber, int pageSize);
+    List<Bank> GetPaged(int pageNumber, int pageSize);
     int CountPages(int pageSize);
 }

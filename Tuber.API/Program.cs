@@ -61,5 +61,39 @@ app.MapPut("/bank/get", async (GetBankAPIRequest APIRequest,
 })
 .WithName("GetBank");
 
+//app.MapPut("/bankAccount/get", async (GetBankAccountAPIRequest APIRequest,
+//    [FromServices] IMediator mediator,
+//    [FromServices] IMapper mapper,
+//    [FromServices] IEnumerable<IValidator<GetBankAPIRequest>> validators) =>
+//{
+//    //  Validate incoming APIRequest.
+//    var context = new ValidationContext<GetBankAccountAPIRequest>(APIRequest);
+//    var validationFailures = validators
+//        .Select(x => x.Validate(context))
+//        .SelectMany(x => x.Errors)
+//        .Where(x => x != null)
+//        .ToList();
+
+//    //  If the incoming API request has validation failures, convert them to the 
+//    //  BadRequest response and return a 400 Http Exception
+//    if (validationFailures.Any())
+//        return Results.BadRequest(validationFailures.ToBadRequestResponse());
+
+//    //  Map validated API request to query
+//    var query = mapper.Map<GetBankAccountAPIRequest, GetBankAccountQueryRequest>(APIRequest);
+
+//    // Call query handler. This first invokes the pipeline behaviour.
+//    var queryResponse = await mediator.Send(query);
+
+//    if (queryResponse.HasExceptions)
+//        return Results.BadRequest(queryResponse.Exceptions);
+
+//    //  Map Handler response to API Response and return.
+//    var apiResponse = mapper.Map<GetBankAccountQueryResponse, GetBankAccountAPIResponse>(queryResponse);
+
+//    return Results.Ok(apiResponse);
+//})
+//.WithName("GetBankAccount");
+
 app.Run();
 

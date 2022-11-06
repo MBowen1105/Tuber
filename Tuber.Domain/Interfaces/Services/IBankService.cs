@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Banks.Models;
+﻿using Tuber.Domain.Dtos;
 
-namespace Tuber.Domain;
+namespace Tuber.Domain.Interfaces.Services;
 public interface IBankService
 {
     List<BankDto> GetPaged(int pageNumber, int pageSize);

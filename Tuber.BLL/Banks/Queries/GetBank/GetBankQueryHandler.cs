@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Tuber.Domain;
+using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.BLL.Banks.Queries.GetBank
 {

@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Tuber.Domain;
-using Tuber.Domain.Banks.Models;
+using Tuber.Domain.Dtos;
+using Tuber.Domain.Models;
 using Tuber.Domain.Interfaces.Repositories;
+using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.BLL.Banks.Services;
 internal class BankService : IBankService
@@ -23,8 +24,8 @@ internal class BankService : IBankService
 
     public List<BankDto> GetPaged(int pageNumber, int pageSize)
     {
-        List<BankModel> bankModelList = _bankRepository.GetPaged(pageNumber, pageSize);
+        List<Bank> bankModelList = _bankRepository.GetPaged(pageNumber, pageSize);
 
-        return _mapper.Map<List<BankModel>, List<BankDto>>(bankModelList);
+        return _mapper.Map<List<Bank>, List<BankDto>>(bankModelList);
     }
 }

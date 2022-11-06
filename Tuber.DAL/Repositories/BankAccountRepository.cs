@@ -1,18 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Models;
+﻿using Tuber.Domain.Models;
 using Tuber.Domain.Interfaces.Repositories;
 
 namespace Tuber.DAL.Repositories;
-public class BankRepository : Repository<Bank>, IBankRepository
+public class BankAccountRepository : Repository<BankAccount>, IBankAccountRepository
 {
-    public BankRepository(ApplicationDbContext context)
+    public BankAccountRepository(ApplicationDbContext context)
            : base(context)
     {
     }
 
-    public List<Bank> GetPaged(int pageNumber, int pageSize)
+    public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
-        return _context.Set<Bank>()
+        return _context.Set<BankAccount>()
             .Where(x => x.IsArchived == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
@@ -22,7 +21,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
 
     public int CountPages(int pageSize)
     {
-        var itemCount = _context.Set<Bank>()
+        var itemCount = _context.Set<BankAccount>()
             .Count(x => x.IsArchived == false);
 
         var pages = itemCount / (pageSize * 1.0);
