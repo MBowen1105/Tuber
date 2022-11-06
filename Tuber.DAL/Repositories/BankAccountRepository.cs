@@ -1,5 +1,6 @@
 ﻿using Tuber.Domain.Models;
 using Tuber.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tuber.DAL.Repositories;
 public class BankAccountRepository : Repository<BankAccount>, IBankAccountRepository
@@ -12,6 +13,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<BankAccount>()
+            .Include("Bank")
             .Where(x => x.IsArchived == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)

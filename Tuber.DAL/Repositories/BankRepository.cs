@@ -13,8 +13,8 @@ public class BankRepository : Repository<Bank>, IBankRepository
     public List<Bank> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<Bank>()
-            .Where(x => x.IsArchived == false)
             .Include("BankAccounts")
+            .Where(x => x.IsArchived == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .OrderBy(x => x.OrderBy)
