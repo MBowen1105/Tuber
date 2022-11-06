@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Tuber.Domain.Banks.GetBank;
+using Tuber.Domain.API.Banks.GetBank;
 
 namespace Tuber.API.Validators;
 public class GetBankAPIRequestValidator : AbstractValidator<GetBankAPIRequest>

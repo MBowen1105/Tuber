@@ -20,6 +20,7 @@ public static class DependencyInjection
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         services.AddScoped<IBankRepository, BankRepository>();
+        services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 
         return services;
     }

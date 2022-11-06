@@ -24,6 +24,8 @@ public static class DependencyInjection
 
         services.AddScoped<IBankService, BankService>();
 
+        services.AddScoped<IBankAccountService, BankAccountService>();
+
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddMaps(assembly);
