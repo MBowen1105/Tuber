@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tuber.DAL;
 
@@ -11,9 +12,11 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106140443_AddedBankSeeds")]
+    partial class AddedBankSeeds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace Tuber.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderBy")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Bank", (string)null);
@@ -46,22 +46,13 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             IsArchived = false,
-                            Name = "Co-Op Bank",
-                            OrderBy = 10
+                            Name = "Co-Op Bank"
                         },
                         new
                         {
                             Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             IsArchived = false,
-                            Name = "Lloyds Bank",
-                            OrderBy = 20
-                        },
-                        new
-                        {
-                            Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
-                            IsArchived = false,
-                            Name = "Barclays Bank",
-                            OrderBy = 30
+                            Name = "Lloyds Bank"
                         });
                 });
 #pragma warning restore 612, 618

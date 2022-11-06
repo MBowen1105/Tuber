@@ -15,10 +15,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         _context = context;
     }
-    
-    public List<TEntity> GetPaged(int pageNumber, int pageSize)
+
+    public List<TEntity> GetAll()
     {
-        return _context.Set<TEntity>().ToList();
+        return _context.Set<TEntity>()
+            .ToList();
     }
 }
 

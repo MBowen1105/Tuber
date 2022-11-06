@@ -9,6 +9,16 @@ public class BankRepository : Repository<BankModel>, IBankRepository
     {
     }
 
+    public List<BankModel> GetPaged(int pageNumber, int pageSize)
+    {
+        return _context.Set<BankModel>()
+            .Where(x => x.IsArchived == false)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .OrderBy(x => x.OrderBy)
+            .ToList();
+    }
+
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Set<BankModel>()

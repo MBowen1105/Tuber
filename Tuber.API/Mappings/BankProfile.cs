@@ -9,8 +9,6 @@ public class BankProfile : Profile
 {
     public BankProfile()
     {
-        CreateMap<BankModel, BankDto>()
-            .ReverseMap();
 
         CreateMap<GetBankAPIRequest, GetBankQueryRequest>();
 
