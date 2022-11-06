@@ -16,10 +16,9 @@ public static class DependencyInjection
         var cs = config.GetConnectionString("ApplicationDbConnection");
 
         services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(cs,
-    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+                options.UseSqlServer(cs,
+                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-        services.AddScoped<IBankRepository, BankRepository>();
         services.AddScoped<IBankRepository, BankRepository>();
 
         return services;
