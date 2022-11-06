@@ -3,20 +3,20 @@ using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.BLL.Banks.Queries.GetBank
 {
-    public class GetBankQueryHandler : IRequestHandler<GetBankQueryRequest, GetBankQueryResponse>
+    public class GetBankPagedQueryHandler : IRequestHandler<GetBankPagedQueryRequest, GetBankPagedQueryResponse>
     {
         private readonly IBankService _bankService;
 
-        public GetBankQueryHandler(IBankService bankService)
+        public GetBankPagedQueryHandler(IBankService bankService)
         {
             _bankService = bankService;
         }
 
-        public Task<GetBankQueryResponse> Handle(GetBankQueryRequest request, CancellationToken cancellationToken)
+        public Task<GetBankPagedQueryResponse> Handle(GetBankPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var banks = _bankService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new GetBankQueryResponse
+            var response = new GetBankPagedQueryResponse
             {
                 BankCount = banks.Count,
                 Banks = banks,

@@ -30,13 +30,13 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-app.MapPut("/bank/get", async (GetBankAPIRequest APIRequest,
+app.MapPut("/bank/get", async (GetBankPagedAPIRequest APIRequest,
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper,
-    [FromServices] IEnumerable<IValidator<GetBankAPIRequest>> validators) =>
+    [FromServices] IEnumerable<IValidator<GetBankPagedAPIRequest>> validators) =>
 {
     //  Validate incoming APIRequest.
-    var context = new ValidationContext<GetBankAPIRequest>(APIRequest);
+    var context = new ValidationContext<GetBankPagedAPIRequest>(APIRequest);
     var validationFailures = validators
         .Select(x => x.Validate(context))
         .SelectMany(x => x.Errors)
@@ -49,7 +49,7 @@ app.MapPut("/bank/get", async (GetBankAPIRequest APIRequest,
         return Results.BadRequest(validationFailures.ToBadRequestResponse());
 
     //  Map validated API request to query
-    var query = mapper.Map<GetBankAPIRequest, GetBankQueryRequest>(APIRequest);
+    var query = mapper.Map<GetBankPagedAPIRequest, GetBankPagedQueryRequest>(APIRequest);
 
     // Call query handler. This first invokes the pipeline behaviour.
     var queryResponse = await mediator.Send(query);
@@ -58,7 +58,7 @@ app.MapPut("/bank/get", async (GetBankAPIRequest APIRequest,
         return Results.BadRequest(queryResponse.Exceptions);
 
     //  Map Handler response to API Response and return.
-    var apiResponse = mapper.Map<GetBankQueryResponse, GetBankAPIResponse>(queryResponse);
+    var apiResponse = mapper.Map<GetBankPagedQueryResponse, GetBankPagedAPIResponse>(queryResponse);
 
     return Results.Ok(apiResponse);
 })

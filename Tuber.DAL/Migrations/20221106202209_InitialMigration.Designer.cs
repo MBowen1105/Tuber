@@ -12,7 +12,7 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221106175114_InitialMigration")]
+    [Migration("20221106202209_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -35,7 +35,9 @@ namespace Tuber.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
@@ -81,7 +83,9 @@ namespace Tuber.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
@@ -122,17 +126,12 @@ namespace Tuber.DAL.Migrations
             modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
                 {
                     b.HasOne("Tuber.Domain.Models.Bank", "Bank")
-                        .WithMany("BankAccounts")
+                        .WithMany()
                         .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Bank");
-                });
-
-            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
-                {
-                    b.Navigation("BankAccounts");
                 });
 #pragma warning restore 612, 618
         }

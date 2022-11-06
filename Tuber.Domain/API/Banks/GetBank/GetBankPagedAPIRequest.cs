@@ -2,7 +2,7 @@
 
 namespace Tuber.Domain.API.Banks.GetBank
 {
-    public class GetBankAPIRequest : PagedAPIRequest
+    public class GetBankPagedAPIRequest : PagedAPIRequest
     {
     }
 }

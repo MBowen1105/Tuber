@@ -2,7 +2,7 @@
 using Tuber.BLL.Banks.Queries.GetBank;
 
 namespace Tuber.BLL.Validators;
-public class GetBankQueryRequestValidator : AbstractValidator<GetBankQueryRequest>
+public class GetBankQueryRequestValidator : AbstractValidator<GetBankPagedQueryRequest>
 {
 	public GetBankQueryRequestValidator()
 	{

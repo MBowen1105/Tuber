@@ -2,7 +2,7 @@
 using Tuber.Domain.API.Banks.GetBank;
 
 namespace Tuber.API.Validators;
-public class GetBankAPIRequestValidator : AbstractValidator<GetBankAPIRequest>
+public class GetBankAPIRequestValidator : AbstractValidator<GetBankPagedAPIRequest>
 {
 	public GetBankAPIRequestValidator()
 	{

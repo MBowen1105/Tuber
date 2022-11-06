@@ -10,8 +10,8 @@ public class BankProfile : Profile
     public BankProfile()
     {
 
-        CreateMap<GetBankAPIRequest, GetBankQueryRequest>();
+        CreateMap<GetBankPagedAPIRequest, GetBankPagedQueryRequest>();
 
-        CreateMap<GetBankQueryResponse, GetBankAPIResponse>();
+        CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
     }
 }
