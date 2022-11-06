@@ -6,7 +6,6 @@ namespace Tuber.Domain.ValueObjects;
 public class Celcius : ValueOf<double, Celcius>
 {
     private const double AbsoluteZeroInCelcius = -273.15;
-
     protected override void Validate()
     {
         if (Value < AbsoluteZeroInCelcius)
