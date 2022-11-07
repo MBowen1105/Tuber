@@ -9,6 +9,7 @@ using Tuber.BLL.Banks.Queries.GetBank;
 using Tuber.Domain.API.BankAccounts.GetBank;
 using Tuber.Domain.API.Banks.GetBank;
 using Tuber.Domain.Banks.GetBank;
+using Tuber.Domain.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,15 +35,19 @@ app.UseHttpsRedirection();
 app.MapGet("/bank/get", async (int pageNumber, int pageSize,
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper) =>
-{    
-    var query = new GetBankPagedQueryRequest
+{
+    if (pageNumber < 1)
+        return Results.BadRequest(new InvalidPageNumberException(pageNumber));
+
+    if (pageSize < 1)
+        return Results.BadRequest(new InvalidPageSizeException(pageSize));
+
+    // Call query handler. This first invokes the pipeline behaviour.
+    var queryResponse = await mediator.Send(new GetBankPagedQueryRequest
     {
         PageNumber = pageNumber,
         PageSize = pageSize
-    };
-
-    // Call query handler. This first invokes the pipeline behaviour.
-    var queryResponse = await mediator.Send(query);
+    });
 
     if (queryResponse.HasExceptions)
         return Results.BadRequest(queryResponse.Exceptions);

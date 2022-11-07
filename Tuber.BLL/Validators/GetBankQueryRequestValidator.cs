@@ -13,7 +13,5 @@ public class GetBankQueryRequestValidator : AbstractValidator<GetBankPagedQueryR
         RuleFor(x => x.PageSize)
             .NotEmpty()
             .GreaterThanOrEqualTo(1);
-
-        
     }
 }
