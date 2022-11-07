@@ -11,7 +11,7 @@ internal class ValidationFailureExtensions_UnitTests
     }
 
     [Test]
-    public void ValidationFailureExtensions_ReturnsCorrectExceptionList()
+    public void ValidationFailureExtensions_ValidationFailures_ReturnsCorrectBadRequestResponse()
     {
         var obj1 = new { value = "20220101" };
         var obj2 = new { value = 2 };
