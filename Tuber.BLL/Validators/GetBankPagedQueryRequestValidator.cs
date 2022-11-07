@@ -2,9 +2,9 @@
 using Tuber.BLL.Banks.Queries.GetBank;
 
 namespace Tuber.BLL.Validators;
-public class GetBankQueryRequestValidator : AbstractValidator<GetBankPagedQueryRequest>
+public class GetBankPagedQueryRequestValidator : AbstractValidator<GetBankPagedQueryRequest>
 {
-	public GetBankQueryRequestValidator()
+	public GetBankPagedQueryRequestValidator()
 	{
         RuleFor(x => x.PageNumber)
             .NotEmpty()
