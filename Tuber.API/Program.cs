@@ -1,4 +1,5 @@
 using AutoMapper;
+using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,26 +31,15 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-app.MapPut("/bank/get", async (GetBankPagedAPIRequest APIRequest,
+app.MapGet("/bank/get", async (int pageNumber, int pageSize,
     [FromServices] IMediator mediator,
-    [FromServices] IMapper mapper,
-    [FromServices] IEnumerable<IValidator<GetBankPagedAPIRequest>> validators) =>
-{
-    //  Validate incoming APIRequest.
-    var context = new ValidationContext<GetBankPagedAPIRequest>(APIRequest);
-    var validationFailures = validators
-        .Select(x => x.Validate(context))
-        .SelectMany(x => x.Errors)
-        .Where(x => x != null)
-        .ToList();
-
-    //  If the incoming API request has validation failures, convert them to the 
-    //  BadRequest response and return a 400 Http Exception
-    if (validationFailures.Any())
-        return Results.BadRequest(validationFailures.ToBadRequestResponse());
-
-    //  Map validated API request to query
-    var query = mapper.Map<GetBankPagedAPIRequest, GetBankPagedQueryRequest>(APIRequest);
+    [FromServices] IMapper mapper) =>
+{    
+    var query = new GetBankPagedQueryRequest
+    {
+        PageNumber = pageNumber,
+        PageSize = pageSize
+    };
 
     // Call query handler. This first invokes the pipeline behaviour.
     var queryResponse = await mediator.Send(query);

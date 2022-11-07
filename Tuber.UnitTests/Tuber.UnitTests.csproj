@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="API\Validators\GetBankAPIRequestValidator_UnitTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
@@ -22,6 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Tuber.API\Tuber.API.csproj" />
     <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="API\Validators\" />
   </ItemGroup>
 
 </Project>

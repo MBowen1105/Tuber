@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validators\GetBankPagedAPIRequestValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
@@ -22,6 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
     <ProjectReference Include="..\Tuber.DAL\Tuber.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>

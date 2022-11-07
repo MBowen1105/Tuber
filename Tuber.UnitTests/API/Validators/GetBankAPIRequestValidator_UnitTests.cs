@@ -30,7 +30,23 @@ internal class GetBankAPIRequestValidator_UnitTests
     }
 
     [Test]
-    public void GetBankAPIRequestValidator_ZeroPageNumber_ThrowException()
+    public void GetBankAPIRequestValidator_NegativePageNumber_ThrowsOneException()
+    {
+        var payload = new GetBankPagedAPIRequest()
+        {
+            PageNumber = -1,
+            PageSize = 10,
+        };
+
+        var result = _sut.Validate(payload);
+
+        result.IsValid.Should().Be(false);
+        result.Errors.Should().HaveCount(1);
+        result.Errors[0].ErrorMessage.Should().Be("'Page Number' must be greater than or equal to '1'.");
+    }
+
+    [Test]
+    public void GetBankAPIRequestValidator_ZeroPageNumber_ThrowsTwoExceptions()
     {
         var payload = new GetBankPagedAPIRequest()
         {
