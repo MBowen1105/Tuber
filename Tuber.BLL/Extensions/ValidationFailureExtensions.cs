@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using Tuber.Domain.API.Common;
 
-namespace Tuber.API.Extensions;
+namespace Tuber.BLL.Extensions;
 public static class ValidationFailureExtensions
 {
     public static BadRequestResponse[] ToBadRequestResponse(

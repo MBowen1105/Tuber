@@ -14,9 +14,6 @@ public static class DependencyInjection
 
         services.AddAutoMapper(assembly);
 
-        // There should be no Validators DEFINED in the API (They are in the BLL)
-        //services.AddValidatorsFromAssembly(assembly);
-
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddMaps(assembly);

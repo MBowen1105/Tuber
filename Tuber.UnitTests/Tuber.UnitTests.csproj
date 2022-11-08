@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="API\Validators\GetBankAPIRequestValidator_UnitTests.cs" />
+    <Compile Remove="BLL\Validators\GetBankAPIRequestValidator_UnitTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\Validators\" />
+    <Folder Include="BLL\Validators\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
 

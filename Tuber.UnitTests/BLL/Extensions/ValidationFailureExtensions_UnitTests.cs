@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using FluentValidation.Results;
-using Tuber.API.Extensions;
+using Tuber.BLL.Extensions;
 
-namespace Tuber.UnitTests.API.Extensions;
+namespace Tuber.UnitTests.BLL.Extensions;
 internal class ValidationFailureExtensions_UnitTests
 {
     [SetUp]
