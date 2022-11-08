@@ -7,6 +7,6 @@ public record BadRequestResponse(
     object AttemptedValue, 
     Severity Severity)
 {
-    public string AttemptedValueSafe => AttemptedValue.ToString();
+    public string? AttemptedValueSafe => AttemptedValue.ToString();
     public string SeverityDesc => Severity.ToString();
 }

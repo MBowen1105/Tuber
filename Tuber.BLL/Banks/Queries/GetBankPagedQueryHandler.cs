@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Tuber.Domain.Interfaces.Services;
 
-namespace Tuber.BLL.Banks.Queries.GetBank
+namespace Tuber.BLL.Banks.Queries
 {
     public class GetBankPagedQueryHandler : IRequestHandler<GetBankPagedQueryRequest, GetBankPagedQueryResponse>
     {

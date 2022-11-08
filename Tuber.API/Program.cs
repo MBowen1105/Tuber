@@ -1,13 +1,12 @@
 using AutoMapper;
-using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.API.Extensions;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccount;
-using Tuber.BLL.Banks.Queries.GetBank;
+using Tuber.BLL.Banks.Queries;
 using Tuber.Domain.API.BankAccounts.GetBank;
-using Tuber.Domain.API.Banks.GetBank;
+using Tuber.Domain.Banks;
 using Tuber.Domain.Banks.GetBank;
 using Tuber.Domain.Exceptions;
 
@@ -58,6 +57,26 @@ app.MapGet("/bank/get", async (int pageNumber, int pageSize,
     return Results.Ok(apiResponse);
 })
 .WithName("GetBank");
+
+app.MapGet("/bank/get/{id}", async (Guid id,
+    [FromServices] IMediator mediator,
+    [FromServices] IMapper mapper) =>
+{
+    // Call query handler. This first invokes the pipeline behaviour.
+    var queryResponse = await mediator.Send(new GetBankByIdQueryRequest
+    {
+        BankId = id
+    });
+
+    if (queryResponse.HasExceptions)
+        return Results.BadRequest(queryResponse.Exceptions);
+
+    //  Map Handler response to API Response and return.
+    var apiResponse = mapper.Map<GetBankByIdQueryResponse, GetBankByIdAPIResponse>(queryResponse);
+
+    return Results.Ok(apiResponse);
+})
+.WithName("GetBankById");
 
 app.MapPut("/bankAccount/get", async (GetBankAccountPagedAPIRequest APIRequest,
     [FromServices] IMediator mediator,

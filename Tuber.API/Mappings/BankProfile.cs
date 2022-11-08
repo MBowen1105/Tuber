@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Banks.Queries.GetBank;
-using Tuber.Domain.Banks.GetBank;
+using Tuber.BLL.Banks.Queries;
+using Tuber.Domain.Banks;
 
 namespace Tuber.API.Mappings;
 

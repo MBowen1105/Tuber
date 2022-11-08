@@ -1,13 +1,12 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Banks.Queries.GetBank;
+using Tuber.BLL.Banks.Queries;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 internal class GetBankPagedQueryHandler_UnitTests
 {
-    private GetBankPagedQueryHandler _sut;
     private BankDto[] _bankList;
 
     [SetUp]
@@ -72,7 +71,7 @@ internal class GetBankPagedQueryHandler_UnitTests
         mockBankService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);
 
-        _sut = new GetBankPagedQueryHandler(mockBankService.Object);
+        var sut = new GetBankPagedQueryHandler(mockBankService.Object);
 
         var request = new GetBankPagedQueryRequest
         {
@@ -80,7 +79,7 @@ internal class GetBankPagedQueryHandler_UnitTests
             PageSize = pageSize
         };
 
-        var result = _sut.Handle(request, new CancellationToken());
+        var result = sut.Handle(request, new CancellationToken());
 
         //  Returned the correct number of bank rows (pageSize)
         result.Result.BankCount.Should().Be(pageSize);

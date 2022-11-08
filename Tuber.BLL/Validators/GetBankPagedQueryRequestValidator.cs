@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Tuber.BLL.Banks.Queries.GetBank;
+using Tuber.BLL.Banks.Queries;
 
 namespace Tuber.BLL.Validators;
 public class GetBankPagedQueryRequestValidator : AbstractValidator<GetBankPagedQueryRequest>

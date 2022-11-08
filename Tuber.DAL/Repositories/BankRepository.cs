@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Tuber.Domain.Interfaces.Repositories;
 using Tuber.Domain.Models;
 
@@ -8,6 +9,14 @@ public class BankRepository : Repository<Bank>, IBankRepository
     public BankRepository(ApplicationDbContext context)
            : base(context)
     {
+    }
+
+    public Bank GetById(Guid id)
+    {
+        var bank = _context.Set<Bank>()
+             .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
+
+        return (bank ?? new Bank { Id = Guid.Empty });
     }
 
     public List<Bank> GetPaged(int pageNumber, int pageSize)
@@ -29,6 +38,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
 
         return (int)Math.Ceiling(pages);
     }
+
 
     public ApplicationDbContext ApplicationDbContext
     {

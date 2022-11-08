@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Tuber.BLL.Banks.Queries;
+using Tuber.Domain.Banks;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
@@ -8,6 +10,7 @@ public class BankProfile : Profile
 	public BankProfile()
 	{
         CreateMap<Bank, BankDto>().ReverseMap();
+        CreateMap<GetBankByIdQueryResponse, GetBankByIdAPIResponse>();
     }
     
 }

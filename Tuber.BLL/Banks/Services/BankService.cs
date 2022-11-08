@@ -22,6 +22,13 @@ internal class BankService : IBankService
             .CountPages(pageSize);
     }
 
+    public BankDto GetById(Guid id)
+    {
+        var bankModel = _bankRepository.GetById(id);
+
+        return _mapper.Map<Bank, BankDto>(bankModel);
+    }
+
     public List<BankDto> GetPaged(int pageNumber, int pageSize)
     {
         List<Bank> bankModelList = _bankRepository.GetPaged(pageNumber, pageSize);

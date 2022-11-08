@@ -1,7 +1,7 @@
 ﻿using Tuber.Domain.API.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.Domain.Banks.GetBank;
+namespace Tuber.Domain.Banks;
 public class GetBankPagedAPIResponse : PagedAPIResponse
 {
     public int BankCount { get; init; }
