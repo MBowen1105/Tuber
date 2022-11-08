@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Tuber.Domain.Interfaces.Repositories;
+﻿using Tuber.Domain.Interfaces.Repositories;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Repositories;
@@ -29,6 +27,18 @@ public class BankRepository : Repository<Bank>, IBankRepository
             .ToList();
     }
 
+    public Guid Add(Bank bank)
+    {
+        _context.Set<Bank>()
+            .Add(bank);
+        return bank.Id;
+    }
+
+    public ApplicationDbContext ApplicationDbContext
+    {
+        get { return ApplicationDbContext; }
+    }
+
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Set<Bank>()
@@ -38,11 +48,4 @@ public class BankRepository : Repository<Bank>, IBankRepository
 
         return (int)Math.Ceiling(pages);
     }
-
-
-    public ApplicationDbContext ApplicationDbContext
-    {
-        get { return ApplicationDbContext; }
-    }
-
 }

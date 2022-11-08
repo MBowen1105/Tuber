@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.API.Extensions;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccount;
+using Tuber.BLL.Banks.Commands;
 using Tuber.BLL.Banks.Queries;
 using Tuber.Domain.API.BankAccounts.GetBank;
 using Tuber.Domain.Banks;
@@ -77,6 +78,43 @@ app.MapGet("/bank/get/{id}", async (Guid id,
     return Results.Ok(apiResponse);
 })
 .WithName("GetBankById");
+
+
+app.MapPut("/bank/put", async (PutBankAPIRequest APIRequest,
+    [FromServices] IMediator mediator,
+    [FromServices] IMapper mapper,
+    [FromServices] IEnumerable<IValidator<PutBankAPIRequest>> validators) =>
+{
+    //  Validate incoming APIRequest.
+    var context = new ValidationContext<PutBankAPIRequest>(APIRequest);
+    var validationFailures = validators
+        .Select(x => x.Validate(context))
+        .SelectMany(x => x.Errors)
+        .Where(x => x != null)
+        .ToList();
+
+    //  If the incoming API request has validation failures, convert them to the 
+    //  BadRequest response and return a 400 Http Exception
+    if (validationFailures.Any())
+        return Results.BadRequest(validationFailures.ToBadRequestResponse());
+
+    //  Map validated API request to query
+    var query = mapper.Map<PutBankAPIRequest, PutBankCommandRequest>(APIRequest);
+
+    // Call query handler. This first invokes the pipeline behaviour.
+    var queryResponse = await mediator.Send(query);
+
+    if (queryResponse.HasExceptions)
+        return Results.BadRequest(queryResponse.Exceptions);
+
+    //  Map Handler response to API Response and return.
+    var apiResponse = mapper.Map<PutBankCommandResponse, PutBankAPIResponse>(queryResponse);
+
+    return Results.Ok(apiResponse);
+})
+.WithName("PutBank");
+
+
 
 app.MapPut("/bankAccount/get", async (GetBankAccountPagedAPIRequest APIRequest,
     [FromServices] IMediator mediator,

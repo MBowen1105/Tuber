@@ -25,6 +25,7 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
 
         if (validationFailures.Any())
         {
+            //  TODO: Find a way of passing back the validation failures without throwing an exception
             throw new ValidationException(validationFailures);
         }
 

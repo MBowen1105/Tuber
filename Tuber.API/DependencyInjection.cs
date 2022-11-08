@@ -8,12 +8,14 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
     {
-        var assembly = Assembly.GetExecutingAssembly(); 
+        var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddMediatR(assembly)
-            .AddAutoMapper(assembly);
+        services.AddMediatR(assembly);
 
-        services.AddValidatorsFromAssembly(assembly);
+        services.AddAutoMapper(assembly);
+
+        // There should be no Validators DEFINED in the API (They are in the BLL)
+        //services.AddValidatorsFromAssembly(assembly);
 
         var config = new MapperConfiguration(cfg =>
         {

@@ -1,0 +1,27 @@
+API (Application Programming Interface)
+=======================================
+Defines the API endpoints.
+Checks the incoming commands/queries for validity.
+Passes valid commands/queries to appropriate handlers.
+Returns good API responses or a consistently formatted error response if failures detected.
+
+
+BLL (Business Logic Layer)
+==========================
+Services:
+---------
+Services accept an injected repository (if operation is limited to a single repository) or a UoW
+(if several repositories are affected).
+Services are the only entity that can call .SaveChanges()
+
+
+DAL (Data Access Layer)
+=======================
+This level may be swapped out for any other database type and work exactly the same. The database type
+needs only to implement the TBA interfaces.
+This deals exclusively with Entity Framework command on the injected ApplicationDbContext.
+It does not call SaveChanges() on any Commands. This is done at the service level.
+
+Infrastructure
+==============
+Deals with calls to the infrastructure such as Date/Time 

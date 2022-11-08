@@ -15,13 +15,7 @@ internal class BankService : IBankService
         _bankRepository = bankRepo;
         _mapper = mapper;
     }
-
-    public int CountPages(int pageSize)
-    {
-        return _bankRepository
-            .CountPages(pageSize);
-    }
-
+    
     public BankDto GetById(Guid id)
     {
         var bankModel = _bankRepository.GetById(id);
@@ -35,4 +29,25 @@ internal class BankService : IBankService
 
         return _mapper.Map<List<Bank>, List<BankDto>>(bankModelList);
     }
+
+    public Guid Add(string name, int orderBy)
+    {
+        var bankModel = new Bank
+        {
+            Name = name,
+            OrderBy = orderBy,
+            IsArchived = false
+        };
+
+        var id = _bankRepository.Add(bankModel);
+        _bankRepository.SaveChanges();
+
+        return id;
+    }
+    
+    public int CountPages(int pageSize)
+    {
+        return _bankRepository.CountPages(pageSize);
+    }
+
 }

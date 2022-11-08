@@ -10,7 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37441188-A686-487B-A9FC-C950FB7B29A7}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		Notes.txt = Notes.txt
+		Architecture.txt = Architecture.txt
+		Procedures.txt = Procedures.txt
+		SavedCode.txt = SavedCode.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{601BA5A4-59BF-4E10-B498-0B55783AC9C9}"
@@ -22,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests", "Tuber.UnitTests\Tuber.UnitTests.csproj", "{069E67C7-8BAA-4122-BD8F-343D36547136}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.DAL", "Tuber.DAL\Tuber.DAL.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.Infrastructure", "Tuber.Infrastructure\Tuber.Infrastructure.csproj", "{523B5FA9-8D02-4DB4-AE20-178710C25E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523B5FA9-8D02-4DB4-AE20-178710C25E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523B5FA9-8D02-4DB4-AE20-178710C25E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523B5FA9-8D02-4DB4-AE20-178710C25E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523B5FA9-8D02-4DB4-AE20-178710C25E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{1893CC76-3953-4530-B59A-43033BF626B0} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 		{069E67C7-8BAA-4122-BD8F-343D36547136} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 		{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
+		{523B5FA9-8D02-4DB4-AE20-178710C25E66} = {601BA5A4-59BF-4E10-B498-0B55783AC9C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8BFB0F4-500E-42BB-B29A-C384FB244FAD}

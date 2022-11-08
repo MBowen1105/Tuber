@@ -21,5 +21,10 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         return _context.Set<TEntity>()
             .ToList();
     }
+
+    public int SaveChanges()
+    {
+       return _context.SaveChanges();
+    }
 }
 

@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="API\Validators\" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
 </Project>
