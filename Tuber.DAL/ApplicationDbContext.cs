@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tuber.DAL.Configuration;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL;
@@ -15,21 +16,9 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Bank>(entity =>
-        {
-            entity.ToTable("Bank");
-        });
-
-        modelBuilder.Entity<BankAccount>(entity =>
-        {
-            entity.ToTable("BankAccount");
-        });
-
-        modelBuilder.SeedBanks();
-
-        modelBuilder.SeedBankAccounts();
+        modelBuilder.ApplyConfiguration(new BankConfiguration());
+        modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
-
 }
