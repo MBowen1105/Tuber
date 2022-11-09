@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tuber.DAL.Repositories;
-using Tuber.Domain.Interfaces.Repositories;
+using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.DAL;
 public static class DependencyInjection

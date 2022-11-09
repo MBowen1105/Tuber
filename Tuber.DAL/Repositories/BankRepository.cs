@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.Interfaces.Repositories;
+﻿using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Repositories;

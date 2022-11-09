@@ -2,13 +2,11 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccount;
+using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
 using Tuber.BLL.Banks.Commands;
-using Tuber.BLL.Banks.Queries;
+using Tuber.BLL.Banks.Queries.GetBankById;
+using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.BLL.Extensions;
-using Tuber.Domain.API.BankAccounts.GetBank;
-using Tuber.Domain.Banks;
-using Tuber.Domain.Banks.GetBank;
 using Tuber.Domain.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);

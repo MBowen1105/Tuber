@@ -25,3 +25,6 @@ It does not call SaveChanges() on any Commands. This is done at the service leve
 Infrastructure
 ==============
 Deals with calls to the infrastructure such as Date/Time 
+
+Interfaces are defined in the Domain/Core projects ONLY. No interfaces should appear in any other
+layer; only the implementations of those interfaces.

@@ -1,6 +1,5 @@
 ﻿using Tuber.DAL.Repositories;
-using Tuber.Domain.Interfaces;
-using Tuber.Domain.Interfaces.Repositories;
+using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.DAL;
 public class UnitOfWork : IUnitOfWork

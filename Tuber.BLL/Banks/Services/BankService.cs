@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Tuber.Domain.Dtos;
+using Tuber.Domain.Interfaces.BLL;
+using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
-using Tuber.Domain.Interfaces.Repositories;
-using Tuber.Domain.Interfaces.Services;
 
 namespace Tuber.BLL.Banks.Services;
 internal class BankService : IBankService

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Tuber.BLL.Banks.Commands;
-using Tuber.Domain.Interfaces.Services;
+using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL.Banks.Queries
 {

@@ -1,4 +1,6 @@
-﻿namespace Tuber.BLL.Banks.Commands;
+﻿using Tuber.BLL.Common;
+
+namespace Tuber.BLL.Banks.Commands;
 
 public class PutBankCommandResponse : QueryResponseBase
 {

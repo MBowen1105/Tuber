@@ -3,9 +3,10 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
 using Tuber.BLL.PipelineBehaviours;
-using Tuber.Domain.Interfaces.Services;
+using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL;
 public static class DependencyInjection

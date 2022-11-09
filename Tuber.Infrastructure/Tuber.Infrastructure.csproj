@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tuber.Domain\Tuber.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

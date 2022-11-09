@@ -1,4 +1,4 @@
-﻿using Tuber.Infrastructure.Interfaces;
+﻿using Tuber.Domain.Interfaces.Infrastructure;
 
 namespace Tuber.Infrastructure.DateTimes
 {

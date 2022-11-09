@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Models;
-using Tuber.Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Domain.Interfaces.DAL;
+using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Repositories;
 public class BankAccountRepository : Repository<BankAccount>, IBankAccountRepository

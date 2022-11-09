@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Banks.Queries;
+using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.Services;
+using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 internal class GetBankPagedQueryHandler_UnitTests

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccount;
-using Tuber.Domain.API.BankAccounts.GetBank;
-using Tuber.Domain.Banks.GetBank;
+using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
