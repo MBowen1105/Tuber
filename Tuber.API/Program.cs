@@ -108,7 +108,7 @@ app.MapPut("/bank/put", async (PutBankAPIRequest APIRequest,
     //  Map Handler response to API Response and return.
     var apiResponse = mapper.Map<PutBankCommandResponse, PutBankAPIResponse>(queryResponse);
 
-    return Results.Ok(apiResponse);
+    return Results.Created($"/bank/{apiResponse.Id}", apiResponse);
 })
 .WithName("PutBank");
 

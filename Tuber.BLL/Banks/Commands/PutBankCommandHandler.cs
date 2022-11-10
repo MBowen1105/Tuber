@@ -20,6 +20,8 @@ namespace Tuber.BLL.Banks.Queries
             return Task.FromResult(new PutBankCommandResponse
             {
                 Id = id,
+                Name=request.Name,
+                OrderBy = request.OrderBy
             });
         }
     }

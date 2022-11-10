@@ -40,6 +40,7 @@ internal class BankService : IBankService
         };
 
         var id = _bankRepository.Add(bankModel);
+
         _bankRepository.SaveChanges();
 
         return id;
