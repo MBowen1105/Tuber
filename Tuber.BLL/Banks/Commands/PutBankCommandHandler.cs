@@ -15,13 +15,13 @@ namespace Tuber.BLL.Banks.Queries
 
         public Task<PutBankCommandResponse> Handle(PutBankCommandRequest request, CancellationToken cancellationToken)
         {
-            var id = _bankService.Add(request.Name, request.OrderBy);
+            var bank = _bankService.Add(request.Name, request.OrderBy);
 
             return Task.FromResult(new PutBankCommandResponse
             {
-                Id = id,
-                Name=request.Name,
-                OrderBy = request.OrderBy
+                Id = bank.Id,
+                Name = bank.Name,
+                OrderBy = bank.OrderBy
             });
         }
     }

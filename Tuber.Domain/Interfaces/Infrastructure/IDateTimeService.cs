@@ -1,5 +1,5 @@
 ﻿namespace Tuber.Domain.Interfaces.Infrastructure;
-public interface IDateTime
+public interface IDateTimeService
 {
     DateTime UtcNow();
 }

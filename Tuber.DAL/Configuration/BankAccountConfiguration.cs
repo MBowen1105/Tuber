@@ -21,6 +21,9 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired()
             .HasDefaultValue(false);
 
+        builder.Property(x => x.CreatedByUserId)
+            .IsRequired();
+
         BankAccountSeeding.Seed(builder);
     }
 }

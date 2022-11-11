@@ -1,15 +1,5 @@
-using AutoMapper;
-using FluentValidation;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using Tuber.API.BankAccounts;
 using Tuber.API.Banks;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
-using Tuber.BLL.Banks.Commands;
-using Tuber.BLL.Banks.Queries.GetBankById;
-using Tuber.BLL.Banks.Queries.GetBankPaged;
-using Tuber.BLL.Extensions;
-using Tuber.Domain.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +10,7 @@ builder.Services.AddSwaggerGen();
 Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.BLL.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
+Tuber.Infrastructure.DependencyInjection.AddDependencyInjection(builder.Services);
 
 var app = builder.Build();
 

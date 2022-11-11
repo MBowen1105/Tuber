@@ -2,7 +2,7 @@
 
 namespace Tuber.Infrastructure.DateTimes
 {
-    public class DateTime : IDateTime
+    public class DateTimeService : IDateTimeService
     {
         public System.DateTime UtcNow() => System.DateTime.UtcNow;
     }

@@ -12,7 +12,7 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221110101629_InitialMigration")]
+    [Migration("20221111160540_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -31,6 +31,9 @@ namespace Tuber.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsArchived")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -44,6 +47,9 @@ namespace Tuber.DAL.Migrations
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.ToTable("Bank", (string)null);
@@ -52,6 +58,7 @@ namespace Tuber.DAL.Migrations
                         new
                         {
                             Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Co-Op Bank",
                             OrderBy = 10
@@ -59,6 +66,7 @@ namespace Tuber.DAL.Migrations
                         new
                         {
                             Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Lloyds Bank",
                             OrderBy = 20
@@ -66,6 +74,7 @@ namespace Tuber.DAL.Migrations
                         new
                         {
                             Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Barclays Bank",
                             OrderBy = 30
@@ -81,6 +90,9 @@ namespace Tuber.DAL.Migrations
                     b.Property<Guid>("BankId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CreatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsArchived")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -94,6 +106,9 @@ namespace Tuber.DAL.Migrations
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("UpdatedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
@@ -105,6 +120,7 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("0c942b54-d561-499a-843b-e4387e7e6415"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Salary",
                             OrderBy = 10
@@ -113,6 +129,7 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("552d16a1-d98b-48e9-8580-13029843c116"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Cash",
                             OrderBy = 20
@@ -121,6 +138,7 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsArchived = false,
                             Name = "Savings",
                             OrderBy = 30

@@ -20,6 +20,8 @@ namespace Tuber.DAL.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     OrderBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsArchived = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -35,6 +37,8 @@ namespace Tuber.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     OrderBy = table.Column<int>(type: "int", nullable: false),
                     BankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     IsArchived = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -50,22 +54,22 @@ namespace Tuber.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Bank",
-                columns: new[] { "Id", "Name", "OrderBy" },
+                columns: new[] { "Id", "CreatedByUserId", "Name", "OrderBy", "UpdatedByUserId" },
                 values: new object[,]
                 {
-                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), "Barclays Bank", 30 },
-                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), "Lloyds Bank", 20 },
-                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Co-Op Bank", 10 }
+                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), new Guid("00000000-0000-0000-0000-000000000000"), "Barclays Bank", 30, null },
+                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("00000000-0000-0000-0000-000000000000"), "Lloyds Bank", 20, null },
+                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Co-Op Bank", 10, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "BankAccount",
-                columns: new[] { "Id", "BankId", "Name", "OrderBy" },
+                columns: new[] { "Id", "BankId", "CreatedByUserId", "Name", "OrderBy", "UpdatedByUserId" },
                 values: new object[,]
                 {
-                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Salary", 10 },
-                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Cash", 20 },
-                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Savings", 30 }
+                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Salary", 10, null },
+                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Cash", 20, null },
+                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Savings", 30, null }
                 });
 
             migrationBuilder.CreateIndex(

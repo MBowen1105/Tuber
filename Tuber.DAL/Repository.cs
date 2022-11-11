@@ -24,7 +24,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 
     public int SaveChanges()
     {
-       return _context.SaveChanges();
+       return  _context.SaveChanges();
     }
 }
 

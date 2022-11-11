@@ -27,11 +27,12 @@ public class BankRepository : Repository<Bank>, IBankRepository
             .ToList();
     }
 
-    public Guid Add(Bank bank)
+    public Bank Add(Bank bank)
     {
         _context.Set<Bank>()
             .Add(bank);
-        return bank.Id;
+
+        return bank;
     }
 
     public ApplicationDbContext ApplicationDbContext

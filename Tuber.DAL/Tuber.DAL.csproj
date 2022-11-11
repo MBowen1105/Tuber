@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="ModelBuilderExtensions.cs" />
+    <Compile Remove="UnitOfWork.cs" />
   </ItemGroup>
 
   <ItemGroup>

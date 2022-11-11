@@ -1,6 +1,7 @@
 ﻿namespace Tuber.Domain.Models;
-public class BankAccount : EntityBase
+public class BankAccount : AuditableEntity
 {
+    public Guid Id { get; set; }
     public string? Name { get; set; }
     
     public int OrderBy { get; set; }
