@@ -21,7 +21,9 @@ namespace Tuber.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     OrderBy = table.Column<int>(type: "int", nullable: false),
                     CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsArchived = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -38,7 +40,9 @@ namespace Tuber.DAL.Migrations
                     OrderBy = table.Column<int>(type: "int", nullable: false),
                     BankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsArchived = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
@@ -54,22 +58,22 @@ namespace Tuber.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Bank",
-                columns: new[] { "Id", "CreatedByUserId", "Name", "OrderBy", "UpdatedByUserId" },
+                columns: new[] { "Id", "CreatedByUserId", "CreatedOn", "Name", "OrderBy", "UpdatedByUserId", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), new Guid("00000000-0000-0000-0000-000000000000"), "Barclays Bank", 30, null },
-                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("00000000-0000-0000-0000-000000000000"), "Lloyds Bank", 20, null },
-                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Co-Op Bank", 10, null }
+                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Barclays Bank", 30, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lloyds Bank", 20, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Co-Op Bank", 10, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "BankAccount",
-                columns: new[] { "Id", "BankId", "CreatedByUserId", "Name", "OrderBy", "UpdatedByUserId" },
+                columns: new[] { "Id", "BankId", "CreatedByUserId", "CreatedOn", "Name", "OrderBy", "UpdatedByUserId", "UpdatedOn" },
                 values: new object[,]
                 {
-                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Salary", 10, null },
-                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Cash", 20, null },
-                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), "Savings", 30, null }
+                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Salary", 10, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Cash", 20, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Savings", 30, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

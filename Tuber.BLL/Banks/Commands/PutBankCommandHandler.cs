@@ -21,7 +21,11 @@ namespace Tuber.BLL.Banks.Queries
             {
                 Id = bank.Id,
                 Name = bank.Name,
-                OrderBy = bank.OrderBy
+                OrderBy = bank.OrderBy,
+                CreatedByUserId = bank.CreatedByUserId,
+                CreatedOn = bank.CreatedOn,
+                UpdatedByUserId = bank.UpdatedByUserId,
+                UpdatedOn = bank.UpdatedOn
             });
         }
     }

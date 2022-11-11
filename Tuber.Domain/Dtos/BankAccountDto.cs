@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Domain.Common;
 
 namespace Tuber.Domain.Dtos;
 public class BankAccountDto : AuditableEntity

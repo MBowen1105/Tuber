@@ -1,4 +1,6 @@
-﻿namespace Tuber.Domain.Models;
+﻿using Tuber.Domain.Common;
+
+namespace Tuber.Domain.Models;
 public class Bank : AuditableEntity
 {
     public Guid Id { get; set; }

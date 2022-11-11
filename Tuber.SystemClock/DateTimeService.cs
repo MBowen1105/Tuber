@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Interfaces.Infrastructure;
+﻿using Tuber.Domain.Interfaces.Infrastructure.DateTimes;
 
-namespace Tuber.Infrastructure.DateTimes
+namespace Tuber.SystemClock
 {
     public class DateTimeService : IDateTimeService
     {
