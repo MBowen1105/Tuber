@@ -11,6 +11,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
 
     public Bank GetById(Guid id)
     {
+        //  returns null if not found.
         var bank = _context.Set<Bank>()
              .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
 
@@ -35,10 +36,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
         return bank;
     }
 
-    public ApplicationDbContext ApplicationDbContext
-    {
-        get { return ApplicationDbContext; }
-    }
+    
 
     public int CountPages(int pageSize)
     {
@@ -48,5 +46,24 @@ public class BankRepository : Repository<Bank>, IBankRepository
         var pages = itemCount / (pageSize * 1.0);
 
         return (int)Math.Ceiling(pages);
+    }
+
+    public Bank Delete(Guid id)
+    {
+        var bank = _context.Set<Bank>()
+             .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
+        
+        if (bank == null)
+            return new Bank { Id = Guid.Empty };
+
+        _context.Set<Bank>()
+            .Remove(bank);
+
+        return bank;
+    }
+    
+    public ApplicationDbContext ApplicationDbContext
+    {
+        get { return ApplicationDbContext; }
     }
 }

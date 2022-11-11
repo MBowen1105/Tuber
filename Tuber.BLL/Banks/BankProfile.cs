@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Banks.Commands;
+using Tuber.BLL.Banks.Commands.PutBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Dtos;

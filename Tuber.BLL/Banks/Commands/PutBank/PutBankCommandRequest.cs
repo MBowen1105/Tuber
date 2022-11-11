@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Banks.Commands;
+namespace Tuber.BLL.Banks.Commands.PutBank;
 public class PutBankCommandRequest : IRequest<PutBankCommandResponse>
 {
     public string Name { get; set; } = "";

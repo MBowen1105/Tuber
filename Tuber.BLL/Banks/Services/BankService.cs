@@ -49,4 +49,10 @@ internal class BankService : IBankService
         return _bankRepository.CountPages(pageSize);
     }
 
+    public BankDto Delete(Guid id)
+    {
+        var bankModel = _bankRepository.Delete(id);
+
+        return _mapper.Map<Bank, BankDto>(bankModel);
+    }
 }

@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using Tuber.BLL.Banks.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.Domain.Exceptions;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Extensions;
+using Tuber.BLL.Banks.Commands.PutBank;
+using Tuber.BLL.Banks.Commands.DeleteBank;
 
 namespace Tuber.API.Banks;
 
@@ -97,5 +98,21 @@ public static class BankEndpoints
             return Results.Created($"/bank/{apiResponse.Id}", apiResponse);
         })
         .WithName("PutBank");
+
+        app.MapDelete("/bank/delete", async (Guid id,
+            [FromServices] IMediator mediator) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new DeleteBankCommandRequest
+            {
+                Id = id,
+            });
+
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
+
+            return Results.NoContent();
+        })
+        .WithName("DeleteBank");
     }
 }

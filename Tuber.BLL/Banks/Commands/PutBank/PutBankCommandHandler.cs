@@ -1,8 +1,7 @@
 ﻿using MediatR;
-using Tuber.BLL.Banks.Commands;
 using Tuber.Domain.Interfaces.BLL;
 
-namespace Tuber.BLL.Banks.Queries
+namespace Tuber.BLL.Banks.Commands.PutBank
 {
     public class PutBankCommandHandler : IRequestHandler<PutBankCommandRequest, PutBankCommandResponse>
     {

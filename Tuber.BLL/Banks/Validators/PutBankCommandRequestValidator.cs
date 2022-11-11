@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Tuber.BLL.Banks.Commands;
+using Tuber.BLL.Banks.Commands.PutBank;
 
 namespace Tuber.BLL.Banks.Validators;
 public class PutBankCommandRequestValidator : AbstractValidator<PutBankCommandRequest>
