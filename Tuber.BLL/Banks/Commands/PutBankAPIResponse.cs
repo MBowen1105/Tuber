@@ -1,11 +1,11 @@
 ﻿namespace Tuber.BLL.Banks.Commands;
 public class PutBankAPIResponse
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-    public int OrderBy { get; set; }
-    public Guid CreatedByUserId { get; set; }
-    public DateTime CreatedOn { get; set; }
-    public Guid UpdatedByUserId { get; set; }
-    public DateTime UpdatedOn { get; set; }
+    public Guid Id { get; init; }
+    public string Name { get; set; } = "";
+    public int OrderBy { get; init; }
+    public Guid CreatedByUserId { get; init; }
+    public DateTime CreatedOn { get; init; }
+    public Guid UpdatedByUserId { get; init; }
+    public DateTime UpdatedOn { get; init; }
 }
