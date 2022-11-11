@@ -9,9 +9,6 @@ public class BankAccountProfile : Profile
     public BankAccountProfile()
     {
         CreateMap<BankAccount, BankAccountDto>();
-        //.ForMember(x => x.BankName, opt => opt.MapFrom(src => src.Bank.Name)); ;
-
-        CreateMap<GetBankAccountPagedAPIRequest, GetBankAccountPagedQueryRequest>();
 
         CreateMap<GetBankAccountPagedQueryResponse, GetBankAccountPagedAPIResponse>();
     }

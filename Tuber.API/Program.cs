@@ -12,7 +12,6 @@ using Tuber.Domain.Exceptions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -29,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+
 
 app.MapGet("/bank/get", async (int pageNumber, int pageSize,
     [FromServices] IMediator mediator,
@@ -57,6 +57,7 @@ app.MapGet("/bank/get", async (int pageNumber, int pageSize,
 })
 .WithName("GetBank");
 
+
 app.MapGet("/bank/get/{id}", async (Guid id,
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper) =>
@@ -83,7 +84,7 @@ app.MapPut("/bank/put", async (PutBankAPIRequest APIRequest,
     [FromServices] IMapper mapper,
     [FromServices] IEnumerable<IValidator<PutBankAPIRequest>> validators) =>
 {
-    //  Validate incoming APIRequest.
+    //  Validate incoming API Request.
     var context = new ValidationContext<PutBankAPIRequest>(APIRequest);
     var validationFailures = validators
         .Select(x => x.Validate(context))
@@ -113,30 +114,22 @@ app.MapPut("/bank/put", async (PutBankAPIRequest APIRequest,
 .WithName("PutBank");
 
 
-
-app.MapPut("/bankAccount/get", async (GetBankAccountPagedAPIRequest APIRequest,
+app.MapGet("/bankAccount/get", async (int pageNumber, int pageSize,
     [FromServices] IMediator mediator,
-    [FromServices] IMapper mapper,
-    [FromServices] IEnumerable<IValidator<GetBankAccountPagedAPIRequest>> validators) =>
+    [FromServices] IMapper mapper) =>
 {
-    //  Validate incoming APIRequest.
-    var context = new ValidationContext<GetBankAccountPagedAPIRequest>(APIRequest);
-    var validationFailures = validators
-        .Select(x => x.Validate(context))
-        .SelectMany(x => x.Errors)
-        .Where(x => x != null)
-        .ToList();
+    if (pageNumber < 1)
+        return Results.BadRequest(new InvalidPageNumberException(pageNumber));
 
-    //  If the incoming API request has validation failures, convert them to the 
-    //  BadRequest response and return a 400 Http Exception
-    if (validationFailures.Any())
-        return Results.BadRequest(validationFailures.ToBadRequestResponse());
-
-    //  Map validated API request to query
-    var query = mapper.Map<GetBankAccountPagedAPIRequest, GetBankAccountPagedQueryRequest>(APIRequest);
-
+    if (pageSize < 1)
+        return Results.BadRequest(new InvalidPageSizeException(pageSize));
+    
     // Call query handler. This first invokes the pipeline behaviour.
-    var queryResponse = await mediator.Send(query);
+    var queryResponse = await mediator.Send(new GetBankAccountPagedQueryRequest
+    {
+        PageNumber = pageNumber,
+        PageSize = pageSize
+    });
 
     if (queryResponse.HasExceptions)
         return Results.BadRequest(queryResponse.Exceptions);
