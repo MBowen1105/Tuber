@@ -52,6 +52,8 @@ internal class BankService : IBankService
     public BankDto Delete(Guid id)
     {
         var bankModel = _bankRepository.Delete(id);
+        
+        _bankRepository.SaveChanges();
 
         return _mapper.Map<Bank, BankDto>(bankModel);
     }

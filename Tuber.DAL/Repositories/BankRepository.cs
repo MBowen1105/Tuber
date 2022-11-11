@@ -56,8 +56,10 @@ public class BankRepository : Repository<Bank>, IBankRepository
         if (bank == null)
             return new Bank { Id = Guid.Empty };
 
+        bank.IsArchived = true;
+
         _context.Set<Bank>()
-            .Remove(bank);
+            .Update(bank);
 
         return bank;
     }

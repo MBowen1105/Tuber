@@ -99,7 +99,7 @@ public static class BankEndpoints
         })
         .WithName("PutBank");
 
-        app.MapDelete("/bank/delete", async (Guid id,
+        app.MapDelete("/bank/delete/{id}", async (Guid id,
             [FromServices] IMediator mediator) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
