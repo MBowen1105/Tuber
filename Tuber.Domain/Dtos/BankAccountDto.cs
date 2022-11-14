@@ -4,6 +4,7 @@ public class BankAccountDto
     public Guid Id { get; set; }
     public string? Name { get; set; } = "";
     public int OrderBy { get; set; } = 0;
+    public string UKBankAccount { get; set; } = "";
     public string BankName { get; set; } = "";
     public Guid CreatedByUserId { get; set; }
     public DateTime CreatedOn { get; set; }

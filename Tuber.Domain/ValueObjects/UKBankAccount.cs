@@ -13,8 +13,8 @@ public class UKBankAccount : ValueOf<string, UKBankAccount>
         throw new InvalidUKBankAccountException(Value);
     }
 
-    //public static explicit operator string(UKBankAccount v)
-    //{
-    //    return v.Value;
-    //}
+    public static explicit operator string(UKBankAccount v)
+    {
+        return $"{v.Value[..4]}-{v.Value.Substring(4,4)}";
+    }
 }

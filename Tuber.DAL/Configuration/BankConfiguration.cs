@@ -18,12 +18,21 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
         builder.Property(x => x.OrderBy)
             .IsRequired();
 
-        builder.Property(x => x.IsArchived)
-            .IsRequired()
-            .HasDefaultValue(false);
-
         builder.Property(x => x.CreatedByUserId)
             .IsRequired();
+
+        builder.Property(x => x.CreatedOn)
+            .IsRequired();
+
+        builder.Property(x => x.UpdatedByUserId)
+            .IsRequired();
+
+        builder.Property(x => x.UpdatedOn)
+            .IsRequired();
+
+        builder.Property(x => x.IsArchived)
+                    .IsRequired()
+                    .HasDefaultValue(false);
 
         BankSeeding.Seed(builder);
     }

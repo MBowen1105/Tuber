@@ -14,7 +14,23 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired()
             .HasMaxLength(40);
 
+        builder.Property(x => x.UKBankAccount)
+            .IsRequired()
+            .HasMaxLength(8);
+
         builder.Property(x => x.OrderBy)
+            .IsRequired();
+
+        builder.Property(x => x.CreatedByUserId)
+            .IsRequired();
+
+        builder.Property(x => x.CreatedOn)
+            .IsRequired();
+
+        builder.Property(x => x.UpdatedByUserId)
+            .IsRequired();
+
+        builder.Property(x => x.UpdatedOn)
             .IsRequired();
 
         builder.Property(x => x.IsArchived)

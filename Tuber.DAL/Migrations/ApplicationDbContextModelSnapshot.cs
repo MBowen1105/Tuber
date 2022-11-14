@@ -61,35 +61,57 @@ namespace Tuber.DAL.Migrations
                         new
                         {
                             Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6537),
                             IsArchived = false,
                             Name = "Co-Op Bank",
                             OrderBy = 10,
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6540)
                         },
                         new
                         {
                             Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6544),
                             IsArchived = false,
                             Name = "Lloyds Bank",
                             OrderBy = 20,
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6544)
                         },
                         new
                         {
                             Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6547),
                             IsArchived = false,
                             Name = "Barclays Bank",
                             OrderBy = 30,
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6547)
+                        },
+                        new
+                        {
+                            Id = new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6548),
+                            IsArchived = false,
+                            Name = "Virgin Money",
+                            OrderBy = 40,
+                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6549)
+                        },
+                        new
+                        {
+                            Id = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6550),
+                            IsArchived = true,
+                            Name = "TSB",
+                            OrderBy = 50,
+                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6551)
                         });
                 });
 
@@ -121,6 +143,11 @@ namespace Tuber.DAL.Migrations
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
 
+                    b.Property<string>("UKBankAccount")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
                     b.Property<Guid>("UpdatedByUserId")
                         .HasColumnType("uniqueidentifier");
 
@@ -143,6 +170,7 @@ namespace Tuber.DAL.Migrations
                             IsArchived = false,
                             Name = "Salary",
                             OrderBy = 10,
+                            UKBankAccount = "09411905",
                             UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -155,6 +183,7 @@ namespace Tuber.DAL.Migrations
                             IsArchived = false,
                             Name = "Cash",
                             OrderBy = 20,
+                            UKBankAccount = "00985630",
                             UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -167,6 +196,33 @@ namespace Tuber.DAL.Migrations
                             IsArchived = false,
                             Name = "Savings",
                             OrderBy = 30,
+                            UKBankAccount = "09405515",
+                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"),
+                            BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsArchived = false,
+                            Name = "Lloyds 93DIX",
+                            OrderBy = 10,
+                            UKBankAccount = "09405515",
+                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"),
+                            BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
+                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsArchived = false,
+                            Name = "Lloyds 25PAR",
+                            OrderBy = 20,
+                            UKBankAccount = "09405515",
                             UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
                             UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -175,12 +231,17 @@ namespace Tuber.DAL.Migrations
             modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
                 {
                     b.HasOne("Tuber.Domain.Models.Bank", "Bank")
-                        .WithMany()
+                        .WithMany("BankAccounts")
                         .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Bank");
+                });
+
+            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+                {
+                    b.Navigation("BankAccounts");
                 });
 #pragma warning restore 612, 618
         }
