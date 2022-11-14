@@ -16,8 +16,6 @@ public static class BankSeeding
                 OrderBy = 10,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = DEFAULT_USERID,
-                UpdatedOn = DateTime.UtcNow,
-                UpdatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new Bank
@@ -27,8 +25,6 @@ public static class BankSeeding
                 OrderBy = 20,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = DEFAULT_USERID,
-                UpdatedOn = DateTime.UtcNow,
-                UpdatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new Bank
@@ -38,8 +34,6 @@ public static class BankSeeding
                 OrderBy = 30,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = DEFAULT_USERID,
-                UpdatedOn = DateTime.UtcNow,
-                UpdatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new Bank
@@ -49,8 +43,6 @@ public static class BankSeeding
                 OrderBy = 40,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = DEFAULT_USERID,
-                UpdatedOn = DateTime.UtcNow,
-                UpdatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new Bank
@@ -60,8 +52,6 @@ public static class BankSeeding
                 OrderBy = 50,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = DEFAULT_USERID,
-                UpdatedOn = DateTime.UtcNow,
-                UpdatedByUserId = DEFAULT_USERID,
                 IsArchived = true,
             });
     }

@@ -4,6 +4,8 @@ using Tuber.Domain.Models;
 namespace Tuber.DAL.Seeding;
 public static class BankAccountSeeding
 {
+    private static Guid DEFAULT_USERID = Guid.Parse("02ceedc1-d3b4-4e5e-8844-0d853c24463b");
+
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
         builder.HasData(
@@ -14,6 +16,8 @@ public static class BankAccountSeeding
                 Name = "Salary",
                 UKBankAccount = "09411905",
                 OrderBy = 10,
+                CreatedOn = DateTime.UtcNow,
+                CreatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new BankAccount
@@ -23,6 +27,8 @@ public static class BankAccountSeeding
                 Name = "Cash",
                 UKBankAccount = "00985630",
                 OrderBy = 20,
+                CreatedOn = DateTime.UtcNow,
+                CreatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new BankAccount
@@ -32,6 +38,8 @@ public static class BankAccountSeeding
                 Name = "Savings",
                 UKBankAccount = "09405515",
                 OrderBy = 30,
+                CreatedOn = DateTime.UtcNow,
+                CreatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new BankAccount
@@ -41,6 +49,8 @@ public static class BankAccountSeeding
                 Name = "Lloyds 93DIX",
                 UKBankAccount = "09405515",
                 OrderBy = 10,
+                CreatedOn = DateTime.UtcNow,
+                CreatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             },
             new BankAccount
@@ -50,6 +60,8 @@ public static class BankAccountSeeding
                 Name = "Lloyds 25PAR",
                 UKBankAccount = "09405515",
                 OrderBy = 20,
+                CreatedOn = DateTime.UtcNow,
+                CreatedByUserId = DEFAULT_USERID,
                 IsArchived = false,
             });
     }

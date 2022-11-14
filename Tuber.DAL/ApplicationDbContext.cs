@@ -30,8 +30,8 @@ public class ApplicationDbContext : DbContext
                 case EntityState.Added:
                     entry.Entity.CreatedByUserId = _currentUserService.UserId();
                     entry.Entity.CreatedOn = _dateTimeService.UtcNow();
-                    entry.Entity.UpdatedByUserId = _currentUserService.UserId();
-                    entry.Entity.UpdatedOn = _dateTimeService.UtcNow();
+                    entry.Entity.UpdatedByUserId = null;
+                    entry.Entity.UpdatedOn = null;
                     break;
 
                 case EntityState.Modified:

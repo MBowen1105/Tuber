@@ -18,6 +18,9 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired()
             .HasMaxLength(8);
 
+        builder.Property(x => x.BankId)
+           .IsRequired();
+
         builder.Property(x => x.OrderBy)
             .IsRequired();
 
@@ -25,12 +28,6 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired();
 
         builder.Property(x => x.CreatedOn)
-            .IsRequired();
-
-        builder.Property(x => x.UpdatedByUserId)
-            .IsRequired();
-
-        builder.Property(x => x.UpdatedOn)
             .IsRequired();
 
         builder.Property(x => x.IsArchived)

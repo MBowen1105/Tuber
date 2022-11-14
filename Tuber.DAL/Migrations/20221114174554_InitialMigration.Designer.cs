@@ -12,7 +12,7 @@ using Tuber.DAL;
 namespace Tuber.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221114173005_InitialMigration")]
+    [Migration("20221114174554_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -50,10 +50,10 @@ namespace Tuber.DAL.Migrations
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UpdatedByUserId")
+                    b.Property<Guid?>("UpdatedByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("UpdatedOn")
+                    b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -65,56 +65,46 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6537),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(1647),
                             IsArchived = false,
                             Name = "Co-Op Bank",
-                            OrderBy = 10,
-                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6540)
+                            OrderBy = 10
                         },
                         new
                         {
                             Id = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6544),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(1652),
                             IsArchived = false,
                             Name = "Lloyds Bank",
-                            OrderBy = 20,
-                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6544)
+                            OrderBy = 20
                         },
                         new
                         {
                             Id = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6547),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(1655),
                             IsArchived = false,
                             Name = "Barclays Bank",
-                            OrderBy = 30,
-                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6547)
+                            OrderBy = 30
                         },
                         new
                         {
                             Id = new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6548),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(1656),
                             IsArchived = false,
                             Name = "Virgin Money",
-                            OrderBy = 40,
-                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6549)
+                            OrderBy = 40
                         },
                         new
                         {
                             Id = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6550),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(1658),
                             IsArchived = true,
                             Name = "TSB",
-                            OrderBy = 50,
-                            UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOn = new DateTime(2022, 11, 14, 17, 30, 5, 686, DateTimeKind.Utc).AddTicks(6551)
+                            OrderBy = 50
                         });
                 });
 
@@ -151,10 +141,10 @@ namespace Tuber.DAL.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<Guid>("UpdatedByUserId")
+                    b.Property<Guid?>("UpdatedByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("UpdatedOn")
+                    b.Property<DateTime?>("UpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -168,66 +158,56 @@ namespace Tuber.DAL.Migrations
                         {
                             Id = new Guid("0c942b54-d561-499a-843b-e4387e7e6415"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(2815),
                             IsArchived = false,
                             Name = "Salary",
                             OrderBy = 10,
-                            UKBankAccount = "09411905",
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UKBankAccount = "09411905"
                         },
                         new
                         {
                             Id = new Guid("552d16a1-d98b-48e9-8580-13029843c116"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(2820),
                             IsArchived = false,
                             Name = "Cash",
                             OrderBy = 20,
-                            UKBankAccount = "00985630",
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UKBankAccount = "00985630"
                         },
                         new
                         {
                             Id = new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(2824),
                             IsArchived = false,
                             Name = "Savings",
                             OrderBy = 30,
-                            UKBankAccount = "09405515",
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UKBankAccount = "09405515"
                         },
                         new
                         {
                             Id = new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"),
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(2868),
                             IsArchived = false,
                             Name = "Lloyds 93DIX",
                             OrderBy = 10,
-                            UKBankAccount = "09405515",
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UKBankAccount = "09405515"
                         },
                         new
                         {
                             Id = new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"),
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
-                            CreatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOn = new DateTime(2022, 11, 14, 17, 45, 53, 900, DateTimeKind.Utc).AddTicks(2871),
                             IsArchived = false,
                             Name = "Lloyds 25PAR",
                             OrderBy = 20,
-                            UKBankAccount = "09405515",
-                            UpdatedByUserId = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UpdatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UKBankAccount = "09405515"
                         });
                 });
 
