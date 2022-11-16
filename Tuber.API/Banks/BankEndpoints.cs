@@ -40,7 +40,7 @@ public static class BankEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetBank");
+        .WithName("GetBanks");
 
         app.MapGet("/bank/get/{id}", async (Guid id,
             [FromServices] IMediator mediator,
@@ -65,7 +65,7 @@ public static class BankEndpoints
 
     public static void CommandEndpoints(WebApplication app)
     {
-        app.MapPut("/bank/put", async (PutBankAPIRequest APIRequest,
+        app.MapPut("/bank/add", async (PutBankAPIRequest APIRequest,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper,
             [FromServices] IEnumerable<IValidator<PutBankAPIRequest>> validators) =>
@@ -97,7 +97,8 @@ public static class BankEndpoints
 
             return Results.Created($"/bank/{apiResponse.Id}", apiResponse);
         })
-        .WithName("PutBank");
+        .WithName("AddBank");
+
 
         app.MapDelete("/bank/delete/{id}", async (Guid id,
             [FromServices] IMediator mediator) =>

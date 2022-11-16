@@ -35,6 +35,6 @@ public static class BankAccountEndpoints
 
         return Results.Ok(apiResponse);
     })
-    .WithName("GetBankAccount");
+    .WithName("GetBankAccounts");
     }
 }
