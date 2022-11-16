@@ -9,7 +9,8 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
 {
     public void Configure(EntityTypeBuilder<Bank> builder)
     {
-        builder.ToTable("Bank");
+        builder.ToTable("Banks")
+            .HasMany(x => x.BankAccounts);
 
         builder.Property(x => x.Name)
             .IsRequired()

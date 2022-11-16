@@ -1,4 +1,6 @@
-﻿using Tuber.Domain.Interfaces.DAL;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Repositories;
@@ -11,9 +13,9 @@ public class BankRepository : Repository<Bank>, IBankRepository
 
     public Bank GetById(Guid id)
     {
-        //  returns null if not found.
         var bank = _context.Set<Bank>()
-             .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
+            .Include(x => x.BankAccounts)
+            .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
 
         return (bank ?? new Bank { Id = Guid.Empty });
     }
@@ -21,6 +23,7 @@ public class BankRepository : Repository<Bank>, IBankRepository
     public List<Bank> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<Bank>()
+            .Include(x => x.BankAccounts)
             .Where(x => x.IsArchived == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
@@ -36,7 +39,26 @@ public class BankRepository : Repository<Bank>, IBankRepository
         return bank;
     }
 
-    
+    public Bank Delete(Guid id)
+    {
+        var bank = _context.Set<Bank>()
+            .Include(x => x.BankAccounts)
+            .Single(x => x.Id == id && x.IsArchived == false);
+
+        if (bank == null)
+            return new Bank { Id = Guid.Empty };
+
+        bank.IsArchived = true;
+
+        foreach (var bankAccount in bank.BankAccounts!)
+        {
+            bankAccount.IsArchived = true;
+        }
+
+        _context.SaveChanges();
+
+        return bank;
+    }
 
     public int CountPages(int pageSize)
     {
@@ -48,22 +70,6 @@ public class BankRepository : Repository<Bank>, IBankRepository
         return (int)Math.Ceiling(pages);
     }
 
-    public Bank Delete(Guid id)
-    {
-        var bank = _context.Set<Bank>()
-             .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
-        
-        if (bank == null)
-            return new Bank { Id = Guid.Empty };
-
-        bank.IsArchived = true;
-
-        _context.Set<Bank>()
-            .Update(bank);
-
-        return bank;
-    }
-    
     public ApplicationDbContext ApplicationDbContext
     {
         get { return ApplicationDbContext; }

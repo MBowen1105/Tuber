@@ -49,9 +49,9 @@ internal class BankService : IBankService
         return _bankRepository.CountPages(pageSize);
     }
 
-    public BankDto Delete(Guid id)
+    public BankDto Delete(Guid bankId)
     {
-        var bankModel = _bankRepository.Delete(id);
+        var bankModel = _bankRepository.Delete(bankId);
         
         _bankRepository.SaveChanges();
 
