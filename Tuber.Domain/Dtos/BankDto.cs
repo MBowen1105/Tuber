@@ -1,16 +1,16 @@
 ﻿using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Dtos;
-public class BankDto
+public record BankDto
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = "";
-    public int OrderBy { get; set; } = 0;
-    public List<BankAccount> BankAccounts { get; set; }
-    public Guid CreatedByUserId { get; set; }
-    public DateTime CreatedOn { get; set; }
-    public Guid UpdatedByUserId { get; set; }
-    public DateTime UpdatedOn { get; set; }
-    public bool IsArchived { get; set; }
+    public Guid Id { get; init; }
+    public string Name { get; init; } = "";
+    public int OrderBy { get; init; } = 0;
+    public List<BankAccountDto> BankAccounts { get; init; }
+    public Guid CreatedByUserId { get; init; }
+    public DateTime CreatedOn { get; init; }
+    public Guid UpdatedByUserId { get; init; }
+    public DateTime UpdatedOn { get; init; }
+    public bool IsArchived { get; init; }
 
 }

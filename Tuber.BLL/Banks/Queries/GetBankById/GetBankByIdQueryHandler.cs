@@ -22,7 +22,7 @@ namespace Tuber.BLL.Banks.Queries.GetBankById
                 Id = bank.Id,
                 Name = bank.Name,
                 OrderBy = bank.OrderBy,
-                BankAccounts=bank.BankAccounts,
+                BankAccounts = bank.BankAccounts,
                 IsArchived = bank.IsArchived
             };
 
