@@ -1,5 +1,5 @@
 ﻿namespace Tuber.BLL.Common;
-public abstract class QueryResponseBase
+public abstract class CommandQueryResponseBase
 {
     public List<Exception> Exceptions { get; set; } = new();
     public bool HasExceptions => Exceptions.Count > 0;

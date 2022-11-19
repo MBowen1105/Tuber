@@ -12,6 +12,9 @@ public class ApplicationDbContext : DbContext
     private readonly IDateTimeService _dateTimeService;
     private readonly ICurrentUserService _currentUserService;
 
+    public DbSet<Bank> Banks { get; set; }
+    public DbSet<BankAccount> BankAccounts { get; set; }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IDateTimeService dateTimeService,
         ICurrentUserService currentUserService)
@@ -23,7 +26,9 @@ public class ApplicationDbContext : DbContext
 
     public override int SaveChanges()
     {
-        foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
+        var changedRows = ChangeTracker.Entries<AuditableEntity>();
+
+        foreach (var entry in changedRows)
         {
             switch (entry.State)
             {
@@ -43,8 +48,7 @@ public class ApplicationDbContext : DbContext
         return base.SaveChanges();
     }
 
-    public DbSet<Bank> Banks { get; set; }
-    public DbSet<BankAccount> BankAccounts { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

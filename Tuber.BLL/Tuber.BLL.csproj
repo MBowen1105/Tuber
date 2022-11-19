@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\CommandQueryResponseBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.2.2" />
@@ -24,6 +28,10 @@
     <ProjectReference Include="..\Tuber.Infrastructure\Tuber.Infrastructure.csproj" />
     <ProjectReference Include="..\Tuber.SystemClock\Tuber.SystemClock.csproj" />
     <ProjectReference Include="..\Tuber.Users\Tuber.Users.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
   </ItemGroup>
 
 </Project>

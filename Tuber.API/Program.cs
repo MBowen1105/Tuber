@@ -23,9 +23,9 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-BankEndpoints.QueryEndpoints(app);
-BankEndpoints.CommandEndpoints(app);
+BankExtensions.QueryEndpoints(app);
+BankExtensions.CommandEndpoints(app);
 
-BankAccountEndpoints.QueryEndpoints(app);
+BankAccountExtensions.QueryEndpoints(app);
 
 app.Run();

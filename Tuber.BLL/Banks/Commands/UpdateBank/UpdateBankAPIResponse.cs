@@ -1,8 +1,8 @@
-﻿namespace Tuber.BLL.Banks.Commands.PutBank;
-public class PutBankAPIResponse
+﻿namespace Tuber.BLL.Banks.Commands.UpdateBank;
+public class UpdateBankAPIResponse
 {
     public Guid Id { get; init; }
-    public string Name { get; set; } = "";
+    public string Name { get; init; }
     public int OrderBy { get; init; }
     public Guid CreatedByUserId { get; init; }
     public DateTime CreatedOn { get; init; }

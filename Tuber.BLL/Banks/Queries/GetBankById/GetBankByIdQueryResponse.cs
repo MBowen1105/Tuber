@@ -1,12 +1,11 @@
-﻿using Tuber.BLL.Common;
+﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
 namespace Tuber.BLL.Banks.Queries.GetBankById;
-public class GetBankByIdQueryResponse : QueryResponseBase
+public class GetBankByIdQueryResponse : CommandQueryResponseBase
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = "";
-    public int OrderBy { get; set; }
-    public List<BankAccountDto> BankAccounts { get; set; }
-    public bool IsArchived { get; set; }
+    public Guid Id { get; init; }
+    public string Name { get; init; } = "";
+    public int OrderBy { get; init; }
+    public List<BankAccountDto> BankAccounts { get; init; } = new();
 }

@@ -1,26 +1,34 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
+using Tuber.Domain.Models;
 
 namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged
 {
     public class GetBankAccountPagedQueryHandler : IRequestHandler<GetBankAccountPagedQueryRequest, GetBankAccountPagedQueryResponse>
     {
-        private readonly IBankAccountService _bankAccountService;
+        private readonly IBankAccountRetrieverService _bankAccountRetrieverService;
+        private readonly IMapper _mapper;
 
-        public GetBankAccountPagedQueryHandler(IBankAccountService bankAccountService)
+        public GetBankAccountPagedQueryHandler(IBankAccountRetrieverService bankAccountRetrieverService,
+            IMapper mapper)
         {
-            _bankAccountService = bankAccountService;
+            _bankAccountRetrieverService = bankAccountRetrieverService;
+            _mapper = mapper;
         }
 
         public Task<GetBankAccountPagedQueryResponse> Handle(GetBankAccountPagedQueryRequest request, CancellationToken cancellationToken)
         {
-            var bankAccounts = _bankAccountService.GetPaged(request.PageNumber, request.PageSize);
+            var bankAccountModelList = _bankAccountRetrieverService.GetPaged(request.PageNumber, request.PageSize);
 
+            var bankAccountDtoList = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(bankAccountModelList);
+            
             var response = new GetBankAccountPagedQueryResponse
             {
-                BankAccountCount = bankAccounts.Count,
-                BankAccounts = bankAccounts,
-                TotalPages = _bankAccountService.CountPages(request.PageSize)
+                BankAccountCount = bankAccountModelList.Count,
+                TotalPages = _bankAccountRetrieverService.CountPages(request.PageSize),
+                BankAccounts = bankAccountDtoList
             };
 
             return Task.FromResult(response);

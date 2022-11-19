@@ -6,7 +6,7 @@ using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.BankAccounts;
 
-public static class BankAccountEndpoints
+public static class BankAccountExtensions
 {
     public static void QueryEndpoints(WebApplication app)
     {

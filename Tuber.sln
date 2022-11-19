@@ -27,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.DAL", "Tuber.DAL\Tube
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Infrastructure", "Tuber.Infrastructure\Tuber.Infrastructure.csproj", "{523B5FA9-8D02-4DB4-AE20-178710C25E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.SystemClock", "Tuber.SystemClock\Tuber.SystemClock.csproj", "{E4268970-8E77-42D6-8BFD-D30039D59488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.SystemClock", "Tuber.SystemClock\Tuber.SystemClock.csproj", "{E4268970-8E77-42D6-8BFD-D30039D59488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.Users", "Tuber.Users\Tuber.Users.csproj", "{3C676D60-43DC-4718-AC74-A5703781D402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Users", "Tuber.Users\Tuber.Users.csproj", "{3C676D60-43DC-4718-AC74-A5703781D402}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

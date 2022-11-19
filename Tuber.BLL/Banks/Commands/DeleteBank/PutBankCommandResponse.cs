@@ -1,7 +1,8 @@
-﻿using Tuber.BLL.Common;
+﻿using Tuber.Core.Common;
 
 namespace Tuber.BLL.Banks.Commands.DeleteBank;
 
-public class DeleteBankCommandResponse : QueryResponseBase
+public class DeleteBankCommandResponse : CommandQueryResponseBase
 {
+    public int DeletedCount { get; init; }
 }

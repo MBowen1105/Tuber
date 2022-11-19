@@ -7,22 +7,27 @@ namespace Tuber.BLL.Banks.Commands.PutBank
 {
     public class DeleteBankCommandHandler : IRequestHandler<DeleteBankCommandRequest, DeleteBankCommandResponse>
     {
-        private readonly IBankService _bankService;
+        private readonly IBankUpdaterService _bankUpdaterService;
 
-        public DeleteBankCommandHandler(IBankService bankService)
+        public DeleteBankCommandHandler(IBankUpdaterService bankUpdaterService)
         {
-            _bankService = bankService;
+            _bankUpdaterService = bankUpdaterService;
         }
 
         public Task<DeleteBankCommandResponse> Handle(DeleteBankCommandRequest request, CancellationToken cancellationToken)
         {
-            var bankDto = _bankService.Delete(request.Id);
+            var result = _bankUpdaterService.Delete(request.Id);
 
-            var response = new DeleteBankCommandResponse();
-            if (bankDto.Id == Guid.Empty)
-                response.Exceptions.Add(new EntityToDeleteDoesNotExistException("Banks", request.Id));
-            
-            return Task.FromResult(response);
+            return Task.FromResult(new DeleteBankCommandResponse
+            {
+                DeletedCount = result,
+                Exceptions = (result == 0)
+                    ? new List<Exception>
+                        {
+                                new EntityToDeleteDoesNotExistException("Banks", request.Id)
+                        }
+                    : new List<Exception>()
+            });
         }
     }
 }

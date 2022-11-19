@@ -17,6 +17,8 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(assembly);
 
+        services.AddLogging();
+
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestLogger<,>));
 
@@ -24,9 +26,10 @@ public static class DependencyInjection
 
         services.AddAutoMapper(assembly);
 
-        services.AddScoped<IBankService, BankService>();
+        services.AddScoped<IBankUpdaterService, BankUpdaterService>();
+        services.AddScoped<IBankRetrieverService, BankRetrieverService>();
 
-        services.AddScoped<IBankAccountService, BankAccountService>();
+        services.AddScoped<IBankAccountRetrieverService, BankAccountRetrieverService>();
 
         var config = new MapperConfiguration(cfg =>
         {

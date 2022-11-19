@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Banks.Commands.PutBank;
+using Tuber.BLL.Banks.Commands.AddBank;
+using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Dtos;
@@ -11,13 +12,18 @@ public class BankProfile : Profile
     public BankProfile()
     {
         //  API
-        CreateMap<PutBankAPIRequest, PutBankCommandRequest>();
-        CreateMap<PutBankCommandResponse, PutBankAPIResponse>();
+        CreateMap<AddBankAPIRequest, AddBankCommandRequest>();
+        CreateMap<AddBankCommandResponse, AddBankAPIResponse>();
+
+        CreateMap<UpdateBankAPIRequest, UpdateBankCommandRequest>();
+        CreateMap<UpdateBankCommandResponse, UpdateBankAPIResponse>();
+
         CreateMap<GetBankByIdQueryResponse, GetBankByIdAPIResponse>();
+
         CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
-        
+
         //  Services
-        CreateMap<Bank, BankDto>().ReverseMap();
+        //CreateMap<Bank, BankDto>();
     }
 
 }

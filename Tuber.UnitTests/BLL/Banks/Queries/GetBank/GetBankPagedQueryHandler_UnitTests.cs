@@ -1,55 +1,71 @@
-﻿using FluentAssertions;
+﻿using AutoMapper;
+using FluentAssertions;
 using Moq;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
+using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 internal class GetBankPagedQueryHandler_UnitTests
 {
-    private BankDto[] _bankList;
+    private Bank[] _bankArray;
+    private List<BankDto> _bankDtoList;
 
     [SetUp]
     public void SetUp()
     {
-        _bankList = new BankDto[]
+        _bankArray = new Bank[]
         {
-            new BankDto
+            new Bank
             {
-                 Id = Guid.NewGuid(),
+                 Id = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 1",
                  OrderBy = 10,
                  IsArchived = false
             },
-            new BankDto
+            new Bank
             {
-                 Id = Guid.NewGuid(),
+                 Id = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 2",
                  OrderBy = 20,
                  IsArchived = false
             },
-            new BankDto
+            new Bank
             {
-                 Id = Guid.NewGuid(),
+                 Id = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 3",
                  OrderBy = 30,
                  IsArchived = false
             },
-            new BankDto
+            new Bank
             {
-                 Id = Guid.NewGuid(),
+                 Id = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 4",
                  OrderBy = 40,
                  IsArchived = false
             },
-            new BankDto
+            new Bank
             {
-                 Id = Guid.NewGuid(),
+                 Id = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Deleted Bank",
                  OrderBy = 99,
                  IsArchived = true
             }
         };
+
+        _bankDtoList = new List<BankDto>();
+
+        for (var i = 0; i < _bankArray.Length; i++)
+        {
+            _bankDtoList.Add(new BankDto
+            {
+                Id = _bankArray[i].Id,
+                Name = _bankArray[i].Name!,
+                OrderBy = _bankArray[i].OrderBy,
+                IsArchived = _bankArray[i].IsArchived
+            });
+        }
     }
 
     [Test]
@@ -59,19 +75,25 @@ internal class GetBankPagedQueryHandler_UnitTests
     public void GetBankPagedQueryHandler_ValidPayload_ReturnsValidResult(
         int pageNumber, int pageSize, int orderBy)
     {
-        var page = new ArraySegment<BankDto>(_bankList, (pageNumber - 1) * pageSize, pageSize).ToList();
+        var page = new ArraySegment<Bank>(_bankArray, (pageNumber - 1) * pageSize, pageSize).ToList();
 
-        var mockBankService = new Mock<IBankService>();
+        var mockBankRetrieverService = new Mock<IBankRetrieverService>();
 
-        mockBankService.Setup(x => x.GetPaged(pageNumber, pageSize))
+        mockBankRetrieverService.Setup(x => x.GetPaged(pageNumber, pageSize))
             .Returns(page);
 
-        var totalPages = (int)Math.Ceiling(_bankList.Count(x => x.IsArchived == false) / (pageSize * 1.0));
-        
-        mockBankService.Setup(x => x.CountPages(pageSize))
+        var mockMapper = new Mock<IMapper>();
+        var subSet = _bankDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+        mockMapper.Setup(x => x.Map<List<Bank>, List<BankDto>>(It.IsAny<List<Bank>>()))
+            .Returns(subSet);
+
+        var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsArchived == false) / (pageSize * 1.0));
+
+        mockBankRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);
 
-        var sut = new GetBankPagedQueryHandler(mockBankService.Object);
+        var sut = new GetBankPagedQueryHandler(mockBankRetrieverService.Object, mockMapper.Object);
 
         var request = new GetBankPagedQueryRequest
         {
