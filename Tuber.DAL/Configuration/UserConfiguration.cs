@@ -25,6 +25,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                     .IsRequired()
                     .HasDefaultValue(false);
 
-        //UserSeeding.Seed(builder);
+        UserSeeding.Seed(builder);
     }
 }

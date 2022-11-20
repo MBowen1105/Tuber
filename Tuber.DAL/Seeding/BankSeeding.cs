@@ -4,8 +4,7 @@ using Tuber.Domain.Models;
 namespace Tuber.DAL.Seeding;
 public static class BankSeeding
 {
-    private static Guid DEFAULT_USERID = Guid.Parse("02ceedc1-d3b4-4e5e-8844-0d853c24463b");
-
+    
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
         builder.HasData(
@@ -15,7 +14,7 @@ public static class BankSeeding
                 Name = "Co-Op Bank",
                 OrderBy = 10,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new Bank
@@ -24,7 +23,7 @@ public static class BankSeeding
                 Name = "Lloyds Bank",
                 OrderBy = 20,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new Bank
@@ -33,7 +32,7 @@ public static class BankSeeding
                 Name = "Barclays Bank",
                 OrderBy = 30,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new Bank
@@ -42,7 +41,7 @@ public static class BankSeeding
                 Name = "Virgin Money",
                 OrderBy = 40,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new Bank
@@ -51,7 +50,7 @@ public static class BankSeeding
                 Name = "TSB",
                 OrderBy = 50,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = true,
             });
     }

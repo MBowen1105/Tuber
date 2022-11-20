@@ -4,8 +4,6 @@ using Tuber.Domain.Models;
 namespace Tuber.DAL.Seeding;
 public static class BankAccountSeeding
 {
-    private static Guid DEFAULT_USERID = Guid.Parse("02ceedc1-d3b4-4e5e-8844-0d853c24463b");
-
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
         builder.HasData(
@@ -17,7 +15,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09411905",
                 OrderBy = 10,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new BankAccount
@@ -28,7 +26,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "00985630",
                 OrderBy = 20,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new BankAccount
@@ -39,7 +37,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 30,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new BankAccount
@@ -50,7 +48,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 10,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             },
             new BankAccount
@@ -61,7 +59,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 20,
                 CreatedOn = DateTime.UtcNow,
-                CreatedByUserId = DEFAULT_USERID,
+                CreatedByUserId = UserSeeding.ADMIN_USER_ID,
                 IsArchived = false,
             });
     }
