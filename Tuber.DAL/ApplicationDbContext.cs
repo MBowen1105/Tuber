@@ -14,6 +14,7 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Bank> Banks { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
+    public DbSet<User> Users { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IDateTimeService dateTimeService,
@@ -54,6 +55,7 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new BankConfiguration());
         modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
