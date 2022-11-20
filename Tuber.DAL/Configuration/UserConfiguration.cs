@@ -15,6 +15,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired()
             .HasMaxLength(50);
 
+        builder.Property(x => x.IsCoreUser)
+            .IsRequired()
+            .HasDefaultValue(false);
+
         builder.Property(x => x.CreatedByUserId)
             .IsRequired();
 

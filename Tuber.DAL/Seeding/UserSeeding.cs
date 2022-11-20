@@ -13,6 +13,7 @@ public static class UserSeeding
             {
                 Id = ADMIN_USER_ID,
                 FullName = "Mark Bowen",
+                IsCoreUser = true,
                 CreatedOn = DateTime.UtcNow,
                 CreatedByUserId = ADMIN_USER_ID,
                 IsArchived = false,
