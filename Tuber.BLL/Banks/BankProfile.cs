@@ -3,6 +3,8 @@ using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
+using Tuber.Domain.Dtos;
+using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks;
 public class BankProfile : Profile
@@ -19,6 +21,8 @@ public class BankProfile : Profile
         CreateMap<GetBankByIdQueryResponse, GetBankByIdAPIResponse>();
 
         CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
+
+        CreateMap<Bank, BankDto>();
     }
 
 }
