@@ -60,10 +60,10 @@ internal class GetBankPagedQueryHandler_UnitTests
         {
             _bankDtoList.Add(new BankDto
             {
-                Id = _bankArray[i].BankId,
+                BankId = _bankArray[i].BankId,
                 Name = _bankArray[i].Name!,
                 OrderBy = _bankArray[i].OrderBy,
-                IsArchived = _bankArray[i].IsActive
+                IsActive = _bankArray[i].IsActive
             });
         }
     }

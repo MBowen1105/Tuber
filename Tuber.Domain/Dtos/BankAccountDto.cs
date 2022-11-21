@@ -6,7 +6,7 @@ public class BankAccountDto
     public int OrderBy { get; set; } = 0;
     public string UKBankAccount { get; set; } = "";
     public string BankName { get; set; } = "";
-    public string CreatedByUserName { get; set; } = "";
+    public string CreatedByUserFullName { get; set; } = "";
     public DateTime CreatedOnUtc { get; set; }
     public string? UpdatedByUserName { get; set; }
     public DateTime UpdatedOnUtc { get; set; }

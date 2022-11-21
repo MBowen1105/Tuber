@@ -14,8 +14,7 @@ public static class BankSeeding
                 Name = "Co-Op Bank",
                 OrderBy = 10,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new Bank
             {
@@ -23,8 +22,7 @@ public static class BankSeeding
                 Name = "Lloyds Bank",
                 OrderBy = 20,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new Bank
             {
@@ -32,8 +30,7 @@ public static class BankSeeding
                 Name = "Barclays Bank",
                 OrderBy = 30,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new Bank
             {
@@ -41,8 +38,7 @@ public static class BankSeeding
                 Name = "Virgin Money",
                 OrderBy = 40,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId
             },
             new Bank
             {
@@ -50,7 +46,7 @@ public static class BankSeeding
                 Name = "TSB",
                 OrderBy = 50,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsActive = false,
             });
     }

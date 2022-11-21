@@ -11,9 +11,5 @@ public class CurrentUserService : ICurrentUserService
         FullName = "Mark Bowen",
         IsCoreUser = true,
         IsActive = true,
-        CreatedByUserName = "Mark Bowen",
-        CreatedOnUtc = DateTime.UtcNow,
-        UpdatedByUserName = null,
-        UpdatedOnUtc = null,
     };
 }

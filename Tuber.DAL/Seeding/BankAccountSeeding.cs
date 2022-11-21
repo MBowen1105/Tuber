@@ -15,8 +15,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09411905",
                 OrderBy = 10,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new BankAccount
             {
@@ -26,8 +25,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "00985630",
                 OrderBy = 20,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new BankAccount
             {
@@ -37,8 +35,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 30,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new BankAccount
             {
@@ -48,8 +45,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 10,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new BankAccount
             {
@@ -59,8 +55,7 @@ public static class BankAccountSeeding
                 UKBankAccount = "09405515",
                 OrderBy = 20,
                 CreatedOnUtc = DateTime.UtcNow,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
-                IsActive = true,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
             new BankAccount
             {
@@ -69,7 +64,7 @@ public static class BankAccountSeeding
                 Name = "TSB Bank Account",
                 UKBankAccount = "98765555",
                 OrderBy = 10,
-                CreatedByUserName = UserSeeding.ADMIN_USER.FullName,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserName = UserSeeding.ADMIN_USER.FullName,
                 UpdatedOnUtc = DateTime.UtcNow,

@@ -27,9 +27,9 @@ namespace Tuber.BLL.Banks.Commands.UpdateBank
             return Task.FromResult(new UpdateBankCommandResponse
             {
                 Id = bank.BankId,
-                Name = bank.Name,
+                Name = bank.Name!,
                 OrderBy = bank.OrderBy,
-                CreatedByUserName = bank.CreatedByUserName,
+                CreatedByUserName = bank.CreatedByUser!.FullName,
                 CreatedOnUtc = bank.CreatedOnUtc,
                 UpdatedByUserName = bank.UpdatedByUserName,
                 UpdatedOnUtc = bank.UpdatedOnUtc

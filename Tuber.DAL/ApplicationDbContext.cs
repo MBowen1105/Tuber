@@ -34,7 +34,7 @@ public class ApplicationDbContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedByUserName = _currentUserService.User().FullName;
+                    entry.Entity.CreatedByUserId = _currentUserService.User().UserId;
                     entry.Entity.CreatedOnUtc = _dateTimeService.UtcNow();
                     entry.Entity.UpdatedByUserName = null;
                     entry.Entity.UpdatedOnUtc = null;

@@ -8,8 +8,7 @@ public static class UserSeeding
     {
         UserId = Guid.Parse("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
         FullName = "Mark Bowen",
-        IsCoreUser = true,
-        IsActive = true,
+        IsCoreUser = true
     };
 
     public static void Seed(EntityTypeBuilder<User> builder)

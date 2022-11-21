@@ -10,7 +10,10 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
     public void Configure(EntityTypeBuilder<Bank> builder)
     {
         builder.ToTable("Banks")
-            .HasMany(x => x.BankAccounts);
+            .HasMany(x => x.BankAccounts)
+            .WithOne(x => x.Bank);
+
+        builder.HasOne(x => x.CreatedByUser);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -19,7 +22,7 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
         builder.Property(x => x.OrderBy)
             .IsRequired();
 
-        builder.Property(x => x.CreatedByUserName)
+        builder.Property(x => x.CreatedByUserId)
             .IsRequired();
 
         builder.Property(x => x.CreatedOnUtc)

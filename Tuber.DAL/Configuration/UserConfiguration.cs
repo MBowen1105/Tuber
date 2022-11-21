@@ -19,12 +19,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired()
             .HasDefaultValue(false);
 
-        builder.Property(x => x.CreatedByUserName)
-            .IsRequired();
-
-        builder.Property(x => x.CreatedOnUtc)
-            .IsRequired();
-
         builder.Property(x => x.IsActive)
                     .IsRequired()
                     .HasDefaultValue(true);

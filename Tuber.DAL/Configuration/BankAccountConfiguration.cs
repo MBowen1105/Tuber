@@ -10,6 +10,8 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
     {
         builder.ToTable("BankAccounts")
             .HasOne(x => x.Bank);
+        
+        builder.HasOne(x => x.CreatedByUser);
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -25,7 +27,7 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
         builder.Property(x => x.OrderBy)
             .IsRequired();
 
-        builder.Property(x => x.CreatedByUserName)
+        builder.Property(x => x.CreatedByUserId)
             .IsRequired();
 
         builder.Property(x => x.CreatedOnUtc)
@@ -34,9 +36,6 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
         builder.Property(x => x.IsActive)
             .IsRequired()
             .HasDefaultValue(true);
-
-        builder.Property(x => x.CreatedByUserName)
-            .IsRequired();
 
         BankAccountSeeding.Seed(builder);
     }
