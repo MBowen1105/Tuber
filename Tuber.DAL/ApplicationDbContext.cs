@@ -34,15 +34,15 @@ public class ApplicationDbContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedByUserId = _currentUserService.UserId();
-                    entry.Entity.CreatedOn = _dateTimeService.UtcNow();
-                    entry.Entity.UpdatedByUserId = null;
-                    entry.Entity.UpdatedOn = null;
+                    entry.Entity.CreatedByUserName = _currentUserService.User().FullName;
+                    entry.Entity.CreatedOnUtc = _dateTimeService.UtcNow();
+                    entry.Entity.UpdatedByUserName = null;
+                    entry.Entity.UpdatedOnUtc = null;
                     break;
 
                 case EntityState.Modified:
-                    entry.Entity.UpdatedByUserId = _currentUserService.UserId();
-                    entry.Entity.UpdatedOn = _dateTimeService.UtcNow();
+                    entry.Entity.UpdatedByUserName = _currentUserService.User().FullName;
+                    entry.Entity.UpdatedOnUtc = _dateTimeService.UtcNow();
                     break;
             }
         }

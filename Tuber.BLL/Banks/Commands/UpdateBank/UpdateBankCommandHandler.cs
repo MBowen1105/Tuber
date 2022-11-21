@@ -17,7 +17,7 @@ namespace Tuber.BLL.Banks.Commands.UpdateBank
         {
             var bank = _bankRepo.Update(new Bank
             {
-                Id = request.Id,
+                BankId = request.Id,
                 Name = request.Name,
                 OrderBy = request.OrderBy
             });
@@ -26,13 +26,13 @@ namespace Tuber.BLL.Banks.Commands.UpdateBank
 
             return Task.FromResult(new UpdateBankCommandResponse
             {
-                Id = bank.Id,
+                Id = bank.BankId,
                 Name = bank.Name,
                 OrderBy = bank.OrderBy,
-                CreatedByUserId = bank.CreatedByUserId,
-                CreatedOn = bank.CreatedOn,
-                UpdatedByUserId=bank.UpdatedByUserId,
-                UpdatedOn = bank.UpdatedOn
+                CreatedByUserName = bank.CreatedByUserName,
+                CreatedOnUtc = bank.CreatedOnUtc,
+                UpdatedByUserName = bank.UpdatedByUserName,
+                UpdatedOnUtc = bank.UpdatedOnUtc
 
             });
         }

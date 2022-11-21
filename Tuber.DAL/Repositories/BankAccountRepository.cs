@@ -14,7 +14,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     {
         return _context.Set<BankAccount>()
             .Include(x => x.Bank)
-            .Where(x => x.IsArchived == false)
+            .Where(x => x.IsActive == true)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .OrderBy(x => x.OrderBy)
@@ -24,7 +24,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Set<BankAccount>()
-            .Count(x => x.IsArchived == false);
+            .Count(x => x.IsActive == true);
 
         var pages = itemCount / (pageSize * 1.0);
 

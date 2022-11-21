@@ -25,17 +25,17 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
         builder.Property(x => x.OrderBy)
             .IsRequired();
 
-        builder.Property(x => x.CreatedByUserId)
+        builder.Property(x => x.CreatedByUserName)
             .IsRequired();
 
-        builder.Property(x => x.CreatedOn)
+        builder.Property(x => x.CreatedOnUtc)
             .IsRequired();
 
-        builder.Property(x => x.IsArchived)
+        builder.Property(x => x.IsActive)
             .IsRequired()
-            .HasDefaultValue(false);
+            .HasDefaultValue(true);
 
-        builder.Property(x => x.CreatedByUserId)
+        builder.Property(x => x.CreatedByUserName)
             .IsRequired();
 
         BankAccountSeeding.Seed(builder);

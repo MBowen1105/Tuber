@@ -18,11 +18,11 @@ public class AddBankCommandHandler : IRequestHandler<AddBankCommandRequest, AddB
 
         return Task.FromResult(new AddBankCommandResponse
         {
-            Id = bankModel.Id,
+            Id = bankModel.BankId,
             Name = bankModel.Name!,
             OrderBy = bankModel.OrderBy,
-            CreatedByUserId = bankModel.CreatedByUserId,
-            CreatedOn = bankModel.CreatedOn
+            CreatedByUserName = bankModel.CreatedByUserName,
+            CreatedOnUtc = bankModel.CreatedOnUtc
         });
     }
 }

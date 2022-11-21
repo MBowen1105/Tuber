@@ -21,9 +21,7 @@ public class BankProfile : Profile
         CreateMap<GetBankByIdQueryResponse, GetBankByIdAPIResponse>();
 
         CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
-
-        //  Services
-        //CreateMap<Bank, BankDto>();
+        CreateMap<Bank, BankDto>();
     }
 
 }

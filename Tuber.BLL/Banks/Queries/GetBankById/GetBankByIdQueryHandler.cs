@@ -26,13 +26,13 @@ namespace Tuber.BLL.Banks.Queries.GetBankById
 
             var response = new GetBankByIdQueryResponse
             {
-                Id = bankModel.Id,
+                Id = bankModel.BankId,
                 Name = bankModel.Name!,
                 OrderBy = bankModel.OrderBy,
                 BankAccounts = bankAccountDtoList
             };
 
-            if (bankModel.Id == Guid.Empty)
+            if (bankModel.BankId == Guid.Empty)
                 response.Exceptions.Add(new BankDoesNotExistException(request.BankId));
 
             return Task.FromResult(response);

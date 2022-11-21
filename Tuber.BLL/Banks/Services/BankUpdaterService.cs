@@ -29,7 +29,7 @@ internal class BankUpdaterService : IBankUpdaterService
     {
         var bankModel = _bankRepo.Update(new Bank
         {
-            Id = id,
+            BankId = id,
             Name = name,
             OrderBy = orderBy
         });
@@ -43,7 +43,7 @@ internal class BankUpdaterService : IBankUpdaterService
     {
         var bankModel = _bankRepo.GetById(id);
 
-        if (bankModel.Id == Guid.Empty)
+        if (bankModel.BankId == Guid.Empty)
             return 0;
 
         var result = _bankRepo.Delete(id);

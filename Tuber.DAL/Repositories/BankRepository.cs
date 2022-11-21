@@ -23,10 +23,10 @@ public class BankRepository : IBankRepository
     public Bank Update(Bank bank)
     {
         var bankModel = _context.Banks
-            .FirstOrDefault(x => x.Id == bank.Id && x.IsArchived == false);
+            .FirstOrDefault(x => x.BankId == bank.BankId && x.IsActive == true);
 
         if (bankModel is null)
-            return new Bank { Id = Guid.Empty };
+            return new Bank { BankId = Guid.Empty };
 
         bankModel.Name = bank.Name;
         bankModel.OrderBy = bank.OrderBy;
@@ -38,16 +38,16 @@ public class BankRepository : IBankRepository
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
-            .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
+            .FirstOrDefault(x => x.BankId == id && x.IsActive == true);
 
         if (bank == null)
             return 0;
 
-        bank.IsArchived = true;
+        bank.IsActive = false;
 
         foreach (var bankAccount in bank.BankAccounts!)
         {
-            bankAccount.IsArchived = true;
+            bankAccount.IsActive = false;
         }
 
         return 1;
@@ -65,9 +65,9 @@ public class BankRepository : IBankRepository
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
-            .FirstOrDefault(x => x.Id == id && x.IsArchived == false);
+            .FirstOrDefault(x => x.BankId == id && x.IsActive == true);
 
-        return (bank ?? new Bank { Id = Guid.Empty });
+        return (bank ?? new Bank { BankId = Guid.Empty });
     }
 
     public List<Bank> GetAll()
@@ -75,7 +75,7 @@ public class BankRepository : IBankRepository
         //  TODO: Order by Bank, then BankAccount OrderBy
         var list = _context.Banks
             .Include(x => x.BankAccounts)
-            .Where(x => x.IsArchived == false)
+            .Where(x => x.IsActive == true)
             .OrderBy(x => x.OrderBy)
             .ToList();
 
@@ -86,7 +86,7 @@ public class BankRepository : IBankRepository
     {
         var list = _context.Banks
             .Include(x => x.BankAccounts)
-            .Where(x => x.IsArchived == false)
+            .Where(x => x.IsActive == true)
             .OrderBy(x => x.OrderBy)
             .Skip((pageNumber * pageSize) - pageSize)
             .Take(pageSize)
@@ -98,7 +98,7 @@ public class BankRepository : IBankRepository
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Banks
-            .Count(x => x.IsArchived == false);
+            .Count(x => x.IsActive == true);
 
         var totalPages = itemCount / (pageSize * 1.0);
 

@@ -19,38 +19,38 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         {
             new BankAccount
             {
-                 Id = Guid.NewGuid(),
+                 BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 1",
                  OrderBy = 10,
-                 IsArchived = false
+                 IsActive = true
             },
             new BankAccount
             {
-                 Id = Guid.NewGuid(),
+                 BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 2",
                  OrderBy = 20,
-                 IsArchived = false
+                 IsActive = true
             },
             new BankAccount
             {
-                 Id = Guid.NewGuid(),
+                 BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 3",
                  OrderBy = 30,
-                 IsArchived = false
+                 IsActive = true
             },
             new BankAccount
             {
-                 Id = Guid.NewGuid(),
+                 BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 4",
                  OrderBy = 40,
-                 IsArchived = false
+                 IsActive = true
             },
             new BankAccount
             {
-                 Id = Guid.NewGuid(),
+                 BankAccountId = Guid.NewGuid(),
                  Name = "Deleted Bank Account",
                  OrderBy = 99,
-                 IsArchived = true
+                 IsActive = false
             }
         };
 
@@ -60,10 +60,9 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         {
             _bankAccountDtoList.Add(new BankAccountDto
             {
-                Id = _bankAccountArray[i].Id,
+                BankAccountId = _bankAccountArray[i].BankAccountId,
                 Name = _bankAccountArray[i].Name!,
-                OrderBy = _bankAccountArray[i].OrderBy,
-                IsArchived = _bankAccountArray[i].IsArchived
+                OrderBy = _bankAccountArray[i].OrderBy
             });
         }
     }
@@ -88,7 +87,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         mockMapper.Setup(x => x.Map<List<BankAccount>, List<BankAccountDto>>(It.IsAny<List<BankAccount>>()))
             .Returns(subSet);
 
-        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsArchived == false) / (pageSize * 1.0));
+        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsActive == true) / (pageSize * 1.0));
 
         mockBankAccountRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);
