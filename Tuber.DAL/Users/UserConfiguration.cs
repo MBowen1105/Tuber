@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tuber.DAL.Seeding;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Configuration;
+namespace Tuber.DAL.Users;
 
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {

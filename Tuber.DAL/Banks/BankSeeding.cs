@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tuber.DAL.Users;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Seeding;
+namespace Tuber.DAL.Banks;
 public static class BankSeeding
 {
-    
+
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
         builder.HasData(

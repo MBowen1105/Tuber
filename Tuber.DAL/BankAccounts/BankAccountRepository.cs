@@ -2,7 +2,7 @@
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Repositories;
+namespace Tuber.DAL.BankAccounts;
 public class BankAccountRepository : Repository<BankAccount>, IBankAccountRepository
 {
     public BankAccountRepository(ApplicationDbContext context)

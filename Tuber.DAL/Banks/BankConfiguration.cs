@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tuber.DAL.Seeding;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Configuration;
-public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
+namespace Tuber.DAL.Banks;
+
+public class BankConfiguration : IEntityTypeConfiguration<Bank>
 {
-    public void Configure(EntityTypeBuilder<BankAccount> builder)
+    public void Configure(EntityTypeBuilder<Bank> builder)
     {
-        builder.ToTable("BankAccounts")
-            .HasOne(x => x.Bank);
-        
+        builder.ToTable("Banks")
+            .HasMany(x => x.BankAccounts)
+            .WithOne(x => x.Bank);
+
         builder.HasOne(x => x.CreatedByUser);
 
         builder.HasOne(x => x.UpdatedByUser);
@@ -18,13 +19,6 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
         builder.Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(40);
-
-        builder.Property(x => x.UKBankAccount)
-            .IsRequired()
-            .HasMaxLength(8);
-
-        builder.Property(x => x.BankId)
-           .IsRequired();
 
         builder.Property(x => x.OrderBy)
             .IsRequired();
@@ -36,9 +30,9 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired();
 
         builder.Property(x => x.IsActive)
-            .IsRequired()
-            .HasDefaultValue(true);
+                    .IsRequired()
+                    .HasDefaultValue(true);
 
-        BankAccountSeeding.Seed(builder);
+        BankSeeding.Seed(builder);
     }
 }

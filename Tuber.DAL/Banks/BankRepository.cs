@@ -2,7 +2,7 @@
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Repositories;
+namespace Tuber.DAL.Banks;
 public class BankRepository : IBankRepository
 {
     private readonly ApplicationDbContext _context;
@@ -69,7 +69,7 @@ public class BankRepository : IBankRepository
             .Include(x => x.BankAccounts)
             .FirstOrDefault(x => x.BankId == id && x.IsActive == true);
 
-        return (bank ?? new Bank { BankId = Guid.Empty });
+        return bank ?? new Bank { BankId = Guid.Empty };
     }
 
     public List<Bank> GetAll()
@@ -90,7 +90,7 @@ public class BankRepository : IBankRepository
             .Include(x => x.BankAccounts)
             .Where(x => x.IsActive == true)
             .OrderBy(x => x.OrderBy)
-            .Skip((pageNumber * pageSize) - pageSize)
+            .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
 

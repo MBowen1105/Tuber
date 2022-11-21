@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tuber.DAL.Users;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Seeding;
+namespace Tuber.DAL.BankAccounts;
 public static class BankAccountSeeding
 {
     public static void Seed(EntityTypeBuilder<BankAccount> builder)

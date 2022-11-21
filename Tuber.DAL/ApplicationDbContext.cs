@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.DAL.Configuration;
+using Tuber.DAL.BankAccounts;
+using Tuber.DAL.Banks;
+using Tuber.DAL.Users;
 using Tuber.Domain.Common;
 using Tuber.Domain.Interfaces.Infrastructure.DateTimes;
 using Tuber.Domain.Interfaces.Infrastructure.Users;

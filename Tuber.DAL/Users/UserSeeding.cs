@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Domain.Models;
 
-namespace Tuber.DAL.Seeding;
+namespace Tuber.DAL.Users;
 public static class UserSeeding
 {
     public static readonly User ADMIN_USER = new()

@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.DAL.Repositories;
+using Tuber.DAL.BankAccounts;
+using Tuber.DAL.Banks;
 using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.DAL;
