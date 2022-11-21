@@ -2,6 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
