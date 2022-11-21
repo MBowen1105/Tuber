@@ -66,7 +66,7 @@ public static class BankAccountSeeding
                 OrderBy = 10,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 CreatedOnUtc = DateTime.UtcNow,
-                UpdatedByUserName = UserSeeding.ADMIN_USER.FullName,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
                 IsActive = false,
             });

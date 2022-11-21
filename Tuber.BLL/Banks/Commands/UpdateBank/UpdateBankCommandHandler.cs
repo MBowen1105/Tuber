@@ -31,7 +31,7 @@ namespace Tuber.BLL.Banks.Commands.UpdateBank
                 OrderBy = bank.OrderBy,
                 CreatedByUserName = bank.CreatedByUser!.FullName,
                 CreatedOnUtc = bank.CreatedOnUtc,
-                UpdatedByUserName = bank.UpdatedByUserName,
+                UpdatedByUserName = bank.UpdatedByUser!.FullName,
                 UpdatedOnUtc = bank.UpdatedOnUtc
 
             });

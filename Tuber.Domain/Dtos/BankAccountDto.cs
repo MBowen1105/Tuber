@@ -8,6 +8,6 @@ public class BankAccountDto
     public string BankName { get; set; } = "";
     public string CreatedByUserFullName { get; set; } = "";
     public DateTime CreatedOnUtc { get; set; }
-    public string? UpdatedByUserName { get; set; }
+    public string? UpdatedByUserFullName { get; set; }
     public DateTime UpdatedOnUtc { get; set; }
 }

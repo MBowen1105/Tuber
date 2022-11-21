@@ -7,7 +7,7 @@ public record BankDto
     public List<BankAccountDto> BankAccounts { get; set; } = new();
     public string CreatedByUserFullName { get; init; } = "";
     public DateTime CreatedOnUtc { get; init; }
-    public string? UpdatedByUserName { get; init; }
+    public string? UpdatedByUserFullName { get; init; }
     public DateTime UpdatedOnUtc { get; init; }
     public bool IsActive { get; init; }
 

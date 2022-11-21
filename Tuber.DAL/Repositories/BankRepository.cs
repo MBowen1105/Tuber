@@ -23,6 +23,8 @@ public class BankRepository : IBankRepository
     public Bank Update(Bank bank)
     {
         var bankModel = _context.Banks
+            .Include(x => x.CreatedByUser)
+            .Include(x => x.UpdatedByUser)
             .FirstOrDefault(x => x.BankId == bank.BankId && x.IsActive == true);
 
         if (bankModel is null)
