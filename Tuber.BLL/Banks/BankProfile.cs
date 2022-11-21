@@ -3,8 +3,6 @@ using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks;
 public class BankProfile : Profile
