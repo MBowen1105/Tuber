@@ -100,7 +100,7 @@ public class BankRepository : IBankRepository
             .ToList();
 
         
-        return list.ToList();
+        return list;
     }
 
     public int CountPages(int pageSize)
