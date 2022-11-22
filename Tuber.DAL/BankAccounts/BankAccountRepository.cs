@@ -13,7 +13,6 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<BankAccount>()
-            .Include(x => x.Bank)
             .Where(x => x.IsActive == true)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)

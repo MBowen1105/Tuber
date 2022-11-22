@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
@@ -77,6 +78,8 @@ public class BankRepository : IBankRepository
         //  TODO: Order by Bank, then BankAccount OrderBy
         var list = _context.Banks
             .Include(x => x.BankAccounts)
+            .Include(x => x.CreatedByUser)
+            .Include(x => x.UpdatedByUser)
             .Where(x => x.IsActive == true)
             .OrderBy(x => x.OrderBy)
             .ToList();
@@ -88,13 +91,16 @@ public class BankRepository : IBankRepository
     {
         var list = _context.Banks
             .Include(x => x.BankAccounts)
+            .Include(x => x.CreatedByUser)
+            .Include(x => x.UpdatedByUser)
             .Where(x => x.IsActive == true)
             .OrderBy(x => x.OrderBy)
             .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
 
-        return list;
+        
+        return list.ToList();
     }
 
     public int CountPages(int pageSize)

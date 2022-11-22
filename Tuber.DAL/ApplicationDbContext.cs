@@ -48,6 +48,7 @@ public class ApplicationDbContext : DbContext
                     break;
             }
         }
+
         return base.SaveChanges();
     }
 

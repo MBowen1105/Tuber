@@ -9,8 +9,7 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
     public void Configure(EntityTypeBuilder<Bank> builder)
     {
         builder.ToTable("Banks")
-            .HasMany(x => x.BankAccounts)
-            .WithOne(x => x.Bank);
+            .HasMany(x => x.BankAccounts);
 
         builder.HasOne(x => x.CreatedByUser);
 

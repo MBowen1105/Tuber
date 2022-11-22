@@ -7,8 +7,7 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
 {
     public void Configure(EntityTypeBuilder<BankAccount> builder)
     {
-        builder.ToTable("BankAccounts")
-            .HasOne(x => x.Bank);
+        builder.ToTable("BankAccounts");
 
         builder.HasOne(x => x.CreatedByUser);
 

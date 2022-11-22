@@ -20,6 +20,11 @@ public static class DependencyInjection
                 options.UseSqlServer(cs,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
+        services.AddMvc().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler= System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        });
+
         services.AddScoped<IBankRepository, BankRepository>();
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();
 

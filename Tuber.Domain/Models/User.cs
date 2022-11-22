@@ -1,6 +1,4 @@
-﻿using Tuber.Domain.Common;
-
-namespace Tuber.Domain.Models;
+﻿namespace Tuber.Domain.Models;
 public class User
 {
     public Guid UserId { get; set; }
