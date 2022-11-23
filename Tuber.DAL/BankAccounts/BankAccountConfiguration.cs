@@ -33,9 +33,8 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
         builder.Property(x => x.CreatedOnUtc)
             .IsRequired();
 
-        builder.Property(x => x.IsActive)
-            .IsRequired()
-            .HasDefaultValue(true);
+        builder.Property(x => x.IsDeleted)
+            .IsRequired();
 
         BankAccountSeeding.Seed(builder);
     }

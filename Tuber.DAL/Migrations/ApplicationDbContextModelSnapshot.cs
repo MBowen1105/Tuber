@@ -37,10 +37,8 @@ namespace Tuber.DAL.Migrations
                     b.Property<Guid?>("ImportTemplateId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -69,8 +67,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1679),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(236),
+                            IsDeleted = false,
                             Name = "Co-Op Bank",
                             OrderBy = 10
                         },
@@ -78,8 +76,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1687),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(243),
+                            IsDeleted = false,
                             Name = "Lloyds Bank",
                             OrderBy = 20
                         },
@@ -87,8 +85,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1689),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(247),
+                            IsDeleted = false,
                             Name = "Barclays Bank",
                             OrderBy = 30
                         },
@@ -96,8 +94,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1691),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(250),
+                            IsDeleted = false,
                             Name = "Virgin",
                             OrderBy = 40
                         },
@@ -105,8 +103,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1692),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(253),
+                            IsDeleted = false,
                             Name = "West Bromwich Building Society",
                             OrderBy = 50
                         },
@@ -114,8 +112,8 @@ namespace Tuber.DAL.Migrations
                         {
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(1694),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(255),
+                            IsDeleted = true,
                             Name = "TSB",
                             OrderBy = 50
                         });
@@ -136,10 +134,8 @@ namespace Tuber.DAL.Migrations
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -176,8 +172,8 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("0c942b54-d561-499a-843b-e4387e7e6415"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4049),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2717),
+                            IsDeleted = false,
                             Name = "Salary",
                             OrderBy = 10,
                             UKBankAccount = "09411905"
@@ -187,8 +183,8 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("552d16a1-d98b-48e9-8580-13029843c116"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4053),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2723),
+                            IsDeleted = false,
                             Name = "Cash",
                             OrderBy = 20,
                             UKBankAccount = "00985630"
@@ -198,8 +194,8 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"),
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4055),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2727),
+                            IsDeleted = false,
                             Name = "Savings",
                             OrderBy = 30,
                             UKBankAccount = "09405515"
@@ -209,8 +205,8 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"),
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4057),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2729),
+                            IsDeleted = false,
                             Name = "Lloyds 93DIX",
                             OrderBy = 10,
                             UKBankAccount = "09405515"
@@ -220,8 +216,8 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"),
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4059),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2732),
+                            IsDeleted = false,
                             Name = "Lloyds 25PAR",
                             OrderBy = 20,
                             UKBankAccount = "09405515"
@@ -231,13 +227,13 @@ namespace Tuber.DAL.Migrations
                             BankAccountId = new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"),
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4062),
-                            IsActive = false,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2735),
+                            IsDeleted = true,
                             Name = "TSB Bank Account",
                             OrderBy = 10,
                             UKBankAccount = "98765555",
                             UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(4063)
+                            UpdatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(2737)
                         });
                 });
 
@@ -253,10 +249,8 @@ namespace Tuber.DAL.Migrations
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("TemplateName")
                         .IsRequired()
@@ -282,16 +276,16 @@ namespace Tuber.DAL.Migrations
                         {
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(6187),
-                            IsActive = true,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(6587),
+                            IsDeleted = false,
                             TemplateName = "Co-Op Bank Template"
                         },
                         new
                         {
                             ImportTemplateId = new Guid("f642096e-6573-4deb-96be-efba9016499c"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 4, 4, 807, DateTimeKind.Utc).AddTicks(6190),
-                            IsActive = true,
+                            CreatedOnUtc = new DateTime(2022, 11, 23, 17, 20, 55, 351, DateTimeKind.Utc).AddTicks(6592),
+                            IsDeleted = false,
                             TemplateName = "Lloyds Bank Template"
                         });
                 });
@@ -307,15 +301,13 @@ namespace Tuber.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
                     b.Property<bool>("IsCoreUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("UserId");
 
@@ -326,15 +318,15 @@ namespace Tuber.DAL.Migrations
                         {
                             UserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
                             FullName = "Administrator",
-                            IsActive = false,
-                            IsCoreUser = true
+                            IsCoreUser = true,
+                            IsDeleted = false
                         },
                         new
                         {
                             UserId = new Guid("e13a3a77-93c1-4e64-8d58-a517ca1be8d1"),
                             FullName = "Mark Bowen",
-                            IsActive = false,
-                            IsCoreUser = true
+                            IsCoreUser = true,
+                            IsDeleted = false
                         });
                 });
 

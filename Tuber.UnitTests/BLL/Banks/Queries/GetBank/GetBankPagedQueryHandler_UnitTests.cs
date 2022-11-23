@@ -21,36 +21,32 @@ internal class GetBankPagedQueryHandler_UnitTests
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 1",
-                 OrderBy = 10,
-                 IsActive = false
+                 OrderBy = 10
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 2",
-                 OrderBy = 20,
-                 IsActive = false
+                 OrderBy = 20
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 3",
-                 OrderBy = 30,
-                 IsActive = false
+                 OrderBy = 30
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Bank 4",
-                 OrderBy = 40,
-                 IsActive = false
+                 OrderBy = 40
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
                  Name = "Deleted Bank",
                  OrderBy = 99,
-                 IsActive = true
+                 IsDeleted = true
             }
         };
 
@@ -62,8 +58,7 @@ internal class GetBankPagedQueryHandler_UnitTests
             {
                 BankId = _bankArray[i].BankId,
                 Name = _bankArray[i].Name!,
-                OrderBy = _bankArray[i].OrderBy,
-                IsActive = _bankArray[i].IsActive
+                OrderBy = _bankArray[i].OrderBy
             });
         }
     }
@@ -88,7 +83,7 @@ internal class GetBankPagedQueryHandler_UnitTests
         mockMapper.Setup(x => x.Map<List<Bank>, List<BankDto>>(It.IsAny<List<Bank>>()))
             .Returns(subSet);
 
-        var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsActive == false) / (pageSize * 1.0));
+        var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
 
         mockBankRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);

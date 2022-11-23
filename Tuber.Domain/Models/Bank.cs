@@ -7,6 +7,6 @@ public class Bank : AuditableEntity
     public string? Name { get; set; }
     public int OrderBy { get; set; }
     public Guid? ImportTemplateId { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsDeleted { get; set; }
     public virtual ICollection<BankAccount>? BankAccounts { get; set; }  
 }

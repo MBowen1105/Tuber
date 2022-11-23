@@ -8,5 +8,5 @@ public class BankAccount : AuditableEntity
     public string UKBankAccount { get; set; } = "";
     public int OrderBy { get; set; }
     public Guid BankId { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsDeleted { get; set; }
 }

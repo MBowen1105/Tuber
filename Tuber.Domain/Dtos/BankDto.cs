@@ -11,6 +11,5 @@ public record BankDto
     public DateTime CreatedOnUtc { get; init; }
     public string? UpdatedByUserFullName { get; init; }
     public DateTime UpdatedOnUtc { get; init; }
-    public bool IsActive { get; init; }
 
 }

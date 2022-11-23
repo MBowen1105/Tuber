@@ -62,7 +62,7 @@ public static class BankSeeding
                 ImportTemplateId = null,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
-                IsActive = false,
+                IsDeleted = true,
             }); ;
     }
 }

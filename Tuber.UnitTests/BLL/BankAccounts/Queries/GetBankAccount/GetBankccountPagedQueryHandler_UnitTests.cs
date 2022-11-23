@@ -22,35 +22,35 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 1",
                  OrderBy = 10,
-                 IsActive = true
+                 IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 2",
                  OrderBy = 20,
-                 IsActive = true
+                 IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 3",
                  OrderBy = 30,
-                 IsActive = true
+                 IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 4",
                  OrderBy = 40,
-                 IsActive = true
+                 IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Deleted Bank Account",
                  OrderBy = 99,
-                 IsActive = false
+                 IsDeleted = false
             }
         };
 
@@ -87,7 +87,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         mockMapper.Setup(x => x.Map<List<BankAccount>, List<BankAccountDto>>(It.IsAny<List<BankAccount>>()))
             .Returns(subSet);
 
-        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsActive == true) / (pageSize * 1.0));
+        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsDeleted == true) / (pageSize * 1.0));
 
         mockBankAccountRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);

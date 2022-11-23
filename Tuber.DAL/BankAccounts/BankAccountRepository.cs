@@ -13,7 +13,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<BankAccount>()
-            .Where(x => x.IsActive == true)
+            .Where(x => x.IsDeleted == true)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .OrderBy(x => x.OrderBy)
@@ -23,7 +23,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Set<BankAccount>()
-            .Count(x => x.IsActive == true);
+            .Count(x => x.IsDeleted == true);
 
         var pages = itemCount / (pageSize * 1.0);
 

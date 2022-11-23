@@ -15,7 +15,6 @@ public static class ImportTemplateSeeding
                 TemplateName = "Co-Op Bank Template",
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
-                IsActive = true,
             },
             new ImportTemplate
             {
@@ -23,7 +22,6 @@ public static class ImportTemplateSeeding
                 TemplateName = "Lloyds Bank Template",
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
-                IsActive = true
             });
     }
 }
