@@ -29,6 +29,8 @@ public class ApplicationDbContext : DbContext
 
     public override int SaveChanges()
     {
+        //  Get all change trackers for entties that derive from the "AuditableEntity" class
+        //  (The class that has the Created/Updated/ByDate fields.)
         var changedRows = ChangeTracker.Entries<AuditableEntity>();
 
         foreach (var entry in changedRows)
