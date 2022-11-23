@@ -14,7 +14,7 @@ public static class BankSeeding
                 BankId = Guid.Parse("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                 Name = "Co-Op Bank",
                 OrderBy = 10,
-                ImportTemplateId = null,
+                ImportTemplateId = Guid.Parse("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },

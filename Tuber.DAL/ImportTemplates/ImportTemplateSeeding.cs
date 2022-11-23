@@ -5,7 +5,6 @@ using Tuber.Domain.Models;
 namespace Tuber.DAL.ImportTemplates;
 public static class ImportTemplateSeeding
 {
-
     public static void Seed(EntityTypeBuilder<ImportTemplate> builder)
     {
         builder.HasData(
