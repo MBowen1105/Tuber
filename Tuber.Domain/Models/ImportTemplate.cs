@@ -5,8 +5,8 @@ public class ImportTemplate : AuditableEntity
 {
     public Guid ImportTemplateId { get; set; }
     public string TemplateName { get; set; } = "";
-    public string ImportFileName { get; set; } = "";
-    public int HeaderRows { get; set; } = 1;
+    public string? ImportFileName { get; set; }
+    public int HeaderRowCount { get; set; } = 1;
     public int? DateColumnNumber { get; set; }
     public int? DescriptionOnStatementColumnNumber { get; set; }
     public int? TransactionTypeColumnNumber { get; set; }
