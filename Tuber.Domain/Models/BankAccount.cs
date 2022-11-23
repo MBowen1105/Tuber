@@ -9,5 +9,4 @@ public class BankAccount : AuditableEntity
     public int OrderBy { get; set; }
     public Guid BankId { get; set; }
     public bool IsActive { get; set; }
-    //public virtual Bank? Bank { get; set; }
 }
