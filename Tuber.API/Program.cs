@@ -28,4 +28,6 @@ BankExtensions.CommandEndpoints(app);
 
 BankAccountExtensions.QueryEndpoints(app);
 
+ImportExtensions.CommandEndpoints(app);
+
 app.Run();

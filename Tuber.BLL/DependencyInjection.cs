@@ -2,10 +2,10 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
+using Tuber.BLL.Imports.Services;
 using Tuber.BLL.PipelineBehaviours;
 using Tuber.Domain.Interfaces.BLL;
 
@@ -17,8 +17,6 @@ public static class DependencyInjection
         var assembly = Assembly.GetExecutingAssembly();
 
         services.AddValidatorsFromAssembly(assembly);
-
-        services.AddLogging();
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestLogger<,>));
@@ -32,6 +30,8 @@ public static class DependencyInjection
 
         services.AddScoped<IBankAccountRetrieverService, BankAccountRetrieverService>();
 
+        services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
+        
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddMaps(assembly);

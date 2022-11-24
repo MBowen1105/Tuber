@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tuber.DAL.BankAccounts;
 using Tuber.DAL.Banks;
+using Tuber.DAL.Imports;
 using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.DAL;
@@ -20,13 +21,14 @@ public static class DependencyInjection
                 options.UseSqlServer(cs,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
-        services.AddMvc().AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.ReferenceHandler= System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-        });
+        //services.AddMvc().AddJsonOptions(options =>
+        //{
+        //    options.JsonSerializerOptions.ReferenceHandler= System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        //});
 
         services.AddScoped<IBankRepository, BankRepository>();
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+        services.AddScoped<IImportRepository, ImportRepository>();
 
         return services;
     }
