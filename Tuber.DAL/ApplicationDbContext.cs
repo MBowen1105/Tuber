@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.DAL.BankAccounts;
 using Tuber.DAL.Banks;
+using Tuber.DAL.Imports;
 using Tuber.DAL.ImportTemplates;
 using Tuber.DAL.Users;
 using Tuber.Domain.Common;
@@ -19,6 +20,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<ImportTemplate> ImportTemplates { get; set; }
+    public DbSet<Import> Imports { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IDateTimeService dateTimeService,
@@ -64,6 +66,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new ImportTemplateConfiguration());
+        modelBuilder.ApplyConfiguration(new ImportConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
