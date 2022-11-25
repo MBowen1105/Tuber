@@ -18,5 +18,6 @@ public class BankAccount : AuditableEntity
     public string UKBankAccount { get; set; }
     public int OrderBy { get; set; }
     public Guid BankId { get; set; }
+    public Guid? ImportTemplateId { get; set; }
     public bool IsDeleted { get; set; }
 }

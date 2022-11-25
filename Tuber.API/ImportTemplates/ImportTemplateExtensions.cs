@@ -3,7 +3,6 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById;
-using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.ImportTemplates;
 
@@ -16,7 +15,7 @@ public static class ImportTemplateExtensions
 
     public static void QueryEndpoints(WebApplication app)
     {
-        app.MapGet("/bank/importTemplate/{id}", async (Guid id,
+        app.MapGet("/importTemplate/get/{id}", async (Guid id,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper) =>
         {

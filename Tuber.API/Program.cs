@@ -1,5 +1,6 @@
 using Tuber.API.BankAccounts;
 using Tuber.API.Banks;
+using Tuber.API.ImportTemplates;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,9 @@ BankExtensions.QueryEndpoints(app);
 BankExtensions.CommandEndpoints(app);
 
 BankAccountExtensions.QueryEndpoints(app);
+
+ImportTemplateExtensions.QueryEndpoints(app);
+ImportTemplateExtensions.CommandEndpoints(app);
 
 ImportExtensions.CommandEndpoints(app);
 

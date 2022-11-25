@@ -5,7 +5,7 @@ public class BankAccountDto
     public string? Name { get; set; } = "";
     public int OrderBy { get; set; } = 0;
     public string UKBankAccount { get; set; } = "";
-    //public string BankName { get; set; } = "";
+    public Guid? ImportTemplateId { get; set; }
     public string CreatedByUserFullName { get; set; } = "";
     public DateTime CreatedOnUtc { get; set; }
     public string? UpdatedByUserFullName { get; set; }
