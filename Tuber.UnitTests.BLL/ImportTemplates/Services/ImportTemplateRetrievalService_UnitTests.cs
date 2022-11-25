@@ -18,7 +18,7 @@ internal class ImportTemplateRetrievalService_UnitTests
         
     }
 
-    [Test]
+    [Test, Parallelizable]
     public void ImportTemplateRetrievalService_NonExistentImportTemplate_ReturnsException()
     {
         //  An attempt to retrieve any ImportTemplate will return the Null version.
