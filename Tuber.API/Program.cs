@@ -33,6 +33,7 @@ BankAccountExtensions.QueryEndpoints(app);
 ImportTemplateExtensions.QueryEndpoints(app);
 ImportTemplateExtensions.CommandEndpoints(app);
 
+ImportExtensions.QueryEndpoints(app);
 ImportExtensions.CommandEndpoints(app);
 
 app.Run();

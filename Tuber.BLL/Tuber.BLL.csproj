@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Imports\Queries\" />
   </ItemGroup>
 
 </Project>

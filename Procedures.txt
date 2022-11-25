@@ -1,5 +1,12 @@
 To create a new API request:
 
+If it is a brand new Area:
+
+1.	Create the Query/Command Endpoint Extensions					
+2.	Call the Query/Command EndPoint Extension in Program.cs
+
+If just adding a new query/command:
+
 1.  Create API Request in Domain/(Area)/							PutBankAPIRequest
 2.  Create API Request validator									PutBankAPIRequestValidator
 3.  Create Query/Command Request									PutBankCommandRequest

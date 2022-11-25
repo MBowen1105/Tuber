@@ -3,7 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Imports.Commands.AddImport;
-using Tuber.Domain.Exceptions;
+using Tuber.BLL.Imports.Queries;
 
 namespace Tuber.API.Banks;
 
@@ -33,33 +33,26 @@ public static class ImportExtensions
         .WithName("AddImport");
     }
 
-    //public static void QueryEndpoints(WebApplication app)
-    //{
-    //    app.MapGet("/import/get", async (int pageNumber, int pageSize,
-    //        [FromServices] IMediator mediator,
-    //        [FromServices] IMapper mapper) =>
-    //    {
-    //        if (pageNumber < 1)
-    //            return Results.BadRequest(new InvalidPageNumberException(pageNumber));
+    public static void QueryEndpoints(WebApplication app)
+    {
+        app.MapGet("/import/get/{bankAccountId}", async (Guid bankAccountId,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new GetImportByBankAccountIdQueryRequest
+            {
+                BankAccountId = bankAccountId
+            });
 
-    //        if (pageSize < 1)
-    //            return Results.BadRequest(new InvalidPageSizeException(pageSize));
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-    //        // Call query handler. This first invokes the pipeline behaviour.
-    //        var queryResponse = await mediator.Send(new GetImportPagedQueryRequest
-    //        {
-    //            PageNumber = pageNumber,
-    //            PageSize = pageSize
-    //        });
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<GetImportByBankAccountIdQueryResponse, GetImportByBankAccountIdAPIResponse>(queryResponse);
 
-    //        if (queryResponse.HasExceptions)
-    //            return Results.BadRequest(queryResponse.Exceptions);
-
-    //        //  Map Handler response to API Response and return.
-    //        var apiResponse = mapper.Map<GetImportPagedQueryResponse, GetImportPagedAPIResponse>(queryResponse);
-
-    //        return Results.Ok(apiResponse);
-    //    })
-    //    .WithName("GetImport");
-    //}
+            return Results.Ok(apiResponse);
+        })
+        .WithName("GetImportByBankAccountId");
+    }
 }

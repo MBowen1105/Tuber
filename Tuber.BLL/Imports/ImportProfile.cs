@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Imports.Commands.AddImport;
+using Tuber.BLL.Imports.Queries;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Imports;
@@ -11,11 +13,12 @@ public class ImportProfile : Profile
         CreateMap<AddImportAPIRequest, AddImportCommandRequest>();
         CreateMap<AddImportCommandResponse, AddImportAPIResponse>();
 
-        
+        CreateMap<Import, ImportDto>()
+            .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
-        //CreateMap<GetImportPagedQueryResponse, GetImportPagedAPIResponse>();
+        CreateMap<GetImportByBankAccountIdQueryResponse, GetImportByBankAccountIdAPIResponse>();
 
-        //CreateMap<Import, ImportDto>();
+
     }
 
 }

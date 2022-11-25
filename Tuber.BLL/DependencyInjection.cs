@@ -31,6 +31,8 @@ public static class DependencyInjection
 
         services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
         services.AddScoped<IImportTemplateRetrievalService, ImportTemplateRetrievalService>();
+
+        services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
         
         var config = new MapperConfiguration(cfg =>
