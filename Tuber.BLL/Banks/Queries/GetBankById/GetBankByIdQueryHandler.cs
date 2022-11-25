@@ -9,10 +9,10 @@ namespace Tuber.BLL.Banks.Queries.GetBankById
 {
     public class GetBankByIdQueryHandler : IRequestHandler<GetBankByIdQueryRequest, GetBankByIdQueryResponse>
     {
-        private readonly IBankRetrieverService _bankRetrieverService;
+        private readonly IBankRetrievalService _bankRetrieverService;
         private readonly IMapper _mapper;
 
-        public GetBankByIdQueryHandler(IBankRetrieverService bankRetrieverService, IMapper mapper)
+        public GetBankByIdQueryHandler(IBankRetrievalService bankRetrieverService, IMapper mapper)
         {
             _bankRetrieverService = bankRetrieverService;
             _mapper = mapper;
@@ -20,20 +20,18 @@ namespace Tuber.BLL.Banks.Queries.GetBankById
 
         public Task<GetBankByIdQueryResponse> Handle(GetBankByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var bankModel = _bankRetrieverService.GetById(request.BankId);
+            var serviceResult = _bankRetrieverService.GetById(request.BankId);
 
-            var bankAccountDtoList = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(bankModel.BankAccounts!.ToList());
+            var bankAccountDtoList = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(serviceResult.Payload!.BankAccounts!.ToList());
 
             var response = new GetBankByIdQueryResponse
             {
-                Id = bankModel.BankId,
-                Name = bankModel.Name!,
-                OrderBy = bankModel.OrderBy,
-                BankAccounts = bankAccountDtoList
+                Id = serviceResult.Payload!.BankId,
+                Name = serviceResult.Payload!.Name!,
+                OrderBy = serviceResult.Payload!.OrderBy,
+                BankAccounts = bankAccountDtoList,
+                Exceptions = serviceResult.Exceptions.ToList()
             };
-
-            if (bankModel.BankId == Guid.Empty)
-                response.Exceptions.Add(new BankDoesNotExistException(request.BankId));
 
             return Task.FromResult(response);
         }

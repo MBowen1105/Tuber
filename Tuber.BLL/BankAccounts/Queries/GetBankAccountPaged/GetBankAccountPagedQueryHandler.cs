@@ -8,10 +8,10 @@ namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged
 {
     public class GetBankAccountPagedQueryHandler : IRequestHandler<GetBankAccountPagedQueryRequest, GetBankAccountPagedQueryResponse>
     {
-        private readonly IBankAccountRetrieverService _bankAccountRetrieverService;
+        private readonly IBankAccountRetrievalService _bankAccountRetrieverService;
         private readonly IMapper _mapper;
 
-        public GetBankAccountPagedQueryHandler(IBankAccountRetrieverService bankAccountRetrieverService,
+        public GetBankAccountPagedQueryHandler(IBankAccountRetrievalService bankAccountRetrieverService,
             IMapper mapper)
         {
             _bankAccountRetrieverService = bankAccountRetrieverService;

@@ -1,8 +1,7 @@
 ﻿namespace Tuber.Domain.Models;
 public class ImportResult
 {
-    public Guid ImportId { get; set; }
-    public int ValidRowCount { get; set; }
-    public int InvalidRowCount { get; set; }
-    public List<Exception> Exceptions { get; init; } = new List<Exception>();
+    public int TotalRowCount { get; set; } = 0;
+    public int ValidRowCount { get; set; } = 0;
+    public int InvalidRowCount { get; set; } = 0;
 }

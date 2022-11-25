@@ -14,16 +14,15 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
 
     public Task<AddImportCommandResponse> Handle(AddImportCommandRequest request, CancellationToken cancellationToken)
     {
-        var importResult = _importUpdaterService.Import(request.ImportTemplateId, request.BankAccountId, request.ImportFileName);
+        var importResult = _importUpdaterService.ImportFile(request.ImportTemplateId, request.BankAccountId, request.ImportFileName);
 
         return Task.FromResult(new AddImportCommandResponse
         {
-            ImportId = importResult.ImportId,
             BankAccountId = request.BankAccountId,
             ImportFileName = request.ImportFileName,
-            ValidImportRowCount = importResult.ValidRowCount,
-            InvalidImportRowCount = importResult.InvalidRowCount,
-            Exceptions = importResult.Exceptions
+            ValidImportRowCount = importResult.Payload!.ValidRowCount,
+            InvalidImportRowCount = importResult.Payload!.InvalidRowCount,
+            Exceptions = importResult.Exceptions.ToList()
         });
     }
 }

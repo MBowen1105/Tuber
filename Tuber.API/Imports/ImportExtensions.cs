@@ -28,7 +28,7 @@ public static class ImportExtensions
             //  Map Handler response to API Response and return.
             var apiResponse = mapper.Map<AddImportCommandResponse, AddImportAPIResponse>(queryResponse);
 
-            return Results.Created($"/import/{apiResponse.ImportId}", apiResponse);
+            return Results.Created($"/import/", apiResponse);
         })
         .WithName("AddImport");
     }

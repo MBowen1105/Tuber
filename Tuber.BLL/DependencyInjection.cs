@@ -6,6 +6,7 @@ using System.Reflection;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
 using Tuber.BLL.Imports.Services;
+using Tuber.BLL.ImportTemplates.Services;
 using Tuber.BLL.PipelineBehaviours;
 using Tuber.Domain.Interfaces.BLL;
 
@@ -26,10 +27,10 @@ public static class DependencyInjection
         services.AddAutoMapper(assembly);
 
         services.AddScoped<IBankUpdaterService, BankUpdaterService>();
-        services.AddScoped<IBankRetrieverService, BankRetrieverService>();
+        services.AddScoped<IBankRetrievalService, BankRetrievalService>();
 
-        services.AddScoped<IBankAccountRetrieverService, BankAccountRetrieverService>();
-
+        services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
+        services.AddScoped<IImportTemplateRetrievalService, ImportTemplateRetrievalService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
         
         var config = new MapperConfiguration(cfg =>

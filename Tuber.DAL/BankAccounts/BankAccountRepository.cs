@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Interfaces.DAL;
+﻿using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.BankAccounts;
@@ -10,10 +9,22 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     {
     }
 
+    #region "Commands"
+    #endregion
+
+    #region "Queries"
+    public BankAccount GetById(Guid bankAccountId)
+    {
+        var bankAccount = _context.Set<BankAccount>()
+            .FirstOrDefault(x => x.BankAccountId == bankAccountId && x.IsDeleted == false);
+        
+        return bankAccount ?? new BankAccount();
+    }
+
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<BankAccount>()
-            .Where(x => x.IsDeleted == true)
+            .Where(x => x.IsDeleted == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .OrderBy(x => x.OrderBy)
@@ -29,6 +40,8 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
 
         return (int)Math.Ceiling(pages);
     }
+
+    #endregion
 
     public ApplicationDbContext ApplicationDbContext
     {

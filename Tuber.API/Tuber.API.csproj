@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
     <ProjectReference Include="..\Tuber.DAL\Tuber.DAL.csproj" />
+    <ProjectReference Include="..\Tuber.FileSystem\Tuber.FileSystem.csproj" />
   </ItemGroup>
 
 </Project>

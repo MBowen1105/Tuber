@@ -1,13 +1,11 @@
 ﻿using FluentValidation;
 using Tuber.BLL.Imports.Commands.AddImport;
-using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL.Imports.PipelineValidators;
 
 public class AddImportCommandRequestValidator : AbstractValidator<AddImportCommandRequest>
 {
-    //  TODO: Inject ImportTemplateRetrieverService
-    public AddImportCommandRequestValidator(IBankAccountRetrieverService bankAccountRetrieverService)
+    public AddImportCommandRequestValidator()
     {
         RuleFor(x => x.ImportTemplateId)
             .NotEmpty();

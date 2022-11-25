@@ -18,6 +18,40 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
         builder.Property(x => x.TemplateName)
             .IsRequired()
             .HasMaxLength(40);
+        
+        builder.Property(x => x.ExpectedHeaderRowCount)
+            .IsRequired();
+
+        builder.Property(x => x.ExpectedColumnCount)
+            .IsRequired();
+
+        builder.Property(x => x.SeperatorChar)
+            .HasMaxLength(1)
+            .IsRequired();
+
+        builder.Property(x => x.DateColumnNumber)
+            .IsRequired();
+
+        builder.Property(x => x.DescriptionOnStatementColumnNumber)
+            .IsRequired();
+
+        builder.Property(x => x.TransactionTypeColumnNumber)
+           .IsRequired();
+
+        builder.Property(x => x.MoneyInColumnNumber)
+           .IsRequired();
+
+        builder.Property(x => x.MoneyOutColumnNumber)
+           .IsRequired();
+
+        builder.Property(x => x.BalanceOnStatementColumnNumber)
+           .IsRequired();
+
+        builder.Property(x => x.SortCodeColumnNumber)
+           .IsRequired();
+
+        builder.Property(x => x.AccountNumberColumnNumber)
+           .IsRequired();
 
         builder.Property(x => x.CreatedByUserId)
             .IsRequired();

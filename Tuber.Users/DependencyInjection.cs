@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Domain.Interfaces.Infrastructure.Users;
-using Tuber.Infrastructure.Users;
+using Tuber.Domain.Interfaces.Authorisation;
 
-namespace Tuber.Users;
+namespace Tuber.Authentication;
 public static class DependencyInjection
 {
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services)

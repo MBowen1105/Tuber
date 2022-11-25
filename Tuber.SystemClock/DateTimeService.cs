@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.Interfaces.Infrastructure.DateTimes;
+﻿using Tuber.Domain.Interfaces.SystemClock;
 
 namespace Tuber.SystemClock
 {
