@@ -20,24 +20,27 @@ namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById
         {
             var serviceResult = _importTemplateRetrieverService.GetById(request.ImportTemplateId);
 
-            var response = new GetImportTemplateByIdQueryResponse
-            {
-                ImportTemplateId = serviceResult.Payload.ImportTemplateId,
-                TemplateName = serviceResult.Payload.TemplateName,
-                ImportFileName = serviceResult.Payload.ImportFileName,
-                ExpectedHeaderRowCount = serviceResult.Payload.ExpectedHeaderRowCount,
-                ExpectedColumnCount = serviceResult.Payload.ExpectedColumnCount,
-                SeperatorChar = serviceResult.Payload.SeperatorChar,
-                DateColumnNumber = serviceResult.Payload.DateColumnNumber,
-                DescriptionOnStatementColumnNumber = serviceResult.Payload.DescriptionOnStatementColumnNumber,
-                TransactionTypeColumnNumber = serviceResult.Payload.TransactionTypeColumnNumber,
-                MoneyInColumnNumber = serviceResult.Payload.MoneyInColumnNumber,
-                MoneyOutColumnNumber = serviceResult.Payload.MoneyOutColumnNumber,
-                BalanceOnStatementColumnNumber = serviceResult.Payload.BalanceOnStatementColumnNumber,
-                SortCodeColumnNumber = serviceResult.Payload.SortCodeColumnNumber,
-                AccountNumberColumnNumber = serviceResult.Payload.AccountNumberColumnNumber,
-                Exceptions = serviceResult.Exceptions.ToList()
-            };
+            var response = _mapper.Map<ImportTemplate, GetImportTemplateByIdQueryResponse>(serviceResult.Payload);
+            response.Exceptions = serviceResult.Exceptions;
+
+            //var response = new GetImportTemplateByIdQueryResponse
+            //{
+            //    ImportTemplateId = serviceResult.Payload.ImportTemplateId,
+            //    TemplateName = serviceResult.Payload.TemplateName,
+            //    ImportFileName = serviceResult.Payload.ImportFileName,
+            //    ExpectedHeaderRowCount = serviceResult.Payload.ExpectedHeaderRowCount,
+            //    ExpectedColumnCount = serviceResult.Payload.ExpectedColumnCount,
+            //    SeperatorChar = serviceResult.Payload.SeperatorChar,
+            //    DateColumnNumber = serviceResult.Payload.DateColumnNumber,
+            //    DescriptionOnStatementColumnNumber = serviceResult.Payload.DescriptionOnStatementColumnNumber,
+            //    TransactionTypeColumnNumber = serviceResult.Payload.TransactionTypeColumnNumber,
+            //    MoneyInColumnNumber = serviceResult.Payload.MoneyInColumnNumber,
+            //    MoneyOutColumnNumber = serviceResult.Payload.MoneyOutColumnNumber,
+            //    BalanceOnStatementColumnNumber = serviceResult.Payload.BalanceOnStatementColumnNumber,
+            //    SortCodeColumnNumber = serviceResult.Payload.SortCodeColumnNumber,
+            //    AccountNumberColumnNumber = serviceResult.Payload.AccountNumberColumnNumber,
+            //    Exceptions = serviceResult.Exceptions.ToList()
+            //};
 
             return Task.FromResult(response);
         }
