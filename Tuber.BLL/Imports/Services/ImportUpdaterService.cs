@@ -32,7 +32,7 @@ public class ImportUpdaterService : IImportUpdaterService
         _dateTimeService = dateTimeService;
     }
 
-    public ServiceResult<ImportResult> Load(Guid bankAccountId, List<Import> validatedRows)
+    public ServiceResult<ImportResult> Add(Guid bankAccountId, List<Import> validatedRows)
     {
         //  Check Bank Account Exists
         var bankAccountServiceResult = _bankAccountRetrieverService.GetById(bankAccountId);

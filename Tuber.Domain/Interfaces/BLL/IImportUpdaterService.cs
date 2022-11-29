@@ -3,5 +3,5 @@
 namespace Tuber.Domain.Interfaces.BLL;
 public interface IImportUpdaterService
 {
-    ServiceResult<ImportResult> Load(Guid bankAccountId, List<Import> allLines);
+    ServiceResult<ImportResult> Add(Guid bankAccountId, List<Import> allLines);
 }

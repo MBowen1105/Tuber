@@ -72,7 +72,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
             });
         }
 
-        var importUpdaterServiceResult = _importUpdaterService.Load(
+        var importUpdaterServiceResult = _importUpdaterService.Add(
             request.BankAccountId,
             importValidationServiceResult.Payload);
 
