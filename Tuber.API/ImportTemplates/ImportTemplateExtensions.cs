@@ -11,8 +11,7 @@ namespace Tuber.API.ImportTemplates;
 public static class ImportTemplateExtensions
 {
     public static void CommandEndpoints(WebApplication app)
-    {
-        
+    {        
     }
 
     public static void QueryEndpoints(WebApplication app)
