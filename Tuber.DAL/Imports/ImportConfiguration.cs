@@ -8,7 +8,8 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
 {
     public void Configure(EntityTypeBuilder<Import> builder)
     {
-        builder.ToTable("Imports");
+        builder.ToTable("Imports")
+            .HasOne(x => x.ImportedByUser);
 
         builder.Property(x => x.BankAccountId)
             .IsRequired();

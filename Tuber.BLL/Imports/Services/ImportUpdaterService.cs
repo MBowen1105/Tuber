@@ -43,6 +43,8 @@ public class ImportUpdaterService : IImportUpdaterService
                 exceptionList: bankAccountServiceResult.Exceptions);
         }
 
+        _importRepo.Clear(bankAccountId);
+
         var validRowCount = 0;
         var invalidRowCount = 0;
 

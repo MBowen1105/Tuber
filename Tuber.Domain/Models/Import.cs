@@ -18,4 +18,5 @@ public class Import
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }
     public DateTime ImportedUtc { get; set; }
+    public virtual User ImportedByUser { get; set; }
 }

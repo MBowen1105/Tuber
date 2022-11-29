@@ -73,8 +73,8 @@ public class ImportValidationService : IImportValidationService
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
                 ? ""
                 : column[importTemplate.TransactionTypeColumnNumber - 1];
-            if (descriptionOnStatementValue.Length > 10)
-                validationFailureMessages += $"Transaction Type cannot exceed 40 character - truncating\n";
+            if (transactionTypeValue.Length > 10)
+                validationFailureMessages += $"Transaction Type cannot exceed 10 characters - truncating\n";
 
             var moneyInValue = (importTemplate.MoneyInColumnNumber == 0)
                 ? ""
@@ -90,11 +90,11 @@ public class ImportValidationService : IImportValidationService
 
             if (moneyInValue == "" && moneyOutValue == "")
                 validationFailureMessages += "This transaction has no Money In or Money Out value.\n";
-            
+
             var balanceOnStatementValue = column[importTemplate.BalanceOnStatementColumnNumber - 1];
             if (!double.TryParse(balanceOnStatementValue, out _))
                 validationFailureMessages += "Balance on Statement value is not a valid amount.\n";
-                
+
             var sortCodeValue = (importTemplate.SortCodeColumnNumber == 0)
                 ? ""
                 : column[importTemplate.SortCodeColumnNumber - 1];
@@ -104,13 +104,16 @@ public class ImportValidationService : IImportValidationService
             var accountNumberValue = (importTemplate.AccountNumberColumnNumber == 0)
                 ? ""
                 : column[importTemplate.AccountNumberColumnNumber - 1];
-            if (accountNumberValue.Length>10)
+            if (accountNumberValue.Length > 10)
                 validationFailureMessages += "Account Number cannot exceed 10 characters.\n";
 
-            rowIndex = (previousDateValue == dateValue)
-              ? rowIndex++
-              : 1;
-            previousDateValue = dateValue;
+            if (previousDateValue == dateValue)
+                rowIndex++;
+            else
+            {
+                rowIndex = 1;
+                previousDateValue = dateValue;
+            }
 
             validatedRows.Add(new Import
             {

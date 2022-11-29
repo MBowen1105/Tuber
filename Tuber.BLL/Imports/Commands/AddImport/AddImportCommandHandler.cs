@@ -61,7 +61,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
                 {
                     new InvalidImportFileException(importFileUrl, "Import File is empty")
                 }
-            }); ;
+            });
 
         var importValidationServiceResult = _importvalidationService.Validate(importTemplate, request.BankAccountId, allRows);
         if (importValidationServiceResult.HasFailed)
