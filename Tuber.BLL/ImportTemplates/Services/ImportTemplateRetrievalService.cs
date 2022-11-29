@@ -17,6 +17,7 @@ public class ImportTemplateRetrievalService : IImportTemplateRetrievalService
     public ServiceResult<ImportTemplate> GetById(Guid id)
     {
         var importTemplate = _importTemplateRepository.GetById(id);
+
         if (importTemplate.ImportTemplateId == Guid.Empty)
             return new ServiceResult<ImportTemplate>(
                 importTemplate, 

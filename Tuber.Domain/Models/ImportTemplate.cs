@@ -11,6 +11,7 @@ public class ImportTemplate : AuditableEntity
         ExpectedHeaderRowCount = 0;
         ExpectedColumnCount = 0;
         SeperatorChar = ',';
+        DateTemplate = "";
         DateColumnNumber = 0;
         DescriptionOnStatementColumnNumber = 0;
         TransactionTypeColumnNumber = 0;
@@ -27,6 +28,7 @@ public class ImportTemplate : AuditableEntity
     public int ExpectedHeaderRowCount { get; set; }
     public int ExpectedColumnCount { get; set; }
     public char SeperatorChar { get; set; }
+    public string DateTemplate { get; set; }
     public int DateColumnNumber { get; set; }
     public int DescriptionOnStatementColumnNumber { get; set; }
     public int TransactionTypeColumnNumber { get; set; }

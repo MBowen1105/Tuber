@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Tuber.Core\Tuber.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Infrastructure\" />
-  </ItemGroup>
-
 </Project>

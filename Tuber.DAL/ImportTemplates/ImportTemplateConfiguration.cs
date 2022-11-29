@@ -29,6 +29,10 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
             .HasMaxLength(1)
             .IsRequired();
 
+        builder.Property(x => x.DateTemplate)
+           .IsRequired()
+           .HasMaxLength(20);
+
         builder.Property(x => x.DateColumnNumber)
             .IsRequired();
 

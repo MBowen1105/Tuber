@@ -17,7 +17,7 @@ public class ServiceResult<T> where T : new()
         Exceptions = new List<Exception>() { exception };
     }
 
-//  Invalid Service result with multiple exceptions
+    //  Invalid Service result with multiple exceptions
     public ServiceResult(T payload, List<Exception> exceptionList)
     {
         IsSuccess = false;
@@ -25,8 +25,9 @@ public class ServiceResult<T> where T : new()
         Exceptions = exceptionList;
     }
 
-    
+
     public bool IsSuccess { get; private init; }
+    public bool HasFailed => !IsSuccess;
     public List<Exception> Exceptions { get; private init; }
     public T Payload { get; private init; }
 }

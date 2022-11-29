@@ -33,6 +33,7 @@ public static class DependencyInjection
         services.AddScoped<IImportTemplateRetrievalService, ImportTemplateRetrievalService>();
 
         services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
+        services.AddScoped<IImportValidationService, ImportValidationService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
         
         var config = new MapperConfiguration(cfg =>
