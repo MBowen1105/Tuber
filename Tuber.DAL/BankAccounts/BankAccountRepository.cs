@@ -34,7 +34,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Set<BankAccount>()
-            .Count(x => x.IsDeleted == true);
+            .Count(x => x.IsDeleted == false);
 
         var pages = itemCount / (pageSize * 1.0);
 

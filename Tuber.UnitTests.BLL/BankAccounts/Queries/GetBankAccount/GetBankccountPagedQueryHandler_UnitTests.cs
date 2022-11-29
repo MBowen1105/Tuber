@@ -87,7 +87,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         mockMapper.Setup(x => x.Map<List<BankAccount>, List<BankAccountDto>>(It.IsAny<List<BankAccount>>()))
             .Returns(subSet);
 
-        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsDeleted == true) / (pageSize * 1.0));
+        var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
 
         mockBankAccountRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);

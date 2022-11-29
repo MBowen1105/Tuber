@@ -70,12 +70,12 @@ internal class GetBankPagedQueryHandler_UnitTests
     public void GetBankPagedQueryHandler_ValidPayload_ReturnsValidResult(
         int pageNumber, int pageSize, int orderBy)
     {
-        var page = new ArraySegment<Bank>(_bankArray, (pageNumber - 1) * pageSize, pageSize).ToList();
+        var pageOfBanks = new ArraySegment<Bank>(_bankArray, (pageNumber - 1) * pageSize, pageSize).ToList();
 
         var mockBankRetrieverService = new Mock<IBankRetrievalService>();
 
         mockBankRetrieverService.Setup(x => x.GetPaged(pageNumber, pageSize))
-            .Returns(page);
+            .Returns(new ServiceResult<List<Bank>>(payload: pageOfBanks));
 
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();

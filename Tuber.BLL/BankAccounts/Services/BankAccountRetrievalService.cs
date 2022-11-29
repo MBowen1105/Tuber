@@ -22,11 +22,14 @@ internal class BankAccountRetrievalService : IBankAccountRetrievalService
     public ServiceResult<BankAccount> GetById(Guid bankAccountId)
     {
         var bankAccount = _bankAccountRepository.GetById(bankAccountId);
-        
-        if (bankAccount.BankId == Guid.Empty)
-            return new ServiceResult<BankAccount>(bankAccount, new BankAccountDoesNotExistException(bankAccountId));
-        
-        return new ServiceResult<BankAccount>(bankAccount);
+
+        if (bankAccount.BankAccountId == Guid.Empty)
+            return new ServiceResult<BankAccount>(
+                payload: bankAccount,
+                exception: new BankAccountDoesNotExistException(bankAccountId));
+
+        return new ServiceResult<BankAccount>(
+            payload: bankAccount);
     }
 
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)

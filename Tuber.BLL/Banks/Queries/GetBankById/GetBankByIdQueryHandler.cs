@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
@@ -30,7 +29,7 @@ namespace Tuber.BLL.Banks.Queries.GetBankById
                 Name = serviceResult.Payload!.Name!,
                 OrderBy = serviceResult.Payload!.OrderBy,
                 BankAccounts = bankAccountDtoList,
-                Exceptions = serviceResult.Exceptions.ToList()
+                Exceptions = serviceResult.Exceptions
             };
 
             return Task.FromResult(response);
