@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
+using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.BankAccounts;
@@ -36,5 +37,27 @@ public static class BankAccountExtensions
         return Results.Ok(apiResponse);
     })
     .WithName("GetBankAccounts");
+    
+        
+    app.MapGet("/bankAccount/get/{id}", async(Guid id,
+    [FromServices] IMediator mediator,
+    [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new GetBankAccountByIdQueryRequest
+            {
+                BankAccountId = id
+            });
+
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
+
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<GetBankAccountByIdQueryResponse, GetBankAccountByIdAPIResponse>(queryResponse);
+
+            return Results.Ok(apiResponse);
+        })
+        .WithName("GetBankAccountById");
     }
+
 }
