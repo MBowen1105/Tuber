@@ -32,8 +32,9 @@ internal class BankAccountRetrievalService : IBankAccountRetrievalService
             payload: bankAccount);
     }
 
-    public List<BankAccount> GetPaged(int pageNumber, int pageSize)
+    public ServiceResult<List<BankAccount>> GetPaged(int pageNumber, int pageSize)
     {
-        return _bankAccountRepository.GetPaged(pageNumber, pageSize);
+        return new ServiceResult<List<BankAccount>>(
+            payload: _bankAccountRepository.GetPaged(pageNumber, pageSize));
     }
 }

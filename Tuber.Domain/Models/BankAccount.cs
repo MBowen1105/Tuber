@@ -10,7 +10,7 @@ public class BankAccount : AuditableEntity
         UKBankAccount = "";
         OrderBy = int.MaxValue;
         BankId = Guid.Empty;
-        IsDeleted = false;
+        IsDeleted = true;
     }
 
     public Guid BankAccountId { get; set; }

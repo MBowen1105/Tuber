@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.Domain.Exceptions;
@@ -45,9 +46,9 @@ public static class BankAccountExtensions
         {
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(new GetBankAccountByIdQueryRequest
-            {
-                BankAccountId = id
-            });
+                {
+                    BankAccountId = id
+                });
 
             if (queryResponse.HasExceptions)
                 return Results.BadRequest(queryResponse.Exceptions);

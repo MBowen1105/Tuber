@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
@@ -11,6 +12,7 @@ public class BankAccountProfile : Profile
         CreateMap<BankAccount, BankAccountDto>();
 
         CreateMap<GetBankAccountPagedQueryResponse, GetBankAccountPagedAPIResponse>();
+        CreateMap<GetBankAccountByIdQueryResponse, GetBankAccountByIdAPIResponse>();
     }
 
 }

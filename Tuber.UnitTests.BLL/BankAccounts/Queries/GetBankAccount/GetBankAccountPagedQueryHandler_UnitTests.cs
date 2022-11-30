@@ -79,7 +79,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         var mockBankAccountRetrieverService = new Mock<IBankAccountRetrievalService>();
 
         mockBankAccountRetrieverService.Setup(x => x.GetPaged(pageNumber, pageSize))
-            .Returns(page);
+            .Returns(new ServiceResult<List<BankAccount>>(payload: page));
 
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankAccountDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();

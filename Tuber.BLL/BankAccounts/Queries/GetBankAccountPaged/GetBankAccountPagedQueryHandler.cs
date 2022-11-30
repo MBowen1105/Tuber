@@ -20,13 +20,13 @@ namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged
 
         public Task<GetBankAccountPagedQueryResponse> Handle(GetBankAccountPagedQueryRequest request, CancellationToken cancellationToken)
         {
-            var bankAccountModelList = _bankAccountRetrieverService.GetPaged(request.PageNumber, request.PageSize);
+            var getPagedServiceResult = _bankAccountRetrieverService.GetPaged(request.PageNumber, request.PageSize);
 
-            var bankAccountDtoList = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(bankAccountModelList);
+            var bankAccountDtoList = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(getPagedServiceResult.Payload);
             
             var response = new GetBankAccountPagedQueryResponse
             {
-                BankAccountCount = bankAccountModelList.Count,
+                BankAccountCount = getPagedServiceResult.Payload.Count,
                 TotalPages = _bankAccountRetrieverService.CountPages(request.PageSize),
                 BankAccounts = bankAccountDtoList
             };
