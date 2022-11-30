@@ -17,7 +17,6 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public BankAccount GetById(Guid bankAccountId)
     {
         var bankAccount = _context.Set<BankAccount>()
-            .Include(x => x.Bank)
             .FirstOrDefault(x => x.BankAccountId == bankAccountId && x.IsDeleted == false);
 
         return bankAccount ?? new BankAccount();

@@ -9,7 +9,8 @@ public class Bank : AuditableEntity
         Name = "";
         OrderBy = int.MaxValue;
         ImportTemplateId = null;
-        IsDeleted = false;
+        ImportTemplate = null;
+        IsDeleted = true;
         BankAccounts = new List<BankAccount>();
     }
 
@@ -19,4 +20,5 @@ public class Bank : AuditableEntity
     public Guid? ImportTemplateId { get; set; }
     public bool IsDeleted { get; set; }
     public virtual ICollection<BankAccount>? BankAccounts { get; set; }
+    public virtual ImportTemplate? ImportTemplate { get; init; }
 }
