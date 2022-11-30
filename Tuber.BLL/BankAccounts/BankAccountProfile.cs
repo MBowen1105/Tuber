@@ -13,6 +13,12 @@ public class BankAccountProfile : Profile
 
         CreateMap<GetBankAccountPagedQueryResponse, GetBankAccountPagedAPIResponse>();
         CreateMap<GetBankAccountByIdQueryResponse, GetBankAccountByIdAPIResponse>();
+
+        CreateMap<BankAccount, GetBankAccountByIdQueryResponse>()
+            .ForMember(dest => dest.Exceptions, act=>act.Ignore());
+
+        //            .ForMember(dest => dest.BankAccountId, src => src.MapFrom(x => x.Payload.BankAccountId))
+
     }
 
 }

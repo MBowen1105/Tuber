@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.BankAccounts.Services;
-using Tuber.Domain.Dtos;
+using Microsoft.Extensions.DependencyInjection;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
@@ -23,13 +22,9 @@ namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountById
         {
             var serviceResult = _bankAccountRetrievalService.GetById(request.BankAccountId);
 
-            var response = new GetBankAccountByIdQueryResponse
-            {
-                BankAccountId = serviceResult.Payload!.BankAccountId,
-                Name = serviceResult.Payload!.Name!,
-                OrderBy = serviceResult.Payload!.OrderBy,
-                Exceptions = serviceResult.Exceptions
-            };
+            var response = _mapper.Map<BankAccount, GetBankAccountByIdQueryResponse>(serviceResult.Payload);
+            
+            response.Exceptions = serviceResult.Exceptions;
 
             return Task.FromResult(response);
         }
