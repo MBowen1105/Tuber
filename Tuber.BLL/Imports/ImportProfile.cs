@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Imports.Commands.AddImport;
-using Tuber.BLL.Imports.Queries;
+using Tuber.BLL.Imports.Queries.GetImportByBankAccountId;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 

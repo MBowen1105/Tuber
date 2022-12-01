@@ -3,7 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Imports.Commands.AddImport;
-using Tuber.BLL.Imports.Queries;
+using Tuber.BLL.Imports.Queries.GetImportByBankAccountId;
 
 namespace Tuber.API.Banks;
 

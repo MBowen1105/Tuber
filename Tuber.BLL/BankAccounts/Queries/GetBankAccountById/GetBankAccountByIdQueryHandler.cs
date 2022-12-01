@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.Extensions.DependencyInjection;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 

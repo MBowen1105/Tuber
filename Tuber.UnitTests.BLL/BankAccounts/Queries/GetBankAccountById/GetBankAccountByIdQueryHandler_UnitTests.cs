@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
+using Tuber.BLL.BankAccounts;
 using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Exceptions;
@@ -12,6 +13,7 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
 {
     private BankAccount[] _bankAccountArray;
     private List<BankAccountDto> _bankAccountDtoList;
+    private IMapper _mapper;
 
     [SetUp]
     public void SetUp()
@@ -22,13 +24,17 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 1",
+                 UKBankAccount = "12345678",
+                 BankId = Guid.NewGuid(),
                  OrderBy = 10,
-                 IsDeleted = true
+                 IsDeleted = false
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 2",
+                 UKBankAccount = "12345678",
+                 BankId = Guid.NewGuid(),
                  OrderBy = 20,
                  IsDeleted = true
             },
@@ -36,6 +42,8 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 3",
+                 UKBankAccount = "12345678",
+                 BankId = Guid.NewGuid(),
                  OrderBy = 30,
                  IsDeleted = true
             },
@@ -43,6 +51,8 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Bank Account 4",
+                 UKBankAccount = "12345678",
+                 BankId = Guid.NewGuid(),
                  OrderBy = 40,
                  IsDeleted = true
             },
@@ -50,6 +60,8 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             {
                  BankAccountId = Guid.NewGuid(),
                  Name = "Deleted Bank Account",
+                 UKBankAccount = "12345678",
+                 BankId = Guid.NewGuid(),
                  OrderBy = 99,
                  IsDeleted = false
             }
@@ -63,9 +75,14 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
                 Name = _bankAccountArray[i].Name!,
+                UKBankAccount = "12345678",
                 OrderBy = _bankAccountArray[i].OrderBy
             });
         }
+        var config = new MapperConfiguration(cfg => cfg.AddProfile<BankAccountProfile>());
+        _mapper = new Mapper(config);
+
+
     }
 
     [Test]
@@ -77,10 +94,7 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
         mockBankAccountRetrievalService.Setup(x => x.GetById(It.Is<Guid>(g => g == firstRecord.BankAccountId)))
             .Returns(new ServiceResult<BankAccount>(payload: firstRecord));
 
-        var mockMapper = new Mock<IMapper>();
-
-        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object,
-            mockMapper.Object);
+        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
 
         var request = new GetBankAccountByIdQueryRequest
         {
@@ -105,15 +119,12 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
         var mockBankAccountRetrievalService = new Mock<IBankAccountRetrievalService>();
         var badId = Guid.NewGuid();
 
-        mockBankAccountRetrievalService.Setup(x => x.GetById(It.Is<Guid>(x=>x == badId)))
+        mockBankAccountRetrievalService.Setup(x => x.GetById(It.Is<Guid>(x => x == badId)))
             .Returns(new ServiceResult<BankAccount>(
                 payload: new BankAccount(),
                 exception: new BankAccountDoesNotExistException(badId)));
 
-        var mockMapper = new Mock<IMapper>();
-
-        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object,
-            mockMapper.Object);
+        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
 
         var request = new GetBankAccountByIdQueryRequest
         {

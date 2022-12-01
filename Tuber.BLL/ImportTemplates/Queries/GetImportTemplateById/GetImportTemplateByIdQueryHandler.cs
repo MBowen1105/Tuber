@@ -21,6 +21,7 @@ namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById
             var serviceResult = _importTemplateRetrieverService.GetById(request.ImportTemplateId);
 
             var response = _mapper.Map<ImportTemplate, GetImportTemplateByIdQueryResponse>(serviceResult.Payload);
+         
             response.Exceptions = serviceResult.Exceptions;
 
             return Task.FromResult(response);
