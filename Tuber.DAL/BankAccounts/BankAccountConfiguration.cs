@@ -17,6 +17,10 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired()
             .HasMaxLength(40);
 
+        builder.Property(x => x.UKSortCode)
+            .IsRequired()
+            .HasMaxLength(6);
+
         builder.Property(x => x.UKBankAccount)
             .IsRequired()
             .HasMaxLength(8);

@@ -7,6 +7,7 @@ public class BankAccount : AuditableEntity
     {
         BankAccountId = Guid.Empty;
         Name = "";
+        UKSortCode = "";
         UKBankAccount = "";
         OrderBy = int.MaxValue;
         BankId = Guid.Empty;
@@ -15,6 +16,7 @@ public class BankAccount : AuditableEntity
 
     public Guid BankAccountId { get; set; }
     public string Name { get; set; }
+    public string UKSortCode { get; set; }
     public string UKBankAccount { get; set; }
     public int OrderBy { get; set; }
     public Guid BankId { get; set; }
