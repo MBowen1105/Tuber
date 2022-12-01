@@ -73,22 +73,25 @@ public class BankRepository : IBankRepository
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
+            .Include(x => x.ImportTemplate)
             .FirstOrDefault(x => x.BankId == id && x.IsDeleted == false);
-        
+
         return bank ?? new Bank();
     }
 
     public List<Bank> GetPaged(int pageNumber, int pageSize)
     {
-        return _context.Banks
+        var l = _context.Banks
             .Include(x => x.BankAccounts)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
+            .Include(x => x.ImportTemplate)
             .Where(x => x.IsDeleted == false)
             .OrderBy(x => x.OrderBy)
             .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
+        return l;
     }
 
     public int CountPages(int pageSize)

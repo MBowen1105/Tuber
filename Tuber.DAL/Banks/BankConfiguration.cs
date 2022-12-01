@@ -29,7 +29,8 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
             .IsRequired();
 
         builder.Property(x => x.IsDeleted)
-                    .IsRequired();
+            .HasDefaultValue(false)
+            .IsRequired();
 
         BankSeeding.Seed(builder);
     }

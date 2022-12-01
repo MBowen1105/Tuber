@@ -15,7 +15,7 @@ public class ImportDto
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
-    public string ImportRowStatusDesc { get; set; }
+    public string ImportRowStatusDesc { get; set; } = "";
     public string? ValidationFailureMessages { get; set; }
     public string? ImportedByUserFullName { get; set; }
     public DateTime ImportedUtc { get; set; }

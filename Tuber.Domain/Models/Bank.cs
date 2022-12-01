@@ -9,9 +9,9 @@ public class Bank : AuditableEntity
         Name = "";
         OrderBy = int.MaxValue;
         ImportTemplateId = null;
-        ImportTemplate = null;
-        IsDeleted = true;
+        IsDeleted = true;       
         BankAccounts = new List<BankAccount>();
+        ImportTemplate = null;
     }
 
     public Guid BankId { get; set; }

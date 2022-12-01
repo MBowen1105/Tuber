@@ -1,5 +1,5 @@
 ﻿namespace Tuber.Domain.Dtos;
-public record ImportTemplateDto
+public class GetBankById_ImportTemplate
 {
     public Guid ImportTemplateId { get; set; }
     public string TemplateName { get; set; } = "";
