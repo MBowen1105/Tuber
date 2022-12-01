@@ -67,7 +67,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         }
     }
 
-    [Test]
+    [Test, Parallelizable]
     [TestCase(1, 2, 10)]
     [TestCase(2, 2, 30)]
     [TestCase(1, 5, 10)]

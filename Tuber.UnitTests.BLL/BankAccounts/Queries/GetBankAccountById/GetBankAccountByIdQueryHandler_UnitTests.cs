@@ -85,7 +85,7 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
 
     }
 
-    [Test]
+    [Test, Parallelizable]
     public void GetBankAccountByIdQueryHandler_ExistingBankAccount_ReturnsValidPayload()
     {
         var mockBankAccountRetrievalService = new Mock<IBankAccountRetrievalService>();
@@ -113,7 +113,7 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
         result.Result.Exceptions.Count.Should().Be(0);
     }
 
-    [Test]
+    [Test, Parallelizable]
     public void GetBankAccountByIdQueryHandler_MissingBankAccount_ReturnsNullPayloadWithException()
     {
         var mockBankAccountRetrievalService = new Mock<IBankAccountRetrievalService>();
