@@ -10,7 +10,7 @@ namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 internal class GetBankPagedQueryHandler_UnitTests
 {
     private Bank[] _bankArray;
-    private List<BankDto> _bankDtoList;
+    private List<GetBankPaged_Bank> _bankDtoList;
 
     [SetUp]
     public void SetUp()
@@ -50,11 +50,11 @@ internal class GetBankPagedQueryHandler_UnitTests
             }
         };
 
-        _bankDtoList = new List<BankDto>();
+        _bankDtoList = new List<GetBankPaged_Bank>();
 
         for (var i = 0; i < _bankArray.Length; i++)
         {
-            _bankDtoList.Add(new BankDto
+            _bankDtoList.Add(new GetBankPaged_Bank
             {
                 BankId = _bankArray[i].BankId,
                 Name = _bankArray[i].Name!,
@@ -80,7 +80,7 @@ internal class GetBankPagedQueryHandler_UnitTests
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-        mockMapper.Setup(x => x.Map<List<Bank>, List<BankDto>>(It.IsAny<List<Bank>>()))
+        mockMapper.Setup(x => x.Map<List<Bank>, List<GetBankPaged_Bank>>(It.IsAny<List<Bank>>()))
             .Returns(subSet);
 
         var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
