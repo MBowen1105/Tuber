@@ -11,7 +11,6 @@ public class ImportTemplateProfile : Profile
     {
         CreateMap<ImportTemplate, GetImportTemplateByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
-        CreateMap<ImportTemplate, ImportTemplateDto>();
         CreateMap<GetImportTemplateByIdQueryResponse, GetImportTemplateByIdAPIResponse>();
         CreateMap<GetImportTemplatePagedQueryResponse, GetImportTemplatePagedAPIResponse>();
         CreateMap<ImportTemplate, ImportTemplatePaged_ImportTemplate>();
