@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
+using Tuber.Domain.Enums;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
@@ -26,6 +27,9 @@ namespace Tuber.BLL.Imports.Queries.GetImportByBankAccountId
 
             var response = new GetImportByBankAccountIdQueryResponse
             {
+                TotalImportRowCount = importDtoList.Count,
+                ValidImportRowCount = importDtoList.Count(x => x.ImportRowStatus == ImportRowStatus.IsValid),
+                InvalidImportRowCount = importDtoList.Count(x => x.ImportRowStatus == ImportRowStatus.IsInvalid),
                 Imports = importDtoList,
                 Exceptions = serviceResult.Exceptions.ToList()
             };

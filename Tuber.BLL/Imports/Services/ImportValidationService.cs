@@ -127,7 +127,9 @@ public class ImportValidationService : IImportValidationService
                 BalanceOnStatementValue = balanceOnStatementValue,
                 SortCodeValue = sortCodeValue,
                 AccountNumberValue = accountNumberValue,
-                ImportRowStatus = ImportRowStatus.IsValid,
+                ImportRowStatus = (validationFailureMessages.Length == 0)
+                    ? ImportRowStatus.IsValid
+                    : ImportRowStatus.IsInvalid,
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
                 ImportedUtc = _dateTimeService.UtcNow()

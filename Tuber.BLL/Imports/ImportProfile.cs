@@ -17,8 +17,6 @@ public class ImportProfile : Profile
             .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
         CreateMap<GetImportByBankAccountIdQueryResponse, GetImportByBankAccountIdAPIResponse>();
-
-
     }
 
 }

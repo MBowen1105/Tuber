@@ -22,7 +22,8 @@ public class ImportRepository : IImportRepository
 
     public void Clear(Guid bankAccountId)
     {
-        var existingRows = _context.Imports.Where(x => x.BankAccountId == bankAccountId);
+        var existingRows = _context.Imports
+            .Where(x => x.BankAccountId == bankAccountId);
 
         _context.Imports.RemoveRange(existingRows);
     }
