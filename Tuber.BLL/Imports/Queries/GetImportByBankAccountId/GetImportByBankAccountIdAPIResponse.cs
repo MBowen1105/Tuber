@@ -3,5 +3,5 @@
 namespace Tuber.BLL.Imports.Queries.GetImportByBankAccountId;
 public class GetImportByBankAccountIdAPIResponse
 {
-    public IEnumerable<ImportDto> Imports { get; init; } = new List<ImportDto>();
+    public IEnumerable<GetImportByBankAccountId_Import> Imports { get; init; } = new List<GetImportByBankAccountId_Import>();
 }

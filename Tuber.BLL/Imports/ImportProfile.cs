@@ -13,7 +13,7 @@ public class ImportProfile : Profile
         CreateMap<AddImportAPIRequest, AddImportCommandRequest>();
         CreateMap<AddImportCommandResponse, AddImportAPIResponse>();
 
-        CreateMap<Import, ImportDto>()
+        CreateMap<Import, GetImportByBankAccountId_Import>()
             .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
         CreateMap<GetImportByBankAccountIdQueryResponse, GetImportByBankAccountIdAPIResponse>();

@@ -1,7 +1,7 @@
 ﻿using Tuber.Domain.Enums;
 
 namespace Tuber.Domain.Dtos;
-public class ImportDto
+public class GetImportByBankAccountId_Import
 {
     public Guid ImportId { get; set; }
     public Guid BankAccountId { get; set; }

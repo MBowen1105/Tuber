@@ -22,7 +22,7 @@ namespace Tuber.BLL.Imports.Queries.GetImportByBankAccountId
         {
             var serviceResult = _importRetrievalService.GetByBankAccountId(request.BankAccountId);
 
-            var importDtoList = _mapper.Map<List<Import>, List<ImportDto>>(serviceResult.Payload!);
+            var importDtoList = _mapper.Map<List<Import>, List<GetImportByBankAccountId_Import>>(serviceResult.Payload!);
 
             var response = new GetImportByBankAccountIdQueryResponse
             {
