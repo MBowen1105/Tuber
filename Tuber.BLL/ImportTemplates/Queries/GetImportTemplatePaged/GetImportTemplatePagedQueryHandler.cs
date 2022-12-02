@@ -25,7 +25,7 @@ namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplatePaged
             var response = new GetImportTemplatePagedQueryResponse
             {
                 ImportTemplateCount = ImportTemplateServiceResult.Payload.Count,
-                ImportTemplates = _mapper.Map<List<ImportTemplate>, List<ImportTemplateDto>>(ImportTemplateServiceResult.Payload),
+                ImportTemplates = _mapper.Map<List<ImportTemplate>, List<ImportTemplatePaged_ImportTemplate>>(ImportTemplateServiceResult.Payload),
                 TotalPages = _ImportTemplateRetrievalService.CountPages(request.PageSize)
             };
 

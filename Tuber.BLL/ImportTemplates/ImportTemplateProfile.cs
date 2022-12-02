@@ -14,5 +14,6 @@ public class ImportTemplateProfile : Profile
         CreateMap<ImportTemplate, ImportTemplateDto>();
         CreateMap<GetImportTemplateByIdQueryResponse, GetImportTemplateByIdAPIResponse>();
         CreateMap<GetImportTemplatePagedQueryResponse, GetImportTemplatePagedAPIResponse>();
+        CreateMap<ImportTemplate, ImportTemplatePaged_ImportTemplate>();
     }
 }

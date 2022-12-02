@@ -5,5 +5,5 @@ namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplatePaged;
 public class GetImportTemplatePagedAPIResponse : PagedAPIResponse
 {
     public int ImportTemplateCount { get; init; }
-    public List<ImportTemplateDto> ImportTemplates { get; init; } = new();
+    public List<ImportTemplatePaged_ImportTemplate> ImportTemplates { get; init; } = new();
 }
