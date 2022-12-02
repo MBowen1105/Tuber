@@ -10,7 +10,7 @@ namespace Tuber.UnitTests.BLL.BankAccounts.Queries.GetBankAccount;
 internal class GetBankAccountPagedQueryHandler_UnitTests
 {
     private BankAccount[] _bankAccountArray;
-    private List<BankAccountDto> _bankAccountDtoList;
+    private List<GetBankAccountPaged_BankAccount> _bankAccountDtoList;
 
     [SetUp]
     public void SetUp()
@@ -54,11 +54,11 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
             }
         };
 
-        _bankAccountDtoList = new List<BankAccountDto>();
+        _bankAccountDtoList = new List<GetBankAccountPaged_BankAccount>();
 
         for (var i = 0; i < _bankAccountArray.Length; i++)
         {
-            _bankAccountDtoList.Add(new BankAccountDto
+            _bankAccountDtoList.Add(new GetBankAccountPaged_BankAccount
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
                 Name = _bankAccountArray[i].Name!,
@@ -84,7 +84,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankAccountDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-        mockMapper.Setup(x => x.Map<List<BankAccount>, List<BankAccountDto>>(It.IsAny<List<BankAccount>>()))
+        mockMapper.Setup(x => x.Map<List<BankAccount>, List<GetBankAccountPaged_BankAccount>>(It.IsAny<List<BankAccount>>()))
             .Returns(subSet);
 
         var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));

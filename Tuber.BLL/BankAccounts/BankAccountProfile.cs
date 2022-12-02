@@ -9,8 +9,6 @@ public class BankAccountProfile : Profile
 {
     public BankAccountProfile()
     {
-        CreateMap<BankAccount, BankAccountDto>();
-
         CreateMap<GetBankAccountPagedQueryResponse, GetBankAccountPagedAPIResponse>();
         CreateMap<GetBankAccountByIdQueryResponse, GetBankAccountByIdAPIResponse>();
 

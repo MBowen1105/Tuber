@@ -12,7 +12,7 @@ namespace Tuber.UnitTests.BLL.BankAccounts.Queries.GetBankAccountById;
 internal class GetBankAccountByIdQueryHandler_UnitTests
 {
     private BankAccount[] _bankAccountArray;
-    private List<BankAccountDto> _bankAccountDtoList;
+    private List<BankAccount> _bankAccountList;
     private IMapper _mapper;
 
     [SetUp]
@@ -67,11 +67,11 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
             }
         };
 
-        _bankAccountDtoList = new List<BankAccountDto>();
+        _bankAccountList = new List<BankAccount>();
 
         for (var i = 0; i < _bankAccountArray.Length; i++)
         {
-            _bankAccountDtoList.Add(new BankAccountDto
+            _bankAccountList.Add(new BankAccount
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
                 Name = _bankAccountArray[i].Name!,
