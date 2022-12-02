@@ -75,6 +75,8 @@ public class BankRepository : IBankRepository
             .Include(x => x.BankAccounts)
                 .Where(x => x.IsDeleted == false)
             .Include(x => x.ImportTemplate)
+            .Include(x => x.CreatedByUser)
+            .Include(x => x.UpdatedByUser)
             .FirstOrDefault(x => x.BankId == id && x.IsDeleted == false);
 
         return bank ?? new Bank();
