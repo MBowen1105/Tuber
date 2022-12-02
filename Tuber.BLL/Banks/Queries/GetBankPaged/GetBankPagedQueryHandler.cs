@@ -24,7 +24,7 @@ namespace Tuber.BLL.Banks.Queries.GetBankPaged
             var response = new GetBankPagedQueryResponse
             {
                 BankCount = serviceResult.Payload.Count,
-                Banks = _mapper.Map<List<Bank>, List<BankDto>>(serviceResult.Payload),
+                Banks = _mapper.Map<List<Bank>, List<GetBankPaged_Bank>>(serviceResult.Payload),
                 TotalPages = _bankRetrievalService.CountPages(request.PageSize)
             };
 

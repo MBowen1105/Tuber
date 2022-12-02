@@ -23,12 +23,14 @@ public class BankProfile : Profile
         CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
 
         CreateMap<ImportTemplate, GetBankById_ImportTemplate>();
+
+
         CreateMap<BankAccount, GetBankById_BankAccount>();
         CreateMap<Bank, GetBankByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
         
-
-        CreateMap<Bank, BankDto>();
+        CreateMap<Bank, GetBankPaged_Bank>();
+        CreateMap<BankAccount, GetBankPaged_BankAccount>();
     }
 
 }
