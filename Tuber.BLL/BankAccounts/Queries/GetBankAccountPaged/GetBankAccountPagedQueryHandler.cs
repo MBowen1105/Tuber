@@ -26,7 +26,7 @@ namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged
             {
                 BankAccountCount = serviceResult.Payload.Count,
                 TotalPages = _bankAccountRetrieverService.CountPages(request.PageSize),
-                BankAccounts = _mapper.Map<List<BankAccount>, List<BankAccountDto>>(serviceResult.Payload)
+                BankAccounts = _mapper.Map<List<BankAccount>, List<GetBankAccountPaged_BankAccount>>(serviceResult.Payload)
             };
 
             return Task.FromResult(response);

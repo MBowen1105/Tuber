@@ -5,5 +5,6 @@ public class GetBankAccountByIdAPIResponse
     public Guid BankId { get; init; }
     public string Name { get; init; } = "";
     public string UKBankAccount { get; init; } = "";
+    public string UKSortCode { get; init; } = "";
     public int OrderBy { get; init; }
 }

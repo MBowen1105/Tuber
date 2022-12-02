@@ -5,5 +5,5 @@ namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
 public class GetBankAccountPagedQueryResponse : PagedQueryResponseBase
 {
     public int BankAccountCount { get; init; } = 0;
-    public List<BankAccountDto> BankAccounts { get; init; } = new();
+    public List<GetBankAccountPaged_BankAccount> BankAccounts { get; init; } = new();
 }

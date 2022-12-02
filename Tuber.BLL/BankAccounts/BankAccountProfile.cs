@@ -16,6 +16,7 @@ public class BankAccountProfile : Profile
 
         CreateMap<BankAccount, GetBankAccountByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
+        CreateMap<BankAccount, GetBankAccountPaged_BankAccount>();
     }
 
 }
