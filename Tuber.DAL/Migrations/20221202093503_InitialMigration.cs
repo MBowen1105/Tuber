@@ -14,6 +14,20 @@ namespace Tuber.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsCoreUser = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Imports",
                 columns: table => new
                 {
@@ -36,50 +50,12 @@ namespace Tuber.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Imports", x => x.ImportId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    IsCoreUser = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Banks",
-                columns: table => new
-                {
-                    BankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    OrderBy = table.Column<int>(type: "int", nullable: false),
-                    ImportTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    UpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Banks", x => x.BankId);
                     table.ForeignKey(
-                        name: "FK_Banks_Users_CreatedByUserId",
-                        column: x => x.CreatedByUserId,
+                        name: "FK_Imports_Users_ImportedByUserId",
+                        column: x => x.ImportedByUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Banks_Users_UpdatedByUserId",
-                        column: x => x.UpdatedByUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -92,6 +68,7 @@ namespace Tuber.DAL.Migrations
                     ExpectedHeaderRowCount = table.Column<int>(type: "int", nullable: false),
                     ExpectedColumnCount = table.Column<int>(type: "int", nullable: false),
                     SeperatorChar = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    DateTemplate = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     DateColumnNumber = table.Column<int>(type: "int", nullable: false),
                     DescriptionOnStatementColumnNumber = table.Column<int>(type: "int", nullable: false),
                     TransactionTypeColumnNumber = table.Column<int>(type: "int", nullable: false),
@@ -100,7 +77,7 @@ namespace Tuber.DAL.Migrations
                     BalanceOnStatementColumnNumber = table.Column<int>(type: "int", nullable: false),
                     SortCodeColumnNumber = table.Column<int>(type: "int", nullable: false),
                     AccountNumberColumnNumber = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -123,16 +100,52 @@ namespace Tuber.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Banks",
+                columns: table => new
+                {
+                    BankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    OrderBy = table.Column<int>(type: "int", nullable: false),
+                    ImportTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UpdatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banks", x => x.BankId);
+                    table.ForeignKey(
+                        name: "FK_Banks_ImportTemplates_ImportTemplateId",
+                        column: x => x.ImportTemplateId,
+                        principalTable: "ImportTemplates",
+                        principalColumn: "ImportTemplateId");
+                    table.ForeignKey(
+                        name: "FK_Banks_Users_CreatedByUserId",
+                        column: x => x.CreatedByUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Banks_Users_UpdatedByUserId",
+                        column: x => x.UpdatedByUserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BankAccounts",
                 columns: table => new
                 {
                     BankAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    UKSortCode = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
                     UKBankAccount = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     OrderBy = table.Column<int>(type: "int", nullable: false),
                     BankId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImportTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -163,11 +176,11 @@ namespace Tuber.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "FullName", "IsCoreUser", "IsDeleted" },
+                columns: new[] { "UserId", "FullName", "IsCoreUser" },
                 values: new object[,]
                 {
-                    { new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), "Administrator", true, false },
-                    { new Guid("e13a3a77-93c1-4e64-8d58-a517ca1be8d1"), "Mark Bowen", true, false }
+                    { new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), "Administrator", true },
+                    { new Guid("e13a3a77-93c1-4e64-8d58-a517ca1be8d1"), "Mark Bowen", true }
                 });
 
             migrationBuilder.InsertData(
@@ -175,34 +188,45 @@ namespace Tuber.DAL.Migrations
                 columns: new[] { "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "Name", "OrderBy", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(724), null, true, "TSB", 50, null, null },
-                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(715), null, false, "Barclays Bank", 30, null, null },
-                    { new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(722), null, false, "West Bromwich Building Society", 50, null, null },
-                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(712), null, false, "Lloyds Bank", 20, null, null },
-                    { new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(719), null, false, "Virgin", 40, null, null },
-                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(704), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), false, "Co-Op Bank", 10, null, null }
+                    { new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9949), null, true, "TSB", 50, null, null },
+                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9936), null, true, "Barclays Bank", 30, null, null },
+                    { new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9945), null, true, "West Bromwich Building Society", 50, null, null },
+                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9933), null, true, "Lloyds Bank", 20, null, null },
+                    { new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9939), null, true, "Virgin", 40, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "ImportTemplates",
-                columns: new[] { "ImportTemplateId", "AccountNumberColumnNumber", "BalanceOnStatementColumnNumber", "CreatedByUserId", "CreatedOnUtc", "DateColumnNumber", "DescriptionOnStatementColumnNumber", "ExpectedColumnCount", "ExpectedHeaderRowCount", "ImportFileName", "IsDeleted", "MoneyInColumnNumber", "MoneyOutColumnNumber", "SeperatorChar", "SortCodeColumnNumber", "TemplateName", "TransactionTypeColumnNumber", "UpdatedByUserId", "UpdatedOnUtc" },
+                columns: new[] { "ImportTemplateId", "AccountNumberColumnNumber", "BalanceOnStatementColumnNumber", "CreatedByUserId", "CreatedOnUtc", "DateColumnNumber", "DateTemplate", "DescriptionOnStatementColumnNumber", "ExpectedColumnCount", "ExpectedHeaderRowCount", "ImportFileName", "MoneyInColumnNumber", "MoneyOutColumnNumber", "SeperatorChar", "SortCodeColumnNumber", "TemplateName", "TransactionTypeColumnNumber", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 0, 6, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(7261), 1, 2, 0, 1, "", false, 4, 5, ",", 0, "Co-Op Bank Template", 3, null, null },
-                    { new Guid("f642096e-6573-4deb-96be-efba9016499c"), 4, 8, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(7267), 1, 5, 0, 1, "", false, 7, 6, ",", 3, "Lloyds Bank Template", 2, null, null }
+                    { new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 0, 6, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 360, DateTimeKind.Utc).AddTicks(2715), 1, "yyyy-mm-dd", 2, 6, 1, "", 4, 5, ",", 0, "Co-Op Bank Template", 3, null, null },
+                    { new Guid("f642096e-6573-4deb-96be-efba9016499c"), 4, 8, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 360, DateTimeKind.Utc).AddTicks(2724), 1, "dd-mmm-yyyy", 5, 8, 1, "", 7, 6, ",", 3, "Lloyds Bank Template", 2, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "BankAccounts",
-                columns: new[] { "BankAccountId", "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "Name", "OrderBy", "UKBankAccount", "UpdatedByUserId", "UpdatedOnUtc" },
+                columns: new[] { "BankAccountId", "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "Name", "OrderBy", "UKBankAccount", "UKSortCode", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2852), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), false, "Salary", 10, "09411905", null, null },
-                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2857), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), false, "Cash", 20, "00985630", null, null },
-                    { new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"), new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2866), new Guid("f642096e-6573-4deb-96be-efba9016499c"), false, "Lloyds 93DIX", 10, "09405515", null, null },
-                    { new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"), new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2873), null, true, "TSB Bank Account", 10, "98765555", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2873) },
-                    { new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"), new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2870), new Guid("f642096e-6573-4deb-96be-efba9016499c"), false, "Lloyds 25PAR", 20, "09405515", null, null },
-                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 11, 25, 17, 35, 40, 167, DateTimeKind.Utc).AddTicks(2862), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), false, "Savings", 30, "09405515", null, null }
+                    { new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"), new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4454), new Guid("f642096e-6573-4deb-96be-efba9016499c"), true, "Lloyds 93DIX", 10, "09405515", "901111", null, null },
+                    { new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"), new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4462), null, true, "TSB Bank Account", 10, "98765555", "440191", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4463) },
+                    { new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"), new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4458), new Guid("f642096e-6573-4deb-96be-efba9016499c"), true, "Lloyds 25PAR", 20, "09405515", "901111", null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Banks",
+                columns: new[] { "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "Name", "OrderBy", "UpdatedByUserId", "UpdatedOnUtc" },
+                values: new object[] { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 358, DateTimeKind.Utc).AddTicks(9924), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), true, "Co-Op Bank", 10, null, null });
+
+            migrationBuilder.InsertData(
+                table: "BankAccounts",
+                columns: new[] { "BankAccountId", "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "Name", "OrderBy", "UKBankAccount", "UKSortCode", "UpdatedByUserId", "UpdatedOnUtc" },
+                values: new object[,]
+                {
+                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4437), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), true, "Salary", 10, "09411905", "089191", null, null },
+                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4443), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), true, "Cash", 20, "00985630", "089191", null, null },
+                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2022, 12, 2, 9, 35, 3, 359, DateTimeKind.Utc).AddTicks(4448), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), true, "Savings", 30, "09405515", "089191", null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -226,9 +250,19 @@ namespace Tuber.DAL.Migrations
                 column: "CreatedByUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Banks_ImportTemplateId",
+                table: "Banks",
+                column: "ImportTemplateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Banks_UpdatedByUserId",
                 table: "Banks",
                 column: "UpdatedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Imports_ImportedByUserId",
+                table: "Imports",
+                column: "ImportedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ImportTemplates_CreatedByUserId",
@@ -251,10 +285,10 @@ namespace Tuber.DAL.Migrations
                 name: "Imports");
 
             migrationBuilder.DropTable(
-                name: "ImportTemplates");
+                name: "Banks");
 
             migrationBuilder.DropTable(
-                name: "Banks");
+                name: "ImportTemplates");
 
             migrationBuilder.DropTable(
                 name: "Users");

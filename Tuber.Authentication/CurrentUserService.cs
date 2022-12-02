@@ -10,7 +10,7 @@ public class CurrentUserService : ICurrentUserService
         UserId = Guid.Parse("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
         FullName = "Administrator",
         IsCoreUser = true,
-        IsDeleted = true,
+        IsDeleted = false,
     };
 
     public User User() => new()
@@ -18,6 +18,6 @@ public class CurrentUserService : ICurrentUserService
         UserId = Guid.Parse("e13a3a77-93c1-4e64-8d58-a517ca1be8d1"),
         FullName = "Mark Bowen",
         IsCoreUser = true,
-        IsDeleted = true,
+        IsDeleted = false,
     };
 }

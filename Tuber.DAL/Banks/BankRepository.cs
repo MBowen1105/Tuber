@@ -51,11 +51,11 @@ public class BankRepository : IBankRepository
         if (bank == null)
             return 0;
 
-        bank.IsDeleted = false;
+        bank.IsDeleted = true;
 
         foreach (var bankAccount in bank.BankAccounts!)
         {
-            bankAccount.IsDeleted = false;
+            bankAccount.IsDeleted = true;
         }
 
         return 1;
@@ -73,6 +73,7 @@ public class BankRepository : IBankRepository
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
+                .Where(x => x.IsDeleted == false)
             .Include(x => x.ImportTemplate)
             .FirstOrDefault(x => x.BankId == id && x.IsDeleted == false);
 
@@ -83,6 +84,7 @@ public class BankRepository : IBankRepository
     {
         var l = _context.Banks
             .Include(x => x.BankAccounts)
+                .Where(x => x.IsDeleted == false)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .Include(x => x.ImportTemplate)

@@ -18,7 +18,7 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
         builder.Property(x => x.TemplateName)
             .IsRequired()
             .HasMaxLength(40);
-        
+
         builder.Property(x => x.ExpectedHeaderRowCount)
             .IsRequired();
 
@@ -64,7 +64,8 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
             .IsRequired();
 
         builder.Property(x => x.IsDeleted)
-                    .IsRequired();
+            .HasDefaultValue(false)
+            .IsRequired();
 
         ImportTemplateSeeding.Seed(builder);
     }

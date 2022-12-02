@@ -19,7 +19,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasDefaultValue(false);
 
         builder.Property(x => x.IsDeleted)
-                    .IsRequired();
+            .HasDefaultValue(false)
+            .IsRequired();
 
         UserSeeding.Seed(builder);
     }

@@ -9,7 +9,7 @@ public class Bank : AuditableEntity
         Name = "";
         OrderBy = int.MaxValue;
         ImportTemplateId = null;
-        IsDeleted = true;       
+        IsDeleted = false;       
         BankAccounts = new List<BankAccount>();
         ImportTemplate = null;
     }
