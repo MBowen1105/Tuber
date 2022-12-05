@@ -74,6 +74,15 @@ public class ImportValidationService : IImportValidationService
             if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length >= importTemplate.ReferenceOnStatementStartCharacter)
                 referenceOnStatementValue = descriptionOnStatementValue.Substring(importTemplate.ReferenceOnStatementStartCharacter);
 
+            var descriptionValue = descriptionOnStatementValue;
+            if (importTemplate.ReferenceOnStatementStartCharacter > 0)
+            {
+                var n = (importTemplate.ReferenceOnStatementStartCharacter > descriptionOnStatementValue.Length)
+                    ? descriptionOnStatementValue.Length
+                    : importTemplate.ReferenceOnStatementStartCharacter - 1;
+                descriptionValue = descriptionOnStatementValue[..n].Trim();
+            }
+
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
                 ? ""
                 : column[importTemplate.TransactionTypeColumnNumber - 1];
@@ -124,6 +133,7 @@ public class ImportValidationService : IImportValidationService
                 ImportRowNumber = rowIndex,
                 DateValue = dateValue,
                 DescriptionOnStatementValue = descriptionOnStatementValue,
+                DescriptionValue = descriptionValue,
                 ReferenceOnStatementValue = referenceOnStatementValue,
                 TransactionTypeValue = transactionTypeValue,
                 MoneyInValue = moneyInValue,

@@ -23,6 +23,12 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
         builder.Property(x => x.DescriptionOnStatementValue)
             .HasMaxLength(40);
 
+        builder.Property(x => x.DescriptionValue)
+            .HasMaxLength(40);
+
+        builder.Property(x => x.ReferenceOnStatementValue)
+            .HasMaxLength(40);
+
         builder.Property(x => x.TransactionTypeValue)
             .HasMaxLength(10);
 
