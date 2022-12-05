@@ -18,7 +18,7 @@ public static class ImportTemplateSeeding
                 DateTemplate = "yyyy-mm-dd",
                 DateColumnNumber = 1,
                 DescriptionOnStatementColumnNumber = 2,
-                ReferenceOnStatementStartCharacter = 20,
+                ReferenceOnStatementStartCharacter = 19,
                 TransactionTypeColumnNumber = 3,
                 MoneyInColumnNumber = 4,
                 MoneyOutColumnNumber = 5,

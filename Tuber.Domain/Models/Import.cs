@@ -8,7 +8,7 @@ public class Import
     public int ImportRowNumber { get; set; }
     public string? DateValue { get; set; }
     public string? DescriptionOnStatementValue { get; set; }
-    public string? ReferenceOnStatement { get; set; }
+    public string? ReferenceOnStatementValue { get; set; }
     public string? TransactionTypeValue { get; set; }
     public string? MoneyInValue { get; set; }
     public string? MoneyOutValue { get; set; }

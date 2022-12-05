@@ -62,6 +62,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 ImportRowNumber = row.ImportRowNumber,
                 DateValue = row.DateValue,
                 DescriptionOnStatementValue = row.DescriptionOnStatementValue,
+                ReferenceOnStatementValue  =row.ReferenceOnStatementValue,
                 TransactionTypeValue = row.TransactionTypeValue,
                 MoneyInValue = row.MoneyInValue,
                 MoneyOutValue = row.MoneyOutValue,

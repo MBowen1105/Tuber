@@ -70,9 +70,9 @@ public class ImportValidationService : IImportValidationService
             if (descriptionOnStatementValue.Length > 40)
                 validationFailureMessages += $"Description on statement cannot exceed 40 character - truncating\n";
 
-            var referenceOnStatement = "";
-            if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length>=importTemplate.ReferenceOnStatementStartCharacter)
-                referenceOnStatement = descriptionOnStatementValue.Substring(importTemplate.ReferenceOnStatementStartCharacter);
+            var referenceOnStatementValue = "";
+            if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length >= importTemplate.ReferenceOnStatementStartCharacter)
+                referenceOnStatementValue = descriptionOnStatementValue.Substring(importTemplate.ReferenceOnStatementStartCharacter);
 
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
                 ? ""
@@ -118,14 +118,13 @@ public class ImportValidationService : IImportValidationService
                 rowIndex = 1;
                 previousDateValue = dateValue;
             }
-
-            validatedRows.Add(new Import
+            var newImportRow = new Import
             {
                 BankAccountId = bankAccountId,
                 ImportRowNumber = rowIndex,
                 DateValue = dateValue,
                 DescriptionOnStatementValue = descriptionOnStatementValue,
-                ReferenceOnStatement = referenceOnStatement,
+                ReferenceOnStatementValue = referenceOnStatementValue,
                 TransactionTypeValue = transactionTypeValue,
                 MoneyInValue = moneyInValue,
                 MoneyOutValue = moneyOutValue,
@@ -138,7 +137,8 @@ public class ImportValidationService : IImportValidationService
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
                 ImportedUtc = _dateTimeService.UtcNow()
-            });
+            };
+            validatedRows.Add(newImportRow);
         }
 
         return new ServiceResult<List<Import>>(
