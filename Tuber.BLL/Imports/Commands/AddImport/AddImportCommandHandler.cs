@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using System.Security.Cryptography.X509Certificates;
-using Tuber.BLL.Imports.Services;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.FileSystem;
-using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Imports.Commands.AddImport;
 
@@ -14,17 +11,22 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
     private readonly IImportTemplateRetrievalService _importTemplateRetrievalService;
     private readonly IImportValidationService _importvalidationService;
     private readonly IImportUpdaterService _importUpdaterService;
+    private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
+
+
     public AddImportCommandHandler(
         IFileSystem fileSystem,
         IImportTemplateRetrievalService importTemplateRetrievalService,
         IImportValidationService importValidationService,
-        IImportUpdaterService importUpdaterService)
+        IImportUpdaterService importUpdaterService,
+        ICategorySubcategoryRetrievalService categoryRetrievalService)
     {
         _fileSystem = fileSystem;
         _importTemplateRetrievalService = importTemplateRetrievalService;
         _importvalidationService = importValidationService;
         _importUpdaterService = importUpdaterService;
-    }
+        _categoryRetrievalService = categoryRetrievalService;
+     }
 
     public Task<AddImportCommandResponse> Handle(AddImportCommandRequest request, CancellationToken cancellationToken)
     {
@@ -63,7 +65,12 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
                 }
             });
 
-        var importValidationServiceResult = _importvalidationService.Validate(importTemplate, request.BankAccountId, allRows);
+        var importValidationServiceResult = _importvalidationService.Validate(
+            importTemplate, 
+            request.BankAccountId,
+            request.SuggestCategorisation,
+            allRows);
+
         if (importValidationServiceResult.HasFailed)
         {
             return Task.FromResult(new AddImportCommandResponse

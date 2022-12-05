@@ -1,4 +1,5 @@
-﻿using Tuber.Core.Validation;
+﻿using Tuber.BLL.Categories.Services;
+using Tuber.Core.Validation;
 using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.Authorisation;
@@ -11,16 +12,22 @@ public class ImportValidationService : IImportValidationService
 {
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTimeService _dateTimeService;
+    private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
 
-    public ImportValidationService(ICurrentUserService currentUserService, IDateTimeService dateTimeService)
+    public ImportValidationService(
+        ICurrentUserService currentUserService,
+        IDateTimeService dateTimeService,
+        ICategorySubcategoryRetrievalService categoryRetrievalService)
     {
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
+        _categoryRetrievalService = categoryRetrievalService;
     }
 
     public ServiceResult<List<Import>> Validate(
         ImportTemplate importTemplate,
         Guid bankAccountId,
+        bool suggestCategorisation,
         string[] allRows)
     {
         //  Check the first row of the array against the expected number of columns
@@ -120,6 +127,15 @@ public class ImportValidationService : IImportValidationService
             if (accountNumberValue.Length > 10)
                 validationFailureMessages += "Account Number cannot exceed 10 characters.\n";
 
+            Guid? suggestedCategoryId = null;
+            Guid? suggestedSubcategoryId = null;
+            if (suggestCategorisation)
+            {
+                (suggestedCategoryId, suggestedSubcategoryId) = _categoryRetrievalService.SuggestCategorisation(
+                    dateValue, descriptionValue, referenceOnStatementValue,
+                    moneyInValue, moneyOutValue);
+            }
+
             if (previousDateValue == dateValue)
                 rowIndex++;
             else
@@ -141,6 +157,8 @@ public class ImportValidationService : IImportValidationService
                 BalanceOnStatementValue = balanceOnStatementValue,
                 SortCodeValue = sortCodeValue,
                 AccountNumberValue = accountNumberValue,
+                SuggestedCategoryId = suggestedCategoryId,
+                SuggestedSubcategoryId = suggestedSubcategoryId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,

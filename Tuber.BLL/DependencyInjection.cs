@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
+using Tuber.BLL.Categories.Services;
 using Tuber.BLL.Imports.Services;
 using Tuber.BLL.ImportTemplates.Services;
 using Tuber.BLL.PipelineBehaviours;
@@ -35,7 +36,9 @@ public static class DependencyInjection
         services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
         services.AddScoped<IImportValidationService, ImportValidationService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
-        
+
+        services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddMaps(assembly);

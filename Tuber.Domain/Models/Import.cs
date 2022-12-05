@@ -16,6 +16,8 @@ public class Import
     public string? BalanceOnStatementValue { get; set; }
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
+    public Guid? SuggestedCategoryId { get; set; }
+    public Guid? SuggestedSubcategoryId { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }
