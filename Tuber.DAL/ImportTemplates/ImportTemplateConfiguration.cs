@@ -39,6 +39,10 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
         builder.Property(x => x.DescriptionOnStatementColumnNumber)
             .IsRequired();
 
+        builder.Property(x => x.DescriptionOnStatementColumnNumber)
+            .IsRequired()
+            .HasDefaultValue(0);
+
         builder.Property(x => x.TransactionTypeColumnNumber)
            .IsRequired();
 
