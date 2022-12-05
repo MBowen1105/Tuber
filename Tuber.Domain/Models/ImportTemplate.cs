@@ -14,6 +14,7 @@ public class ImportTemplate : AuditableEntity
         DateTemplate = "";
         DateColumnNumber = 0;
         DescriptionOnStatementColumnNumber = 0;
+        ReferenceOnStatementStartCharacter = 14;
         TransactionTypeColumnNumber = 0;
         MoneyInColumnNumber = 0;
         MoneyOutColumnNumber = 0;
@@ -32,6 +33,7 @@ public class ImportTemplate : AuditableEntity
     public string DateTemplate { get; set; }
     public int DateColumnNumber { get; set; }
     public int DescriptionOnStatementColumnNumber { get; set; }
+    public int ReferenceOnStatementStartCharacter { get; set; }
     public int TransactionTypeColumnNumber { get; set; }
     public int MoneyInColumnNumber { get; set; }
     public int MoneyOutColumnNumber { get; set; }
