@@ -80,7 +80,7 @@ public class ImportValidationService : IImportValidationService
                 var n = (importTemplate.ReferenceOnStatementStartCharacter > descriptionOnStatementValue.Length)
                     ? descriptionOnStatementValue.Length
                     : importTemplate.ReferenceOnStatementStartCharacter - 1;
-                descriptionValue = descriptionOnStatementValue[..n].Trim();
+                descriptionValue = descriptionOnStatementValue[..n];
             }
 
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
