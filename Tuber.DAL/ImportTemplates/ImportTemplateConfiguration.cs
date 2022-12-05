@@ -39,7 +39,7 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
         builder.Property(x => x.DescriptionOnStatementColumnNumber)
             .IsRequired();
 
-        builder.Property(x => x.DescriptionOnStatementColumnNumber)
+        builder.Property(x => x.ReferenceOnStatementStartCharacter)
             .IsRequired()
             .HasDefaultValue(0);
 
