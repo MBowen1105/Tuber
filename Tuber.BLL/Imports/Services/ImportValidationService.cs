@@ -70,6 +70,10 @@ public class ImportValidationService : IImportValidationService
             if (descriptionOnStatementValue.Length > 40)
                 validationFailureMessages += $"Description on statement cannot exceed 40 character - truncating\n";
 
+            var referenceOnStatement = "";
+            if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length>=importTemplate.ReferenceOnStatementStartCharacter)
+                referenceOnStatement = descriptionOnStatementValue.Substring(importTemplate.ReferenceOnStatementStartCharacter);
+
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
                 ? ""
                 : column[importTemplate.TransactionTypeColumnNumber - 1];
@@ -121,6 +125,7 @@ public class ImportValidationService : IImportValidationService
                 ImportRowNumber = rowIndex,
                 DateValue = dateValue,
                 DescriptionOnStatementValue = descriptionOnStatementValue,
+                ReferenceOnStatement = referenceOnStatement,
                 TransactionTypeValue = transactionTypeValue,
                 MoneyInValue = moneyInValue,
                 MoneyOutValue = moneyOutValue,
