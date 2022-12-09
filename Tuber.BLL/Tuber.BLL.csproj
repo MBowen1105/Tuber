@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Categories\Commands\DeleteCategory\" />
-    <Folder Include="Categories\Commands\UpdateCategory\" />
   </ItemGroup>
 
 </Project>

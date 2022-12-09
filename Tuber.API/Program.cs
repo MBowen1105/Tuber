@@ -37,7 +37,7 @@ ImportTemplateExtensions.CommandEndpoints(app);
 ImportExtensions.QueryEndpoints(app);
 ImportExtensions.CommandEndpoints(app);
 
-CategoryExtensions.QueryEndpoints(app);
-CategoryExtensions.CommandEndpoints(app);
+CategoryEndpoints.QueryEndpoints(app);
+CategoryEndpoints.CommandEndpoints(app);
 
 app.Run();

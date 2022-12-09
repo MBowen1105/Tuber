@@ -3,12 +3,13 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Categories.Commands.AddCategory;
+using Tuber.BLL.Categories.Commands.UpdateCategory;
 using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;
 
-public static class CategoryExtensions
+public static class CategoryEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {
@@ -34,26 +35,26 @@ public static class CategoryExtensions
         .WithName("AddCategory");
 
 
-        //    app.MapPut("/Category/update", async (UpdateCategoryAPIRequest APIRequest,
-        //        [FromServices] IMediator mediator,
-        //        [FromServices] IMapper mapper,
-        //        [FromServices] IEnumerable<IValidator<UpdateCategoryAPIRequest>> validators) =>
-        //    {
-        //        //  Map validated API request to query
-        //        var query = mapper.Map<UpdateCategoryAPIRequest, UpdateCategoryCommandRequest>(APIRequest);
+        app.MapPut("/Category/update", async (UpdateCategoryAPIRequest APIRequest,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper,
+            [FromServices] IEnumerable<IValidator<UpdateCategoryAPIRequest>> validators) =>
+        {
+            //  Map validated API request to query
+            var query = mapper.Map<UpdateCategoryAPIRequest, UpdateCategoryCommandRequest>(APIRequest);
 
-        //        // Call query handler. This first invokes the pipeline behaviour.
-        //        var queryResponse = await mediator.Send(query);
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(query);
 
-        //        if (queryResponse.HasExceptions)
-        //            return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //        //  Map Handler response to API Response and return.
-        //        var apiResponse = mapper.Map<UpdateCategoryCommandResponse, UpdateCategoryAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<UpdateCategoryCommandResponse, UpdateCategoryAPIResponse>(queryResponse);
 
-        //        return Results.Accepted($"/category/{apiResponse.Id}", apiResponse);
-        //    })
-        //    .WithName("UpdateCategory");
+            return Results.Accepted($"/category/{apiResponse.CategoryId}", apiResponse);
+        })
+        .WithName("UpdateCategory");
 
 
 
