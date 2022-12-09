@@ -7,7 +7,6 @@ using Tuber.BLL.Banks.Commands.DeleteBank;
 using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
-using Tuber.BLL.Extensions;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Banks;

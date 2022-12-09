@@ -20,8 +20,6 @@ public class AddCategoryCommandHandler : IRequestHandler<AddCategoryCommandReque
         {
             CategoryId = categoryModel.CategoryId,
             CategoryName = categoryModel.CategoryName,
-            CreatedByUserFullName=categoryModel.CreatedByUser!.FullName,
-            CreatedOnUtc = categoryModel.CreatedOnUtc,
         });
     }
 }
