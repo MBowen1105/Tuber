@@ -33,7 +33,7 @@ public static class BankExtensions
             //  Map Handler response to API Response and return.
             var apiResponse = mapper.Map<AddBankCommandResponse, AddBankAPIResponse>(queryResponse);
 
-            return Results.Created($"/bank/{apiResponse.Id}", apiResponse);
+            return Results.Created($"/bank/{apiResponse.BankId}", apiResponse);
         })
         .WithName("AddBank");
 

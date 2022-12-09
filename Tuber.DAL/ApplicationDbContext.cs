@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.DAL.BankAccounts;
 using Tuber.DAL.Banks;
+using Tuber.DAL.Categories;
+using Tuber.DAL.CategorySubcategories;
 using Tuber.DAL.Imports;
 using Tuber.DAL.ImportTemplates;
+using Tuber.DAL.Subcategories;
 using Tuber.DAL.Users;
 using Tuber.Domain.Common;
 using Tuber.Domain.Interfaces.Authorisation;
@@ -21,6 +24,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<ImportTemplate> ImportTemplates { get; set; }
     public DbSet<Import> Imports { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Subcategory> Subcategories { get; set; }
+    public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IDateTimeService dateTimeService,
@@ -33,6 +39,8 @@ public class ApplicationDbContext : DbContext
 
     public override int SaveChanges()
     {
+        var currentUser = _currentUserService.User();
+
         //  Get all change trackers for entties that derive from the "AuditableEntity" class
         //  (The class that has the Created/Updated/ByDate fields.)
         var changedRows = ChangeTracker.Entries<AuditableEntity>();
@@ -42,7 +50,7 @@ public class ApplicationDbContext : DbContext
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedByUserId = _currentUserService.User().UserId;
+                    entry.Entity.CreatedByUserId = currentUser.UserId;
                     entry.Entity.CreatedOnUtc = _dateTimeService.UtcNow();
                     entry.Entity.UpdatedByUserId = null;
                     entry.Entity.UpdatedOnUtc = null;
@@ -67,6 +75,9 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new ImportTemplateConfiguration());
         modelBuilder.ApplyConfiguration(new ImportConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new SubcategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new CategorySubcategoryConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

@@ -25,4 +25,9 @@
     <ProjectReference Include="..\Tuber.Users\Tuber.Authentication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Categories\Commands\DeleteCategory\" />
+    <Folder Include="Categories\Commands\UpdateCategory\" />
+  </ItemGroup>
+
 </Project>

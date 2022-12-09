@@ -40,6 +40,6 @@ public static class CategorySeeding
                 CategoryName = "Child Maintenance",
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
-            }); ;
+            });
     }
 }

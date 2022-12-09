@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tuber.DAL.Banks;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Categories;
@@ -22,5 +23,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         
         builder.Property(x => x.IsDeleted)
             .IsRequired();
+
+        CategorySeeding.Seed(builder);
     }
 }

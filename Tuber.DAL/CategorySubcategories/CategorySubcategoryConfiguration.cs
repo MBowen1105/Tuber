@@ -4,7 +4,7 @@ using Tuber.Domain.Models;
 
 namespace Tuber.DAL.CategorySubcategories;
 
-public class CategorySubcategoriesConfiguration : IEntityTypeConfiguration<CategorySubcategory>
+public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<CategorySubcategory>
 {
     public void Configure(EntityTypeBuilder<CategorySubcategory> builder)
     {

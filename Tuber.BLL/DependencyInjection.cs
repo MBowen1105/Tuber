@@ -37,7 +37,11 @@ public static class DependencyInjection
         services.AddScoped<IImportValidationService, ImportValidationService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
 
+        services.AddScoped<ICategoryRetrievalService, CategoryRetrievalService>();
+        services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();
+        //services.AddScoped<ISubcategoryRetrievalService, SubcategoryRetrievalService>();
         services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+        
 
         var config = new MapperConfiguration(cfg =>
         {
