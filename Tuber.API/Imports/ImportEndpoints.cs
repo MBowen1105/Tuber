@@ -7,7 +7,7 @@ using Tuber.BLL.Imports.Queries.GetImportByBankAccountId;
 
 namespace Tuber.API.Banks;
 
-public static class ImportExtensions
+public static class ImportEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {

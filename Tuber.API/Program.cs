@@ -29,13 +29,13 @@ app.UseHttpsRedirection();
 BankEndpoints.QueryEndpoints(app);
 BankEndpoints.CommandEndpoints(app);
 
-BankAccountExtensions.QueryEndpoints(app);
+BankAccountEndpoints.QueryEndpoints(app);
 
-ImportTemplateExtensions.QueryEndpoints(app);
-ImportTemplateExtensions.CommandEndpoints(app);
+ImportTemplateEndpoints.QueryEndpoints(app);
+ImportTemplateEndpoints.CommandEndpoints(app);
 
-ImportExtensions.QueryEndpoints(app);
-ImportExtensions.CommandEndpoints(app);
+ImportEndpoints.QueryEndpoints(app);
+ImportEndpoints.CommandEndpoints(app);
 
 CategoryEndpoints.QueryEndpoints(app);
 CategoryEndpoints.CommandEndpoints(app);

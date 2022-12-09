@@ -9,7 +9,7 @@ using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.ImportTemplates;
 
-public static class ImportTemplateExtensions
+public static class ImportTemplateEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {        
