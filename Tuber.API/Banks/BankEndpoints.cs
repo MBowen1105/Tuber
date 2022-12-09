@@ -11,7 +11,7 @@ using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Banks;
 
-public static class BankExtensions
+public static class BankEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {

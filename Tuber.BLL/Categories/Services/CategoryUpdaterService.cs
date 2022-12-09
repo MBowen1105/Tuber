@@ -27,14 +27,14 @@ public class CategoryUpdaterService : ICategoryUpdaterService
         return categoryModel;
     }
 
-    public int Delete(Guid id)
+    public int Delete(Guid categoryId)
     {
-        var categoryModel = _categoryRepo.GetById(id);
+        var categoryModel = _categoryRepo.GetById(categoryId);
 
         if (categoryModel.CategoryId == Guid.Empty)
             return 0;
 
-        var result = _categoryRepo.Delete(id);
+        var result = _categoryRepo.Delete(categoryId);
 
         _categoryRepo.SaveChanges();
 

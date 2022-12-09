@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Categories.Commands.AddCategory;
+using Tuber.BLL.Categories.Commands.DeleteCategory;
 using Tuber.BLL.Categories.Commands.UpdateCategory;
 using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
 using Tuber.Domain.Exceptions;
@@ -58,21 +59,21 @@ public static class CategoryEndpoints
 
 
 
-        //    app.MapDelete("/category/delete/{id}", async (Guid id,
-        //        [FromServices] IMediator mediator) =>
-        //    {
-        //        // Call query handler. This first invokes the pipeline behaviour.
-        //        var queryResponse = await mediator.Send(new DeleteCategoryCommandRequest
-        //        {
-        //            Id = id,
-        //        });
+        app.MapDelete("/category/delete/{categoryId}", async (Guid categoryId,
+            [FromServices] IMediator mediator) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new DeleteCategoryCommandRequest
+            {
+                CategoryId = categoryId,
+            });
 
-        //        if (queryResponse.HasExceptions)
-        //            return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //        return Results.NoContent();
-        //    })
-        //    .WithName("DeleteCategory");
+            return Results.NoContent();
+        })
+        .WithName("DeleteCategory");
     }
     public static void QueryEndpoints(WebApplication app)
     {

@@ -18,7 +18,6 @@ public class CategoryProfile : Profile
 
         CreateMap<UpdateCategoryAPIRequest, UpdateCategoryCommandRequest>();
         CreateMap<UpdateCategoryCommandResponse, UpdateCategoryAPIResponse>();
-
     }
 
 }
