@@ -5,5 +5,5 @@ public interface ICategoryUpdaterService
 {
     Category Add(string categoryName);
     Category Update(Guid id, string categoryName);
-    int Delete(Guid id);
+    int Delete(Guid categoryId);
 }

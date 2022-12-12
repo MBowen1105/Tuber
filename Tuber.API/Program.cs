@@ -40,4 +40,7 @@ ImportEndpoints.CommandEndpoints(app);
 CategoryEndpoints.QueryEndpoints(app);
 CategoryEndpoints.CommandEndpoints(app);
 
+SubcategoryEndpoints.QueryEndpoints(app);
+SubcategoryEndpoints.CommandEndpoints(app);
+
 app.Run();

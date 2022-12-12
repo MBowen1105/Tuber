@@ -9,6 +9,7 @@ using Tuber.BLL.Categories.Services;
 using Tuber.BLL.Imports.Services;
 using Tuber.BLL.ImportTemplates.Services;
 using Tuber.BLL.PipelineBehaviours;
+using Tuber.BLL.Subcategories.Services;
 using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL;
@@ -39,9 +40,10 @@ public static class DependencyInjection
 
         services.AddScoped<ICategoryRetrievalService, CategoryRetrievalService>();
         services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();
-        //services.AddScoped<ISubcategoryRetrievalService, SubcategoryRetrievalService>();
-        services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
         
+        services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+        services.AddScoped<ISubcategoryUpdaterService, SubcategoryUpdaterService>();
+
 
         var config = new MapperConfiguration(cfg =>
         {

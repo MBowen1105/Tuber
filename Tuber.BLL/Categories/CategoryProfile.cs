@@ -5,7 +5,7 @@ using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Categorys;
+namespace Tuber.BLL.Categories;
 public class CategoryProfile : Profile
 {
     public CategoryProfile()

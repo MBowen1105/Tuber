@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Tuber.Users\Tuber.Authentication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Subcategories\Queries\GetSubcategoriesByCategoryPaged\" />
+  </ItemGroup>
+
 </Project>
