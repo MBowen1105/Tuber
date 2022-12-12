@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.BankAdd;
 using Tuber.BLL.Banks.Commands.BankDelete;
-using Tuber.BLL.Banks.Commands.UpdateBank;
+using Tuber.BLL.Banks.Commands.BankUpdate;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Exceptions;
@@ -38,13 +38,13 @@ public static class BankEndpoints
         .WithName("AddBank");
 
 
-        app.MapPut("/bank/update", async (UpdateBankAPIRequest APIRequest,
+        app.MapPut("/bank/update", async (BankUpdateAPIRequest APIRequest,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper,
-            [FromServices] IEnumerable<IValidator<UpdateBankAPIRequest>> validators) =>
+            [FromServices] IEnumerable<IValidator<BankUpdateAPIRequest>> validators) =>
         {
             //  Map validated API request to query
-            var query = mapper.Map<UpdateBankAPIRequest, UpdateBankCommandRequest>(APIRequest);
+            var query = mapper.Map<BankUpdateAPIRequest, BankUpdateCommandRequest>(APIRequest);
 
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(query);
@@ -53,7 +53,7 @@ public static class BankEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<UpdateBankCommandResponse, UpdateBankAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<BankUpdateCommandResponse, BankUpdateAPIResponse>(queryResponse);
 
             return Results.Accepted($"/bank/{apiResponse.Id}", apiResponse);
         })

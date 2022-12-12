@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using Tuber.BLL.Banks.Commands.UpdateBank;
+using Tuber.BLL.Banks.Commands.BankUpdate;
 
 namespace Tuber.BLL.Banks.PipelineValidators;
-public class PutBankCommandRequestValidator : AbstractValidator<UpdateBankCommandRequest>
+public class PutBankCommandRequestValidator : AbstractValidator<BankUpdateCommandRequest>
 {
     public PutBankCommandRequestValidator()
     {

@@ -2,18 +2,18 @@
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Banks.Commands.UpdateBank
+namespace Tuber.BLL.Banks.Commands.BankUpdate
 {
-    public class UpdateBankCommandHandler : IRequestHandler<UpdateBankCommandRequest, UpdateBankCommandResponse>
+    public class BankUpdateCommandHandler : IRequestHandler<BankUpdateCommandRequest, BankUpdateCommandResponse>
     {
         private readonly IBankRepository _bankRepo;
 
-        public UpdateBankCommandHandler(IBankRepository bankRepo)
+        public BankUpdateCommandHandler(IBankRepository bankRepo)
         {
             _bankRepo = bankRepo;
         }
 
-        public Task<UpdateBankCommandResponse> Handle(UpdateBankCommandRequest request, CancellationToken cancellationToken)
+        public Task<BankUpdateCommandResponse> Handle(BankUpdateCommandRequest request, CancellationToken cancellationToken)
         {
             var bank = _bankRepo.Update(new Bank
             {
@@ -24,7 +24,7 @@ namespace Tuber.BLL.Banks.Commands.UpdateBank
 
             _bankRepo.SaveChanges();
 
-            return Task.FromResult(new UpdateBankCommandResponse
+            return Task.FromResult(new BankUpdateCommandResponse
             {
                 Id = bank.BankId,
                 Name = bank.Name!,

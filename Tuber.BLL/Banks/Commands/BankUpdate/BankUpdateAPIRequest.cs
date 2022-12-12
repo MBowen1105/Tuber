@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.Banks.Commands.UpdateBank;
-public class UpdateBankAPIRequest
+﻿namespace Tuber.BLL.Banks.Commands.BankUpdate;
+public class BankUpdateAPIRequest
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = "";

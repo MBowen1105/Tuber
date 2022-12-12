@@ -1,5 +1,8 @@
-﻿namespace Tuber.BLL.Banks.Commands.UpdateBank;
-public class UpdateBankAPIResponse
+﻿using Tuber.Core.Common;
+
+namespace Tuber.BLL.Banks.Commands.BankUpdate;
+
+public class BankUpdateCommandResponse : CommandQueryResponseBase
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = "";
@@ -7,5 +10,5 @@ public class UpdateBankAPIResponse
     public string CreatedByUserName { get; init; } = "";
     public DateTime CreatedOnUtc { get; init; }
     public string? UpdatedByUserName { get; init; }
-    public DateTime UpdatedOnUtc { get; init; }
+    public DateTime? UpdatedOnUtc { get; init; }
 }
