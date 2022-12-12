@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		Architecture.txt = Architecture.txt
+		Nomenclature.txt = Nomenclature.txt
 		Procedures.txt = Procedures.txt
 		SavedCode.txt = SavedCode.txt
 	EndProjectSection
@@ -29,15 +30,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Authentication", "Tub
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.FileSystem", "Tuber.FileSystem\Tuber.FileSystem.csproj", "{F60F3B03-4C86-4EA3-A626-63942D2A72C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests.BLL", "Tuber.UnitTests.BLL\Tuber.UnitTests.BLL.csproj", "{4B5230C0-D1AE-4AA7-B2C3-D832CBEDCD84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.BLL", "Tuber.UnitTests.BLL\Tuber.UnitTests.BLL.csproj", "{4B5230C0-D1AE-4AA7-B2C3-D832CBEDCD84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests.Core", "Tuber.UnitTests.Core\Tuber.UnitTests.Core.csproj", "{0515191C-D9AB-4969-9FB3-45C9885D1F8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.Core", "Tuber.UnitTests.Core\Tuber.UnitTests.Core.csproj", "{0515191C-D9AB-4969-9FB3-45C9885D1F8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests.DAL", "Tuber.UnitTests.DAL\Tuber.UnitTests.DAL.csproj", "{ABFBAB33-445E-4627-A863-7A2F4F1160EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.DAL", "Tuber.UnitTests.DAL\Tuber.UnitTests.DAL.csproj", "{ABFBAB33-445E-4627-A863-7A2F4F1160EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests.Domain", "Tuber.UnitTests.Domain\Tuber.UnitTests.Domain.csproj", "{0CC2665C-6F87-4DB4-B7C4-8BB2C80D2E88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.Domain", "Tuber.UnitTests.Domain\Tuber.UnitTests.Domain.csproj", "{0CC2665C-6F87-4DB4-B7C4-8BB2C80D2E88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuber.UnitTests.FileSystem", "Tuber.UnitTests.FileSystem\Tuber.UnitTests.FileSystem.csproj", "{1A141BE4-19A3-420D-8BDA-DB4E47C41B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.FileSystem", "Tuber.UnitTests.FileSystem\Tuber.UnitTests.FileSystem.csproj", "{1A141BE4-19A3-420D-8BDA-DB4E47C41B2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

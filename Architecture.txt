@@ -1,3 +1,5 @@
+Projects and division of responsibilities
+
 API (Application Programming Interface)
 =======================================
 Defines the API endpoints.

@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Banks.Commands.AddBank;
+using Tuber.BLL.Banks.Commands.BankAdd;
 using Tuber.BLL.Banks.Commands.DeleteBank;
 using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
@@ -15,13 +16,13 @@ public static class BankEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {
-        app.MapPut("/bank/add", async (AddBankAPIRequest APIRequest,
+        app.MapPut("/bank/add", async (BankAddAPIRequest APIRequest,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper,
-            [FromServices] IEnumerable<IValidator<AddBankAPIRequest>> validators) =>
+            [FromServices] IEnumerable<IValidator<BankAddAPIRequest>> validators) =>
         {
             //  Map API request to query
-            var query = mapper.Map<AddBankAPIRequest, AddBankCommandRequest>(APIRequest);
+            var query = mapper.Map<BankAddAPIRequest, BankAddCommandRequest>(APIRequest);
 
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(query);
@@ -30,7 +31,7 @@ public static class BankEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<AddBankCommandResponse, AddBankAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<BankAddCommandResponse, BankAddAPIResponse>(queryResponse);
 
             return Results.Created($"/bank/{apiResponse.BankId}", apiResponse);
         })

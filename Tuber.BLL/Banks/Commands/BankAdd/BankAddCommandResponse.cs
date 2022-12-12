@@ -2,7 +2,7 @@
 
 namespace Tuber.BLL.Banks.Commands.AddBank;
 
-public class AddBankCommandResponse : CommandQueryResponseBase
+public class BankAddCommandResponse : CommandQueryResponseBase
 {
     public Guid BankId { get; init; }
     public string BankName { get; init; } = "";
