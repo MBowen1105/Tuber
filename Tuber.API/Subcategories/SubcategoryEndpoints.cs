@@ -3,8 +3,11 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
+using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.BLL.Subcategories.Commands.AddCategory;
 using Tuber.BLL.Subcategories.Commands.AddSubcategory;
+using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
+using Tuber.BLL.Subcategories.Queries.GetSubcategoryById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;
@@ -89,7 +92,7 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetCategoriesPagedQueryRequest
+            var queryResponse = await mediator.Send(new GetSubcategoriesPagedQueryRequest
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
@@ -99,31 +102,31 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetCategoriesPagedQueryResponse, GetCategoriesPagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<GetSubcategoriesPagedQueryResponse, GetSubcategoriesPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })
         .WithName("GetSubcategories");
 
 
-        //app.MapGet("/Subcategory/get/{id}", async (Guid id,
-        //    [FromServices] IMediator mediator,
-        //    [FromServices] IMapper mapper) =>
-        //{
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(new GetSubcategoryByIdQueryRequest
-        //    {
-        //        SubcategoryId = id
-        //    });
+        app.MapGet("/Subcategory/get/{id}", async (Guid id,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new GetSubcategoryByIdQueryRequest
+            {
+                SubcategoryId = id
+            });
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    //  Map Handler response to API Response and return.
-        //    var apiResponse = mapper.Map<GetSubcategoryByIdQueryResponse, GetSubcategoryByIdAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<GetSubcategoryByIdQueryResponse, GetSubcategoryByIdAPIResponse>(queryResponse);
 
-        //    return Results.Ok(apiResponse);
-        //})
-        //.WithName("GetSubcategoryById");
+            return Results.Ok(apiResponse);
+        })
+        .WithName("GetSubcategoryById");
     }
 }

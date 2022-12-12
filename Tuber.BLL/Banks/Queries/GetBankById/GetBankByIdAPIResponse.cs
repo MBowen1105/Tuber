@@ -1,5 +1,4 @@
 ﻿using Tuber.Domain.Dtos;
-using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks.Queries.GetBankById;
 public class GetBankByIdAPIResponse

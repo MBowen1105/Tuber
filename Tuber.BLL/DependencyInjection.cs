@@ -42,6 +42,7 @@ public static class DependencyInjection
         services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();
         
         services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+        services.AddScoped<ISubcategoryRetrievalService, SubcategoryRetrievalService>();
         services.AddScoped<ISubcategoryUpdaterService, SubcategoryUpdaterService>();
 
 
