@@ -6,7 +6,7 @@ using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.BankAdd;
 using Tuber.BLL.Banks.Commands.BankDelete;
 using Tuber.BLL.Banks.Commands.BankUpdate;
-using Tuber.BLL.Banks.Queries.GetBankById;
+using Tuber.BLL.Banks.Queries.BankGetById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
 using Tuber.Domain.Exceptions;
 
@@ -113,7 +113,7 @@ public static class BankEndpoints
             [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetBankByIdQueryRequest
+            var queryResponse = await mediator.Send(new BankGetByIdQueryRequest
             {
                 BankId = id
             });
@@ -122,7 +122,7 @@ public static class BankEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetBankByIdQueryResponse, GetBankByIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<BankGetByIdQueryResponse, BankGetByIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

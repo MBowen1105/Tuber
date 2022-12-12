@@ -3,9 +3,9 @@ using Tuber.BLL.Banks.Commands.BankAdd;
 
 namespace Tuber.BLL.Banks.PipelineValidators;
 
-public class AddBankCommandRequestValidator : AbstractValidator<BankAddCommandRequest>
+public class BankAddCommandRequestValidator : AbstractValidator<BankAddCommandRequest>
 {
-    public AddBankCommandRequestValidator()
+    public BankAddCommandRequestValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty()

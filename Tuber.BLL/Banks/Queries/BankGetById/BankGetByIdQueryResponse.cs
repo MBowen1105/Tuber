@@ -1,8 +1,8 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Banks.Queries.GetBankById;
-public class GetBankByIdQueryResponse : CommandQueryResponseBase
+namespace Tuber.BLL.Banks.Queries.BankGetById;
+public class BankGetByIdQueryResponse : CommandQueryResponseBase
 {
     public Guid BankId { get; init; }
     public string Name { get; init; } = "";
