@@ -1,24 +1,23 @@
 ﻿using MediatR;
-using Tuber.BLL.Banks.Commands.DeleteBank;
 using Tuber.Core.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 
-namespace Tuber.BLL.Banks.Commands.PutBank
+namespace Tuber.BLL.Banks.Commands.BankDelete
 {
-    public class DeleteBankCommandHandler : IRequestHandler<DeleteBankCommandRequest, DeleteBankCommandResponse>
+    public class BankDeleteCommandHandler : IRequestHandler<BankDeleteCommandRequest, BankDeleteCommandResponse>
     {
         private readonly IBankUpdaterService _bankUpdaterService;
 
-        public DeleteBankCommandHandler(IBankUpdaterService bankUpdaterService)
+        public BankDeleteCommandHandler(IBankUpdaterService bankUpdaterService)
         {
             _bankUpdaterService = bankUpdaterService;
         }
 
-        public Task<DeleteBankCommandResponse> Handle(DeleteBankCommandRequest request, CancellationToken cancellationToken)
+        public Task<BankDeleteCommandResponse> Handle(BankDeleteCommandRequest request, CancellationToken cancellationToken)
         {
             var result = _bankUpdaterService.Delete(request.Id);
 
-            return Task.FromResult(new DeleteBankCommandResponse
+            return Task.FromResult(new BankDeleteCommandResponse
             {
                 DeletedCount = result,
                 Exceptions = (result == 0)

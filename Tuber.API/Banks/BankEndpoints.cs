@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.BankAdd;
-using Tuber.BLL.Banks.Commands.DeleteBank;
+using Tuber.BLL.Banks.Commands.BankDelete;
 using Tuber.BLL.Banks.Commands.UpdateBank;
 using Tuber.BLL.Banks.Queries.GetBankById;
 using Tuber.BLL.Banks.Queries.GetBankPaged;
@@ -65,7 +65,7 @@ public static class BankEndpoints
             [FromServices] IMediator mediator) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new DeleteBankCommandRequest
+            var queryResponse = await mediator.Send(new BankDeleteCommandRequest
             {
                 Id = id,
             });
