@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
-public class GetBankAccountByIdAPIResponse
+﻿namespace Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
+public class BankAccountGetByIdAPIResponse
 {
     public Guid BankAccountId { get; init; }
     public Guid BankId { get; init; }

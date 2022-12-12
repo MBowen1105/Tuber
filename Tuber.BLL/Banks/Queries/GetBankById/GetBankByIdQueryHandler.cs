@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
-using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 

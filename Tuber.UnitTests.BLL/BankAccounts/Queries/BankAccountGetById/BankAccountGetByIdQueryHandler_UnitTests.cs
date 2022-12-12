@@ -2,14 +2,13 @@
 using FluentAssertions;
 using Moq;
 using Tuber.BLL.BankAccounts;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
-using Tuber.Domain.Dtos;
+using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.UnitTests.BLL.BankAccounts.Queries.GetBankAccountById;
-internal class GetBankAccountByIdQueryHandler_UnitTests
+namespace Tuber.UnitTests.BLL.BankAccounts.Queries.BankAccountGetById;
+internal class BankAccountGetByIdQueryHandler_UnitTests
 {
     private BankAccount[] _bankAccountArray;
     private List<BankAccount> _bankAccountList;
@@ -94,9 +93,9 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
         mockBankAccountRetrievalService.Setup(x => x.GetById(It.Is<Guid>(g => g == firstRecord.BankAccountId)))
             .Returns(new ServiceResult<BankAccount>(payload: firstRecord));
 
-        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
+        var sut = new BankAccountGetByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
 
-        var request = new GetBankAccountByIdQueryRequest
+        var request = new BankAccountGetByIdQueryRequest
         {
             BankAccountId = firstRecord.BankAccountId
         };
@@ -124,9 +123,9 @@ internal class GetBankAccountByIdQueryHandler_UnitTests
                 payload: new BankAccount(),
                 exception: new BankAccountDoesNotExistException(badId)));
 
-        var sut = new GetBankAccountByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
+        var sut = new BankAccountGetByIdQueryHandler(mockBankAccountRetrievalService.Object, _mapper);
 
-        var request = new GetBankAccountByIdQueryRequest
+        var request = new BankAccountGetByIdQueryRequest
         {
             BankAccountId = badId
         };

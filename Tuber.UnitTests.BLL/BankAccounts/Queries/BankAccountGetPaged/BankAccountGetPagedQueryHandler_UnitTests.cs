@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
+using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.UnitTests.BLL.BankAccounts.Queries.GetBankAccount;
-internal class GetBankAccountPagedQueryHandler_UnitTests
+namespace Tuber.UnitTests.BLL.BankAccounts.Queries.BankAccountGetPaged;
+internal class BankAccountGetPagedQueryHandler_UnitTests
 {
     private BankAccount[] _bankAccountArray;
-    private List<GetBankAccountPaged_BankAccount> _bankAccountDtoList;
+    private List<BankAccountGetPaged_BankAccount> _bankAccountDtoList;
 
     [SetUp]
     public void SetUp()
@@ -54,11 +54,11 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
             }
         };
 
-        _bankAccountDtoList = new List<GetBankAccountPaged_BankAccount>();
+        _bankAccountDtoList = new List<BankAccountGetPaged_BankAccount>();
 
         for (var i = 0; i < _bankAccountArray.Length; i++)
         {
-            _bankAccountDtoList.Add(new GetBankAccountPaged_BankAccount
+            _bankAccountDtoList.Add(new BankAccountGetPaged_BankAccount
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
                 Name = _bankAccountArray[i].Name!,
@@ -84,7 +84,7 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankAccountDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-        mockMapper.Setup(x => x.Map<List<BankAccount>, List<GetBankAccountPaged_BankAccount>>(It.IsAny<List<BankAccount>>()))
+        mockMapper.Setup(x => x.Map<List<BankAccount>, List<BankAccountGetPaged_BankAccount>>(It.IsAny<List<BankAccount>>()))
             .Returns(subSet);
 
         var totalPages = (int)Math.Ceiling(_bankAccountArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
@@ -92,10 +92,10 @@ internal class GetBankAccountPagedQueryHandler_UnitTests
         mockBankAccountRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);
 
-        var sut = new GetBankAccountPagedQueryHandler(mockBankAccountRetrieverService.Object,
+        var sut = new BankAccountGetPagedQueryHandler(mockBankAccountRetrieverService.Object,
             mockMapper.Object);
 
-        var request = new GetBankAccountPagedQueryRequest
+        var request = new BankAccountGetPagedQueryRequest
         {
             PageNumber = pageNumber,
             PageSize = pageSize

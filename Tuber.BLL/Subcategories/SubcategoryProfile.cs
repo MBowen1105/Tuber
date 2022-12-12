@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.BLL.Subcategories.Commands.AddCategory;
 using Tuber.BLL.Subcategories.Commands.AddSubcategory;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;

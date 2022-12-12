@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountById;
-using Tuber.BLL.BankAccounts.Queries.GetBankAccountPaged;
-using Tuber.BLL.Banks.Queries.GetBankById;
+using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
+using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.BankAccounts;
@@ -23,7 +22,7 @@ public static class BankAccountEndpoints
             return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
         // Call query handler. This first invokes the pipeline behaviour.
-        var queryResponse = await mediator.Send(new GetBankAccountPagedQueryRequest
+        var queryResponse = await mediator.Send(new BankAccountGetPagedQueryRequest
         {
             PageNumber = pageNumber,
             PageSize = pageSize
@@ -33,7 +32,7 @@ public static class BankAccountEndpoints
             return Results.BadRequest(queryResponse.Exceptions);
 
         //  Map Handler response to API Response and return.
-        var apiResponse = mapper.Map<GetBankAccountPagedQueryResponse, GetBankAccountPagedAPIResponse>(queryResponse);
+        var apiResponse = mapper.Map<BankAccountGetPagedQueryResponse, BankAccountGetPagedAPIResponse>(queryResponse);
 
         return Results.Ok(apiResponse);
     })
@@ -45,7 +44,7 @@ public static class BankAccountEndpoints
     [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetBankAccountByIdQueryRequest
+            var queryResponse = await mediator.Send(new BankAccountGetByIdQueryRequest
                 {
                     BankAccountId = id
                 });
@@ -54,7 +53,7 @@ public static class BankAccountEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetBankAccountByIdQueryResponse, GetBankAccountByIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<BankAccountGetByIdQueryResponse, BankAccountGetByIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

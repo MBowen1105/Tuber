@@ -2,8 +2,6 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
-using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.BLL.Subcategories.Commands.AddCategory;
 using Tuber.BLL.Subcategories.Commands.AddSubcategory;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
