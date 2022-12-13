@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.Imports.Commands.AddImport;
-public class AddImportAPIRequest
+﻿namespace Tuber.BLL.Imports.Commands.ImportAdd;
+public class ImportAddAPIRequest
 {
     public Guid ImportTemplateId { get; init; }
     public Guid BankAccountId { get; init; }

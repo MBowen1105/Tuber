@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Tuber.BLL.Imports.Commands.AddImport;
+using Tuber.BLL.Imports.Commands.ImportAdd;
 
 namespace Tuber.UnitTests.BLL.Imports.Commands.AddImport;
 internal class AddImportCommandResponse_UnitTests
@@ -7,7 +7,7 @@ internal class AddImportCommandResponse_UnitTests
     [TestCase]
     public void NewingUpAddImportCommandResponse_ReturnsCorrectNullValues()
     {
-        var sut = new AddImportCommandResponse();
+        var sut = new ImportAddCommandResponse();
 
         sut.BankAccountId.Should().Be(Guid.Empty);
         sut.ImportFileName.Should().Be("");

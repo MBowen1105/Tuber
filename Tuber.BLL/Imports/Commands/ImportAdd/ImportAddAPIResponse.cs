@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.Imports.Commands.AddImport;
-public class AddImportAPIResponse
+﻿namespace Tuber.BLL.Imports.Commands.ImportAdd;
+public class ImportAddAPIResponse
 {
     public Guid BankAccountId { get; init; }
     public string ImportFileName { get; init; } = "";

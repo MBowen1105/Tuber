@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Tuber.BLL.Imports.Commands.AddImport;
+using Tuber.BLL.Imports.Commands.ImportAdd;
 
 namespace Tuber.BLL.Imports.PipelineValidators;
 
-public class AddImportCommandRequestValidator : AbstractValidator<AddImportCommandRequest>
+public class AddImportCommandRequestValidator : AbstractValidator<ImportAddCommandRequest>
 {
     public AddImportCommandRequestValidator()
     {

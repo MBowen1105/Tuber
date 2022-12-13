@@ -3,9 +3,9 @@ using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.FileSystem;
 
-namespace Tuber.BLL.Imports.Commands.AddImport;
+namespace Tuber.BLL.Imports.Commands.ImportAdd;
 
-public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, AddImportCommandResponse>
+public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, ImportAddCommandResponse>
 {
     private readonly IFileSystem _fileSystem;
     private readonly IImportTemplateRetrievalService _importTemplateRetrievalService;
@@ -14,7 +14,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
     private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
 
 
-    public AddImportCommandHandler(
+    public ImportAddCommandHandler(
         IFileSystem fileSystem,
         IImportTemplateRetrievalService importTemplateRetrievalService,
         IImportValidationService importValidationService,
@@ -28,13 +28,13 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
         _categoryRetrievalService = categoryRetrievalService;
      }
 
-    public Task<AddImportCommandResponse> Handle(AddImportCommandRequest request, CancellationToken cancellationToken)
+    public Task<ImportAddCommandResponse> Handle(ImportAddCommandRequest request, CancellationToken cancellationToken)
     {
         //  Get appropriate Import Template.
         var importTemplateRetrievalServiceResult = _importTemplateRetrievalService.GetById(request.ImportTemplateId);
         if (importTemplateRetrievalServiceResult.HasFailed)
         {
-            return Task.FromResult(new AddImportCommandResponse
+            return Task.FromResult(new ImportAddCommandResponse
             {
                 Exceptions = importTemplateRetrievalServiceResult.Exceptions,
             });
@@ -48,7 +48,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
         var projectDirectory = Directory.GetParent(workingDirectory)!.FullName;
         var importFileUrl = $@"{projectDirectory}\Tuber.FileSystem\Import Folder\{request.ImportFileName}";
         if (!_fileSystem.Exists(importFileUrl))
-            return Task.FromResult(new AddImportCommandResponse
+            return Task.FromResult(new ImportAddCommandResponse
             {
                 Exceptions = new List<Exception>{
                     new InvalidImportFileException(importFileUrl, "Import File does not exist")
@@ -57,7 +57,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
 
         var allRows = _fileSystem.ReadAllLines(importFileUrl);
         if (allRows.Length == 0)
-            return Task.FromResult(new AddImportCommandResponse
+            return Task.FromResult(new ImportAddCommandResponse
             {
                 Exceptions = new List<Exception>()
                 {
@@ -73,7 +73,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
 
         if (importValidationServiceResult.HasFailed)
         {
-            return Task.FromResult(new AddImportCommandResponse
+            return Task.FromResult(new ImportAddCommandResponse
             {
                 Exceptions = importValidationServiceResult.Exceptions
             });
@@ -83,7 +83,7 @@ public class AddImportCommandHandler : IRequestHandler<AddImportCommandRequest, 
             request.BankAccountId,
             importValidationServiceResult.Payload);
 
-        return Task.FromResult(new AddImportCommandResponse
+        return Task.FromResult(new ImportAddCommandResponse
         {
             BankAccountId = request.BankAccountId,
             ImportFileName = request.ImportFileName,

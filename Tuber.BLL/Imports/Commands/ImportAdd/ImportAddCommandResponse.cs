@@ -1,10 +1,10 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Imports.Commands.AddImport;
+namespace Tuber.BLL.Imports.Commands.ImportAdd;
 
-public class AddImportCommandResponse : CommandQueryResponseBase
+public class ImportAddCommandResponse : CommandQueryResponseBase
 {
-    public AddImportCommandResponse()
+    public ImportAddCommandResponse()
     {
         BankAccountId = Guid.Empty;
         ImportFileName = "";
