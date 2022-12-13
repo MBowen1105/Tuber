@@ -3,9 +3,9 @@ using Tuber.BLL.Imports.Commands.ImportAdd;
 
 namespace Tuber.BLL.Imports.PipelineValidators;
 
-public class AddImportCommandRequestValidator : AbstractValidator<ImportAddCommandRequest>
+public class ImportAddAddCommandRequestValidator : AbstractValidator<ImportAddCommandRequest>
 {
-    public AddImportCommandRequestValidator()
+    public ImportAddAddCommandRequestValidator()
     {
         RuleFor(x => x.ImportTemplateId)
             .NotEmpty();

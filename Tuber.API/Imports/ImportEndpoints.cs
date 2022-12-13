@@ -3,7 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Imports.Commands.ImportAdd;
-using Tuber.BLL.Imports.Queries.GetImportByBankAccountId;
+using Tuber.BLL.Imports.Queries.ImportGetByBankAccountId;
 
 namespace Tuber.API.Banks;
 
@@ -40,7 +40,7 @@ public static class ImportEndpoints
             [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetImportByBankAccountIdQueryRequest
+            var queryResponse = await mediator.Send(new ImportGetByBankAccountIdQueryRequest
             {
                 BankAccountId = bankAccountId
             });
@@ -49,7 +49,7 @@ public static class ImportEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetImportByBankAccountIdQueryResponse, GetImportByBankAccountIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })
