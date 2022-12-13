@@ -1,8 +1,8 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Subcategories.Commands.AddSubcategory;
+namespace Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
 
-public class AddSubcategoryCommandResponse : CommandQueryResponseBase
+public class SubcategoryAddCommandResponse : CommandQueryResponseBase
 {
     public Guid SubcategoryId { get; init; }
     public string SubcategoryName { get; init; } = "";

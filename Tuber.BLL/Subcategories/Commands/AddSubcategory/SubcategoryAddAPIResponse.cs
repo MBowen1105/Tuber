@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.Subcategories.Commands.AddCategory;
-public class AddSubcategoryAPIResponse
+﻿namespace Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
+public class SubcategoryAddAPIResponse
 {
     public Guid SubcategoryId { get; init; }
     public string SubcategoryName { get; set; } = "";

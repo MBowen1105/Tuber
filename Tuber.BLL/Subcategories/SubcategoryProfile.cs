@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Subcategories.Commands.AddCategory;
-using Tuber.BLL.Subcategories.Commands.AddSubcategory;
+using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoryById;
 using Tuber.Domain.Dtos;
@@ -20,8 +19,8 @@ public class SubcategoryProfile : Profile
         CreateMap<GetSubcategoryByIdQueryResponse, GetSubcategoryByIdAPIResponse>();
 
         //  AddSubcategory
-        CreateMap<AddSubcategoryAPIRequest, AddSubcategoryCommandRequest>();
-        CreateMap<AddSubcategoryCommandResponse, AddSubcategoryAPIResponse>();
+        CreateMap<SubcategoryAddAPIRequest, SubcategoryAddCommandRequest>();
+        CreateMap<SubcategoryAddCommandResponse, SubcategoryAddAPIResponse>();
 
         //CreateMap<UpdateSubcategoryAPIRequest, UpdateSubcategoryCommandRequest>();
         //CreateMap<UpdateSubcategoryCommandResponse, UpdateSubcategoryAPIResponse>();

@@ -2,8 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Subcategories.Commands.AddCategory;
-using Tuber.BLL.Subcategories.Commands.AddSubcategory;
+using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.BLL.Subcategories.Queries.GetSubcategoryById;
 using Tuber.Domain.Exceptions;
@@ -14,13 +13,13 @@ public static class SubcategoryEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {
-        app.MapPut("/Subcategory/add", async (AddSubcategoryAPIRequest APIRequest,
+        app.MapPut("/Subcategory/add", async (SubcategoryAddAPIRequest APIRequest,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper,
-            [FromServices] IEnumerable<IValidator<AddSubcategoryAPIRequest>> validators) =>
+            [FromServices] IEnumerable<IValidator<SubcategoryAddAPIRequest>> validators) =>
         {
             //  Map API request to query
-            var query = mapper.Map<AddSubcategoryAPIRequest, AddSubcategoryCommandRequest>(APIRequest);
+            var query = mapper.Map<SubcategoryAddAPIRequest, SubcategoryAddCommandRequest>(APIRequest);
 
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(query);
@@ -29,7 +28,7 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<AddSubcategoryCommandResponse, AddSubcategoryAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<SubcategoryAddCommandResponse, SubcategoryAddAPIResponse>(queryResponse);
 
             return Results.Created($"/Subcategory/{apiResponse.SubcategoryId}", apiResponse);
         })
