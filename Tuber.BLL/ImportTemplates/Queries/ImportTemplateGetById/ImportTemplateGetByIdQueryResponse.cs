@@ -1,9 +1,9 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById;
-public class GetImportTemplateByIdQueryResponse : CommandQueryResponseBase
+namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+public class ImportTemplateGetByIdQueryResponse : CommandQueryResponseBase
 {
-    public GetImportTemplateByIdQueryResponse()
+    public ImportTemplateGetByIdQueryResponse()
     {
         ImportTemplateId = Guid.Empty;
         TemplateName = "";

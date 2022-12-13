@@ -2,8 +2,8 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById;
 using Tuber.BLL.ImportTemplates.Queries.GetImportTemplatePaged;
+using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.ImportTemplates;
@@ -21,7 +21,7 @@ public static class ImportTemplateEndpoints
             [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetImportTemplateByIdQueryRequest
+            var queryResponse = await mediator.Send(new ImportTemplateGetByIdQueryRequest
             {
                 ImportTemplateId = id
             });
@@ -30,7 +30,7 @@ public static class ImportTemplateEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetImportTemplateByIdQueryResponse, GetImportTemplateByIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<ImportTemplateGetByIdQueryResponse, ImportTemplateGetByIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

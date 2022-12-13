@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.ImportTemplates.Queries.GetImportTemplateById;
-public class GetImportTemplateByIdAPIResponse
+﻿namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+public class ImportTemplateGetByIdAPIResponse
 {
     public Guid ImportTemplateId { get; init; }
     public string TemplateName { get; init; } = "";
