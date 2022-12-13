@@ -7,6 +7,6 @@ public class BankGetByIdAPIResponse
     public string Name { get; init; } = "";
     public int OrderBy { get; init; }
     public Guid? ImportTemplateId { get; init; }
-    public List<GetBankById_BankAccount> BankAccounts { get; init; } = new();
-    public GetBankById_ImportTemplate? ImportTemplate { get; init; }
+    public List<BankGetById_BankAccount> BankAccounts { get; init; } = new();
+    public BankGetById_ImportTemplate? ImportTemplate { get; init; }
 }
