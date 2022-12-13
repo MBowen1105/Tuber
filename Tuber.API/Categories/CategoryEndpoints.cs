@@ -2,7 +2,7 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Categories.Commands.AddCategory;
+using Tuber.BLL.Categories.Commands.CategoryAdd;
 using Tuber.BLL.Categories.Commands.DeleteCategory;
 using Tuber.BLL.Categories.Commands.UpdateCategory;
 using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
@@ -14,13 +14,13 @@ public static class CategoryEndpoints
 {
     public static void CommandEndpoints(WebApplication app)
     {
-        app.MapPut("/category/add", async (AddCategoryAPIRequest APIRequest,
+        app.MapPut("/category/add", async (CategoryAddAPIRequest APIRequest,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper,
-            [FromServices] IEnumerable<IValidator<AddCategoryAPIRequest>> validators) =>
+            [FromServices] IEnumerable<IValidator<CategoryAddAPIRequest>> validators) =>
         {
             //  Map API request to query
-            var query = mapper.Map<AddCategoryAPIRequest, AddCategoryCommandRequest>(APIRequest);
+            var query = mapper.Map<CategoryAddAPIRequest, CategoryAddCommandRequest>(APIRequest);
 
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(query);
@@ -29,7 +29,7 @@ public static class CategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<AddCategoryCommandResponse, AddCategoryAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<CategoryAddCommandResponse, CategoryAddAPIResponse>(queryResponse);
 
             return Results.Created($"/category/{apiResponse.CategoryId}", apiResponse);
         })
