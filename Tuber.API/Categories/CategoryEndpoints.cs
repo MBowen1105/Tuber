@@ -3,7 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Categories.Commands.CategoryAdd;
-using Tuber.BLL.Categories.Commands.DeleteCategory;
+using Tuber.BLL.Categories.Commands.CategoryDelete;
 using Tuber.BLL.Categories.Commands.UpdateCategory;
 using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
 using Tuber.Domain.Exceptions;
@@ -63,7 +63,7 @@ public static class CategoryEndpoints
             [FromServices] IMediator mediator) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new DeleteCategoryCommandRequest
+            var queryResponse = await mediator.Send(new CategoryDeleteCommandRequest
             {
                 CategoryId = categoryId,
             });
