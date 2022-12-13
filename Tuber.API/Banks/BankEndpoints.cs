@@ -35,7 +35,7 @@ public static class BankEndpoints
 
             return Results.Created($"/bank/{apiResponse.BankId}", apiResponse);
         })
-        .WithName("AddBank");
+        .WithName("BankAdd");
 
 
         app.MapPut("/bank/update", async (BankUpdateAPIRequest APIRequest,
@@ -57,7 +57,7 @@ public static class BankEndpoints
 
             return Results.Accepted($"/bank/{apiResponse.Id}", apiResponse);
         })
-        .WithName("UpdateBank");
+        .WithName("BankUpdate");
 
 
 
@@ -75,7 +75,7 @@ public static class BankEndpoints
 
             return Results.NoContent();
         })
-        .WithName("DeleteBank");
+        .WithName("BankDelete");
     }
 
     public static void QueryEndpoints(WebApplication app)
@@ -105,7 +105,7 @@ public static class BankEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetBanks");
+        .WithName("BanksGetPaged");
 
 
         app.MapGet("/bank/get/{id}", async (Guid id,
@@ -126,6 +126,6 @@ public static class BankEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetBankById");
+        .WithName("BankGetById");
     }
 }

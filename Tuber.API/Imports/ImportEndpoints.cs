@@ -30,7 +30,7 @@ public static class ImportEndpoints
 
             return Results.Created($"/import/", apiResponse);
         })
-        .WithName("AddImport");
+        .WithName("ImportAdd");
     }
 
     public static void QueryEndpoints(WebApplication app)
@@ -53,6 +53,6 @@ public static class ImportEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetImportByBankAccountId");
+        .WithName("ImportGetByBankAccountId");
     }
 }

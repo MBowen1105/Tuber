@@ -33,7 +33,7 @@ public static class CategoryEndpoints
 
             return Results.Created($"/category/{apiResponse.CategoryId}", apiResponse);
         })
-        .WithName("AddCategory");
+        .WithName("CategoryAdd");
 
 
         app.MapPut("/Category/update", async (CategoryUpdateAPIRequest APIRequest,
@@ -55,7 +55,7 @@ public static class CategoryEndpoints
 
             return Results.Accepted($"/category/{apiResponse.CategoryId}", apiResponse);
         })
-        .WithName("UpdateCategory");
+        .WithName("CategoryUpdate");
 
 
 
@@ -73,8 +73,9 @@ public static class CategoryEndpoints
 
             return Results.NoContent();
         })
-        .WithName("DeleteCategory");
+        .WithName("CategoryDelete");
     }
+
     public static void QueryEndpoints(WebApplication app)
     {
         app.MapGet("/category/get", async (int pageNumber, int pageSize,
@@ -102,7 +103,7 @@ public static class CategoryEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetCategories");
+        .WithName("CategoriesGetPaged");
 
 
         //app.MapGet("/category/get/{id}", async (Guid id,

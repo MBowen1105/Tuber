@@ -36,7 +36,7 @@ public static class BankAccountEndpoints
 
         return Results.Ok(apiResponse);
     })
-    .WithName("GetBankAccounts");
+    .WithName("BankAccountsGetPaged");
     
         
     app.MapGet("/bankAccount/get/{id}", async(Guid id,
@@ -57,7 +57,7 @@ public static class BankAccountEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetBankAccountById");
+        .WithName("BankAccountGetById");
     }
 
 }

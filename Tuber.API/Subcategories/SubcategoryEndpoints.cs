@@ -32,7 +32,7 @@ public static class SubcategoryEndpoints
 
             return Results.Created($"/Subcategory/{apiResponse.SubcategoryId}", apiResponse);
         })
-        .WithName("AddSubcategory");
+        .WithName("SubcategoryAdd");
 
 
         //app.MapPut("/Subcategory/update", async (UpdateSubcategoryAPIRequest APIRequest,
@@ -103,7 +103,7 @@ public static class SubcategoryEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetSubcategories");
+        .WithName("SubcategoriesGetPaged");
 
 
         app.MapGet("/Subcategory/get/{id}", async (Guid id,
@@ -124,6 +124,6 @@ public static class SubcategoryEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetSubcategoryById");
+        .WithName("SubcategoryGetById");
     }
 }

@@ -34,7 +34,7 @@ public static class ImportTemplateEndpoints
 
             return Results.Ok(apiResponse);
         })
-        .WithName("GetImportTemplateById");
+        .WithName("ImportTemplateGetById");
 
 
         app.MapGet("/importTemplate/get", async (int pageNumber, int pageSize,
@@ -62,7 +62,7 @@ public static class ImportTemplateEndpoints
 
             return Results.Ok(apiResponse);
         })
-            .WithName("GetImportTemplates");
+            .WithName("ImportTemplatesGetPaged");
 
 
     }
