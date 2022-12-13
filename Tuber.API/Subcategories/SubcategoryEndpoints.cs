@@ -3,8 +3,8 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
-using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
-using Tuber.BLL.Subcategories.Queries.GetSubcategoryById;
+using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
+using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;
@@ -89,7 +89,7 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetSubcategoriesPagedQueryRequest
+            var queryResponse = await mediator.Send(new SubcategoriesGetPagedQueryRequest
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
@@ -99,7 +99,7 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetSubcategoriesPagedQueryResponse, GetSubcategoriesPagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<SubcategoriesGetPagedQueryResponse, SubcategoriesGetPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })
@@ -111,7 +111,7 @@ public static class SubcategoryEndpoints
             [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetSubcategoryByIdQueryRequest
+            var queryResponse = await mediator.Send(new SubcategoryGetByIdQueryRequest
             {
                 SubcategoryId = id
             });
@@ -120,7 +120,7 @@ public static class SubcategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetSubcategoryByIdQueryResponse, GetSubcategoryByIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<SubcategoryGetByIdQueryResponse, SubcategoryGetByIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

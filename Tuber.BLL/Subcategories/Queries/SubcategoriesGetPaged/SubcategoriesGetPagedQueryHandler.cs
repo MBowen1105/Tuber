@@ -1,28 +1,27 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Subcategories.Queries.GetSubcategoriesPaged
+namespace Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged
 {
-    public class GetSubcategoriesPagedQueryHandler : IRequestHandler<GetSubcategoriesPagedQueryRequest, GetSubcategoriesPagedQueryResponse>
+    public class SubcategoriesGetPagedQueryHandler : IRequestHandler<SubcategoriesGetPagedQueryRequest, SubcategoriesGetPagedQueryResponse>
     {
         private readonly ISubcategoryRetrievalService _subcategoryRetrievalService;
         private readonly IMapper _mapper;
 
-        public GetSubcategoriesPagedQueryHandler(ISubcategoryRetrievalService subcategoryRetrievalService, IMapper mapper)
+        public SubcategoriesGetPagedQueryHandler(ISubcategoryRetrievalService subcategoryRetrievalService, IMapper mapper)
         {
             _subcategoryRetrievalService = subcategoryRetrievalService;
             _mapper = mapper;
         }
 
-        public Task<GetSubcategoriesPagedQueryResponse> Handle(GetSubcategoriesPagedQueryRequest request, CancellationToken cancellationToken)
+        public Task<SubcategoriesGetPagedQueryResponse> Handle(SubcategoriesGetPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var serviceResult = _subcategoryRetrievalService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new GetSubcategoriesPagedQueryResponse
+            var response = new SubcategoriesGetPagedQueryResponse
             {
                 SubcategoryCount = serviceResult.Payload.Count,
                 Subcategories = _mapper.Map<List<Subcategory>, List<GetSubcategoriesPaged_Subcategory>>(serviceResult.Payload),

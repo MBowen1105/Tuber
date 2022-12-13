@@ -3,24 +3,24 @@ using MediatR;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Subcategories.Queries.GetSubcategoryById
+namespace Tuber.BLL.Subcategories.Queries.SubcategoryGetById
 {
-    public class GetSubcategoryByIdQueryHandler : IRequestHandler<GetSubcategoryByIdQueryRequest, GetSubcategoryByIdQueryResponse>
+    public class SubcategoryGetByIdQueryHandler : IRequestHandler<SubcategoryGetByIdQueryRequest, SubcategoryGetByIdQueryResponse>
     {
         private readonly ISubcategoryRetrievalService _subcategoryRetrieverService;
         private readonly IMapper _mapper;
 
-        public GetSubcategoryByIdQueryHandler(ISubcategoryRetrievalService subcategoryRetrieverService, IMapper mapper)
+        public SubcategoryGetByIdQueryHandler(ISubcategoryRetrievalService subcategoryRetrieverService, IMapper mapper)
         {
             _subcategoryRetrieverService = subcategoryRetrieverService;
             _mapper = mapper;
         }
 
-        public Task<GetSubcategoryByIdQueryResponse> Handle(GetSubcategoryByIdQueryRequest request, CancellationToken cancellationToken)
+        public Task<SubcategoryGetByIdQueryResponse> Handle(SubcategoryGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var serviceResult = _subcategoryRetrieverService.GetById(request.SubcategoryId);
 
-            var response = _mapper.Map<Subcategory, GetSubcategoryByIdQueryResponse>(serviceResult.Payload);
+            var response = _mapper.Map<Subcategory, SubcategoryGetByIdQueryResponse>(serviceResult.Payload);
 
             response.Exceptions = serviceResult.Exceptions;
 
