@@ -10,20 +10,21 @@ public class SubcategoryProfile : Profile
 {
     public SubcategoryProfile()
     {
-        CreateMap<SubcategoriesGetPagedQueryResponse, SubcategoriesGetPagedAPIResponse>();
-        CreateMap<Subcategory, GetSubcategoriesPaged_Subcategory>();
-
-        //  GetSubcategoryById
+        //  SubcategoryGetById
         CreateMap<Subcategory, SubcategoryGetByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
         CreateMap<SubcategoryGetByIdQueryResponse, SubcategoryGetByIdAPIResponse>();
 
-        //  AddSubcategory
+        //  SubcategoriesGetPaged
+        CreateMap<SubcategoriesGetPagedQueryResponse, SubcategoriesGetPagedAPIResponse>();
+        CreateMap<Subcategory, GetSubcategoriesPaged_Subcategory>();
+
+        //  SubcategoryAdd
         CreateMap<SubcategoryAddAPIRequest, SubcategoryAddCommandRequest>();
         CreateMap<SubcategoryAddCommandResponse, SubcategoryAddAPIResponse>();
 
-        //CreateMap<UpdateSubcategoryAPIRequest, UpdateSubcategoryCommandRequest>();
-        //CreateMap<UpdateSubcategoryCommandResponse, UpdateSubcategoryAPIResponse>();
+        //  TODO: SubcategoryUpdate
+        //  TODO: SubcategoryDelete
     }
 
 }

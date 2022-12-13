@@ -9,14 +9,15 @@ public class ImportProfile : Profile
 {
     public ImportProfile()
     {
-        //  API
-        CreateMap<ImportAddAPIRequest, ImportAddCommandRequest>();
-        CreateMap<ImportAddCommandResponse, ImportAddAPIResponse>();
-
+        //  ImportGetByBankAccountId
+        CreateMap<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>();
         CreateMap<Import, GetImportByBankAccountId_Import>()
             .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
-        CreateMap<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>();
+        //  ImportAdd
+        CreateMap<ImportAddAPIRequest, ImportAddCommandRequest>();
+        CreateMap<ImportAddCommandResponse, ImportAddAPIResponse>();
+
     }
 
 }

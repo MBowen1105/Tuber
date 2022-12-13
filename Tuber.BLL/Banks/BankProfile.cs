@@ -12,26 +12,28 @@ public class BankProfile : Profile
 {
     public BankProfile()
     {
-        //  API
+        //  BankGetById
+        CreateMap<BankGetByIdQueryResponse, BankGetByIdAPIResponse>();
+        CreateMap<Bank, BankGetByIdQueryResponse>()
+            .ForMember(dest => dest.Exceptions, act => act.Ignore());
+
+        //  BanksGetPaged
+        CreateMap<BankGetPagedQueryResponse, BankGetPagedAPIResponse>();
+        CreateMap<Bank, BankGetPaged_Bank>();
+
+        //  BankAdd
         CreateMap<BankAddAPIRequest, BankAddCommandRequest>();
         CreateMap<BankAddCommandResponse, BankAddAPIResponse>();
 
+        //  BankUpdate
         CreateMap<BankUpdateAPIRequest, BankUpdateCommandRequest>();
         CreateMap<BankUpdateCommandResponse, BankUpdateAPIResponse>();
 
-        CreateMap<BankGetByIdQueryResponse, BankGetByIdAPIResponse>();
+        //  TODO: BankDelete
 
-        CreateMap<BankGetPagedQueryResponse, BankGetPagedAPIResponse>();
-
+        //  WTF are these?
         CreateMap<ImportTemplate, BankGetById_ImportTemplate>();
-
-        //  GetBankById
         CreateMap<BankAccount, BankGetById_BankAccount>();
-        CreateMap<Bank, BankGetByIdQueryResponse>()
-            .ForMember(dest => dest.Exceptions, act => act.Ignore());
-        
-        //  GetBankPaged
-        CreateMap<Bank, BankGetPaged_Bank>();
         CreateMap<BankAccount, BankGetPaged_BankAccount>();
     }
 

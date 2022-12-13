@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Interfaces.BLL;
+﻿using Tuber.Domain.Exceptions;
+using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
@@ -15,6 +16,18 @@ public class CategoryRetrievalService : ICategoryRetrievalService
     public int CountPages(int pageSize)
     {
         return _categoryRepository.CountPages(pageSize);
+    }
+
+    public ServiceResult<Category> GetById(Guid categoryId)
+    {
+        var category = _categoryRepository.GetById(categoryId);
+
+        if (category.CategoryId == Guid.Empty)
+            return new ServiceResult<Category>(
+                payload: category,
+                exception: new CategoryDoesNotExistException(categoryId));
+
+        return new ServiceResult<Category>(category);
     }
 
     public ServiceResult<List<Category>> GetPaged(int pageNumber, int pageSize)

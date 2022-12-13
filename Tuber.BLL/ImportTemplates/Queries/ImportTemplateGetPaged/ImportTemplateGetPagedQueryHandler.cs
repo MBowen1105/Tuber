@@ -6,7 +6,7 @@ using Tuber.Domain.Models;
 
 namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged
 {
-    public class ImportTemplateGetPagedQueryHandler : IRequestHandler<ImportTemplateGetPagedQueryRequest, GetImportTemplatePagedQueryResponse>
+    public class ImportTemplateGetPagedQueryHandler : IRequestHandler<ImportTemplateGetPagedQueryRequest, ImportTemplateGetPagedQueryResponse>
     {
         private readonly IImportTemplateRetrievalService _ImportTemplateRetrievalService;
         private readonly IMapper _mapper;
@@ -17,12 +17,12 @@ namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged
             this._mapper = mapper;
         }
 
-        public Task<GetImportTemplatePagedQueryResponse> Handle(ImportTemplateGetPagedQueryRequest request, CancellationToken cancellationToken)
+        public Task<ImportTemplateGetPagedQueryResponse> Handle(ImportTemplateGetPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var ImportTemplateServiceResult = _ImportTemplateRetrievalService.GetPaged(
                 request.PageNumber, request.PageSize);
 
-            var response = new GetImportTemplatePagedQueryResponse
+            var response = new ImportTemplateGetPagedQueryResponse
             {
                 ImportTemplateCount = ImportTemplateServiceResult.Payload.Count,
                 ImportTemplates = _mapper.Map<List<ImportTemplate>, List<ImportTemplateGetPaged_ImportTemplate>>(ImportTemplateServiceResult.Payload),

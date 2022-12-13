@@ -9,12 +9,18 @@ public class BankAccountProfile : Profile
 {
     public BankAccountProfile()
     {
-        CreateMap<BankAccountGetPagedQueryResponse, BankAccountGetPagedAPIResponse>();
+        //  BankAccountGetById
         CreateMap<BankAccountGetByIdQueryResponse, BankAccountGetByIdAPIResponse>();
-
         CreateMap<BankAccount, BankAccountGetByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
+
+        //  BanksGetPaged
+        CreateMap<BankAccountGetPagedQueryResponse, BankAccountGetPagedAPIResponse>();
         CreateMap<BankAccount, BankAccountGetPaged_BankAccount>();
+
+        //  TODO: BankAccountAdd
+        //  TODO: BankAccountUpdate
+        //  TODO: BankAccountDelete
     }
 
 }

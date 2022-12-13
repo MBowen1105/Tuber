@@ -58,7 +58,7 @@ public static class ImportTemplateEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetImportTemplatePagedQueryResponse, ImportTemplateGetPagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<ImportTemplateGetPagedQueryResponse, ImportTemplateGetPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

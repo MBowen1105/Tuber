@@ -6,6 +6,8 @@ using Tuber.BLL.Categories.Commands.CategoryAdd;
 using Tuber.BLL.Categories.Commands.CategoryDelete;
 using Tuber.BLL.Categories.Commands.CategoryUpdate;
 using Tuber.BLL.Categories.Queries.CategoriesGetPaged;
+using Tuber.BLL.Categories.Queries.CategoryGetById;
+using Tuber.BLL.Categorys.Queries.CategoryGetById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;
@@ -106,24 +108,24 @@ public static class CategoryEndpoints
         .WithName("CategoriesGetPaged");
 
 
-        //app.MapGet("/category/get/{id}", async (Guid id,
-        //    [FromServices] IMediator mediator,
-        //    [FromServices] IMapper mapper) =>
-        //{
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(new GetCategoryByIdQueryRequest
-        //    {
-        //        CategoryId = id
-        //    });
+        app.MapGet("/category/get/{id}", async (Guid id,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new CategoryGetByIdQueryRequest
+            {
+                CategoryId = id
+            });
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    //  Map Handler response to API Response and return.
-        //    var apiResponse = mapper.Map<GetCategoryByIdQueryResponse, GetCategoryByIdAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<CategoryGetByIdQueryResponse, CategoryGetByIdAPIResponse>(queryResponse);
 
-        //    return Results.Ok(apiResponse);
-        //})
-        //.WithName("GetCategoryById");
+            return Results.Ok(apiResponse);
+        })
+        .WithName("CategoryGetById");
     }
 }
