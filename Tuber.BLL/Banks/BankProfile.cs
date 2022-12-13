@@ -3,7 +3,7 @@ using Tuber.BLL.Banks.Commands.AddBank;
 using Tuber.BLL.Banks.Commands.BankAdd;
 using Tuber.BLL.Banks.Commands.BankUpdate;
 using Tuber.BLL.Banks.Queries.BankGetById;
-using Tuber.BLL.Banks.Queries.GetBankPaged;
+using Tuber.BLL.Banks.Queries.BankGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
@@ -21,7 +21,7 @@ public class BankProfile : Profile
 
         CreateMap<BankGetByIdQueryResponse, BankGetByIdAPIResponse>();
 
-        CreateMap<GetBankPagedQueryResponse, GetBankPagedAPIResponse>();
+        CreateMap<BankGetPagedQueryResponse, BankGetPagedAPIResponse>();
 
         CreateMap<ImportTemplate, GetBankById_ImportTemplate>();
 
@@ -31,8 +31,8 @@ public class BankProfile : Profile
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
         
         //  GetBankPaged
-        CreateMap<Bank, GetBankPaged_Bank>();
-        CreateMap<BankAccount, GetBankPaged_BankAccount>();
+        CreateMap<Bank, BankGetPaged_Bank>();
+        CreateMap<BankAccount, BankGetPaged_BankAccount>();
     }
 
 }

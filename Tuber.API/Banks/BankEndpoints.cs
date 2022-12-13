@@ -7,7 +7,7 @@ using Tuber.BLL.Banks.Commands.BankAdd;
 using Tuber.BLL.Banks.Commands.BankDelete;
 using Tuber.BLL.Banks.Commands.BankUpdate;
 using Tuber.BLL.Banks.Queries.BankGetById;
-using Tuber.BLL.Banks.Queries.GetBankPaged;
+using Tuber.BLL.Banks.Queries.BankGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Banks;
@@ -91,7 +91,7 @@ public static class BankEndpoints
                 return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetBankPagedQueryRequest
+            var queryResponse = await mediator.Send(new BankGetPagedQueryRequest
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
@@ -101,7 +101,7 @@ public static class BankEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetBankPagedQueryResponse, GetBankPagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<BankGetPagedQueryResponse, BankGetPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

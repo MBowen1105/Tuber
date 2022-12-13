@@ -1,5 +1,5 @@
 ﻿namespace Tuber.Domain.Dtos;
-public class GetBankPaged_BankAccount
+public class BankGetPaged_BankAccount
 {
     public Guid BankAccountId { get; set; }
     public string? Name { get; set; } = "";

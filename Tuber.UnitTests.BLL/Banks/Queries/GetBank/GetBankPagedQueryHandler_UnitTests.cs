@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using Tuber.BLL.Banks.Queries.GetBankPaged;
+using Tuber.BLL.Banks.Queries.BankGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
@@ -10,7 +10,7 @@ namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
 internal class GetBankPagedQueryHandler_UnitTests
 {
     private Bank[] _bankArray;
-    private List<GetBankPaged_Bank> _bankDtoList;
+    private List<BankGetPaged_Bank> _bankDtoList;
 
     [SetUp]
     public void SetUp()
@@ -50,11 +50,11 @@ internal class GetBankPagedQueryHandler_UnitTests
             }
         };
 
-        _bankDtoList = new List<GetBankPaged_Bank>();
+        _bankDtoList = new List<BankGetPaged_Bank>();
 
         for (var i = 0; i < _bankArray.Length; i++)
         {
-            _bankDtoList.Add(new GetBankPaged_Bank
+            _bankDtoList.Add(new BankGetPaged_Bank
             {
                 BankId = _bankArray[i].BankId,
                 Name = _bankArray[i].Name!,
@@ -80,7 +80,7 @@ internal class GetBankPagedQueryHandler_UnitTests
         var mockMapper = new Mock<IMapper>();
         var subSet = _bankDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-        mockMapper.Setup(x => x.Map<List<Bank>, List<GetBankPaged_Bank>>(It.IsAny<List<Bank>>()))
+        mockMapper.Setup(x => x.Map<List<Bank>, List<BankGetPaged_Bank>>(It.IsAny<List<Bank>>()))
             .Returns(subSet);
 
         var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
@@ -88,9 +88,9 @@ internal class GetBankPagedQueryHandler_UnitTests
         mockBankRetrieverService.Setup(x => x.CountPages(pageSize))
             .Returns(totalPages);
 
-        var sut = new GetBankPagedQueryHandler(mockBankRetrieverService.Object, mockMapper.Object);
+        var sut = new BankGetPagedQueryHandler(mockBankRetrieverService.Object, mockMapper.Object);
 
-        var request = new GetBankPagedQueryRequest
+        var request = new BankGetPagedQueryRequest
         {
             PageNumber = pageNumber,
             PageSize = pageSize

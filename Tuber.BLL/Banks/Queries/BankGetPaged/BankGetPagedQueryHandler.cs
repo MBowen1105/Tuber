@@ -4,27 +4,27 @@ using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Banks.Queries.GetBankPaged
+namespace Tuber.BLL.Banks.Queries.BankGetPaged
 {
-    public class GetBankPagedQueryHandler : IRequestHandler<GetBankPagedQueryRequest, GetBankPagedQueryResponse>
+    public class BankGetPagedQueryHandler : IRequestHandler<BankGetPagedQueryRequest, BankGetPagedQueryResponse>
     {
         private readonly IBankRetrievalService _bankRetrievalService;
         private readonly IMapper _mapper;
 
-        public GetBankPagedQueryHandler(IBankRetrievalService bankRetrievalService, IMapper mapper)
+        public BankGetPagedQueryHandler(IBankRetrievalService bankRetrievalService, IMapper mapper)
         {
             _bankRetrievalService = bankRetrievalService;
             _mapper = mapper;
         }
 
-        public Task<GetBankPagedQueryResponse> Handle(GetBankPagedQueryRequest request, CancellationToken cancellationToken)
+        public Task<BankGetPagedQueryResponse> Handle(BankGetPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var serviceResult = _bankRetrievalService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new GetBankPagedQueryResponse
+            var response = new BankGetPagedQueryResponse
             {
                 BankCount = serviceResult.Payload.Count,
-                Banks = _mapper.Map<List<Bank>, List<GetBankPaged_Bank>>(serviceResult.Payload),
+                Banks = _mapper.Map<List<Bank>, List<BankGetPaged_Bank>>(serviceResult.Payload),
                 TotalPages = _bankRetrievalService.CountPages(request.PageSize)
             };
 
