@@ -4,24 +4,24 @@ using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Categories.Queries.GetCategoriesPaged
+namespace Tuber.BLL.Categories.Queries.CategoriesGetPaged
 {
-    public class GetCategoriesPagedQueryHandler : IRequestHandler<GetCategoriesPagedQueryRequest, GetCategoriesPagedQueryResponse>
+    public class CategoriesGetPagedQueryHandler : IRequestHandler<CategoriesGetPagedQueryRequest, CategoriesGetPagedQueryResponse>
     {
         private readonly ICategoryRetrievalService _categoryRetrievalService;
         private readonly IMapper _mapper;
 
-        public GetCategoriesPagedQueryHandler(ICategoryRetrievalService categoryRetrievalService, IMapper mapper)
+        public CategoriesGetPagedQueryHandler(ICategoryRetrievalService categoryRetrievalService, IMapper mapper)
         {
             _categoryRetrievalService = categoryRetrievalService;
             _mapper = mapper;
         }
 
-        public Task<GetCategoriesPagedQueryResponse> Handle(GetCategoriesPagedQueryRequest request, CancellationToken cancellationToken)
+        public Task<CategoriesGetPagedQueryResponse> Handle(CategoriesGetPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var serviceResult = _categoryRetrievalService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new GetCategoriesPagedQueryResponse
+            var response = new CategoriesGetPagedQueryResponse
             {
                 CategoryCount = serviceResult.Payload.Count,
                 Categories = _mapper.Map<List<Category>, List<GetCategoriesPaged_Category>>(serviceResult.Payload),

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Categories.Commands.CategoryAdd;
 using Tuber.BLL.Categories.Commands.CategoryUpdate;
-using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
+using Tuber.BLL.Categories.Queries.CategoriesGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
@@ -11,7 +11,7 @@ public class CategoryProfile : Profile
     public CategoryProfile()
     {
         //  GetCategoriesPaged
-        CreateMap<GetCategoriesPagedQueryResponse, GetCategoriesPagedAPIResponse>();
+        CreateMap<CategoriesGetPagedQueryResponse, CategoriesGetPagedAPIResponse>();
         CreateMap<Category, GetCategoriesPaged_Category>();
 
         //  AddCategory

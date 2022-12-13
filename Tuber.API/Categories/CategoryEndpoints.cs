@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Categories.Commands.CategoryAdd;
 using Tuber.BLL.Categories.Commands.CategoryDelete;
 using Tuber.BLL.Categories.Commands.CategoryUpdate;
-using Tuber.BLL.Categories.Queries.GetCategoriesPaged;
+using Tuber.BLL.Categories.Queries.CategoriesGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;
@@ -88,7 +88,7 @@ public static class CategoryEndpoints
                 return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetCategoriesPagedQueryRequest
+            var queryResponse = await mediator.Send(new CategoriesGetPagedQueryRequest
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
@@ -98,7 +98,7 @@ public static class CategoryEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetCategoriesPagedQueryResponse, GetCategoriesPagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<CategoriesGetPagedQueryResponse, CategoriesGetPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })
