@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Tuber.BLL.ImportTemplates.Queries.GetImportTemplatePaged;
 using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
@@ -12,7 +12,7 @@ public class ImportTemplateProfile : Profile
         CreateMap<ImportTemplate, ImportTemplateGetByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
         CreateMap<ImportTemplateGetByIdQueryResponse, ImportTemplateGetByIdAPIResponse>();
-        CreateMap<GetImportTemplatePagedQueryResponse, GetImportTemplatePagedAPIResponse>();
-        CreateMap<ImportTemplate, ImportTemplatePaged_ImportTemplate>();
+        CreateMap<GetImportTemplatePagedQueryResponse, ImportTemplateGetPagedAPIResponse>();
+        CreateMap<ImportTemplate, ImportTemplateGetPaged_ImportTemplate>();
     }
 }

@@ -2,8 +2,8 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.ImportTemplates.Queries.GetImportTemplatePaged;
 using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.ImportTemplates;
@@ -48,7 +48,7 @@ public static class ImportTemplateEndpoints
                 return Results.BadRequest(new InvalidPageSizeException(pageSize));
 
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new GetImportTemplatePagedQueryRequest
+            var queryResponse = await mediator.Send(new ImportTemplateGetPagedQueryRequest
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
@@ -58,7 +58,7 @@ public static class ImportTemplateEndpoints
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<GetImportTemplatePagedQueryResponse, GetImportTemplatePagedAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<GetImportTemplatePagedQueryResponse, ImportTemplateGetPagedAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })

@@ -1,5 +1,5 @@
 ﻿namespace Tuber.Domain.Dtos;
-public record ImportTemplatePaged_ImportTemplate
+public record ImportTemplateGetPaged_ImportTemplate
 {
     public Guid ImportTemplateId { get; set; }
     public string TemplateName { get; set; } = "";
