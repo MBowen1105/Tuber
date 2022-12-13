@@ -1,5 +1,5 @@
-﻿namespace Tuber.BLL.Categories.Commands.UpdateCategory;
-public class UpdateCategoryAPIRequest
+﻿namespace Tuber.BLL.Categories.Commands.CategoryUpdate;
+public class CategoryUpdateAPIRequest
 {
     public Guid CategoryId { get; set; }
 

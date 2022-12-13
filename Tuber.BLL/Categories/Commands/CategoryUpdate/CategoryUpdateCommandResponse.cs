@@ -1,8 +1,8 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Categories.Commands.UpdateCategory;
+namespace Tuber.BLL.Categories.Commands.CategoryUpdate;
 
-public class UpdateCategoryCommandResponse : CommandQueryResponseBase
+public class CategoryUpdateCommandResponse : CommandQueryResponseBase
 {
     public Guid CategoryId { get; init; }
     public string CategoryName { get; init; } = "";
