@@ -39,14 +39,14 @@ public static class BankAccountEndpoints
     .WithName("BankAccountsGetPaged");
     
         
-    app.MapGet("/bankAccount/get/{id}", async(Guid id,
+    app.MapGet("/bankAccount/get/{id}", async(Guid bankAccountId,
     [FromServices] IMediator mediator,
     [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(new BankAccountGetByIdQueryRequest
                 {
-                    BankAccountId = id
+                    BankAccountId = bankAccountId
                 });
 
             if (queryResponse.HasExceptions)

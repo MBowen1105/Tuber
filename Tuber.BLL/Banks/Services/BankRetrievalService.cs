@@ -5,7 +5,7 @@ using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks.Services;
-internal class BankRetrievalService : IBankRetrievalService
+public class BankRetrievalService : IBankRetrievalService
 {
     private readonly IBankRepository _bankRepository;
 

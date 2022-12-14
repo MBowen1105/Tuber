@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Banks;
 
-namespace Tuber.UnitTests.BLL.Mappings;
+namespace Tuber.UnitTests.BLL.Banks;
 internal class BankProfile_UnitTests
 {
     [Test, Parallelizable]
