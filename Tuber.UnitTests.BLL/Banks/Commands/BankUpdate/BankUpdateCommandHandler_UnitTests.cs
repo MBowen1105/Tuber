@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
+using Tuber.BLL.Banks.Commands.BankUpdate;
 using Tuber.BLL.Banks.Queries.BankGetPaged;
-using Tuber.Domain.Common;
+using Tuber.BLL.Banks.Services;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
+using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
-internal class GetBankPagedQueryHandler_UnitTests
+namespace Tuber.UnitTests.BLL.Banks.Commands.BankUpdate;
+internal class BankUpdateCommandHandler_UnitTests
 {
     private Bank[] _bankArray;
     private List<BankGetPaged_Bank> _bankDtoList;
@@ -65,49 +67,29 @@ internal class GetBankPagedQueryHandler_UnitTests
     }
 
     [Test]
-    [TestCase(1, 2, 10)]
-    [TestCase(2, 2, 30)]
-    [TestCase(1, 5, 10)]
-    public void GetBankPagedQueryHandler_ValidPayload_ReturnsValidResult(
-        int pageNumber, int pageSize, int orderBy)
+    public void BankUpdateCommandHandler_MissingBank_ReturnsInvalidResult()
     {
-        var pageOfBanks = new ArraySegment<Bank>(_bankArray, (pageNumber - 1) * pageSize, pageSize).ToList();
+        var mockBankRepository = new Mock<IBankRepository>();
 
-        var mockBankRetrieverService = new Mock<IBankRetrievalService>();
+        mockBankRepository.Setup(x => x.GetById(It.IsAny<Guid>()))
+            .Returns(new Bank());
 
-        mockBankRetrieverService.Setup(x => x.GetPaged(pageNumber, pageSize))
-            .Returns(new ServiceResult<List<Bank>>(payload: pageOfBanks));
+        var bankUpdatorService = new BankUpdaterService(mockBankRepository.Object);
 
-        var mockMapper = new Mock<IMapper>();
-        var subSet = _bankDtoList.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        var sut = new BankUpdateCommandHandler(bankUpdatorService);
 
-        mockMapper.Setup(x => x.Map<List<Bank>, List<BankGetPaged_Bank>>(It.IsAny<List<Bank>>()))
-            .Returns(subSet);
-
-        var totalPages = (int)Math.Ceiling(_bankArray.Count(x => x.IsDeleted == false) / (pageSize * 1.0));
-
-        mockBankRetrieverService.Setup(x => x.CountPages(pageSize))
-            .Returns(totalPages);
-
-        var sut = new BankGetPagedQueryHandler(mockBankRetrieverService.Object, mockMapper.Object);
-
-        var request = new BankGetPagedQueryRequest
+        var request = new BankUpdateCommandRequest
         {
-            PageNumber = pageNumber,
-            PageSize = pageSize
+            BankId = Guid.NewGuid(),
+            Name = "Test 123",
+            OrderBy = 88,
         };
 
         var result = sut.Handle(request, new CancellationToken());
 
-        //  Returned the correct number of bank rows (pageSize)
-        result.Result.BankCount.Should().Be(pageSize);
-
-        //  Returned no exceptions
-        result.Result.HasExceptions.Should().BeFalse();
-
-        //  The first item has the correct OrderBy - indicating that the paging is correct.
-        result.Result.Banks[0].OrderBy.Should().Be(orderBy);
-
-        result.Result.TotalPages.Should().Be(totalPages);
+        //  The bank to update does not exist, so should return one exception of
+        //  type "BankDoesNotExistsException()"
+        result.Result.HasExceptions.Should().BeTrue();
+        result.Result.Exceptions.Count.Should().Be(1);
     }
 }

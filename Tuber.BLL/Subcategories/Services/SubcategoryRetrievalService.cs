@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Exceptions;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
@@ -25,7 +26,7 @@ public class SubcategoryRetrievalService : ISubcategoryRetrievalService
         if (subcategory.SubcategoryId == Guid.Empty)
             return new ServiceResult<Subcategory>(
                 payload: subcategory,
-                exception: new SubcategoryDoesNotExistException(subcategoryId));
+                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
 
         return new ServiceResult<Subcategory>(subcategory);
     }

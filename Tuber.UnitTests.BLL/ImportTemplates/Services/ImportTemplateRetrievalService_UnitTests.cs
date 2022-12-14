@@ -36,7 +36,7 @@ internal class ImportTemplateRetrievalService_UnitTests
         serviceResult.Payload.Should().Be(nullImportTemplate);
         serviceResult.Exceptions.Count.Should().Be(1);
         var firstException = serviceResult.Exceptions.First();
-        firstException.Message.Should().Be(new ImportTemplateDoesNotExistException(badId).Message);
+        firstException.Message.Should().Be(new EntityDoesNotExistException(ImportTemplate.FriendlyName, badId).Message);
     }
 
     [Test]

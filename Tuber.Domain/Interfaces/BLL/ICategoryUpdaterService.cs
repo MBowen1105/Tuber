@@ -1,9 +1,10 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Interfaces.BLL;
 public interface ICategoryUpdaterService
 {
-    Category Add(string categoryName);
-    Category Update(Guid id, string categoryName);
-    int Delete(Guid categoryId);
+    ServiceResult<Category> Add(string categoryName);
+    ServiceResult<Category> Update(Guid id, string categoryName);
+    ServiceResult<int> Delete(Guid categoryId);
 }

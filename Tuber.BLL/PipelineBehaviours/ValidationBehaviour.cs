@@ -15,7 +15,7 @@ public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TReque
 
     public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
-        var context = new FluentValidation.ValidationContext<TRequest>(request);
+        var context = new ValidationContext<TRequest>(request);
 
         var validationFailures = _validators
             .Select(x => x.Validate(context))

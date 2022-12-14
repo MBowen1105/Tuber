@@ -1,9 +1,10 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Interfaces.BLL;
 public interface ISubcategoryUpdaterService
 {
-    Subcategory Add(string subcategoryName);
-    Subcategory Update(Guid subcategoryId, string subcategoryName);
-    int Delete(Guid subcategoryId);
+    ServiceResult<Subcategory> Add(string subcategoryName);
+    ServiceResult<Subcategory> Update(Guid subcategoryId, string subcategoryName);
+    ServiceResult<int> Delete(Guid subcategoryId);
 }

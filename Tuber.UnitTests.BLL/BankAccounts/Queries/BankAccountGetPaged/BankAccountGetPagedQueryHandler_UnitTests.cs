@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Moq;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Domain.Common;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;

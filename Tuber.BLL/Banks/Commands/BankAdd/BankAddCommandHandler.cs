@@ -15,13 +15,13 @@ public class BankAddCommandHandler : IRequestHandler<BankAddCommandRequest, Bank
 
     public Task<BankAddCommandResponse> Handle(BankAddCommandRequest request, CancellationToken cancellationToken)
     {
-        var bankModel = _bankUpdaterService.Add(request.Name, request.OrderBy);
+        var serviceResult = _bankUpdaterService.Add(request.Name, request.OrderBy);
 
         return Task.FromResult(new BankAddCommandResponse
         {
-            BankId = bankModel.BankId,
-            BankName = bankModel.Name!,
-            OrderBy = bankModel.OrderBy,
+            BankId = serviceResult.Payload.BankId,
+            BankName = serviceResult.Payload.Name!,
+            OrderBy = serviceResult.Payload.OrderBy,
         });
     }
 }

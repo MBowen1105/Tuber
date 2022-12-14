@@ -3,6 +3,8 @@
 namespace Tuber.Domain.Models;
 public class BankAccount : AuditableEntity
 {
+    public static readonly string FriendlyName = "Bank Account";
+
     public BankAccount()
     {
         BankAccountId = Guid.Empty;

@@ -1,8 +1,8 @@
-﻿using Tuber.Domain.Exceptions;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
-using Tuber.Domain.ValueObjects;
 
 namespace Tuber.BLL.Banks.Services;
 internal class BankRetrievalService : IBankRetrievalService
@@ -21,7 +21,7 @@ internal class BankRetrievalService : IBankRetrievalService
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
                 payload: bank,
-                exception: new BankAccountDoesNotExistException(bankId));
+                exception: new EntityDoesNotExistException(Bank.FriendlyName, bankId));
 
         return new ServiceResult<Bank>(bank);
     }

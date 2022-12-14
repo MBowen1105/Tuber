@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Exceptions;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
@@ -26,7 +27,7 @@ public class ImportTemplateRetrievalService : IImportTemplateRetrievalService
         if (importTemplate.ImportTemplateId == Guid.Empty)
             return new ServiceResult<ImportTemplate>(
                 importTemplate, 
-                new ImportTemplateDoesNotExistException(id));
+                new EntityDoesNotExistException(ImportTemplate.FriendlyName, id));
 
         return new ServiceResult<ImportTemplate>(payload: importTemplate);
     }

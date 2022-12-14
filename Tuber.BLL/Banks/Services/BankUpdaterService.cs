@@ -1,9 +1,11 @@
-﻿using Tuber.Domain.Interfaces.BLL;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
+using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks.Services;
-internal class BankUpdaterService : IBankUpdaterService
+public class BankUpdaterService : IBankUpdaterService
 {
     private readonly IBankRepository _bankRepo;
 
@@ -12,44 +14,58 @@ internal class BankUpdaterService : IBankUpdaterService
         _bankRepo = bankRepo;
     }
 
-    public Bank Add(string name, int orderBy)
+    public ServiceResult<Bank> Add(string name, int orderBy)
     {
-        var bankModel = _bankRepo.Add(new Bank
+        var bank = new Bank
         {
             Name = name,
             OrderBy = orderBy
-        });
+        };
+
+        bank = _bankRepo.Add(bank);
+
+        if (bank.BankId == Guid.Empty)
+            return new ServiceResult<Bank>(
+                payload: bank,
+                exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bank.Name));
 
         _bankRepo.SaveChanges();
 
-        return bankModel;
+        return new ServiceResult<Bank>(payload: bank);
     }
 
-    public Bank Update(Guid id, string name, int orderBy)
+    public ServiceResult<Bank> Update(Guid bankId, string name, int orderBy)
     {
-        var bankModel = _bankRepo.Update(new Bank
+        var bank = new Bank
         {
-            BankId = id,
+            BankId = bankId,
             Name = name,
             OrderBy = orderBy
-        });
+        };
+        
+        bank = _bankRepo.Update(bank);
+
+        if (bank.BankId == Guid.Empty)
+            return new ServiceResult<Bank>(
+                payload: bank,
+                exception: new EntityDoesNotExistException(Bank.FriendlyName, bank.BankId));
 
         _bankRepo.SaveChanges();
 
-        return bankModel;
+        return new ServiceResult<Bank>(payload: bank);
     }
 
-    public int Delete(Guid id)
+    public ServiceResult<int> Delete(Guid bankId)
     {
-        var bankModel = _bankRepo.GetById(id);
+        var bank = _bankRepo.Delete(bankId);
 
-        if (bankModel.BankId == Guid.Empty)
-            return 0;
-
-        var result = _bankRepo.Delete(id);
+        if (bank == 0)
+            return new ServiceResult<int>(
+                payload: 0,
+                exception: new EntityDoesNotExistException(Bank.FriendlyName, bankId));
 
         _bankRepo.SaveChanges();
 
-        return result;
+        return new ServiceResult<int>(payload: 0);
     }
 }

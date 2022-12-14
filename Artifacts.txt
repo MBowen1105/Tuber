@@ -1,0 +1,33 @@
+Repositories:
+-------------
+
+GetById:
+	Returns the specified Model, or a null Model if it does not exist
+GetPaged:
+	Returns a List of Models, or an empty list
+Add:
+	Returns the Model added, or a null Model
+Update:
+	Returns the Model updated, or a null Model
+Delete:
+	Returns 1 (successfull) or 0 (unsuccessfull)
+
+
+Services:
+---------
+
+GetById:
+	Exists = Returns a ServiceResult<Model> and an empty ExceptionList.
+	Not Exists = The Model returned is a Null Model and a List of Exceptions
+
+GetPaged:
+	Returns a ServiceResult<List<Model>>. The List may be empty.
+
+Add:
+	Successful = Returns a ServiceResult<Model> and an empty ExceptionList.
+	SUnsccessful = The Model returned is a Null Model and a List of Exceptions
+
+Handlers:
+---------
+
+Handlers call services and return responses taken directly from the serviceResult

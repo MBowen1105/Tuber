@@ -22,14 +22,12 @@ namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged
             var ImportTemplateServiceResult = _ImportTemplateRetrievalService.GetPaged(
                 request.PageNumber, request.PageSize);
 
-            var response = new ImportTemplateGetPagedQueryResponse
+            return Task.FromResult(new ImportTemplateGetPagedQueryResponse
             {
                 ImportTemplateCount = ImportTemplateServiceResult.Payload.Count,
                 ImportTemplates = _mapper.Map<List<ImportTemplate>, List<ImportTemplateGetPaged_ImportTemplate>>(ImportTemplateServiceResult.Payload),
                 TotalPages = _ImportTemplateRetrievalService.CountPages(request.PageSize)
-            };
-
-            return Task.FromResult(response);
+            });
         }
     }
 }

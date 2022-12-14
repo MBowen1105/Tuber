@@ -1,4 +1,6 @@
-﻿using Tuber.Domain.Interfaces.BLL;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
+using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
@@ -12,44 +14,55 @@ public class SubcategoryUpdaterService : ISubcategoryUpdaterService
         _subcategoryRepo = subcategoryRepo;
     }
 
-    public Subcategory Add(string subcategoryName)
+    public ServiceResult<Subcategory> Add(string subcategoryName)
     {
-        var subcategoryModel = _subcategoryRepo.Add(new Subcategory
+        var subcategory = new Subcategory
         {
             SubcategoryName = subcategoryName,
-        });
+        };
+
+        subcategory = _subcategoryRepo.Add(subcategory);
+
+        if (subcategory.SubcategoryId == Guid.Empty)
+            return new ServiceResult<Subcategory>(
+                payload: subcategory,
+                exception: new EntityAlreadyExistsException(Subcategory.FriendlyName, "Name", subcategory.SubcategoryName));
 
         _subcategoryRepo.SaveChanges();
 
-        subcategoryModel = _subcategoryRepo.GetById(subcategoryModel.SubcategoryId);
-
-        return subcategoryModel;
+        return new ServiceResult<Subcategory>(payload: subcategory);
     }
 
-    public int Delete(Guid subcategoryId)
+    public ServiceResult<int> Delete(Guid subcategoryId)
     {
-        var subcategoryModel = _subcategoryRepo.GetById(subcategoryId);
+        var subcategory = _subcategoryRepo.Delete(subcategoryId);
 
-        if (subcategoryModel.SubcategoryId == Guid.Empty)
-            return 0;
-
-        var result = _subcategoryRepo.Delete(subcategoryId);
+        if (subcategory == 0)
+            return new ServiceResult<int>(
+                payload: 0,
+                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
 
         _subcategoryRepo.SaveChanges();
 
-        return result;
+        return new ServiceResult<int>(0);
     }
 
-    public Subcategory Update(Guid subcategoryId, string SubcategoryName)
+    public ServiceResult<Subcategory> Update(Guid subcategoryId, string SubcategoryName)
     {
-        var subcategoryModel = _subcategoryRepo.Update(new Subcategory
+        var subcategory = new Subcategory
         {
             SubcategoryId = subcategoryId,
             SubcategoryName = SubcategoryName,
-        });
+        };
+
+        subcategory = _subcategoryRepo.Update(subcategory);
+        if (subcategory.SubcategoryId == Guid.Empty)
+            return new ServiceResult<Subcategory>(
+                payload: subcategory,
+                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategory.SubcategoryId));
 
         _subcategoryRepo.SaveChanges();
 
-        return subcategoryModel;
+        return new ServiceResult<Subcategory>(subcategory);
     }
 }

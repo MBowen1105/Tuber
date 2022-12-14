@@ -3,10 +3,6 @@ using MediatR;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-
-
-
-
 namespace Tuber.BLL.Categories.Queries.CategoryGetById
 {
     public class CategoryGetByIdQueryHandler : IRequestHandler<CategoryGetByIdQueryRequest, CategoryGetByIdQueryResponse>

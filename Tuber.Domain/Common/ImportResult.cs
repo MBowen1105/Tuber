@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Models;
+﻿namespace Tuber.Domain.Common;
 public class ImportResult
 {
     public int TotalRowCount { get; set; } = 0;

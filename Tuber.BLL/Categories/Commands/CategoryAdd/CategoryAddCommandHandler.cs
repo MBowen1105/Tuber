@@ -14,12 +14,13 @@ public class CategoryAddCommandHandler : IRequestHandler<CategoryAddCommandReque
 
     public Task<CategoryAddCommandResponse> Handle(CategoryAddCommandRequest request, CancellationToken cancellationToken)
     {
-        var categoryModel = _CategoryUpdaterService.Add(request.CategoryName);
+        var serviceResult = _CategoryUpdaterService.Add(request.CategoryName);
 
         return Task.FromResult(new CategoryAddCommandResponse
         {
-            CategoryId = categoryModel.CategoryId,
-            CategoryName = categoryModel.CategoryName,
+            CategoryId = serviceResult.Payload.CategoryId,
+            CategoryName = serviceResult.Payload.CategoryName,
+            Exceptions = serviceResult.Exceptions,
         });
     }
 }

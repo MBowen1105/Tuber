@@ -1,39 +1,30 @@
 ﻿using MediatR;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL.Banks.Commands.BankUpdate
 {
     public class BankUpdateCommandHandler : IRequestHandler<BankUpdateCommandRequest, BankUpdateCommandResponse>
     {
-        private readonly IBankRepository _bankRepo;
+        private readonly IBankUpdaterService _bankUpdaterService;
 
-        public BankUpdateCommandHandler(IBankRepository bankRepo)
+        public BankUpdateCommandHandler(IBankUpdaterService bankUpdaterService)
         {
-            _bankRepo = bankRepo;
+            _bankUpdaterService = bankUpdaterService;
         }
 
         public Task<BankUpdateCommandResponse> Handle(BankUpdateCommandRequest request, CancellationToken cancellationToken)
         {
-            var bank = _bankRepo.Update(new Bank
-            {
-                BankId = request.Id,
-                Name = request.Name,
-                OrderBy = request.OrderBy
-            });
-
-            _bankRepo.SaveChanges();
+            var serviceResult = _bankUpdaterService.Update(
+                bankId: request.BankId,
+                name: request.Name,
+                orderBy: request.OrderBy);
 
             return Task.FromResult(new BankUpdateCommandResponse
             {
-                Id = bank.BankId,
-                Name = bank.Name!,
-                OrderBy = bank.OrderBy,
-                CreatedByUserName = bank.CreatedByUser!.FullName,
-                CreatedOnUtc = bank.CreatedOnUtc,
-                UpdatedByUserName = bank.UpdatedByUser!.FullName!,
-                UpdatedOnUtc = bank.UpdatedOnUtc
-
+                Id = serviceResult.Payload.BankId,
+                Name = serviceResult.Payload.Name,
+                OrderBy = serviceResult.Payload.OrderBy,
+                Exceptions = serviceResult.Exceptions,
             });
         }
     }

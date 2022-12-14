@@ -3,6 +3,8 @@
 namespace Tuber.Domain.Models;
 public class Import
 {
+    public static readonly string FriendlyName = "Import";
+
     public Guid ImportId { get; set; }
     public Guid BankAccountId { get; set; }
     public int ImportRowNumber { get; set; }

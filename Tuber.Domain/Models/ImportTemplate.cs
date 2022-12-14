@@ -3,6 +3,8 @@
 namespace Tuber.Domain.Models;
 public class ImportTemplate : AuditableEntity
 {
+    public static readonly string FriendlyName = "Import Template";
+
     public ImportTemplate()
     {
         ImportTemplateId = Guid.Empty;

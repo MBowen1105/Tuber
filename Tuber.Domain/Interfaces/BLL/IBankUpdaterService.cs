@@ -1,9 +1,10 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Interfaces.BLL;
 public interface IBankUpdaterService
 {
-    Bank Add(string name, int orderBy);
-    Bank Update(Guid id, string name, int orderBy);
-    int Delete(Guid id);
+    ServiceResult<Bank> Add(string name, int orderBy);
+    ServiceResult<Bank> Update(Guid bankId, string name, int orderBy);
+    ServiceResult<int> Delete(Guid bankId);
 }

@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Exceptions;
+﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
@@ -25,7 +26,7 @@ public class CategoryRetrievalService : ICategoryRetrievalService
         if (category.CategoryId == Guid.Empty)
             return new ServiceResult<Category>(
                 payload: category,
-                exception: new CategoryDoesNotExistException(categoryId));
+                exception: new EntityDoesNotExistException(Category.FriendlyName, categoryId));
 
         return new ServiceResult<Category>(category);
     }

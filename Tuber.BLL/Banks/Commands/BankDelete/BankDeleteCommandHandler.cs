@@ -15,12 +15,12 @@ namespace Tuber.BLL.Banks.Commands.BankDelete
 
         public Task<BankDeleteCommandResponse> Handle(BankDeleteCommandRequest request, CancellationToken cancellationToken)
         {
-            var result = _bankUpdaterService.Delete(request.Id);
+            var serviceResult = _bankUpdaterService.Delete(request.Id);
 
             return Task.FromResult(new BankDeleteCommandResponse
             {
-                DeletedCount = result,
-                Exceptions = (result == 0)
+                DeletedCount = serviceResult.Payload,
+                Exceptions = (serviceResult.Payload == 0)
                     ? new List<Exception>
                         {
                                 new EntityToDeleteDoesNotExistException("Banks", request.Id)

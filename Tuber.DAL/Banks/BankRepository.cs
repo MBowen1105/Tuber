@@ -21,6 +21,7 @@ public class BankRepository : IBankRepository
         }
         catch (Exception)
         {
+            //  Return a null Bank object
             bank = new Bank();
         }
         return bank;
@@ -42,28 +43,24 @@ public class BankRepository : IBankRepository
         return bankModel;
     }
 
-    public int Delete(Guid id)
+    public int Delete(Guid bankId)
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
-            .FirstOrDefault(x => x.BankId == id && x.IsDeleted == false);
+            .FirstOrDefault(x => x.BankId == bankId && x.IsDeleted == false);
 
         if (bank == null)
             return 0;
 
         bank.IsDeleted = true;
 
+        //  Soft Delete all associated bank accounts
         foreach (var bankAccount in bank.BankAccounts!)
         {
             bankAccount.IsDeleted = true;
         }
 
         return 1;
-    }
-
-    public int SaveChanges()
-    {
-        return _context.SaveChanges();
     }
 
     #endregion
@@ -84,7 +81,7 @@ public class BankRepository : IBankRepository
 
     public List<Bank> GetPaged(int pageNumber, int pageSize)
     {
-        var l = _context.Banks
+        return _context.Banks
             .Include(x => x.BankAccounts)
                 .Where(x => x.IsDeleted == false)
             .Include(x => x.CreatedByUser)
@@ -95,7 +92,6 @@ public class BankRepository : IBankRepository
             .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
-        return l;
     }
 
     public int CountPages(int pageSize)
@@ -109,4 +105,9 @@ public class BankRepository : IBankRepository
     }
 
     #endregion
+
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
+    }
 }

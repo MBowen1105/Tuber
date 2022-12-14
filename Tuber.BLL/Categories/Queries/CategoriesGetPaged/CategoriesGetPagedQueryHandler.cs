@@ -21,14 +21,12 @@ namespace Tuber.BLL.Categories.Queries.CategoriesGetPaged
         {
             var serviceResult = _categoryRetrievalService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new CategoriesGetPagedQueryResponse
+            return Task.FromResult(new CategoriesGetPagedQueryResponse
             {
                 CategoryCount = serviceResult.Payload.Count,
                 Categories = _mapper.Map<List<Category>, List<GetCategoriesPaged_Category>>(serviceResult.Payload),
                 TotalPages = _categoryRetrievalService.CountPages(request.PageSize)
-            };
-
-            return Task.FromResult(response);
+            });
         }
     }
 }
