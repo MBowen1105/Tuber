@@ -1,4 +1,4 @@
-﻿namespace Tuber.UnitTests.DAL.Repositories;
+﻿namespace Tuber.UnitTests.DAL.BankAccounts;
 internal class BankRepository_UnitTests
 {
     [SetUp]

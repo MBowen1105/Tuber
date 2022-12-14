@@ -104,6 +104,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
         var result = sut.Handle(request, new CancellationToken());
 
         //  Returned the correct bank account record
+        //result.Result.Should().BeEquivalentTo(firstRecord);
         result.Result.BankAccountId.Should().Be(firstRecord.BankAccountId);
         result.Result.Name.Should().Be(firstRecord.Name);
         result.Result.OrderBy.Should().Be(firstRecord.OrderBy);
