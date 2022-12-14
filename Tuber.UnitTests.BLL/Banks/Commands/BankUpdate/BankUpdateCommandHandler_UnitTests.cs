@@ -71,7 +71,7 @@ internal class BankUpdateCommandHandler_UnitTests
     {
         var mockBankRepository = new Mock<IBankRepository>();
 
-        mockBankRepository.Setup(x => x.GetById(It.IsAny<Guid>()))
+        mockBankRepository.Setup(x => x.Update(It.IsAny<Bank>()))
             .Returns(new Bank());
 
         var bankUpdatorService = new BankUpdaterService(mockBankRepository.Object);
@@ -85,11 +85,11 @@ internal class BankUpdateCommandHandler_UnitTests
             OrderBy = 88,
         };
 
-        var result = sut.Handle(request, new CancellationToken());
+        var bankUpdateCommandResponse = sut.Handle(request, new CancellationToken());
 
         //  The bank to update does not exist, so should return one exception of
         //  type "BankDoesNotExistsException()"
-        result.Result.HasExceptions.Should().BeTrue();
-        result.Result.Exceptions.Count.Should().Be(1);
+        bankUpdateCommandResponse.Result.HasExceptions.Should().BeTrue();
+        bankUpdateCommandResponse.Result.Exceptions.Count.Should().Be(1);
     }
 }

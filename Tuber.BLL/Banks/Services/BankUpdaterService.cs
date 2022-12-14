@@ -36,14 +36,12 @@ public class BankUpdaterService : IBankUpdaterService
 
     public ServiceResult<Bank> Update(Guid bankId, string name, int orderBy)
     {
-        var bank = new Bank
+        var bank = _bankRepo.Update(new Bank
         {
             BankId = bankId,
             Name = name,
             OrderBy = orderBy
-        };
-        
-        bank = _bankRepo.Update(bank);
+        });
 
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
