@@ -151,5 +151,29 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(0);
     }
 
+    [Test, Parallelizable]
+    [TestCase("2022/1/1")]
+    [TestCase("20220101")]
+    [TestCase("2022-13-01")]
+    [TestCase("2022-04-31")]
+    [TestCase("2022-13-01")]
+    public void Validate_InvalidDateValues_ReturnsImportListWithValidationFailureMessages(
+        string invalidDateValue)
+    {
+        string[] allRows = {
+            "Date,Description,Type,Money In, Money Out, Balance",
+            $"{invalidDateValue},M&S BANK,DD,,176.24,255.17" };
+
+        var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
+            suggestCategorisation: false, allRows);
+
+        var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
+        messages.Should().HaveCount(1);
+        messages[0].Should().Contain($"Transaction Date is invalid. Must be of the format {_importTemplate.DateTemplate}.");
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.Exceptions.Count.Should().Be(0);
+    }
+
     #endregion
 }
