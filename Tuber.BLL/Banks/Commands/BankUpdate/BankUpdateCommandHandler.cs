@@ -22,7 +22,7 @@ namespace Tuber.BLL.Banks.Commands.BankUpdate
             return Task.FromResult(new BankUpdateCommandResponse
             {
                 Id = serviceResult.Payload.BankId,
-                Name = serviceResult.Payload.Name,
+                Name = serviceResult.Payload.BankName,
                 OrderBy = serviceResult.Payload.OrderBy,
                 Exceptions = serviceResult.Exceptions,
             });

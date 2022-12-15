@@ -13,7 +13,7 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
 
         builder.HasOne(x => x.UpdatedByUser);
 
-        builder.Property(x => x.Name)
+        builder.Property(x => x.BankAccountName)
             .IsRequired()
             .HasMaxLength(40);
 

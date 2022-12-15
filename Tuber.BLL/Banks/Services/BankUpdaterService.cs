@@ -18,7 +18,7 @@ public class BankUpdaterService : IBankUpdaterService
     {
         var bank = new Bank
         {
-            Name = name,
+            BankName = name,
             OrderBy = orderBy
         };
 
@@ -27,7 +27,7 @@ public class BankUpdaterService : IBankUpdaterService
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
                 payload: bank,
-                exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bank.Name));
+                exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bank.BankName));
 
         _bankRepo.SaveChanges();
 
@@ -39,7 +39,7 @@ public class BankUpdaterService : IBankUpdaterService
         var bank = _bankRepo.Update(new Bank
         {
             BankId = bankId,
-            Name = name,
+            BankName = name,
             OrderBy = orderBy
         });
 

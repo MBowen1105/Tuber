@@ -24,7 +24,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 1",
+                 BankAccountName = "Bank Account 1",
                  UKBankAccount = "12345678",
                  BankId = Guid.NewGuid(),
                  OrderBy = 10,
@@ -33,7 +33,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 2",
+                 BankAccountName = "Bank Account 2",
                  UKBankAccount = "12345678",
                  BankId = Guid.NewGuid(),
                  OrderBy = 20,
@@ -42,7 +42,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 3",
+                 BankAccountName = "Bank Account 3",
                  UKBankAccount = "12345678",
                  BankId = Guid.NewGuid(),
                  OrderBy = 30,
@@ -51,7 +51,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 4",
+                 BankAccountName = "Bank Account 4",
                  UKBankAccount = "12345678",
                  BankId = Guid.NewGuid(),
                  OrderBy = 40,
@@ -60,7 +60,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Deleted Bank Account",
+                 BankAccountName = "Deleted Bank Account",
                  UKBankAccount = "12345678",
                  BankId = Guid.NewGuid(),
                  OrderBy = 99,
@@ -75,7 +75,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
             _bankAccountList.Add(new BankAccount
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
-                Name = _bankAccountArray[i].Name!,
+                BankAccountName = _bankAccountArray[i].BankAccountName!,
                 UKBankAccount = "12345678",
                 OrderBy = _bankAccountArray[i].OrderBy
             });
@@ -106,7 +106,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
         //  Returned the correct bank account record
         //result.Result.Should().BeEquivalentTo(firstRecord);
         result.Result.BankAccountId.Should().Be(firstRecord.BankAccountId);
-        result.Result.Name.Should().Be(firstRecord.Name);
+        result.Result.BankAccountName.Should().Be(firstRecord.BankAccountName);
         result.Result.OrderBy.Should().Be(firstRecord.OrderBy);
 
         //  Returned no exceptions
@@ -135,7 +135,7 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
 
         //  Returned a null bank account record
         result.Result.BankAccountId.Should().Be(Guid.Empty);
-        result.Result.Name.Should().Be("");
+        result.Result.BankAccountName.Should().Be("");
         result.Result.UKBankAccount.Should().Be("");
         result.Result.OrderBy.Should().Be(int.MaxValue);
         result.Result.BankId.Should().Be(Guid.Empty);

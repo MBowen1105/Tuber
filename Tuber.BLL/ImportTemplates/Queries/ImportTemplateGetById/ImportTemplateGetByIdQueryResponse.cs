@@ -6,7 +6,7 @@ public class ImportTemplateGetByIdQueryResponse : CommandQueryResponseBase
     public ImportTemplateGetByIdQueryResponse()
     {
         ImportTemplateId = Guid.Empty;
-        TemplateName = "";
+        ImportTemplateName = "";
         ImportFileName = "";
         ExpectedHeaderRowCount = 0;
         ExpectedColumnCount = 0;
@@ -21,7 +21,7 @@ public class ImportTemplateGetByIdQueryResponse : CommandQueryResponseBase
         AccountNumberColumnNumber = 0;
     }
     public Guid ImportTemplateId { get; init; }
-    public string TemplateName { get; init; }
+    public string ImportTemplateName { get; init; }
     public string ImportFileName { get; set; }
     public int ExpectedHeaderRowCount { get; set; }
     public int ExpectedColumnCount { get; set; }

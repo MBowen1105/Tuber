@@ -37,7 +37,7 @@ public class BankRepository : IBankRepository
         if (bankModel is null)
             return new Bank();
 
-        bankModel.Name = bank.Name;
+        bankModel.BankName = bank.BankName;
         bankModel.OrderBy = bank.OrderBy;
 
         return bankModel;

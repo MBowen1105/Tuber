@@ -21,35 +21,35 @@ internal class BankAccountGetPagedQueryHandler_UnitTests
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 1",
+                 BankAccountName = "Bank Account 1",
                  OrderBy = 10,
                  IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 2",
+                 BankAccountName = "Bank Account 2",
                  OrderBy = 20,
                  IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 3",
+                 BankAccountName = "Bank Account 3",
                  OrderBy = 30,
                  IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Bank Account 4",
+                 BankAccountName = "Bank Account 4",
                  OrderBy = 40,
                  IsDeleted = true
             },
             new BankAccount
             {
                  BankAccountId = Guid.NewGuid(),
-                 Name = "Deleted Bank Account",
+                 BankAccountName = "Deleted Bank Account",
                  OrderBy = 99,
                  IsDeleted = false
             }
@@ -62,7 +62,7 @@ internal class BankAccountGetPagedQueryHandler_UnitTests
             _bankAccountDtoList.Add(new BankAccountGetPaged_BankAccount
             {
                 BankAccountId = _bankAccountArray[i].BankAccountId,
-                Name = _bankAccountArray[i].Name!,
+                BankAccountName = _bankAccountArray[i].BankAccountName!,
                 OrderBy = _bankAccountArray[i].OrderBy
             });
         }

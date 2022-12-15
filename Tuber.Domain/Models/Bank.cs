@@ -8,7 +8,7 @@ public class Bank : AuditableEntity
     public Bank()
     {
         BankId = Guid.Empty;
-        Name = "";
+        BankName = "";
         OrderBy = int.MaxValue;
         ImportTemplateId = null;
         IsDeleted = false;       
@@ -17,7 +17,7 @@ public class Bank : AuditableEntity
     }
 
     public Guid BankId { get; set; }
-    public string Name { get; set; }
+    public string BankName { get; set; }
     public int OrderBy { get; set; }
     public Guid? ImportTemplateId { get; set; }
     public bool IsDeleted { get; set; }

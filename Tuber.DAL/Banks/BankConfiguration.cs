@@ -15,7 +15,7 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
 
         builder.HasOne(x => x.UpdatedByUser);
 
-        builder.Property(x => x.Name)
+        builder.Property(x => x.BankName)
             .IsRequired()
             .HasMaxLength(40);
 

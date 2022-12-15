@@ -20,7 +20,7 @@ public class BankAddCommandHandler : IRequestHandler<BankAddCommandRequest, Bank
         return Task.FromResult(new BankAddCommandResponse
         {
             BankId = serviceResult.Payload.BankId,
-            BankName = serviceResult.Payload.Name!,
+            BankName = serviceResult.Payload.BankName!,
             OrderBy = serviceResult.Payload.OrderBy,
         });
     }

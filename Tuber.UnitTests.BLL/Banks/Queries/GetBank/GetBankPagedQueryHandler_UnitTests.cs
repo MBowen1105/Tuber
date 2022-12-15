@@ -21,31 +21,31 @@ internal class GetBankPagedQueryHandler_UnitTests
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
-                 Name = "Bank 1",
+                 BankName = "Bank 1",
                  OrderBy = 10
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
-                 Name = "Bank 2",
+                 BankName = "Bank 2",
                  OrderBy = 20
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
-                 Name = "Bank 3",
+                 BankName = "Bank 3",
                  OrderBy = 30
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
-                 Name = "Bank 4",
+                 BankName = "Bank 4",
                  OrderBy = 40
             },
             new Bank
             {
                  BankId = Guid.Parse("598ddc62-6729-4aa6-91f3-dad0c9bd2768"),
-                 Name = "Deleted Bank",
+                 BankName = "Deleted Bank",
                  OrderBy = 99,
                  IsDeleted = true
             }
@@ -58,7 +58,7 @@ internal class GetBankPagedQueryHandler_UnitTests
             _bankDtoList.Add(new BankGetPaged_Bank
             {
                 BankId = _bankArray[i].BankId,
-                Name = _bankArray[i].Name!,
+                BankName = _bankArray[i].BankName!,
                 OrderBy = _bankArray[i].OrderBy
             });
         }

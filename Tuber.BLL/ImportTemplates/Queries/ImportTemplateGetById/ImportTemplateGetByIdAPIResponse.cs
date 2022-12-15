@@ -2,7 +2,7 @@
 public class ImportTemplateGetByIdAPIResponse
 {
     public Guid ImportTemplateId { get; init; }
-    public string TemplateName { get; init; } = "";
+    public string ImportTemplateName { get; init; } = "";
     public string ImportFileName { get; set; } = "";
     public int ExpectedHeaderRowCount { get; set; }
     public int ExpectedColumnCount { get; set; }

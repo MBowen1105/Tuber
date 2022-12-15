@@ -8,7 +8,7 @@ public class ImportTemplate : AuditableEntity
     public ImportTemplate()
     {
         ImportTemplateId = Guid.Empty;
-        TemplateName = "";
+        ImportTemplateName = "";
         ImportFileName = "";
         ExpectedHeaderRowCount = 0;
         ExpectedColumnCount = 0;
@@ -27,7 +27,7 @@ public class ImportTemplate : AuditableEntity
     }
 
     public Guid ImportTemplateId { get; set; }
-    public string TemplateName { get; set; }
+    public string ImportTemplateName { get; set; }
     public string ImportFileName { get; set; }
     public int ExpectedHeaderRowCount { get; set; }
     public int ExpectedColumnCount { get; set; }

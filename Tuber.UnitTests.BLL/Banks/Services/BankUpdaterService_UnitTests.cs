@@ -18,7 +18,7 @@ internal class BankUpdaterService_UnitTests
     private readonly Bank NEW_BANK = new()
     {
         BankId = GOOD_ID,
-        Name = "New Bank",
+        BankName = "New Bank",
         OrderBy = 10,
         //IsDeleted = false,
         //BankAccounts = new List<BankAccount>(),
@@ -33,10 +33,10 @@ internal class BankUpdaterService_UnitTests
     [SetUp]
     public void Setup()
     {
-        _mockBankRepository.Setup(x => x.Add(It.Is<Bank>(x => x.Name == NEW_BANK.Name)))
+        _mockBankRepository.Setup(x => x.Add(It.Is<Bank>(x => x.BankName == NEW_BANK.BankName)))
             .Returns(NEW_BANK);
 
-        _mockBankRepository.Setup(x => x.Add(It.Is<Bank>(x => x.Name != NEW_BANK.Name)))
+        _mockBankRepository.Setup(x => x.Add(It.Is<Bank>(x => x.BankName != NEW_BANK.BankName)))
             .Returns(new Bank());
 
         _sut = new BankUpdaterService(_mockBankRepository.Object);
@@ -46,7 +46,7 @@ internal class BankUpdaterService_UnitTests
     [Test, Parallelizable]
     public void Add_NewBank_ReturnsNewBankWithNoExceptions()
     {
-        var serviceResult = _sut.Add(NEW_BANK.Name, NEW_BANK.OrderBy);
+        var serviceResult = _sut.Add(NEW_BANK.BankName, NEW_BANK.OrderBy);
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);
@@ -54,7 +54,7 @@ internal class BankUpdaterService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void GetById_NonExistingBank_ReturnsNullBankWithExceptions()
+    public void Add_ExistingBank_ReturnsNullBankWithExceptions()
     {
         var serviceResult = _sut.Add("Already Existing Bank", 10);
 

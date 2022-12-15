@@ -15,7 +15,7 @@ public class ImportTemplateConfiguration : IEntityTypeConfiguration<ImportTempla
 
         builder.HasOne(x => x.UpdatedByUser);
 
-        builder.Property(x => x.TemplateName)
+        builder.Property(x => x.ImportTemplateName)
             .IsRequired()
             .HasMaxLength(40);
 

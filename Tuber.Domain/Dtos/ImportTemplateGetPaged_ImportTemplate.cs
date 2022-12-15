@@ -2,7 +2,7 @@
 public record ImportTemplateGetPaged_ImportTemplate
 {
     public Guid ImportTemplateId { get; set; }
-    public string TemplateName { get; set; } = "";
+    public string ImportTemplateName { get; set; } = "";
     public string ImportFileName { get; set; } = "";
     public int ExpectedHeaderRowCount { get; set; }
     public int ExpectedColumnCount { get; set; }
