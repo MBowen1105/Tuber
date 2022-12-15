@@ -14,11 +14,7 @@ public class CategoryRetrievalService : ICategoryRetrievalService
         _categoryRepository = categoryRepo;
     }
 
-    public int CountPages(int pageSize)
-    {
-        return _categoryRepository.CountPages(pageSize);
-    }
-
+    
     public ServiceResult<Category> GetById(Guid categoryId)
     {
         var category = _categoryRepository.GetById(categoryId);
@@ -36,4 +32,10 @@ public class CategoryRetrievalService : ICategoryRetrievalService
         return new ServiceResult<List<Category>>(
             payload: _categoryRepository.GetPaged(pageNumber, pageSize));
     }
+    
+    public int CountPages(int pageSize)
+    {
+        return _categoryRepository.CountPages(pageSize);
+    }
+
 }

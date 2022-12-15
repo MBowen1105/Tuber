@@ -16,7 +16,7 @@ public class ImportTemplate : AuditableEntity
         DateTemplate = "";
         DateColumnNumber = 0;
         DescriptionOnStatementColumnNumber = 0;
-        ReferenceOnStatementStartCharacter = 14;
+        ReferenceOnStatementStartCharacter = 19;
         TransactionTypeColumnNumber = 0;
         MoneyInColumnNumber = 0;
         MoneyOutColumnNumber = 0;

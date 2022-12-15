@@ -1,4 +1,5 @@
 ﻿using Tuber.Domain.Common;
+using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
@@ -15,8 +16,7 @@ public class ImportRetrievalService : IImportRetrievalService
     public ServiceResult<List<Import>> GetByBankAccountId(Guid bankAccountId)
     {
         var importList = _importRepo.GetByBankAccountId(bankAccountId);
-
-        return new ServiceResult<List<Import>>(
-            payload: importList);
+        
+        return new ServiceResult<List<Import>>(importList);
     }
 }

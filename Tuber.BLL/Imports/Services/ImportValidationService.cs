@@ -11,9 +11,12 @@ using Tuber.Domain.Models;
 namespace Tuber.BLL.Imports.Services;
 public class ImportValidationService : IImportValidationService
 {
+    public static readonly char ValidationMessageSeperator = '\n';
+
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTimeService _dateTimeService;
     private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
+
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
@@ -52,7 +55,7 @@ public class ImportValidationService : IImportValidationService
         {
             i++;
 
-            var column = allRows[i - 1].Split(',');
+            var column = allRows[i - 1].Split(importTemplate.SeperatorChar);
 
             //  Skip any header rows
             if (i <= importTemplate.ExpectedHeaderRowCount)
@@ -62,11 +65,11 @@ public class ImportValidationService : IImportValidationService
 
             var dateValue = column[importTemplate.DateColumnNumber - 1];
             if (dateValue.Length == 0)
-                validationFailureMessages += $"Transaction Date is missing.\n";
+                validationFailureMessages += $"Transaction Date is missing.{ValidationMessageSeperator}";
 
             if (!DateTimeValidation.IsValidDate(dateValue, importTemplate.DateTemplate))
             {
-                validationFailureMessages += $"Transaction Date is invalid. Must be of the format {importTemplate.DateTemplate}.\n";
+                validationFailureMessages += $"Transaction Date is invalid. Must be of the format {importTemplate.DateTemplate}.{ValidationMessageSeperator}";
             }
             else
             {
@@ -76,7 +79,10 @@ public class ImportValidationService : IImportValidationService
 
             var descriptionOnStatementValue = column[importTemplate.DescriptionOnStatementColumnNumber - 1];
             if (descriptionOnStatementValue.Length > 40)
-                validationFailureMessages += $"Description on statement cannot exceed 40 character - truncating\n";
+                validationFailureMessages += $"Description on statement cannot exceed 40 character - truncating.{ValidationMessageSeperator}";
+
+            if (descriptionOnStatementValue.Length == 0)
+                validationFailureMessages += $"Description on statement is missing.{ValidationMessageSeperator}";
 
             var referenceOnStatementValue = "";
             if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length >= importTemplate.ReferenceOnStatementStartCharacter)
@@ -95,38 +101,44 @@ public class ImportValidationService : IImportValidationService
                 ? ""
                 : column[importTemplate.TransactionTypeColumnNumber - 1];
             if (transactionTypeValue.Length > 10)
-                validationFailureMessages += $"Transaction Type cannot exceed 10 characters - truncating\n";
+                validationFailureMessages += $"Transaction Type cannot exceed 10 characters - truncating.{ValidationMessageSeperator}";
 
             var moneyInValue = (importTemplate.MoneyInColumnNumber == 0)
                 ? ""
                 : column[importTemplate.MoneyInColumnNumber - 1];
             if (moneyInValue != "" && !double.TryParse(moneyInValue, out _))
-                validationFailureMessages = "Invalid Money In value. Must be a valid amount.\n";
+                validationFailureMessages = $"Invalid Money In value. Must be a valid amount.{ValidationMessageSeperator}";
 
             var moneyOutValue = (importTemplate.MoneyOutColumnNumber == 0)
                 ? ""
                 : column[importTemplate.MoneyOutColumnNumber - 1];
             if (moneyOutValue != "" && !double.TryParse(moneyOutValue, out _))
-                validationFailureMessages = "Invalid Money Out value. Must be a valid amount.\n";
+                validationFailureMessages = $"Invalid Money Out value. Must be a valid amount.{ValidationMessageSeperator}";
 
             if (moneyInValue == "" && moneyOutValue == "")
-                validationFailureMessages += "This transaction has no Money In or Money Out value.\n";
+                validationFailureMessages += $"This transaction has no Money In or Money Out value.{ValidationMessageSeperator}";
 
             var balanceOnStatementValue = column[importTemplate.BalanceOnStatementColumnNumber - 1];
+            if (balanceOnStatementValue.Length == 0)
+                validationFailureMessages += $"Balance on Statement is missing.{ValidationMessageSeperator}";
+            else
             if (!double.TryParse(balanceOnStatementValue, out _))
-                validationFailureMessages += "Balance on Statement value is not a valid amount.\n";
+                validationFailureMessages += $"Balance on Statement value is not a valid amount.{ValidationMessageSeperator}";
 
             var sortCodeValue = (importTemplate.SortCodeColumnNumber == 0)
                 ? ""
                 : column[importTemplate.SortCodeColumnNumber - 1];
             if (sortCodeValue.Length > 10)
-                validationFailureMessages += "Sort Code cannot exceed 10 characters.\n";
+                validationFailureMessages += $"Sort Code cannot exceed 10 characters.{ValidationMessageSeperator}";
 
             var accountNumberValue = (importTemplate.AccountNumberColumnNumber == 0)
                 ? ""
                 : column[importTemplate.AccountNumberColumnNumber - 1];
             if (accountNumberValue.Length > 10)
-                validationFailureMessages += "Account Number cannot exceed 10 characters.\n";
+                validationFailureMessages += $"Account Number cannot exceed 10 characters.{ValidationMessageSeperator}";
+
+            if (validationFailureMessages.EndsWith(ValidationMessageSeperator))
+                validationFailureMessages = validationFailureMessages[..^1];
 
             Guid? suggestedCategoryId = null;
             Guid? suggestedSubcategoryId = null;
