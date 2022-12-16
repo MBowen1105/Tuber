@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
+using Tuber.BLL.Subcategories.Commands.SubcategoryDelete;
 using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Exceptions;
@@ -58,21 +59,21 @@ public static class SubcategoryEndpoints
 
 
 
-        //app.MapDelete("/Subcategory/delete/{SubcategoryId}", async (Guid SubcategoryId,
-        //    [FromServices] IMediator mediator) =>
-        //{
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(new DeleteSubcategoryCommandRequest
-        //    {
-        //        SubcategoryId = SubcategoryId,
-        //    });
+        app.MapDelete("/Subcategory/delete/{SubcategoryId}", async (Guid SubcategoryId,
+            [FromServices] IMediator mediator) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new SubcategoryDeleteCommandRequest
+            {
+                SubcategoryId = SubcategoryId,
+            });
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    return Results.NoContent();
-        //})
-        //.WithName("DeleteSubcategory");
+            return Results.NoContent();
+        })
+        .WithName("SubcategoryDelete");
     }
 
 
