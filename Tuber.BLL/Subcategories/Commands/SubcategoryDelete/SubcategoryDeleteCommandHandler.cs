@@ -9,14 +9,14 @@ namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
     public class SubcategoryDeleteCommandHandler : IRequestHandler<SubcategoryDeleteCommandRequest, SubcategoryDeleteCommandResponse>
     {
         private readonly ISubcategoryRetrievalService _subcategoryRetrievalService;
-        private readonly ISubcategoryUpdaterService _subcategoryUpdaterService;
+        private readonly ISubcategoryDeletionService _subcategoryDeletionService;
 
         public SubcategoryDeleteCommandHandler(
             ISubcategoryRetrievalService subcategoryRetrievalService,
-            ISubcategoryUpdaterService subcategoryUpdaterService)
+            ISubcategoryDeletionService subcategoryDeletionService)
         {
             _subcategoryRetrievalService = subcategoryRetrievalService;
-            _subcategoryUpdaterService = subcategoryUpdaterService;
+            _subcategoryDeletionService = subcategoryDeletionService;
         }
 
         public Task<SubcategoryDeleteCommandResponse> Handle(SubcategoryDeleteCommandRequest request, CancellationToken cancellationToken)
@@ -31,7 +31,7 @@ namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(
                     new CannotDeleteCoreEntityException(Subcategory.FriendlyName, request.SubcategoryId)));
 
-            var serviceResultDelete = _subcategoryUpdaterService.Delete(request.SubcategoryId);
+            var serviceResultDelete = _subcategoryDeletionService.Delete(request.SubcategoryId);
 
             if (serviceResultDelete.HasFailed)
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(

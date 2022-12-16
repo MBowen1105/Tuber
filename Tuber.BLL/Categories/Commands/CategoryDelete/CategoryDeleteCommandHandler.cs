@@ -1,21 +1,20 @@
 ﻿using MediatR;
-using Tuber.Core.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL.Categories.Commands.CategoryDelete
 {
     public class CategoryDeleteCommandHandler : IRequestHandler<CategoryDeleteCommandRequest, CategoryDeleteCommandResponse>
     {
-        private readonly ICategoryUpdaterService _CategoryUpdaterService;
+        private readonly ICategoryDeletionService _categoryDeletionService;
 
-        public CategoryDeleteCommandHandler(ICategoryUpdaterService CategoryUpdaterService)
+        public CategoryDeleteCommandHandler(ICategoryDeletionService categoryDeletionService)
         {
-            _CategoryUpdaterService = CategoryUpdaterService;
+            _categoryDeletionService = categoryDeletionService;
         }
 
         public Task<CategoryDeleteCommandResponse> Handle(CategoryDeleteCommandRequest request, CancellationToken cancellationToken)
         {
-            var serviceResult = _CategoryUpdaterService.Delete(request.CategoryId);
+            var serviceResult = _categoryDeletionService.Delete(request.CategoryId);
 
             return Task.FromResult(new CategoryDeleteCommandResponse
             {

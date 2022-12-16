@@ -3,7 +3,6 @@ using Tuber.Domain.Enums;
 using Tuber.Domain.Interfaces.Authorisation;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Interfaces.FileSystem;
 using Tuber.Domain.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 
@@ -11,24 +10,18 @@ namespace Tuber.BLL.Imports.Services;
 public class ImportUpdaterService : IImportUpdaterService
 {
     private readonly IImportRepository _importRepo;
-    private readonly IImportTemplateRetrievalService _importTemplateRetrieverService;
     private readonly IBankAccountRetrievalService _bankAccountRetrieverService;
-    private readonly IFileSystem _fileIO;
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTimeService _dateTimeService;
 
     public ImportUpdaterService(
         IImportRepository importRepo,
-        IImportTemplateRetrievalService importTemplateRetrieverService,
         IBankAccountRetrievalService bankAccountRetrieverService,
-        IFileSystem fileIO,
         ICurrentUserService currentUserService,
         IDateTimeService dateTimeService)
     {
         _importRepo = importRepo;
-        _importTemplateRetrieverService = importTemplateRetrieverService;
         _bankAccountRetrieverService = bankAccountRetrieverService;
-        _fileIO = fileIO;
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
     }

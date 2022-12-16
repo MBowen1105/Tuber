@@ -52,18 +52,4 @@ public class BankUpdaterService : IBankUpdaterService
 
         return new ServiceResult<Bank>(payload: bank);
     }
-
-    public ServiceResult<int> Delete(Guid bankId)
-    {
-        var bank = _bankRepo.Delete(bankId);
-
-        if (bank == 0)
-            return new ServiceResult<int>(
-                payload: 0,
-                exception: new EntityDoesNotExistException(Bank.FriendlyName, bankId));
-
-        _bankRepo.SaveChanges();
-
-        return new ServiceResult<int>(payload: 0);
-    }
 }

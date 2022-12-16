@@ -6,5 +6,4 @@ public interface ISubcategoryUpdaterService
 {
     ServiceResult<Subcategory> Add(string subcategoryName);
     ServiceResult<Subcategory> Update(Guid subcategoryId, string subcategoryName);
-    ServiceResult<int> Delete(Guid subcategoryId);
 }

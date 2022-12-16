@@ -33,20 +33,6 @@ public class SubcategoryUpdaterService : ISubcategoryUpdaterService
         return new ServiceResult<Subcategory>(payload: subcategory);
     }
 
-    public ServiceResult<int> Delete(Guid subcategoryId)
-    {
-        var subcategory = _subcategoryRepo.Delete(subcategoryId);
-
-        if (subcategory == 0)
-            return new ServiceResult<int>(
-                payload: 0,
-                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
-
-        _subcategoryRepo.SaveChanges();
-
-        return new ServiceResult<int>(0);
-    }
-
     public ServiceResult<Subcategory> Update(Guid subcategoryId, string SubcategoryName)
     {
         var subcategory = new Subcategory

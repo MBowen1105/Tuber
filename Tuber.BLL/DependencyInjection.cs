@@ -28,22 +28,27 @@ public static class DependencyInjection
 
         services.AddAutoMapper(assembly);
 
-        services.AddScoped<IBankUpdaterService, BankUpdaterService>();
-        services.AddScoped<IBankRetrievalService, BankRetrievalService>();
-
         services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
-        services.AddScoped<IImportTemplateRetrievalService, ImportTemplateRetrievalService>();
 
-        services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
-        services.AddScoped<IImportValidationService, ImportValidationService>();
-        services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
+        services.AddScoped<IBankRetrievalService, BankRetrievalService>();
+        services.AddScoped<IBankUpdaterService, BankUpdaterService>();
+        services.AddScoped<IBankDeletionService, BankDeletionService>();
 
         services.AddScoped<ICategoryRetrievalService, CategoryRetrievalService>();
         services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();
-        
+        services.AddScoped<ICategoryDeletionService, CategoryDeletionService>();
+
         services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+
+        services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
+        services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
+        services.AddScoped<IImportValidationService, ImportValidationService>();
+
+        services.AddScoped<IImportTemplateRetrievalService, ImportTemplateRetrievalService>();
+
         services.AddScoped<ISubcategoryRetrievalService, SubcategoryRetrievalService>();
         services.AddScoped<ISubcategoryUpdaterService, SubcategoryUpdaterService>();
+        services.AddScoped<ISubcategoryDeletionService, SubcategoryDeletionService>();
 
 
         var config = new MapperConfiguration(cfg =>

@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Tuber.BLL.Subcategories.Commands.SubcategoryDelete;
 using Tuber.Core.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
@@ -9,14 +8,14 @@ namespace Tuber.BLL.Banks.Commands.BankDelete
     public class BankDeleteCommandHandler : IRequestHandler<BankDeleteCommandRequest, BankDeleteCommandResponse>
     {
         private readonly IBankRetrievalService _bankRetrievalService;
-        private readonly IBankUpdaterService _bankUpdaterService;
+        private readonly IBankDeletionService _bankDeletionService;
 
         public BankDeleteCommandHandler(
             IBankRetrievalService bankRetrievalService,
-            IBankUpdaterService bankUpdaterService
+            IBankDeletionService bankDeletionService
             )
         {
-            _bankUpdaterService = bankUpdaterService;
+            _bankDeletionService = bankDeletionService;
             _bankRetrievalService = bankRetrievalService;
         }
 
@@ -27,7 +26,7 @@ namespace Tuber.BLL.Banks.Commands.BankDelete
                 return Task.FromResult(new BankDeleteCommandResponse(
                     new EntityToDeleteDoesNotExistException(Bank.FriendlyName, request.BankId)));
 
-            var serviceResultDelete = _bankUpdaterService.Delete(request.BankId);
+            var serviceResultDelete = _bankDeletionService.Delete(request.BankId);
 
             if (serviceResultDelete.HasFailed)
                 return Task.FromResult(new BankDeleteCommandResponse(

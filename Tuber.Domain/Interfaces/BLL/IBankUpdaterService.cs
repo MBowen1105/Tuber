@@ -6,5 +6,4 @@ public interface IBankUpdaterService
 {
     ServiceResult<Bank> Add(string name, int orderBy);
     ServiceResult<Bank> Update(Guid bankId, string name, int orderBy);
-    ServiceResult<int> Delete(Guid bankId);
 }

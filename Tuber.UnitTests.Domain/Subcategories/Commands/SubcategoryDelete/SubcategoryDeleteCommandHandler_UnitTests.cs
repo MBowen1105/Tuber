@@ -25,14 +25,14 @@ internal class SubcategoryDeleteCommandHandler_UnitTests
                 payload: new Subcategory(),
                 exception: new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, Guid.NewGuid())));
 
-        var mockSubcategoryUpdaterService = new Mock<ISubcategoryUpdaterService>();
+        var mockSubcategoryDeletionService = new Mock<ISubcategoryDeletionService>();
 
-        mockSubcategoryUpdaterService.Setup(x => x.Delete(It.IsAny<Guid>()))
+        mockSubcategoryDeletionService.Setup(x => x.Delete(It.IsAny<Guid>()))
             .Returns(new ServiceResult<int>(0));
 
         var sut = new SubcategoryDeleteCommandHandler(
             mockSubcategoryRetrievalService.Object,
-            mockSubcategoryUpdaterService.Object);
+            mockSubcategoryDeletionService.Object);
 
         var request = new SubcategoryDeleteCommandRequest
         {
@@ -58,14 +58,14 @@ internal class SubcategoryDeleteCommandHandler_UnitTests
                 IsCoreSubcategory = true
             }));
 
-        var mockSubcategoryUpdaterService = new Mock<ISubcategoryUpdaterService>();
+        var mockSubcategoryDeletionService = new Mock<ISubcategoryDeletionService>();
 
-        mockSubcategoryUpdaterService.Setup(x => x.Delete(It.IsAny<Guid>()))
+        mockSubcategoryDeletionService.Setup(x => x.Delete(It.IsAny<Guid>()))
             .Returns(new ServiceResult<int>(0));
 
         var sut = new SubcategoryDeleteCommandHandler(
             mockSubcategoryRetrievalService.Object,
-            mockSubcategoryUpdaterService.Object);
+            mockSubcategoryDeletionService.Object);
 
        var request = new SubcategoryDeleteCommandRequest
         {
@@ -88,14 +88,14 @@ internal class SubcategoryDeleteCommandHandler_UnitTests
         mockSubcategoryRetrievalService.Setup(x => x.GetById(It.IsAny<Guid>()))
             .Returns(new ServiceResult<Subcategory>(new Subcategory()));
 
-        var mockSubcategoryUpdaterService = new Mock<ISubcategoryUpdaterService>();
+        var mockSubcategoryDeletionService = new Mock<ISubcategoryDeletionService>();
 
-        mockSubcategoryUpdaterService.Setup(x => x.Delete(It.IsAny<Guid>()))
+        mockSubcategoryDeletionService.Setup(x => x.Delete(It.IsAny<Guid>()))
             .Returns(new ServiceResult<int>(1));
 
         var sut = new SubcategoryDeleteCommandHandler(
             mockSubcategoryRetrievalService.Object,
-            mockSubcategoryUpdaterService.Object);
+            mockSubcategoryDeletionService.Object);
 
         var request = new SubcategoryDeleteCommandRequest
         {
