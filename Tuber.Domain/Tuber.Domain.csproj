@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Interfaces\DAL\IUnitOfWork.cs" />
+    <Compile Remove="ValueObjects\UKBankAccount.cs" />
   </ItemGroup>
 
   <ItemGroup>

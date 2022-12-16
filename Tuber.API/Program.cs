@@ -30,6 +30,7 @@ BankEndpoints.QueryEndpoints(app);
 BankEndpoints.CommandEndpoints(app);
 
 BankAccountEndpoints.QueryEndpoints(app);
+BankAccountEndpoints.CommandEndpoints(app);
 
 ImportTemplateEndpoints.QueryEndpoints(app);
 ImportTemplateEndpoints.CommandEndpoints(app);

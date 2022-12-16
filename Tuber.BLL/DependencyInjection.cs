@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.BLL.BankAccountAccounts.Services;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
 using Tuber.BLL.Categories.Services;
@@ -29,6 +30,8 @@ public static class DependencyInjection
         services.AddAutoMapper(assembly);
 
         services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
+        services.AddScoped<IBankAccountUpdaterService, BankAccountUpdaterService>();
+        services.AddScoped<IBankAccountDeletionService, BankAccountDeletionService>();
 
         services.AddScoped<IBankRetrievalService, BankRetrievalService>();
         services.AddScoped<IBankUpdaterService, BankUpdaterService>();
