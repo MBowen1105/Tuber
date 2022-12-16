@@ -2,6 +2,7 @@
 using Tuber.Core.Exceptions;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
+using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
 {
@@ -22,25 +23,23 @@ namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
         {
             var serviceResultGetById = _subcategoryRetrievalService.GetById(request.SubcategoryId);
 
-            if (!serviceResultGetById.IsSuccess)
+            if (serviceResultGetById.HasFailed)
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(
-                    new EntityToDeleteDoesNotExistException("Subcategory", request.SubcategoryId)));
+                    new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, request.SubcategoryId)));
 
             if (serviceResultGetById.Payload.IsCoreSubcategory)
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(
-                    new CannotDeleteCoreEntityException("Subcategory", request.SubcategoryId)));
+                    new CannotDeleteCoreEntityException(Subcategory.FriendlyName, request.SubcategoryId)));
 
             var serviceResultDelete = _subcategoryUpdaterService.Delete(request.SubcategoryId);
 
+            if (serviceResultDelete.HasFailed)
+                return Task.FromResult(new SubcategoryDeleteCommandResponse(
+                    new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, request.SubcategoryId)));
+
             return Task.FromResult(new SubcategoryDeleteCommandResponse
             {
-                DeletedCount = serviceResultDelete.Payload,
-                Exceptions = (serviceResultDelete.Payload == 0)
-                    ? new List<Exception>
-                        {
-                                new EntityToDeleteDoesNotExistException("Subcategory", request.SubcategoryId)
-                        }
-                    : new List<Exception>()
+                DeletedCount = serviceResultDelete.Payload
             });
         }
     }

@@ -3,5 +3,5 @@
 namespace Tuber.BLL.Banks.Commands.BankDelete;
 public class BankDeleteCommandRequest : IRequest<BankDeleteCommandResponse>
 {
-    public Guid Id { get; set; }
+    public Guid BankId { get; set; }
 }

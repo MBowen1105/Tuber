@@ -67,7 +67,7 @@ public static class BankEndpoints
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(new BankDeleteCommandRequest
             {
-                Id = id,
+                BankId = id,
             });
 
             if (queryResponse.HasExceptions)
