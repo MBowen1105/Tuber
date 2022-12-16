@@ -21,7 +21,9 @@ internal class SubcategoryDeleteCommandHandler_UnitTests
         var mockSubcategoryRetrievalService = new Mock<ISubcategoryRetrievalService>();
 
         mockSubcategoryRetrievalService.Setup(x => x.GetById(It.IsAny<Guid>()))
-            .Returns(new ServiceResult<Subcategory>(new Subcategory()));
+            .Returns(new ServiceResult<Subcategory>(
+                payload: new Subcategory(),
+                exception: new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, Guid.NewGuid())));
 
         var mockSubcategoryUpdaterService = new Mock<ISubcategoryUpdaterService>();
 

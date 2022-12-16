@@ -249,9 +249,8 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
 
         var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
-        messages.Should().HaveCount(2);
-        messages[0].Should().Contain("Money Out value cannot be zero.");
-        messages[1].Should().Contain("This transaction has no Money In or Money Out value.");
+        messages.Should().HaveCount(1);
+        messages[0].Should().Contain("This transaction has no Money In or Money Out value.");
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);
