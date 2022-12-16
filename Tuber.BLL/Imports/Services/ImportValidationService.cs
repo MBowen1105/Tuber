@@ -50,6 +50,7 @@ public class ImportValidationService : IImportValidationService
         var rowIndex = 0;
         var validatedRows = new List<Import>();
         var previousDateValue = "";
+        var moneyValue = 0.0;
 
         while (i < allRows.Length)
         {
@@ -106,14 +107,23 @@ public class ImportValidationService : IImportValidationService
             var moneyInValue = (importTemplate.MoneyInColumnNumber == 0)
                 ? ""
                 : column[importTemplate.MoneyInColumnNumber - 1];
-            if (moneyInValue != "" && !double.TryParse(moneyInValue, out _))
+
+            if (moneyInValue != "" && !double.TryParse(moneyInValue, out moneyValue))
                 validationFailureMessages = $"Invalid Money In value. Must be a valid amount.{ValidationMessageSeperator}";
+            else if (moneyInValue != "" && moneyValue < 0.0)
+                validationFailureMessages = $"Money In value cannot be negative.{ValidationMessageSeperator}";
+            else if (moneyInValue != "" && moneyValue == 0.0)
+                validationFailureMessages = $"Money In value cannot be zero.{ValidationMessageSeperator}";
 
             var moneyOutValue = (importTemplate.MoneyOutColumnNumber == 0)
                 ? ""
                 : column[importTemplate.MoneyOutColumnNumber - 1];
-            if (moneyOutValue != "" && !double.TryParse(moneyOutValue, out _))
+            if (moneyOutValue != "" && !double.TryParse(moneyOutValue, out moneyValue))
                 validationFailureMessages = $"Invalid Money Out value. Must be a valid amount.{ValidationMessageSeperator}";
+            else if (moneyOutValue != "" && moneyValue < 0.0)
+                validationFailureMessages = $"Money Out value cannot be negative.{ValidationMessageSeperator}";
+            else if (moneyOutValue != "" && moneyValue == 0.0)
+                validationFailureMessages = $"Money Out value cannot be zero.{ValidationMessageSeperator}";
 
             if (moneyInValue == "" && moneyOutValue == "")
                 validationFailureMessages += $"This transaction has no Money In or Money Out value.{ValidationMessageSeperator}";

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.BLL.Imports.Services;
+using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.Authorisation;
 using Tuber.Domain.Interfaces.BLL;
@@ -65,11 +66,14 @@ internal class ImportValidationService_CoOp_UnitTests
     {
         string[] allRows = {
             "Date,Description,Type,Money In, Money Out, Balance",
-            "2022-08-32,M&S BANK,DD,,176.24,255.17",
+            "2022-08-01,M&S BANK,DD,,176.24,255.17",
             "2022-08-04,CYRUS SOLUTIONS LT EXPENSES E003,CREDIT,283.89,,431.41"};
 
         var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
             suggestCategorisation: false, allRows);
+
+        serviceResult.Payload.Count.Should().Be(2);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsValid);
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);
@@ -120,6 +124,9 @@ internal class ImportValidationService_CoOp_UnitTests
         var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
             suggestCategorisation: false, allRows);
 
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
         var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
         messages.Should().HaveCount(5);
         messages[0].Should().Contain("Transaction Date is missing.");
@@ -167,6 +174,9 @@ internal class ImportValidationService_CoOp_UnitTests
         var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
             suggestCategorisation: false, allRows);
 
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
         var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
         messages.Should().HaveCount(1);
         messages[0].Should().Contain($"Transaction Date is invalid. Must be of the format {_importTemplate.DateTemplate}.");
@@ -175,5 +185,102 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(0);
     }
 
+    [Test, Parallelizable]
+    [TestCase("0", "Money In value cannot be zero.")]
+    [TestCase(".", "Invalid Money In value. Must be a valid amount.")]
+    [TestCase("-123.45", "Money In value cannot be negative.")]
+    public void Validate_InvalidMoneyInValues_ReturnsImportListWithValidationFailureMessages(
+        string invalidMoneyInValue, string failureMessage)
+    {
+        string[] allRows = {
+            "Date,Description,Type,Money In, Money Out, Balance",
+            $"2022-01-01,M&S BANK,DD,{invalidMoneyInValue},,255.17" };
+
+        var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
+            suggestCategorisation: false, allRows);
+
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
+        var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
+        messages.Should().HaveCount(1);
+        messages[0].Should().Contain(failureMessage);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.Exceptions.Count.Should().Be(0);
+    }
+
+    [Test, Parallelizable]
+    [TestCase("0", "Money Out value cannot be zero.")]
+    [TestCase(".", "Invalid Money Out value. Must be a valid amount.")]
+    [TestCase("-123.45", "Money Out value cannot be negative.")]
+    public void Validate_InvalidMoneyOutValues_ReturnsImportListWithValidationFailureMessages(
+        string invalidMoneyOutValue, string failureMessage)
+    {
+        string[] allRows = {
+            "Date,Description,Type,Money In, Money Out, Balance",
+            $"2022-01-01,M&S BANK,DD,,{invalidMoneyOutValue},255.17" };
+
+        var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
+            suggestCategorisation: false, allRows);
+
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
+        var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
+        messages.Should().HaveCount(1);
+        messages[0].Should().Contain(failureMessage);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.Exceptions.Count.Should().Be(0);
+    }
+
+    [Test, Parallelizable]    
+    public void Validate_BothMoneyInAndOutMissingValues_ReturnsImportListWithValidationFailureMessage()
+    {
+        string[] allRows = {
+            "Date,Description,Type,Money In, Money Out, Balance",
+            $"2022-01-01,M&S BANK,DD,,,255.17" };
+
+        var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
+            suggestCategorisation: false, allRows);
+
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
+        var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
+        messages.Should().HaveCount(2);
+        messages[0].Should().Contain("Money Out value cannot be zero.");
+        messages[1].Should().Contain("This transaction has no Money In or Money Out value.");
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.Exceptions.Count.Should().Be(0);
+    }
+
+
+    [Test, Parallelizable]
+    [TestCase("", "Balance on Statement is missing.")]
+    [TestCase("abc", "Balance on Statement value is not a valid amount.")]
+    public void Validate_InvalidBalanceOnStatementValues_ReturnsImportListWithValidationFailureMessages(
+        string invalidBalanceOnStatement, string failureMessage)
+    {
+        string[] allRows = {
+            "Date,Description,Type,Money In, Money Out, Balance",
+            $"2022-01-01,M&S BANK,DD,1,,{invalidBalanceOnStatement}" };
+
+        var serviceResult = _sut.Validate(_importTemplate, _bankAccountId,
+            suggestCategorisation: false, allRows);
+
+        serviceResult.Payload.Count.Should().Be(1);
+        serviceResult.Payload.First().ImportRowStatus.Should().Be(ImportRowStatus.IsInvalid);
+
+        var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
+        messages.Should().HaveCount(1);
+        messages[0].Should().Contain(failureMessage);
+        
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.Exceptions.Count.Should().Be(0);
+    }
     #endregion
 }
