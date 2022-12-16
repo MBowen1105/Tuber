@@ -77,4 +77,34 @@ internal class SubcategoryDeleteCommandHandler_UnitTests
         subcategoryDeleteCommandResponse.Result.Exceptions.Count.Should().Be(1);
         subcategoryDeleteCommandResponse.Result.Exceptions.First().Should().BeOfType<CannotDeleteCoreEntityException>();
     }
+
+    [Test]
+    public void SubcategoryDeleteCommandHandler_NonCoreSubcategory_Returns1WithNoExceptionsException()
+    {
+        var mockSubcategoryRetrievalService = new Mock<ISubcategoryRetrievalService>();
+
+        mockSubcategoryRetrievalService.Setup(x => x.GetById(It.IsAny<Guid>()))
+            .Returns(new ServiceResult<Subcategory>(new Subcategory()));
+
+        var mockSubcategoryUpdaterService = new Mock<ISubcategoryUpdaterService>();
+
+        mockSubcategoryUpdaterService.Setup(x => x.Delete(It.IsAny<Guid>()))
+            .Returns(new ServiceResult<int>(1));
+
+        var sut = new SubcategoryDeleteCommandHandler(
+            mockSubcategoryRetrievalService.Object,
+            mockSubcategoryUpdaterService.Object);
+
+        var request = new SubcategoryDeleteCommandRequest
+        {
+            SubcategoryId = Guid.NewGuid(),
+        };
+
+        var subcategoryDeleteCommandResponse = sut.Handle(request, new CancellationToken());
+
+        subcategoryDeleteCommandResponse.Result.DeletedCount.Should().Be(1);
+        subcategoryDeleteCommandResponse.Result.HasExceptions.Should().BeFalse();
+        subcategoryDeleteCommandResponse.Result.Exceptions.Count.Should().Be(0);
+    }
+
 }
