@@ -27,11 +27,14 @@ public class BankUpdaterService : IBankUpdaterService
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
                 payload: bank,
-                exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bank.BankName));
+                exception: new EntityAlreadyExistsException(
+                    Bank.FriendlyName,
+                    "Name", 
+                    bank.BankName));
 
         _bankRepo.SaveChanges();
 
-        return new ServiceResult<Bank>(payload: bank);
+        return new ServiceResult<Bank>(bank);
     }
 
     public ServiceResult<Bank> Update(Guid bankId, string name, int orderBy)
@@ -50,6 +53,6 @@ public class BankUpdaterService : IBankUpdaterService
 
         _bankRepo.SaveChanges();
 
-        return new ServiceResult<Bank>(payload: bank);
+        return new ServiceResult<Bank>(bank);
     }
 }

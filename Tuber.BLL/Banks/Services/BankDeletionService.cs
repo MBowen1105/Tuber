@@ -25,6 +25,6 @@ public class BankDeletionService : IBankDeletionService
 
         _bankRepo.SaveChanges();
 
-        return new ServiceResult<int>(payload: 0);
+        return new ServiceResult<int>(0);
     }
 }

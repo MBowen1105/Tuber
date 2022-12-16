@@ -84,6 +84,11 @@ public class SubcategoryRepository : ISubcategoryRepository
         return l;
     }
 
+    public bool Exists(string subcategoryName)
+    {
+        return _context.Subcategories.Any(x => x.SubcategoryName == subcategoryName);
+    }
+
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Subcategories

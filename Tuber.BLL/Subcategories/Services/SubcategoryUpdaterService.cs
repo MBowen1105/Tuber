@@ -16,21 +16,21 @@ public class SubcategoryUpdaterService : ISubcategoryUpdaterService
 
     public ServiceResult<Subcategory> Add(string subcategoryName)
     {
-        var subcategory = new Subcategory
-        {
-            SubcategoryName = subcategoryName,
-        };
-
-        subcategory = _subcategoryRepo.Add(subcategory);
-
-        if (subcategory.SubcategoryId == Guid.Empty)
+        //  A subcategory with the same name cannot be added.
+        if (_subcategoryRepo.Exists(subcategoryName))
             return new ServiceResult<Subcategory>(
-                payload: subcategory,
-                exception: new EntityAlreadyExistsException(Subcategory.FriendlyName, "Name", subcategory.SubcategoryName));
+                payload: new Subcategory(),
+                exception: new EntityAlreadyExistsException(Subcategory.FriendlyName, "Name", subcategoryName));
+
+        var subcategory = _subcategoryRepo.Add(
+            new Subcategory
+            {
+                SubcategoryName = subcategoryName,
+            });
 
         _subcategoryRepo.SaveChanges();
 
-        return new ServiceResult<Subcategory>(payload: subcategory);
+        return new ServiceResult<Subcategory>(subcategory);
     }
 
     public ServiceResult<Subcategory> Update(Guid subcategoryId, string SubcategoryName)

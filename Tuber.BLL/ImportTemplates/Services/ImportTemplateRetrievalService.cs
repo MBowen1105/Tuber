@@ -15,19 +15,14 @@ public class ImportTemplateRetrievalService : IImportTemplateRetrievalService
         _importTemplateRepository = importTemplateRepository;
     }
 
-    public int CountPages(int pageSize)
+    public ServiceResult<ImportTemplate> GetById(Guid importTemplateId)
     {
-        return _importTemplateRepository.CountPages(pageSize);
-    }
-
-    public ServiceResult<ImportTemplate> GetById(Guid id)
-    {
-        var importTemplate = _importTemplateRepository.GetById(id);
+        var importTemplate = _importTemplateRepository.GetById(importTemplateId);
 
         if (importTemplate.ImportTemplateId == Guid.Empty)
             return new ServiceResult<ImportTemplate>(
                 importTemplate, 
-                new EntityDoesNotExistException(ImportTemplate.FriendlyName, id));
+                new EntityDoesNotExistException(ImportTemplate.FriendlyName, importTemplateId));
 
         return new ServiceResult<ImportTemplate>(payload: importTemplate);
     }
@@ -39,4 +34,10 @@ public class ImportTemplateRetrievalService : IImportTemplateRetrievalService
         return new ServiceResult<List<ImportTemplate>>(
             payload: importTemplateList);
     }
+
+    public int CountPages(int pageSize)
+    {
+        return _importTemplateRepository.CountPages(pageSize);
+    }
+
 }

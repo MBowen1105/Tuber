@@ -74,13 +74,11 @@ public class ImportUpdaterService : IImportUpdaterService
         _importRepo.SaveChanges();
 
         return new ServiceResult<ImportResult>(
-            payload: new ImportResult()
+            new ImportResult()
             {
                 TotalRowCount = validatedRows.Count,
                 ValidRowCount = validRowCount,
                 InvalidRowCount = invalidRowCount,
             });
     }
-
-
 }

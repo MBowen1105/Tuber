@@ -84,6 +84,11 @@ public class CategoryRepository : ICategoryRepository
         return l;
     }
 
+    public bool Exists(string categoryName)
+    {
+        return _context.Categories.Any(x => x.CategoryName == categoryName);
+    }
+
     public int CountPages(int pageSize)
     {
         var itemCount = _context.Categories

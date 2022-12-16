@@ -11,5 +11,6 @@ public interface ICategoryRepository : IRepository<Category>
     //  Repository Queries
     Category GetById(Guid id);
     List<Category> GetPaged(int pageNumber, int pageSize);
+    bool Exists(string categoryName);
     int CountPages(int pageSize);
 }

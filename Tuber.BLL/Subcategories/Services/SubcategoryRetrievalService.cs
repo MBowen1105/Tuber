@@ -13,12 +13,7 @@ public class SubcategoryRetrievalService : ISubcategoryRetrievalService
     {
         _subcategoryRepository = subcategoryRepo;
     }
-
-    public int CountPages(int pageSize)
-    {
-        return _subcategoryRepository.CountPages(pageSize);
-    }
-
+    
     public ServiceResult<Subcategory> GetById(Guid subcategoryId)
     {
         var subcategory =  _subcategoryRepository.GetById(subcategoryId);
@@ -35,5 +30,10 @@ public class SubcategoryRetrievalService : ISubcategoryRetrievalService
     {
         return new ServiceResult<List<Subcategory>>(
             payload: _subcategoryRepository.GetPaged(pageNumber, pageSize));
+    }
+
+    public int CountPages(int pageSize)
+    {
+        return _subcategoryRepository.CountPages(pageSize);
     }
 }

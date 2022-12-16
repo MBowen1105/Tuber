@@ -20,11 +20,10 @@ public  class BankAccountRetrievalService : IBankAccountRetrievalService
 
         if (bankAccount.BankAccountId == Guid.Empty)
             return new ServiceResult<BankAccount>(
-                payload: bankAccount,
-                exception: new EntityDoesNotExistException(BankAccount.FriendlyName, bankAccount.BankAccountId));
+                bankAccount,
+                new EntityDoesNotExistException(BankAccount.FriendlyName, bankAccount.BankAccountId));
 
-        return new ServiceResult<BankAccount>(
-            payload: bankAccount);
+        return new ServiceResult<BankAccount>(bankAccount);
     }
 
     public ServiceResult<List<BankAccount>> GetPaged(int pageNumber, int pageSize)
@@ -35,7 +34,6 @@ public  class BankAccountRetrievalService : IBankAccountRetrievalService
 
     public int CountPages(int pageSize)
     {
-        return _bankAccountRepository
-            .CountPages(pageSize);
+        return _bankAccountRepository.CountPages(pageSize);
     }
 }

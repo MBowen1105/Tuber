@@ -16,6 +16,11 @@ public class CategoryUpdaterService : ICategoryUpdaterService
 
     public ServiceResult<Category> Add(string categoryName)
     {
+        if (_categoryRepo.Exists(categoryName))
+            return new ServiceResult<Category>(
+                payload: new Category(),
+                exception: new EntityAlreadyExistsException(Category.FriendlyName, "Name", categoryName));
+
         var category = new Category
         {
             CategoryName = categoryName,
@@ -33,9 +38,24 @@ public class CategoryUpdaterService : ICategoryUpdaterService
 
         _categoryRepo.SaveChanges();
 
-        return new ServiceResult<Category>(payload: category);
+        return new ServiceResult<Category>(category);
     }
+    
+    public ServiceResult<Category> Update(Guid categoryId, string categoryName)
+    {
+        var category = new Category
+        {
+            CategoryId = categoryId,
+            CategoryName = categoryName
+        };
 
+        category = _categoryRepo.Update(category);
+
+        _categoryRepo.SaveChanges();
+
+        return new ServiceResult<Category>(category);
+    }
+    
     public ServiceResult<int> Delete(Guid categoryId)
     {
         var categoryModel = _categoryRepo.GetById(categoryId);
@@ -50,18 +70,4 @@ public class CategoryUpdaterService : ICategoryUpdaterService
         return new ServiceResult<int>(result);
     }
 
-    public ServiceResult<Category> Update(Guid id, string categoryName)
-    {
-        var category = new Category
-        {
-            CategoryId = id,
-            CategoryName = categoryName
-        };
-
-        category = _categoryRepo.Update(category);
-
-        _categoryRepo.SaveChanges();
-
-        return new ServiceResult<Category>(category);
-    }
 }

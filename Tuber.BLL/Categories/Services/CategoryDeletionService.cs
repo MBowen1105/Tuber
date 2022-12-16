@@ -35,6 +35,21 @@ public class CategoryDeletionService : ICategoryDeletionService
 
         return new ServiceResult<Category>(payload: category);
     }
+    
+    public ServiceResult<Category> Update(Guid categoryId, string categoryName)
+    {
+        var category = new Category
+        {
+            CategoryId = categoryId,
+            CategoryName = categoryName
+        };
+
+        category = _categoryRepo.Update(category);
+
+        _categoryRepo.SaveChanges();
+
+        return new ServiceResult<Category>(category);
+    }
 
     public ServiceResult<int> Delete(Guid categoryId)
     {
@@ -50,18 +65,4 @@ public class CategoryDeletionService : ICategoryDeletionService
         return new ServiceResult<int>(result);
     }
 
-    public ServiceResult<Category> Update(Guid id, string categoryName)
-    {
-        var category = new Category
-        {
-            CategoryId = id,
-            CategoryName = categoryName
-        };
-
-        category = _categoryRepo.Update(category);
-
-        _categoryRepo.SaveChanges();
-
-        return new ServiceResult<Category>(category);
-    }
 }

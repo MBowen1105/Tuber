@@ -15,6 +15,11 @@ Delete:
 
 Services:
 ---------
+Services control the checks i.e.
+	(a) is the item to be added already on the database
+	(b) is the item to be deleted a CoreEntity?
+
+Services also control when the SaveChanges() is called.
 
 GetById:
 	Exists = Returns a ServiceResult<Model> and an empty ExceptionList.
@@ -25,7 +30,13 @@ GetPaged:
 
 Add:
 	Successful = Returns a ServiceResult<Model> and an empty ExceptionList.
-	SUnsccessful = The Model returned is a Null Model and a List of Exceptions
+	Unsccessful = The Model returned is a Null Model and a List of Exceptions
+
+ServiceResult has the following signatures
+	(a) ServiceResult(payload)						Fully successful call
+	(b) ServiceResult(payload, exception)			Failed call with 1 exception and null entity
+	(c) ServiceResult(payload, List of exceptions)	Failed call with n exceptions and null entity
+
 
 Handlers:
 ---------
