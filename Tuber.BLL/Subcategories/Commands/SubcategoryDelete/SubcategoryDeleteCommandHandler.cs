@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Tuber.Core.Exceptions;
+using Tuber.Core.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
@@ -21,11 +21,12 @@ namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
 
         public Task<SubcategoryDeleteCommandResponse> Handle(SubcategoryDeleteCommandRequest request, CancellationToken cancellationToken)
         {
+            //  Check to see if the SubCategory to delete is a Core Subcategory
             var serviceResultGetById = _subcategoryRetrievalService.GetById(request.SubcategoryId);
 
             if (serviceResultGetById.HasFailed)
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(
-                    new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, request.SubcategoryId)));
+                    new EntityDoesNotExistException(ExceptionDbOperation.Delete, Subcategory.FriendlyName, request.SubcategoryId)));
 
             if (serviceResultGetById.Payload.IsCoreSubcategory)
                 return Task.FromResult(new SubcategoryDeleteCommandResponse(
@@ -33,14 +34,8 @@ namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
 
             var serviceResultDelete = _subcategoryDeletionService.Delete(request.SubcategoryId);
 
-            if (serviceResultDelete.HasFailed)
-                return Task.FromResult(new SubcategoryDeleteCommandResponse(
-                    new EntityToDeleteDoesNotExistException(Subcategory.FriendlyName, request.SubcategoryId)));
-
-            return Task.FromResult(new SubcategoryDeleteCommandResponse
-            {
-                DeletedCount = serviceResultDelete.Payload
-            });
+            return Task.FromResult(new SubcategoryDeleteCommandResponse(
+                serviceResultDelete.Payload, serviceResultDelete.Exceptions));
         }
     }
 }

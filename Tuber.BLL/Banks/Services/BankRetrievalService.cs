@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -21,7 +22,8 @@ public class BankRetrievalService : IBankRetrievalService
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
                 payload: bank,
-                exception: new EntityDoesNotExistException(Bank.FriendlyName, bankId));
+                exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Get, Bank.FriendlyName, bankId));
 
         return new ServiceResult<Bank>(bank);
     }

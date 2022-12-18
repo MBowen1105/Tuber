@@ -1,12 +1,10 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿using Tuber.Core.Enums;
+
+namespace Tuber.Domain.Exceptions;
 public class EntityDoesNotExistException : Exception
 {
-    public EntityDoesNotExistException(string entityName, string columnName, string key)
-        : base($"{entityName} with a \"{columnName}\" of \"{key}\" does not exist.")
-    {
-    }
-    public EntityDoesNotExistException(string entityName, Guid key)
-        : base($"{entityName} with an ID of \"{key}\" does not exist.")
+    public EntityDoesNotExistException(ExceptionDbOperation operation, string entityName, Guid key)
+        : base($"Unable to {operation.ToString()}: No {entityName} exists with an Key of \"{key}\".")
     {
     }
 }

@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using Tuber.BLL.Banks.Commands.BankUpdate;
-using Tuber.BLL.Banks.Queries.BankGetPaged;
 using Tuber.BLL.Banks.Services;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 

@@ -1,25 +1,24 @@
 Repositories:
 -------------
+Repos return either a Model (May be a null model), List of Models, or a single value
 
 GetById:
-	Returns the specified Model, or a null Model if it does not exist
+	Returns the specified Model, or a null Model if it does not exist.
 GetPaged:
 	Returns a List of Models, or an empty list
 Add:
-	Returns the Model added, or a null Model
+	Returns the Model added, or a null Model if the entity to add failed somehow.
 Update:
-	Returns the Model updated, or a null Model
+	Returns the Model updated, or a null Model if the entity to update was not found.
 Delete:
-	Returns 1 (successfull) or 0 (unsuccessfull)
+	Looks up the entity to delete.
+	Returns 1 (if successfull) or 0 (if unsuccessfull)
 
 
 Services:
 ---------
-Services control the checks i.e.
-	(a) is the item to be added already on the database
-	(b) is the item to be deleted a CoreEntity?
 
-Services also control when the SaveChanges() is called.
+Services control when the SaveChanges() is called.
 
 GetById:
 	Exists = Returns a ServiceResult<Model> and an empty ExceptionList.
@@ -32,6 +31,15 @@ Add:
 	Successful = Returns a ServiceResult<Model> and an empty ExceptionList.
 	Unsccessful = The Model returned is a Null Model and a List of Exceptions
 
+Delete:
+	Performs any checking on the validity of the delete i.e. Is it a Core entity?
+
+	Calls the Delete method of the Repo.
+
+	If the delete fails (returns 0), returns a ServiceResult with zero payload and a new EntityDoesNotExist()
+		exception.
+	If the delete succeeds, call the SaveChanges() and return a ServiceResult with "1" as a payload.
+
 ServiceResult has the following signatures
 	(a) ServiceResult(payload)						Fully successful call
 	(b) ServiceResult(payload, exception)			Failed call with 1 exception and null entity
@@ -41,4 +49,22 @@ ServiceResult has the following signatures
 Handlers:
 ---------
 
-Handlers call services and return responses taken directly from the serviceResult
+Handlers call services and return responses taken directly from the serviceResult. The constructors of
+these responses accept the payload and any exceptions.
+
+Handlers control the checks made before calls to the repo i.e.
+	(a) Is the item to be added already on the database
+	(b) Is the item to be deleted NOT a CoreEntity?
+
+Command/Query Responses
+-----------------------
+
+These have all the fields to return to the API Command/Query Response.
+
+They may have up to 3 constructors:
+	(a)	A constructor that accepts just the (valid) payload. This assigns the valid payload passed to
+		the public property and Clears the Exceptions List.
+	(b) A constructor that accept a single Exception. This sets the payload to the failed value e.g. 0
+	    (for a failed deletion command) or a null Domain object for a failed read/Add/update command.
+	(c)	A constructor that accepts a list of Execptions. Only in the case where a Command/Query is
+		likely to return more than once excepton.

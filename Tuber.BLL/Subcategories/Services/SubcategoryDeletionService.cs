@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -21,7 +22,8 @@ public class SubcategoryDeletionService : ISubcategoryDeletionService
         if (subcategory == 0)
             return new ServiceResult<int>(
                 payload: 0,
-                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
+                exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Delete, Subcategory.FriendlyName, subcategoryId));
 
         _subcategoryRepo.SaveChanges();
 

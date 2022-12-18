@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -49,7 +50,8 @@ public class BankUpdaterService : IBankUpdaterService
         if (bank.BankId == Guid.Empty)
             return new ServiceResult<Bank>(
                 payload: bank,
-                exception: new EntityDoesNotExistException(Bank.FriendlyName, bank.BankId));
+                exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Update, Bank.FriendlyName, bank.BankId));
 
         _bankRepo.SaveChanges();
 

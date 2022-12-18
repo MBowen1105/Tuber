@@ -7,10 +7,12 @@ public class BankDeleteCommandResponse : CommandQueryResponseBase
 	public BankDeleteCommandResponse()
 	{
 	}
-	public BankDeleteCommandResponse(Exception exception)
+	public BankDeleteCommandResponse(int deletedCount, List<Exception> exceptions)
 	{
-		DeletedCount = 0;
-		Exceptions.Add(exception);
+		DeletedCount = deletedCount;
+		Exceptions.Clear();
+		if (exceptions.Count > 0)
+			Exceptions.AddRange(exceptions);
 	}
 
     public int DeletedCount { get; init; }

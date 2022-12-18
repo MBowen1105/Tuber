@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.BLL.ImportTemplates.Services;
+using Tuber.Core.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
@@ -36,7 +37,8 @@ internal class ImportTemplateRetrievalService_UnitTests
         serviceResult.Payload.Should().Be(nullImportTemplate);
         serviceResult.Exceptions.Count.Should().Be(1);
         var firstException = serviceResult.Exceptions.First();
-        firstException.Message.Should().Be(new EntityDoesNotExistException(ImportTemplate.FriendlyName, badId).Message);
+        firstException.Message.Should().Be(new EntityDoesNotExistException(
+            ExceptionDbOperation.Get, ImportTemplate.FriendlyName, badId).Message);
     }
 
     [Test]

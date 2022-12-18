@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -45,7 +46,8 @@ public class SubcategoryUpdaterService : ISubcategoryUpdaterService
         if (subcategory.SubcategoryId == Guid.Empty)
             return new ServiceResult<Subcategory>(
                 payload: subcategory,
-                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategory.SubcategoryId));
+                exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Update, Subcategory.FriendlyName, subcategory.SubcategoryId));
 
         _subcategoryRepo.SaveChanges();
 

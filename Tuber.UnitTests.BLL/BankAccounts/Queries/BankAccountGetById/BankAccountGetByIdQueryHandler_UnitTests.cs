@@ -3,6 +3,7 @@ using FluentAssertions;
 using Moq;
 using Tuber.BLL.BankAccounts;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
+using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
@@ -122,7 +123,8 @@ internal class BankAccountGetByIdQueryHandler_UnitTests
         _mockBankAccountRetrievalService.Setup(x => x.GetById(It.Is<Guid>(x => x == badId)))
             .Returns(new ServiceResult<BankAccount>(
                 payload: new BankAccount(),
-                exception: new EntityDoesNotExistException(Bank.FriendlyName, badId)));
+                exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Get, Bank.FriendlyName, badId)));
 
         var sut = new BankAccountGetByIdQueryHandler(_mockBankAccountRetrievalService.Object, _mapper);
 

@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -16,15 +17,15 @@ public class BankAccountDeletionService : IBankAccountDeletionService
 
     public ServiceResult<int> Delete(Guid bankAccountId)
     {
+        //  Returns 0 (Failed) or 1 (Successful)
         var deletedCount = _bankAccountRepo.Delete(bankAccountId);
-
+     
         if (deletedCount == 0)
-            return new ServiceResult<int>(
-                payload: 0,
-                exception: new EntityDoesNotExistException(BankAccount.FriendlyName, bankAccountId));
+            return new ServiceResult<int>(0, new EntityDoesNotExistException(
+                ExceptionDbOperation.Delete, BankAccount.FriendlyName, bankAccountId));
 
         _bankAccountRepo.SaveChanges();
 
-        return new ServiceResult<int>(1);
+        return new ServiceResult<int>(deletedCount);
     }
 }

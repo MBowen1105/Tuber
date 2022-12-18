@@ -1,4 +1,5 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Core.Enums;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
@@ -17,7 +18,7 @@ public class BankAccountUpdaterService : IBankAccountUpdaterService
     public ServiceResult<BankAccount> Add(string bankAccountName, string ukBankAccount,
         string ukSortCode, int orderBy, Guid bankId, Guid? importTemplateId)
     {
-        var bankAccount = new BankAccount
+        var newBankAccount = new BankAccount
         {
             BankAccountName = bankAccountName,
             UKBankAccount = ukBankAccount,
@@ -27,7 +28,7 @@ public class BankAccountUpdaterService : IBankAccountUpdaterService
             ImportTemplateId = importTemplateId,
         };
 
-        bankAccount = _bankAccountRepo.Add(bankAccount);
+        var bankAccount = _bankAccountRepo.Add(newBankAccount);
 
         if (bankAccount.BankAccountId == Guid.Empty)
             return new ServiceResult<BankAccount>(
@@ -62,6 +63,7 @@ public class BankAccountUpdaterService : IBankAccountUpdaterService
             return new ServiceResult<BankAccount>(
                 payload: bankAccount,
                 exception: new EntityDoesNotExistException(
+                    ExceptionDbOperation.Update,
                     BankAccount.FriendlyName, bankAccount.BankAccountId));
 
         _bankAccountRepo.SaveChanges();

@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
 using Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
+using Tuber.BLL.BankAccounts.Commands.BankAccountDelete;
 using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
@@ -63,21 +64,21 @@ public static class BankAccountEndpoints
 
 
 
-        //app.MapDelete("/bankaccount/delete/{id}", async (Guid bankAccountId,
-        //    [FromServices] IMediator mediator) =>
-        //{
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(new BankAccountAccountDeleteCommandRequest
-        //    {
-        //        BankAccountAccountId = bankAccountId,
-        //    });
+        app.MapDelete("/bankaccount/delete/{id}", async (Guid bankAccountId,
+            [FromServices] IMediator mediator) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new BankAccountDeleteCommandRequest
+            {
+                BankAccountId = bankAccountId,
+            });
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    return Results.NoContent();
-        //})
-        //.WithName("BankAccountAccountDelete");
+            return Results.NoContent();
+        })
+        .WithName("BankAccountDelete");
     }
 
     public static void QueryEndpoints(WebApplication app)
