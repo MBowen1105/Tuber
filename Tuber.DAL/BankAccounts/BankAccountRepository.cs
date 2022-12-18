@@ -26,24 +26,24 @@ public class BankAccountRepository : IBankAccountRepository
         return bankAccount;
     }
 
-    public BankAccount Update(BankAccount bankAccount)
+    public BankAccount Update(BankAccount pBankAccount)
     {
-        var bankAccountModel = _context.BankAccounts
+        var bankAccount = _context.BankAccounts
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
-            .FirstOrDefault(x => x.BankAccountId == bankAccount.BankAccountId && x.IsDeleted == false);
+            .FirstOrDefault(x => x.BankAccountId == pBankAccount.BankAccountId && x.IsDeleted == false);
 
-        if (bankAccountModel is null)
+        if (bankAccount is null)
             return new BankAccount();
 
-        bankAccountModel.BankAccountName = bankAccountModel.BankAccountName;
-        bankAccountModel.UKBankAccount = bankAccountModel.UKBankAccount;
-        bankAccountModel.UKSortCode = bankAccountModel.UKSortCode;
-        bankAccountModel.BankId = bankAccountModel.BankId;
-        bankAccountModel.ImportTemplateId = bankAccountModel.ImportTemplateId;
-        bankAccountModel.OrderBy = bankAccount.OrderBy;
+        bankAccount.BankAccountName = pBankAccount.BankAccountName;
+        bankAccount.UKBankAccount = pBankAccount.UKBankAccount;
+        bankAccount.UKSortCode = pBankAccount.UKSortCode;
+        bankAccount.BankId = pBankAccount.BankId;
+        bankAccount.ImportTemplateId = pBankAccount.ImportTemplateId;
+        bankAccount.OrderBy = pBankAccount.OrderBy;
 
-        return bankAccountModel;
+        return bankAccount;
     }
 
     public int Delete(Guid bankAccountId)

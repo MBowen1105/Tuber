@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
 using Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
+using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Dtos;
@@ -16,6 +17,9 @@ public class BankAccountProfile : Profile
         CreateMap<BankAccountAddCommandResponse, BankAccountAddAPIResponse>();
 
         //  TODO: BankAccountUpdate
+        CreateMap<BankAccountUpdateAPIRequest, BankAccountUpdateCommandRequest>();
+        CreateMap<BankAccountUpdateCommandResponse, BankAccountUpdateAPIResponse>();
+
         //  TODO: BankAccountDelete
 
         //  BankAccountGetById

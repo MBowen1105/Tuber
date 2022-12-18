@@ -5,7 +5,7 @@ namespace Tuber.Domain.Interfaces.BLL;
 public interface IBankAccountUpdaterService
 {
     ServiceResult<BankAccount> Add(string bankAccountName, string ukBankAccount, 
-        string sortCode, int orderBy, Guid bankId, Guid? importTemplateId);
+        string ukSortCode, int orderBy, Guid bankId, Guid? importTemplateId);
     ServiceResult<BankAccount> Update(Guid bankAccountId, string bankAccountName, string ukBankAccount,
-        string sortCode, int orderBy, Guid bankId, Guid? importTemplateId);
+        string ukSortCode, int orderBy, Guid bankId, Guid? importTemplateId);
 }

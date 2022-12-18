@@ -45,23 +45,27 @@ public class BankAccountUpdaterService : IBankAccountUpdaterService
     public ServiceResult<BankAccount> Update(Guid bankAccountId, string bankAccountName, string ukBankAccount,
         string ukSortCode, int orderBy, Guid bankId, Guid? importTemplateId)
     {
-        var bank = _bankAccountRepo.Update(new BankAccount
+        var bankAccount = new BankAccount
         {
+            BankAccountId = bankAccountId,
             BankAccountName = bankAccountName,
             UKBankAccount = ukBankAccount,
             UKSortCode = ukSortCode,
             OrderBy = orderBy,
             BankId = bankId,
             ImportTemplateId = importTemplateId,
-        });
+        };
 
-        if (bank.BankAccountId == Guid.Empty)
+        bankAccount = _bankAccountRepo.Update(bankAccount);
+
+        if (bankAccount.BankAccountId == Guid.Empty)
             return new ServiceResult<BankAccount>(
-                payload: bank,
-                exception: new EntityDoesNotExistException(BankAccount.FriendlyName, bank.BankAccountId));
+                payload: bankAccount,
+                exception: new EntityDoesNotExistException(
+                    BankAccount.FriendlyName, bankAccount.BankAccountId));
 
         _bankAccountRepo.SaveChanges();
 
-        return new ServiceResult<BankAccount>(bank);
+        return new ServiceResult<BankAccount>(bankAccount);
     }
 }

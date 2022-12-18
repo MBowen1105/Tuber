@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
 using Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
+using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.BLL.Banks.Commands.BankAdd;
@@ -39,26 +40,26 @@ public static class BankAccountEndpoints
         .WithName("BankAccountAdd");
 
 
-        //app.MapPut("/bank/update", async (BankAccountUpdateAPIRequest APIRequest,
-        //    [FromServices] IMediator mediator,
-        //    [FromServices] IMapper mapper,
-        //    [FromServices] IEnumerable<IValidator<BankAccountUpdateAPIRequest>> validators) =>
-        //{
-        //    //  Map validated API request to query
-        //    var query = mapper.Map<BankAccountUpdateAPIRequest, BankAccountUpdateCommandRequest>(APIRequest);
+        app.MapPut("/bankaccount/update", async (BankAccountUpdateAPIRequest APIRequest,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper,
+            [FromServices] IEnumerable<IValidator<BankAccountUpdateAPIRequest>> validators) =>
+        {
+            //  Map validated API request to query
+            var query = mapper.Map<BankAccountUpdateAPIRequest, BankAccountUpdateCommandRequest>(APIRequest);
 
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(query);
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(query);
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    //  Map Handler response to API Response and return.
-        //    var apiResponse = mapper.Map<BankAccountUpdateCommandResponse, BankAccountUpdateAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<BankAccountUpdateCommandResponse, BankAccountUpdateAPIResponse>(queryResponse);
 
-        //    return Results.Accepted($"/bank/{apiResponse.Id}", apiResponse);
-        //})
-        //.WithName("BankAccountUpdate");
+            return Results.Accepted($"/bankaccount/{apiResponse.BankAccountId}", apiResponse);
+        })
+        .WithName("BankAccountUpdate");
 
 
 
