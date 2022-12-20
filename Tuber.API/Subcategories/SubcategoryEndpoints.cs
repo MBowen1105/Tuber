@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
 using Tuber.BLL.Subcategories.Commands.SubcategoryDelete;
+using Tuber.BLL.Subcategories.Commands.SubcategoryUpdate;
 using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Exceptions;
@@ -36,26 +37,26 @@ public static class SubcategoryEndpoints
         .WithName("SubcategoryAdd");
 
 
-        //app.MapPut("/Subcategory/update", async (UpdateSubcategoryAPIRequest APIRequest,
-        //    [FromServices] IMediator mediator,
-        //    [FromServices] IMapper mapper,
-        //    [FromServices] IEnumerable<IValidator<UpdateSubcategoryAPIRequest>> validators) =>
-        //{
-        //    //  Map validated API request to query
-        //    var query = mapper.Map<UpdateSubcategoryAPIRequest, UpdateSubcategoryCommandRequest>(APIRequest);
+        app.MapPut("/Subcategory/update", async (SubcategoryUpdateAPIRequest APIRequest,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper,
+            [FromServices] IEnumerable<IValidator<SubcategoryUpdateAPIRequest>> validators) =>
+        {
+            //  Map validated API request to query
+            var query = mapper.Map<SubcategoryUpdateAPIRequest, SubcategoryUpdateCommandRequest>(APIRequest);
 
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(query);
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(query);
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    //  Map Handler response to API Response and return.
-        //    var apiResponse = mapper.Map<UpdateSubcategoryCommandResponse, UpdateSubcategoryAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<SubcategoryUpdateCommandResponse, SubcategoryUpdateAPIResponse>(queryResponse);
 
-        //    return Results.Accepted($"/Subcategory/{apiResponse.SubcategoryId}", apiResponse);
-        //})
-        //.WithName("UpdateSubcategory");
+            return Results.Accepted($"/Subcategory/{apiResponse.SubcategoryId}", apiResponse);
+        })
+        .WithName("SubcategoryUpdate");
 
 
 

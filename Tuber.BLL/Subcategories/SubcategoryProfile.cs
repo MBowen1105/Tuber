@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
+using Tuber.BLL.Subcategories.Commands.SubcategoryUpdate;
 using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Dtos;
@@ -23,8 +24,9 @@ public class SubcategoryProfile : Profile
         CreateMap<SubcategoryAddAPIRequest, SubcategoryAddCommandRequest>();
         CreateMap<SubcategoryAddCommandResponse, SubcategoryAddAPIResponse>();
 
-        //  TODO: SubcategoryUpdate
-        //  TODO: SubcategoryDelete
+        //  SubcategoryUpdate
+        CreateMap<SubcategoryUpdateAPIRequest, SubcategoryUpdateCommandRequest>();
+        CreateMap<SubcategoryUpdateCommandResponse, SubcategoryUpdateAPIResponse>();
     }
 
 }
