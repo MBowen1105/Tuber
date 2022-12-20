@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Tuber.BLL.BankAccounts;
+using Tuber.Application.BankAccounts;
 
 namespace Tuber.UnitTests.BLL.BankAccounts;
 internal class BankAccountProfile_UnitTests

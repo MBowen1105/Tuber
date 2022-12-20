@@ -1,6 +1,6 @@
 ﻿using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Banks.Queries.BankGetById;
+namespace Tuber.Application.Banks.Queries.BankGetById;
 public class BankGetByIdAPIResponse
 {
     public Guid BankId { get; init; }

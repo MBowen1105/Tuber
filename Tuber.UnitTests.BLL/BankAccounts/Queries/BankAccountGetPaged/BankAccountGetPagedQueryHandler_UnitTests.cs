@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Common;
 using Tuber.Domain.Dtos;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.UnitTests.BLL.BankAccounts.Queries.BankAccountGetPaged;
 internal class BankAccountGetPagedQueryHandler_UnitTests

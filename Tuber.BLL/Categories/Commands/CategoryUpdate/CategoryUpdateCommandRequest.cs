@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Categories.Commands.CategoryUpdate;
+namespace Tuber.Application.Categories.Commands.CategoryUpdate;
 public class CategoryUpdateCommandRequest : IRequest<CategoryUpdateCommandResponse>
 {
     public Guid CategoryId { get; set; }

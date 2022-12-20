@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Banks.Queries.BankGetPaged
+namespace Tuber.Application.Banks.Queries.BankGetPaged
 {
     public class BankGetPagedQueryHandler : IRequestHandler<BankGetPagedQueryRequest, BankGetPagedQueryResponse>
     {

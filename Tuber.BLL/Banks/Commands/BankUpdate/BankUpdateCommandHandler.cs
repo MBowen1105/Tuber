@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Banks.Commands.BankUpdate
+namespace Tuber.Application.Banks.Commands.BankUpdate
 {
     public class BankUpdateCommandHandler : IRequestHandler<BankUpdateCommandRequest, BankUpdateCommandResponse>
     {

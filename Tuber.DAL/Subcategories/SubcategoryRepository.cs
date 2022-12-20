@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Interfaces.DAL;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.DAL.Subcategories;

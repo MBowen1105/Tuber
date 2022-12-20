@@ -1,6 +1,6 @@
-﻿using Tuber.BLL.Interfaces;
+﻿using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Categories.Services;
+namespace Tuber.Application.Categories.Services;
 public class CategorySubcategoryRetrievalService : ICategorySubcategoryRetrievalService
 {
     public CategorySubcategoryRetrievalService()

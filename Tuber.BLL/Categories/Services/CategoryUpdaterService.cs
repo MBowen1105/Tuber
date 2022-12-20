@@ -1,10 +1,9 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Application.Common.Interfaces;
+using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Categories.Services;
+namespace Tuber.Application.Categories.Services;
 public class CategoryUpdaterService : ICategoryUpdaterService
 {
     private readonly ICategoryRepository _categoryRepo;

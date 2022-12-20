@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Tuber.BLL.Banks.Commands.AddBank;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Banks.Commands.AddBank;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Banks.Commands.BankAdd;
+namespace Tuber.Application.Banks.Commands.BankAdd;
 
 public class BankAddCommandHandler : IRequestHandler<BankAddCommandRequest, BankAddCommandResponse>
 {

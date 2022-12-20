@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
+namespace Tuber.Application.BankAccounts.Queries.BankAccountGetById;
 public class BankAccountGetByIdQueryResponse : CommandQueryResponseBase
 {
     public Guid BankAccountId { get; init; }

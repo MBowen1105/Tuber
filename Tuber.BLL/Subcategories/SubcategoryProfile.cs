@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
-using Tuber.BLL.Subcategories.Commands.SubcategoryUpdate;
-using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
-using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
+using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
+using Tuber.Application.Subcategories.Commands.SubcategoryUpdate;
+using Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
+using Tuber.Application.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Subcategories;
+namespace Tuber.Application.Subcategories;
 public class SubcategoryProfile : Profile
 {
     public SubcategoryProfile()

@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryDelete;
+namespace Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryDelete;
 
 public class CategorySubcategoryDeleteCommandResponse : CommandQueryResponseBase
 {

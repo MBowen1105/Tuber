@@ -1,12 +1,9 @@
-﻿using Tuber.BLL.Interfaces;
+﻿using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Common;
 using Tuber.Domain.Enums;
-using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
-using Tuber.SystemClock.Interfaces;
 
-namespace Tuber.BLL.Imports.Services;
+namespace Tuber.Application.Imports.Services;
 public class ImportUpdaterService : IImportUpdaterService
 {
     private readonly IImportRepository _importRepo;

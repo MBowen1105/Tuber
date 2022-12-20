@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Banks.Commands.BankUpdate;
-using Tuber.BLL.Banks.Services;
+using Tuber.Application.Banks.Commands.BankUpdate;
+using Tuber.Application.Banks.Services;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.DAL;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.Banks.Commands.BankUpdate;

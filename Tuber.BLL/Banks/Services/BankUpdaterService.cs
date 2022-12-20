@@ -1,11 +1,10 @@
-﻿using Tuber.Core.Enums;
+﻿using Tuber.Application.Common.Interfaces;
+using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Banks.Services;
+namespace Tuber.Application.Banks.Services;
 public class BankUpdaterService : IBankUpdaterService
 {
     private readonly IBankRepository _bankRepo;

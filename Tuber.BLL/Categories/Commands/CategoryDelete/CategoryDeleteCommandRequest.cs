@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Categories.Commands.CategoryDelete;
+namespace Tuber.Application.Categories.Commands.CategoryDelete;
 public class CategoryDeleteCommandRequest : IRequest<CategoryDeleteCommandResponse>
 {
     public Guid CategoryId { get; set; }

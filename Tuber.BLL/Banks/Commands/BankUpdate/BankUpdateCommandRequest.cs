@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Banks.Commands.BankUpdate;
+namespace Tuber.Application.Banks.Commands.BankUpdate;
 public class BankUpdateCommandRequest : IRequest<BankUpdateCommandResponse>
 {
     public Guid BankId { get; init; }

@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.Categories.Commands.CategoryAdd;
+﻿namespace Tuber.Application.Categories.Commands.CategoryAdd;
 public class CategoryAddAPIResponse
 {
     public Guid CategoryId { get; init; }

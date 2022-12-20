@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using FluentValidation.Results;
-using Tuber.BLL.Extensions;
+using Tuber.Application.Extensions;
 
 namespace Tuber.UnitTests.BLL.Extensions;
 internal class ValidationFailureExtensions_UnitTests

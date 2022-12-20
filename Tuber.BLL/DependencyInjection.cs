@@ -3,16 +3,16 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.BLL.BankAccountAccounts.Services;
-using Tuber.BLL.BankAccounts.Services;
-using Tuber.BLL.Banks.Services;
-using Tuber.BLL.Categories.Services;
-using Tuber.BLL.CategoriesSubcategories.Services;
-using Tuber.BLL.Imports.Services;
-using Tuber.BLL.ImportTemplates.Services;
-using Tuber.BLL.Interfaces;
-using Tuber.BLL.PipelineBehaviours;
-using Tuber.BLL.Subcategories.Services;
+using Tuber.Application.BankAccountAccounts.Services;
+using Tuber.Application.BankAccounts.Services;
+using Tuber.Application.Banks.Services;
+using Tuber.Application.Categories.Services;
+using Tuber.Application.CategoriesSubcategories.Services;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Imports.Services;
+using Tuber.Application.ImportTemplates.Services;
+using Tuber.Application.PipelineBehaviours;
+using Tuber.Application.Subcategories.Services;
 
 namespace Tuber.BLL;
 public static class DependencyInjection

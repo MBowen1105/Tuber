@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Subcategories.Queries.SubcategoryGetById
+namespace Tuber.Application.Subcategories.Queries.SubcategoryGetById
 {
     public class SubcategoryGetByIdQueryHandler : IRequestHandler<SubcategoryGetByIdQueryRequest, SubcategoryGetByIdQueryResponse>
     {

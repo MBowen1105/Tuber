@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Tuber.Core.Enums;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete
+namespace Tuber.Application.Subcategories.Commands.SubcategoryDelete
 {
     public class SubcategoryDeleteCommandHandler : IRequestHandler<SubcategoryDeleteCommandRequest, SubcategoryDeleteCommandResponse>
     {

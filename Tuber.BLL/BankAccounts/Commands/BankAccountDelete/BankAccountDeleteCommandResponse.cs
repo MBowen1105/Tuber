@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountDelete;
+namespace Tuber.Application.BankAccounts.Commands.BankAccountDelete;
 
 public class BankAccountDeleteCommandResponse : CommandQueryResponseBase
 {

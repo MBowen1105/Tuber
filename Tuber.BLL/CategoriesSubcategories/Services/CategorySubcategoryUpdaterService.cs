@@ -1,9 +1,8 @@
-﻿using Tuber.Domain.Common;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
+﻿using Tuber.Application.Common.Interfaces;
+using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.CategoriesSubcategories.Services;
+namespace Tuber.Application.CategoriesSubcategories.Services;
 public class CategorySubcategoryUpdaterService : ICategorySubcategoryUpdaterService
 {
     private readonly ICategorySubcategoryRepository _categorySubcategoryRepo;

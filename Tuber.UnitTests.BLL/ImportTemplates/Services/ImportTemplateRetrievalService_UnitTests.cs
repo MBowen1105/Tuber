@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.ImportTemplates.Services;
+using Tuber.Application.ImportTemplates.Services;
 using Tuber.Core.Enums;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.DAL;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.ImportTemplates.Services;

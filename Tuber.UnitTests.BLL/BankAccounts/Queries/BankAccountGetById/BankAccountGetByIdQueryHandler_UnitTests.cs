@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using Moq;
-using Tuber.BLL.BankAccounts;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
+using Tuber.Application.BankAccounts;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
 using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.UnitTests.BLL.BankAccounts.Queries.BankAccountGetById;
 internal class BankAccountGetByIdQueryHandler_UnitTests

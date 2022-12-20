@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.BankAccounts.Services;
+using Tuber.Application.BankAccounts.Services;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.UnitTests.BLL.BankAccounts.Services;
 internal class BankAccountDeletionService_UnitTests

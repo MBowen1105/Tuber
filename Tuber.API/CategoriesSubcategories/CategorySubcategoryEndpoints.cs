@@ -2,9 +2,9 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
-using Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryDelete;
-using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
+using Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
+using Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryDelete;
+using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 
 namespace Tuber.API.CategoriesSubcategories;
 

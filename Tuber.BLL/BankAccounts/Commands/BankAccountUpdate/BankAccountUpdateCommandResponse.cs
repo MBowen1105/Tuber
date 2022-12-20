@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
+namespace Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
 
 public class BankAccountUpdateCommandResponse : CommandQueryResponseBase
 {

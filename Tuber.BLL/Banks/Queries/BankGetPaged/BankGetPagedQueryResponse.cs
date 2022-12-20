@@ -1,7 +1,7 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Banks.Queries.BankGetPaged;
+namespace Tuber.Application.Banks.Queries.BankGetPaged;
 public class BankGetPagedQueryResponse : PagedQueryResponseBase
 {
     public int BankCount { get; init; } = 0;

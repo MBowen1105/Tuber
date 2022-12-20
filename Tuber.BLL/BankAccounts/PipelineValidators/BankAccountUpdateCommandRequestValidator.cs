@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
+using Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
 
-namespace Tuber.BLL.BankAccounts.PipelineValidators;
+namespace Tuber.Application.BankAccounts.PipelineValidators;
 public class BankAccountUpdateCommandRequestValidator
     : AbstractValidator<BankAccountUpdateCommandRequest>
 {

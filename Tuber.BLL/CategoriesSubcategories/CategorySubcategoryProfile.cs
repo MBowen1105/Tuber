@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
+using Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
 
-namespace Tuber.BLL.CategoriesSubcategories;
+namespace Tuber.Application.CategoriesSubcategories;
 public class CategorySubcategoryProfile : Profile
 {
     public CategorySubcategoryProfile()

@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
+namespace Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
 
 public class CategorySubcategoryAddCommandResponse : CommandQueryResponseBase
 {

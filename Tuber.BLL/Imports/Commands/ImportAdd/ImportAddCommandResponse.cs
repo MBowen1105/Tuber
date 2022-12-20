@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Imports.Commands.ImportAdd;
+namespace Tuber.Application.Imports.Commands.ImportAdd;
 
 public class ImportAddCommandResponse : CommandQueryResponseBase
 {

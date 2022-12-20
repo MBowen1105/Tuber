@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Subcategories.Commands.SubcategoryDelete;
+using Tuber.Application.Subcategories.Commands.SubcategoryDelete;
 using Tuber.Core.Enums;
 using Tuber.Core.Exceptions;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.UnitTests.Domain.Subcategories.Commands.SubcategoryDelete;
 internal class SubcategoryDeleteCommandHandler_UnitTests

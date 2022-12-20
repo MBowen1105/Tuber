@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 
-namespace Tuber.BLL.BankAccounts.PipelineValidators;
+namespace Tuber.Application.BankAccounts.PipelineValidators;
 public class BankAccountGetPagedQueryRequestValidator : AbstractValidator<BankAccountGetPagedQueryRequest>
 {
     public BankAccountGetPagedQueryRequestValidator()

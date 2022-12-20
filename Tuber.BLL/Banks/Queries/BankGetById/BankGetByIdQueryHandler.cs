@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Banks.Queries.BankGetById
+namespace Tuber.Application.Banks.Queries.BankGetById
 {
     public class BankGetByIdQueryHandler : IRequestHandler<BankGetByIdQueryRequest, BankGetByIdQueryResponse>
     {

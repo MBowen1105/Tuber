@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Application.Common.Interfaces;
 using Tuber.DAL.BankAccounts;
 using Tuber.DAL.Banks;
 using Tuber.DAL.Categories;
@@ -8,9 +9,7 @@ using Tuber.DAL.ImportTemplates;
 using Tuber.DAL.Subcategories;
 using Tuber.DAL.Users;
 using Tuber.Domain.Common;
-using Tuber.Domain.Interfaces.Authorisation;
 using Tuber.Domain.Models;
-using Tuber.SystemClock.Interfaces;
 
 namespace Tuber.DAL;
 

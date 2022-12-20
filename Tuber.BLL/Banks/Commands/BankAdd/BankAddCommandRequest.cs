@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tuber.BLL.Banks.Commands.AddBank;
+using Tuber.Application.Banks.Commands.AddBank;
 
-namespace Tuber.BLL.Banks.Commands.BankAdd;
+namespace Tuber.Application.Banks.Commands.BankAdd;
 public class BankAddCommandRequest : IRequest<BankAddCommandResponse>
 {
     public string Name { get; set; } = "";

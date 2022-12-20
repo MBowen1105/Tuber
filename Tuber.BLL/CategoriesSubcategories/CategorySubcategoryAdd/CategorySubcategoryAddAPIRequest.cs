@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
+﻿namespace Tuber.Application.CategoriesSubcategories.Commands.CategorySubcategoryAdd;
 public class CategorySubcategoryAddAPIRequest
 {
     public Guid CategoryId { get; set; }

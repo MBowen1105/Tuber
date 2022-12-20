@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Categories.Commands.CategoryDelete
+namespace Tuber.Application.Categories.Commands.CategoryDelete
 {
     public class CategoryDeleteCommandHandler : IRequestHandler<CategoryDeleteCommandRequest, CategoryDeleteCommandResponse>
     {

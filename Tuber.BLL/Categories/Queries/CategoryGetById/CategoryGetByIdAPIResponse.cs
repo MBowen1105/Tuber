@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.Categorys.Queries.CategoryGetById;
+﻿namespace Tuber.Application.Categorys.Queries.CategoryGetById;
 public class CategoryGetByIdAPIResponse
 {
     public Guid CategoryId { get; init; }

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
+namespace Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
 public class BankAccountUpdateCommandRequest : IRequest<BankAccountUpdateCommandResponse>
 {
     public Guid BankAccountId { get; set; }

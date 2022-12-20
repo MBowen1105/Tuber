@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.Banks.Commands.BankUpdate;
+﻿namespace Tuber.Application.Banks.Commands.BankUpdate;
 public class BankUpdateAPIResponse
 {
     public Guid Id { get; init; }

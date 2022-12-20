@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
+namespace Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 
 public class SubcategoryAddCommandHandler : IRequestHandler<SubcategoryAddCommandRequest, SubcategoryAddCommandResponse>
 {

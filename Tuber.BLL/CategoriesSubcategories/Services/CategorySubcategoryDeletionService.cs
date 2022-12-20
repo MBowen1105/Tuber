@@ -1,10 +1,10 @@
-﻿using Tuber.Core.Enums;
+﻿using Tuber.Application.Common.Interfaces;
+using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.CategoriesSubcategories.Services;
+namespace Tuber.Application.CategoriesSubcategories.Services;
 public class CategorySubcategoryDeletionService : ICategorySubcategoryDeletionService
 {
     private readonly ICategorySubcategoryRepository _categorySubcategoryRepo;

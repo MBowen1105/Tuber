@@ -1,6 +1,4 @@
-﻿using Tuber.Domain.ValueObjects;
-
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
+﻿namespace Tuber.Application.BankAccounts.Commands.BankAccountAdd;
 public class BankAccountAddAPIRequest
 {
     public string BankAccountName { get; set; } = "";

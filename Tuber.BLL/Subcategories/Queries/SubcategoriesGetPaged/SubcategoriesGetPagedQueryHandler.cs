@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged
+namespace Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged
 {
     public class SubcategoriesGetPagedQueryHandler : IRequestHandler<SubcategoriesGetPagedQueryRequest, SubcategoriesGetPagedQueryResponse>
     {

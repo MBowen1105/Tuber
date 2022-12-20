@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Banks.Commands.AddBank;
+namespace Tuber.Application.Banks.Commands.AddBank;
 
 public class BankAddCommandResponse : CommandQueryResponseBase
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Categories.Commands.CategoryAdd;
+namespace Tuber.Application.Categories.Commands.CategoryAdd;
 public class CategoryAddCommandRequest : IRequest<CategoryAddCommandResponse>
 {
     public string CategoryName { get; set; } = "";

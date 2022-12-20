@@ -1,11 +1,10 @@
-﻿using Tuber.BLL.Interfaces;
+﻿using Tuber.Application.Common.Interfaces;
 using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.BankAccounts.Services;
+namespace Tuber.Application.BankAccounts.Services;
 public class BankAccountDeletionService : IBankAccountDeletionService
 {
     private readonly IBankAccountRepository _bankAccountRepo;

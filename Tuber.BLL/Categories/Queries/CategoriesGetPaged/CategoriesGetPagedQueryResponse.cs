@@ -1,7 +1,7 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Categories.Queries.CategoriesGetPaged;
+namespace Tuber.Application.Categories.Queries.CategoriesGetPaged;
 public class CategoriesGetPagedQueryResponse : PagedQueryResponseBase
 {
     public int CategoryCount { get; init; } = 0;

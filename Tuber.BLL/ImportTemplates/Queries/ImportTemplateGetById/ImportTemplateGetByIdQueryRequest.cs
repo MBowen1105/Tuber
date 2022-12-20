@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 public class ImportTemplateGetByIdQueryRequest : IRequest<ImportTemplateGetByIdQueryResponse>
 {
     public Guid ImportTemplateId { get; set; }

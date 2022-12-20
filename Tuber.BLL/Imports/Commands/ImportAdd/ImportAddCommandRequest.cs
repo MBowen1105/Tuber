@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tuber.BLL.Imports.Commands.ImportAdd;
+namespace Tuber.Application.Imports.Commands.ImportAdd;
 public class ImportAddCommandRequest : IRequest<ImportAddCommandResponse>
 {
     public Guid ImportTemplateId { get; init; }

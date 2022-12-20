@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged
+namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged
 {
     public class ImportTemplateGetPagedQueryHandler : IRequestHandler<ImportTemplateGetPagedQueryRequest, ImportTemplateGetPagedQueryResponse>
     {

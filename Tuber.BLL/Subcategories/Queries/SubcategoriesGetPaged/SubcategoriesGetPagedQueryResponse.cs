@@ -1,7 +1,7 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
+namespace Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 public class SubcategoriesGetPagedQueryResponse : PagedQueryResponseBase
 {
     public int SubcategoryCount { get; init; } = 0;

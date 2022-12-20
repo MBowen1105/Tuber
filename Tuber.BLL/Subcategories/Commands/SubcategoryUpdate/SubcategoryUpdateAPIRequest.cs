@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.Subcategories.Commands.SubcategoryUpdate;
+﻿namespace Tuber.Application.Subcategories.Commands.SubcategoryUpdate;
 public class SubcategoryUpdateAPIRequest
 {
     public Guid SubcategoryId { get; set; }

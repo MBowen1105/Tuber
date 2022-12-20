@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Domain.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.Authentication;
 public static class DependencyInjection

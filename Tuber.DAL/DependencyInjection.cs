@@ -8,7 +8,7 @@ using Tuber.DAL.Categories;
 using Tuber.DAL.CategoriesSubcategories;
 using Tuber.DAL.Imports;
 using Tuber.DAL.Subcategories;
-using Tuber.Domain.Interfaces.DAL;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.DAL;
 public static class DependencyInjection

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Tuber.Core.Exceptions;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountDelete
+namespace Tuber.Application.BankAccounts.Commands.BankAccountDelete
 {
     public class BankAccountDeleteCommandHandler : IRequestHandler<BankAccountDeleteCommandRequest, BankAccountDeleteCommandResponse>
     {

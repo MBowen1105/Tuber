@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
-using Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
-using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.BankAccounts.Commands.AddAccountBank;
+using Tuber.Application.BankAccounts.Commands.BankAccountAdd;
+using Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.BankAccounts;
+namespace Tuber.Application.BankAccounts;
 public class BankAccountProfile : Profile
 {
     public BankAccountProfile()

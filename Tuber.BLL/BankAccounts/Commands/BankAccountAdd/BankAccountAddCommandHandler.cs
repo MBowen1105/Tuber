@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
-using Tuber.BLL.Banks.Commands.AddBank;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.BankAccounts.Commands.AddAccountBank;
+using Tuber.Application.Banks.Commands.AddBank;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
+namespace Tuber.Application.BankAccounts.Commands.BankAccountAdd;
 
 public class BankAccountAddCommandHandler : IRequestHandler<BankAccountAddCommandRequest, BankAccountAddCommandResponse>
 {

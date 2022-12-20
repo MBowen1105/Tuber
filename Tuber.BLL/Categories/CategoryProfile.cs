@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Categories.Commands.CategoryAdd;
-using Tuber.BLL.Categories.Commands.CategoryUpdate;
-using Tuber.BLL.Categories.Queries.CategoriesGetPaged;
-using Tuber.BLL.Categories.Queries.CategoryGetById;
-using Tuber.BLL.Categorys.Queries.CategoryGetById;
+using Tuber.Application.Categories.Commands.CategoryAdd;
+using Tuber.Application.Categories.Commands.CategoryUpdate;
+using Tuber.Application.Categories.Queries.CategoriesGetPaged;
+using Tuber.Application.Categories.Queries.CategoryGetById;
+using Tuber.Application.Categorys.Queries.CategoryGetById;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Categories;
+namespace Tuber.Application.Categories;
 public class CategoryProfile : Profile
 {
     public CategoryProfile()

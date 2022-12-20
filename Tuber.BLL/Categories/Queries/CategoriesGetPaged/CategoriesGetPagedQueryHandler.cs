@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Domain.Dtos;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Categories.Queries.CategoriesGetPaged
+namespace Tuber.Application.Categories.Queries.CategoriesGetPaged
 {
     public class CategoriesGetPagedQueryHandler : IRequestHandler<CategoriesGetPagedQueryRequest, CategoriesGetPagedQueryResponse>
     {

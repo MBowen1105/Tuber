@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Imports;
+using Tuber.Application.Imports;
 
 namespace Tuber.UnitTests.BLL.Imports;
 internal class ImportProfile_UnitTests

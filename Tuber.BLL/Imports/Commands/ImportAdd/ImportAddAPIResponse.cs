@@ -1,4 +1,4 @@
-﻿namespace Tuber.BLL.Imports.Commands.ImportAdd;
+﻿namespace Tuber.Application.Imports.Commands.ImportAdd;
 public class ImportAddAPIResponse
 {
     public Guid BankAccountId { get; init; }

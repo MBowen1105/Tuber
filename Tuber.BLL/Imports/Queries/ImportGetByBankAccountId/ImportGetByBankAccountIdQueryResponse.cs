@@ -1,7 +1,7 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.BLL.Imports.Queries.ImportGetByBankAccountId;
+namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 public class ImportGetByBankAccountIdQueryResponse : CommandQueryResponseBase
 {
     public int TotalImportRowCount { get; set; }

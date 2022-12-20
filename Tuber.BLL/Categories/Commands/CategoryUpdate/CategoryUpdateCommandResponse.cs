@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Categories.Commands.CategoryUpdate;
+namespace Tuber.Application.Categories.Commands.CategoryUpdate;
 
 public class CategoryUpdateCommandResponse : CommandQueryResponseBase
 {

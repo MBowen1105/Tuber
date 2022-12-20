@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
-using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged;
+using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
+using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.ImportTemplates;
+namespace Tuber.Application.ImportTemplates;
 public class ImportTemplateProfile : Profile
 {
     public ImportTemplateProfile()

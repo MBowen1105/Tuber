@@ -2,15 +2,15 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
-using Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
-using Tuber.BLL.BankAccounts.Commands.BankAccountDelete;
-using Tuber.BLL.BankAccounts.Commands.BankAccountUpdate;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
-using Tuber.BLL.Banks.Commands.BankAdd;
-using Tuber.BLL.Banks.Commands.BankDelete;
-using Tuber.BLL.Banks.Commands.BankUpdate;
+using Tuber.Application.BankAccounts.Commands.AddAccountBank;
+using Tuber.Application.BankAccounts.Commands.BankAccountAdd;
+using Tuber.Application.BankAccounts.Commands.BankAccountDelete;
+using Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.Banks.Commands.BankAdd;
+using Tuber.Application.Banks.Commands.BankDelete;
+using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.BankAccounts;

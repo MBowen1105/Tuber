@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Tuber.BLL.Imports.Commands.ImportAdd;
-using Tuber.BLL.Imports.Queries.ImportGetByBankAccountId;
+using Tuber.Application.Imports.Commands.ImportAdd;
+using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Imports;
+namespace Tuber.Application.Imports;
 public class ImportProfile : Profile
 {
     public ImportProfile()

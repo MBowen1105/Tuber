@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Tuber.BLL.Banks.Commands.BankAdd;
+using Tuber.Application.Banks.Commands.BankAdd;
 
-namespace Tuber.BLL.Banks.PipelineValidators;
+namespace Tuber.Application.Banks.PipelineValidators;
 
 public class BankAddCommandRequestValidator : AbstractValidator<BankAddCommandRequest>
 {

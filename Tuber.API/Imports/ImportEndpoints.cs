@@ -2,8 +2,8 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Imports.Commands.ImportAdd;
-using Tuber.BLL.Imports.Queries.ImportGetByBankAccountId;
+using Tuber.Application.Imports.Commands.ImportAdd;
+using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 
 namespace Tuber.API.Banks;
 

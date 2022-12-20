@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
+    <ProjectReference Include="..\Tuber.BLL\Tuber.Application.csproj" />
     <ProjectReference Include="..\Tuber.Domain\Tuber.Domain.csproj" />
   </ItemGroup>
 

@@ -1,12 +1,10 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Imports.Services;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Imports.Services;
 using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.Authorisation;
 using Tuber.Domain.Models;
-using Tuber.SystemClock.Interfaces;
 
 namespace Tuber.UnitTests.BLL.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
@@ -16,7 +14,7 @@ internal class ImportValidationService_CoOp_UnitTests
     private readonly Mock<ICategorySubcategoryRetrievalService> _mockCategorySubcategoryRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
-    private ImportTemplate _importTemplate = new ImportTemplate
+    private readonly ImportTemplate _importTemplate = new()
     {
         ImportTemplateId = Guid.NewGuid(),
         ImportTemplateName = "",

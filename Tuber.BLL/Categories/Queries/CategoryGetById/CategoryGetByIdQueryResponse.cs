@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.Categories.Queries.CategoryGetById;
+namespace Tuber.Application.Categories.Queries.CategoryGetById;
 public class CategoryGetByIdQueryResponse : CommandQueryResponseBase
 {
     public Guid CategoryId { get; init; }

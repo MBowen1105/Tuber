@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Tuber.BLL.Imports.Commands.ImportAdd;
+using Tuber.Application.Imports.Commands.ImportAdd;
 
 namespace Tuber.UnitTests.BLL.Imports.Commands.AddImport;
 internal class AddImportCommandResponse_UnitTests

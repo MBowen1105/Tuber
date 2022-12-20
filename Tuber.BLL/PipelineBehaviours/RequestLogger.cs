@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Tuber.Domain.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.PipelineBehaviours;
+namespace Tuber.Application.PipelineBehaviours;
 
 public class RequestLogger<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>, IRequestlogger<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

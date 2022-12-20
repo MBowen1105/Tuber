@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.BankAccounts.Services;
+using Tuber.Application.BankAccounts.Services;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.BankAccounts.Services;
@@ -93,7 +92,7 @@ internal class BankAccountRetrievalService_UnitTests
         serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
 
-        serviceResult.Payload.Count().Should().Be(4);
+        serviceResult.Payload.Count.Should().Be(4);
     }
 
     [Test, Parallelizable]
@@ -105,7 +104,7 @@ internal class BankAccountRetrievalService_UnitTests
         serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
 
-        serviceResult.Payload.Count().Should().Be(1);
+        serviceResult.Payload.Count.Should().Be(1);
     }
 
     [Test, Parallelizable]
@@ -117,7 +116,7 @@ internal class BankAccountRetrievalService_UnitTests
         serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
 
-        serviceResult.Payload.Count().Should().Be(0);
+        serviceResult.Payload.Count.Should().Be(0);
     }
     #endregion
 

@@ -1,13 +1,11 @@
-﻿using Tuber.BLL.Interfaces;
+﻿using Tuber.Application.Common.Interfaces;
 using Tuber.Core.Validation;
 using Tuber.Domain.Common;
 using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.Authorisation;
 using Tuber.Domain.Models;
-using Tuber.SystemClock.Interfaces;
 
-namespace Tuber.BLL.Imports.Services;
+namespace Tuber.Application.Imports.Services;
 public class ImportValidationService : IImportValidationService
 {
     public static readonly char ValidationMessageSeperator = '\n';

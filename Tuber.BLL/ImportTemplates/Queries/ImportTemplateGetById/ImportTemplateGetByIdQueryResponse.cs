@@ -1,6 +1,6 @@
 ﻿using Tuber.Core.Common;
 
-namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
+namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 public class ImportTemplateGetByIdQueryResponse : CommandQueryResponseBase
 {
     public ImportTemplateGetByIdQueryResponse()

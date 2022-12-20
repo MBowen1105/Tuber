@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.BLL.Interfaces;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById
+namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById
 {
     public class ImportTemplateGetByIdQueryHandler : IRequestHandler<ImportTemplateGetByIdQueryRequest, ImportTemplateGetByIdQueryResponse>
     {

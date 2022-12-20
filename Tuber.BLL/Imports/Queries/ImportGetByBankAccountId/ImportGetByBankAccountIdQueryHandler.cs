@@ -2,10 +2,10 @@
 using MediatR;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Enums;
-using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.BLL.Imports.Queries.ImportGetByBankAccountId
+namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId
 {
     public class ImportGetByBankAccountIdQueryHandler : IRequestHandler<ImportGetByBankAccountIdQueryRequest, ImportGetByBankAccountIdQueryResponse>
     {

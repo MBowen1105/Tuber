@@ -1,9 +1,8 @@
 ﻿using MediatR;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.FileSystem;
 
-namespace Tuber.BLL.Imports.Commands.ImportAdd;
+namespace Tuber.Application.Imports.Commands.ImportAdd;
 
 public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, ImportAddCommandResponse>
 {
@@ -11,21 +10,18 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
     private readonly IImportTemplateRetrievalService _importTemplateRetrievalService;
     private readonly IImportValidationService _importvalidationService;
     private readonly IImportUpdaterService _importUpdaterService;
-    private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
 
 
     public ImportAddCommandHandler(
         IFileSystem fileSystem,
         IImportTemplateRetrievalService importTemplateRetrievalService,
         IImportValidationService importValidationService,
-        IImportUpdaterService importUpdaterService,
-        ICategorySubcategoryRetrievalService categoryRetrievalService)
+        IImportUpdaterService importUpdaterService)
     {
         _fileSystem = fileSystem;
         _importTemplateRetrievalService = importTemplateRetrievalService;
         _importvalidationService = importValidationService;
         _importUpdaterService = importUpdaterService;
-        _categoryRetrievalService = categoryRetrievalService;
      }
 
     public Task<ImportAddCommandResponse> Handle(ImportAddCommandRequest request, CancellationToken cancellationToken)

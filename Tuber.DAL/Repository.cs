@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Interfaces.DAL;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.DAL;
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class

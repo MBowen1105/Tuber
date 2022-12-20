@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
+    <ProjectReference Include="..\Tuber.BLL\Tuber.Application.csproj" />
   </ItemGroup>
 
 </Project>

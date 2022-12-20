@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.BLL.Banks.Services;
+using Tuber.Application.Banks.Services;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Exceptions;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.Banks.Services;

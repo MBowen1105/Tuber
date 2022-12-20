@@ -1,9 +1,8 @@
-﻿using Tuber.Domain.Common;
-using Tuber.BLL.Interfaces;
-using Tuber.Domain.Interfaces.DAL;
+﻿using Tuber.Application.Common.Interfaces;
+using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
-namespace Tuber.BLL.Imports.Services;
+namespace Tuber.Application.Imports.Services;
 public class ImportRetrievalService : IImportRetrievalService
 {
     private readonly IImportRepository _importRepo;
