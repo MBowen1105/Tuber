@@ -2,10 +2,10 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Subcategories.Commands.SubcategoryAdd;
-using Tuber.BLL.Subcategories.Commands.SubcategoryDelete;
-using Tuber.BLL.Subcategories.Queries.SubcategoriesGetPaged;
-using Tuber.BLL.Subcategories.Queries.SubcategoryGetById;
+using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
+using Tuber.Application.Subcategories.Commands.SubcategoryDelete;
+using Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
+using Tuber.Application.Subcategories.Queries.SubcategoryGetById;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Categories;

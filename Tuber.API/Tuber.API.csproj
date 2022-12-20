@@ -20,9 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tuber.BLL\Tuber.BLL.csproj" />
+    <ProjectReference Include="..\Tuber.Application\Tuber.Application.csproj" />
     <ProjectReference Include="..\Tuber.DAL\Tuber.DAL.csproj" />
     <ProjectReference Include="..\Tuber.FileSystem\Tuber.FileSystem.csproj" />
+    <ProjectReference Include="..\Tuber.SystemClock\Tuber.SystemClock.csproj" />
+    <ProjectReference Include="..\Tuber.Users\Tuber.Authentication.csproj" />
   </ItemGroup>
 
 </Project>

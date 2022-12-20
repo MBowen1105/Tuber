@@ -2,8 +2,8 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetById;
-using Tuber.BLL.ImportTemplates.Queries.ImportTemplateGetPaged;
+using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
+using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.ImportTemplates;

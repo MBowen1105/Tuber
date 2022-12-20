@@ -2,7 +2,7 @@ using FluentAssertions;
 using Tuber.Core.Exceptions;
 using Tuber.Core.ValueObjects;
 
-namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;
+namespace Tuber.Application.UnitTests.Banks.Queries.GetBank;
 
 public class ISO8601Date_UnitTests
 {

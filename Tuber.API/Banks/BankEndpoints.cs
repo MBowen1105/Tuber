@@ -2,12 +2,12 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.Banks.Commands.AddBank;
-using Tuber.BLL.Banks.Commands.BankAdd;
-using Tuber.BLL.Banks.Commands.BankDelete;
-using Tuber.BLL.Banks.Commands.BankUpdate;
-using Tuber.BLL.Banks.Queries.BankGetById;
-using Tuber.BLL.Banks.Queries.BankGetPaged;
+using Tuber.Application.Banks.Commands.AddBank;
+using Tuber.Application.Banks.Commands.BankAdd;
+using Tuber.Application.Banks.Commands.BankDelete;
+using Tuber.Application.Banks.Commands.BankUpdate;
+using Tuber.Application.Banks.Queries.BankGetById;  
+using Tuber.Application.Banks.Queries.BankGetPaged; 
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.Banks;

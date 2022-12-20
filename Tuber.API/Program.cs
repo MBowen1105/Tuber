@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
-Tuber.BLL.DependencyInjection.AddDependencyInjection(builder.Services);
+Tuber.Application.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
 Tuber.FileSystem.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.SystemClock.DependencyInjection.AddDependencyInjection(builder.Services);

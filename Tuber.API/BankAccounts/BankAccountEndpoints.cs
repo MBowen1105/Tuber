@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetById;
-using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
+using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Exceptions;
 
 namespace Tuber.API.BankAccounts;
