@@ -7,7 +7,7 @@ using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Models;
 
-namespace Tuber.UnitTests.Domain.Subcategories.Commands.SubcategoryDelete;
+namespace Domain.UnitTests.Subcategories.Commands.SubcategoryDelete;
 internal class SubcategoryDeleteCommandHandler_UnitTests
 {
     [SetUp]

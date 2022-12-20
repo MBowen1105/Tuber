@@ -1,7 +1,7 @@
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.ValueObjects;
 
-namespace Tuber.UnitTests.Domain.ValueObjects;
+namespace Domain.UnitTests.ValueObjects;
 
 public class Celcius_UnitTests
 {
