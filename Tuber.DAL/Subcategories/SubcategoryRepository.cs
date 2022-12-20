@@ -86,6 +86,7 @@ public class SubcategoryRepository : ISubcategoryRepository
 
     public bool Exists(string subcategoryName)
     {
+        subcategoryName = subcategoryName.Trim();
         return _context.Subcategories.Any(x => x.SubcategoryName == subcategoryName);
     }
 

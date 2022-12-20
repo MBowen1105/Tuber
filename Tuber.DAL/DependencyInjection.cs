@@ -5,6 +5,7 @@ using System.Reflection;
 using Tuber.DAL.BankAccounts;
 using Tuber.DAL.Banks;
 using Tuber.DAL.Categories;
+using Tuber.DAL.CategoriesSubcategories;
 using Tuber.DAL.Imports;
 using Tuber.DAL.Subcategories;
 using Tuber.Domain.Interfaces.DAL;
@@ -28,6 +29,7 @@ public static class DependencyInjection
         services.AddScoped<IImportTemplateRepository, ImportTemplateRepository>();
         services.AddScoped<IImportRepository, ImportRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICategorySubcategoryRepository, CategorySubcategoryRepository>();
         services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
 
         return services;

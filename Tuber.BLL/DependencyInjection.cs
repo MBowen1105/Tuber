@@ -7,6 +7,7 @@ using Tuber.BLL.BankAccountAccounts.Services;
 using Tuber.BLL.BankAccounts.Services;
 using Tuber.BLL.Banks.Services;
 using Tuber.BLL.Categories.Services;
+using Tuber.BLL.CategoriesSubcategories.Services;
 using Tuber.BLL.Imports.Services;
 using Tuber.BLL.ImportTemplates.Services;
 using Tuber.BLL.PipelineBehaviours;
@@ -42,6 +43,7 @@ public static class DependencyInjection
         services.AddScoped<ICategoryDeletionService, CategoryDeletionService>();
 
         services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+        services.AddScoped<ICategorySubcategoryUpdaterService, CategorySubcategoryUpdaterService>();
 
         services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();
