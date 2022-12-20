@@ -15,7 +15,7 @@ public class RequestLogger<TRequest, TResponse> : IPipelineBehavior<TRequest, TR
         _currentUserService = currentUserService;
     }
 
-    public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         _logger.LogInformation("User {currentUser} called Request '{request}'.",
             _currentUserService.User().FullName, request);
