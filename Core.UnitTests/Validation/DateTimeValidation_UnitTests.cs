@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Tuber.Core.Validation;
 
-namespace Tuber.UnitTests.Core.Validation;
+namespace Core.UnitTests.Validation;
 internal class DateTimeValidation_UnitTests
 {
     [Test]
