@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Application", "Tuber.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Core", "Tuber.Core\Tuber.Core.csproj", "{1893CC76-3953-4530-B59A-43033BF626B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.DAL", "Tuber.DAL\Tuber.DAL.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Persistence", "Tuber.Persistence\Tuber.Persistence.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.SystemClock", "Tuber.SystemClock\Tuber.SystemClock.csproj", "{E4268970-8E77-42D6-8BFD-D30039D59488}"
 EndProject
