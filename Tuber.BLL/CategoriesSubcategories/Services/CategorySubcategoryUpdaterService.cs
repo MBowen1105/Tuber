@@ -1,5 +1,5 @@
 ﻿using Tuber.Domain.Common;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 

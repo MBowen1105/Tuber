@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Tuber.Core.Enums;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Subcategories.Commands.SubcategoryDelete

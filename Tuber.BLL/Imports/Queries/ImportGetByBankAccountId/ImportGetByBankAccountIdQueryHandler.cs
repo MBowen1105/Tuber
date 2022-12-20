@@ -2,7 +2,7 @@
 using MediatR;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Enums;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Imports.Queries.ImportGetByBankAccountId

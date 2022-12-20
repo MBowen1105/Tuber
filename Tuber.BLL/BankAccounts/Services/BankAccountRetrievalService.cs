@@ -1,7 +1,7 @@
-﻿using Tuber.Core.Enums;
+﻿using Tuber.BLL.Interfaces;
+using Tuber.Core.Enums;
 using Tuber.Domain.Common;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 

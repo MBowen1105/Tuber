@@ -4,7 +4,7 @@ using Moq;
 using Tuber.BLL.Banks.Queries.BankGetPaged;
 using Tuber.Domain.Common;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.Banks.Queries.GetBank;

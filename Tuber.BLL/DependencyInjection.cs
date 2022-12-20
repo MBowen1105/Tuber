@@ -10,9 +10,9 @@ using Tuber.BLL.Categories.Services;
 using Tuber.BLL.CategoriesSubcategories.Services;
 using Tuber.BLL.Imports.Services;
 using Tuber.BLL.ImportTemplates.Services;
+using Tuber.BLL.Interfaces;
 using Tuber.BLL.PipelineBehaviours;
 using Tuber.BLL.Subcategories.Services;
-using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.BLL;
 public static class DependencyInjection

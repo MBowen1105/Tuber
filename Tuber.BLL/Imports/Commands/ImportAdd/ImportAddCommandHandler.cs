@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Interfaces.FileSystem;
 
 namespace Tuber.BLL.Imports.Commands.ImportAdd;

@@ -2,7 +2,7 @@
 using Tuber.BLL.BankAccounts.Commands.BankAccountDelete;
 using Tuber.Core.Exceptions;
 using Tuber.Domain.Common;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.BLL.Banks.Commands.BankDelete

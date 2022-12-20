@@ -1,7 +1,7 @@
 ﻿using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
-namespace Tuber.Domain.Interfaces.BLL;
+namespace Tuber.BLL.Interfaces;
 public interface IImportTemplateRetrievalService
 {
     ServiceResult<ImportTemplate> GetById(Guid id);

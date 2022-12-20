@@ -4,7 +4,7 @@ using Moq;
 using Tuber.BLL.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Domain.Common;
 using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Models;
 
 namespace Tuber.UnitTests.BLL.BankAccounts.Queries.BankAccountGetPaged;

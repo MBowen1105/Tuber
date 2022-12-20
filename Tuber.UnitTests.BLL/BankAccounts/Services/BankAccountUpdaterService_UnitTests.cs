@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.BLL.BankAccountAccounts.Services;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 

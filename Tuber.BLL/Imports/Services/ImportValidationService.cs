@@ -4,7 +4,7 @@ using Tuber.Domain.Common;
 using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 

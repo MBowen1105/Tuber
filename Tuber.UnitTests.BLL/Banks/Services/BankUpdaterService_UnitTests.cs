@@ -2,7 +2,7 @@
 using Moq;
 using Tuber.BLL.Banks.Services;
 using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 using Tuber.Domain.Interfaces.DAL;
 using Tuber.Domain.Models;
 

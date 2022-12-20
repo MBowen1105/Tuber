@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Interfaces.BLL;
+﻿namespace Tuber.BLL.Interfaces;
 public interface ICategorySubcategoryRetrievalService
 {
     (Guid? categoryId, Guid? subcategoryId) SuggestCategorisation(

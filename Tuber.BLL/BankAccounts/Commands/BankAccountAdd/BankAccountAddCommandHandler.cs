@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Tuber.BLL.BankAccounts.Commands.AddAccountBank;
 using Tuber.BLL.Banks.Commands.AddBank;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 
 namespace Tuber.BLL.BankAccounts.Commands.BankAccountAdd;
 

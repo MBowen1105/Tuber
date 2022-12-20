@@ -1,7 +1,7 @@
 ﻿using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
-namespace Tuber.Domain.Interfaces.BLL;
+namespace Tuber.BLL.Interfaces;
 public interface ISubcategoryUpdaterService
 {
     ServiceResult<Subcategory> Add(string subcategoryName);

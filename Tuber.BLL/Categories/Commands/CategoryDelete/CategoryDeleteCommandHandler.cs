@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.BLL.Interfaces;
 
 namespace Tuber.BLL.Categories.Commands.CategoryDelete
 {
