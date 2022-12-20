@@ -18,6 +18,7 @@ internal class BankAccountRetrievalService_UnitTests
     {
         BankAccountId = GOOD_ID,
     };
+
     private IBankAccountRetrievalService _sut;
 
     [SetUp]
@@ -31,12 +32,26 @@ internal class BankAccountRetrievalService_UnitTests
 
         _mockBankAccountRepository.Setup(x => x.GetPaged(
             It.Is<int>(x => x == 1),
-            It.Is<int>(x => x == 2)))
-                .Returns(new List<BankAccount>() { GOOD_BANKACCOUNT, GOOD_BANKACCOUNT });
+            It.Is<int>(x => x == 4)))
+                .Returns(new List<BankAccount>()
+                {
+                    GOOD_BANKACCOUNT,
+                    GOOD_BANKACCOUNT,
+                    GOOD_BANKACCOUNT,
+                    GOOD_BANKACCOUNT
+                });
 
         _mockBankAccountRepository.Setup(x => x.GetPaged(
             It.Is<int>(x => x == 2),
-            It.Is<int>(x => x == 2)))
+            It.Is<int>(x => x == 3)))
+                .Returns(new List<BankAccount>()
+                {
+                    GOOD_BANKACCOUNT
+                });
+
+        _mockBankAccountRepository.Setup(x => x.GetPaged(
+            It.Is<int>(x => x == 2),
+            It.Is<int>(x => x == 4)))
                 .Returns(new List<BankAccount>());
 
         _sut = new BankAccountRetrievalService(_mockBankAccountRepository.Object);
@@ -49,6 +64,7 @@ internal class BankAccountRetrievalService_UnitTests
         var serviceResult = _sut.GetById(GOOD_ID);
 
         serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
         serviceResult.Payload.Should().BeEquivalentTo(GOOD_BANKACCOUNT);
     }
@@ -59,6 +75,7 @@ internal class BankAccountRetrievalService_UnitTests
         var serviceResult = _sut.GetById(BAD_ID);
 
         serviceResult.IsSuccess.Should().BeFalse();
+        serviceResult.HasFailed.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<EntityDoesNotExistException>();
         serviceResult.Payload.Should().BeEquivalentTo(new BankAccount());
@@ -68,22 +85,36 @@ internal class BankAccountRetrievalService_UnitTests
     #region "GetPaged"
 
     [Test, Parallelizable]
-    public void GetPaged_ExistingBankAccounts_ReturnsBankAccountListWithNoExceptions()
+    public void GetPaged_ExistingBankAccounts_ReturnsBankAccountListPage1WithNoExceptions()
     {
-        var serviceResult = _sut.GetPaged(1,2);
+        var serviceResult = _sut.GetPaged(1, 4);
 
         serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
 
-        serviceResult.Payload.Count().Should().Be(2);
+        serviceResult.Payload.Count().Should().Be(4);
+    }
+
+    [Test, Parallelizable]
+    public void GetPaged_ExistingBankAccounts_ReturnsBankAccountPagedListPage2WithNoExceptions()
+    {
+        var serviceResult = _sut.GetPaged(2, 3);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
+        serviceResult.Exceptions.Count.Should().Be(0);
+
+        serviceResult.Payload.Count().Should().Be(1);
     }
 
     [Test, Parallelizable]
     public void GetPaged_WithNoBankAccounts_ReturnsEmptyBankAccountListWithNoExceptions()
     {
-        var serviceResult = _sut.GetPaged(2, 2);
+        var serviceResult = _sut.GetPaged(2, 4);
 
         serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(0);
 
         serviceResult.Payload.Count().Should().Be(0);
