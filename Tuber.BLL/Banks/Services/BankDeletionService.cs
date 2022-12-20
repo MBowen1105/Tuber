@@ -17,9 +17,9 @@ public class BankDeletionService : IBankDeletionService
 
     public ServiceResult<int> Delete(Guid bankId)
     {
-        var bank = _bankRepo.Delete(bankId);
+        var deletedCount = _bankRepo.Delete(bankId);
 
-        if (bank == 0)
+        if (deletedCount == 0)
             return new ServiceResult<int>(
                 payload: 0,
                 exception: new EntityDoesNotExistException(
@@ -27,6 +27,6 @@ public class BankDeletionService : IBankDeletionService
 
         _bankRepo.SaveChanges();
 
-        return new ServiceResult<int>(0);
+        return new ServiceResult<int>(deletedCount);
     }
 }

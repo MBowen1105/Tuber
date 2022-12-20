@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CategoriesSubcategories\CategorySubcategoryDelete\" />
     <Folder Include="Subcategories\Queries\SubcategoriesGetByCategoryPaged\" />
   </ItemGroup>
 
