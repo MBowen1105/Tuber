@@ -9,14 +9,14 @@ using Tuber.DAL.Subcategories;
 using Tuber.DAL.Users;
 using Tuber.Domain.Common;
 using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.SystemClock;
 using Tuber.Domain.Models;
+using Tuber.SystemClock.Interfaces;
 
 namespace Tuber.DAL;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly IDateTimeService _dateTimeService;
+    private readonly ISystemClock _dateTimeService;
     private readonly ICurrentUserService _currentUserService;
 
     public DbSet<Bank> Banks { get; set; }
@@ -29,7 +29,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IDateTimeService dateTimeService,
+        ISystemClock dateTimeService,
         ICurrentUserService currentUserService)
         : base(options)
     {
@@ -65,8 +65,6 @@ public class ApplicationDbContext : DbContext
 
         return base.SaveChanges();
     }
-
-    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

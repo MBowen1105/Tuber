@@ -5,14 +5,14 @@ using Tuber.BLL.Interfaces;
 using Tuber.Domain.Enums;
 using Tuber.Domain.Exceptions;
 using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.SystemClock;
 using Tuber.Domain.Models;
+using Tuber.SystemClock.Interfaces;
 
 namespace Tuber.UnitTests.BLL.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
 {
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
-    private readonly Mock<IDateTimeService> _mockDateTimeService = new();
+    private readonly Mock<ISystemClock> _mockDateTimeService = new();
     private readonly Mock<ICategorySubcategoryRetrievalService> _mockCategorySubcategoryRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
@@ -77,7 +77,7 @@ internal class ImportValidationService_CoOp_UnitTests
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);
-        serviceResult.Payload.Count().Should().Be(2);
+        serviceResult.Payload.Count.Should().Be(2);
     }
 
     [Test, Parallelizable]
@@ -94,7 +94,7 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<InvalidImportFileException>();
 
-        serviceResult.Payload.Count().Should().Be(0);
+        serviceResult.Payload.Count.Should().Be(0);
     }
 
     [Test, Parallelizable]
@@ -111,7 +111,7 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<InvalidImportFileException>();
 
-        serviceResult.Payload.Count().Should().Be(0);
+        serviceResult.Payload.Count.Should().Be(0);
     }
 
     [Test, Parallelizable]

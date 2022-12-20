@@ -10,8 +10,4 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0-rc.2.22472.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Tuber.Domain\Tuber.Domain.csproj" />
-  </ItemGroup>
-
 </Project>
