@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.UnitTests", "Core.Unit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.Domain", "Tuber.UnitTests.Domain\Tuber.UnitTests.Domain.csproj", "{0CC2665C-6F87-4DB4-B7C4-8BB2C80D2E88}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.UnitTests.FileSystem", "Tuber.UnitTests.FileSystem\Tuber.UnitTests.FileSystem.csproj", "{1A141BE4-19A3-420D-8BDA-DB4E47C41B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystem.UnitTests", "FileSystem.UnitTests\FileSystem.UnitTests.csproj", "{1A141BE4-19A3-420D-8BDA-DB4E47C41B2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{347C6D68-4920-4E8F-81AF-FFD20FD431A1}"
 EndProject
