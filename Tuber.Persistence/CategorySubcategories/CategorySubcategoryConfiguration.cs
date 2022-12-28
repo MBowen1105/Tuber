@@ -17,6 +17,9 @@ public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<Categor
         builder.Property(x => x.CategoryId)
             .IsRequired();
 
+        builder.Property(x => x.IsCoreCategorySubcategory)
+            .IsRequired();
+
         builder.Property(x => x.IsDeleted)
             .IsRequired();
 

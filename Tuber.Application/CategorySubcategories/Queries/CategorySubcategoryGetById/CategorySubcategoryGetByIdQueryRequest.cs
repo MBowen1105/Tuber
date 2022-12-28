@@ -4,4 +4,6 @@ namespace Tuber.Application.CategorySubcategories.Queries.CategorySubcategoryGet
 public class CategorySubcategoryGetByIdQueryRequest : IRequest<CategorySubcategoryGetByIdQueryResponse>
 {
     public Guid CategorySubcategoryId { get; set; }
+    public bool IsCoreCategorySubcategory { get; init; }
+
 }
