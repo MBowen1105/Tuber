@@ -13,55 +13,25 @@ public class CategoryDeletionService : ICategoryDeletionService
     {
         _categoryRepo = categoryRepo;
     }
-
-    public ServiceResult<Category> Add(string categoryName)
-    {
-        var category = new Category
-        {
-            CategoryName = categoryName,
-        };
-
-        category = _categoryRepo.Add(category);
-
-        if (category.CategoryId == Guid.Empty)
-            return new ServiceResult<Category>(
-               payload: category,
-               exception: new EntityAlreadyExistsException(
-                   entityName: "Category",
-                   columnName: "Name", 
-                   key: category.CategoryName));
-
-        _categoryRepo.SaveChanges();
-
-        return new ServiceResult<Category>(payload: category);
-    }
-
+   
     public ServiceResult<int> Delete(Guid categoryId)
     {
         var categoryModel = _categoryRepo.GetById(categoryId);
 
         if (categoryModel.CategoryId == Guid.Empty)
-            return new ServiceResult<int>(0);
+            return new ServiceResult<int>(
+                 payload: 0,
+                 exception: new EntityDoesNotExistException(Category.FriendlyName, categoryId));
+
+        if (categoryModel.IsCoreCategory)
+            return new ServiceResult<int>(
+                 payload: 0,
+                 exception: new CannotDeleteCoreEntityException(Category.FriendlyName, categoryId));
 
         var result = _categoryRepo.Delete(categoryId);
 
         _categoryRepo.SaveChanges();
 
         return new ServiceResult<int>(result);
-    }
-
-    public ServiceResult<Category> Update(Guid id, string categoryName)
-    {
-        var category = new Category
-        {
-            CategoryId = id,
-            CategoryName = categoryName
-        };
-
-        category = _categoryRepo.Update(category);
-
-        _categoryRepo.SaveChanges();
-
-        return new ServiceResult<Category>(category);
     }
 }

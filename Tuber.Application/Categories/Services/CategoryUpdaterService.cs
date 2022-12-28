@@ -36,20 +36,6 @@ public class CategoryUpdaterService : ICategoryUpdaterService
         return new ServiceResult<Category>(payload: category);
     }
 
-    public ServiceResult<int> Delete(Guid categoryId)
-    {
-        var categoryModel = _categoryRepo.GetById(categoryId);
-
-        if (categoryModel.CategoryId == Guid.Empty)
-            return new ServiceResult<int>(0);
-
-        var result = _categoryRepo.Delete(categoryId);
-
-        _categoryRepo.SaveChanges();
-
-        return new ServiceResult<int>(result);
-    }
-
     public ServiceResult<Category> Update(Guid id, string categoryName)
     {
         var category = new Category
