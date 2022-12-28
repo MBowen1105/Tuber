@@ -1,5 +1,5 @@
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.ValueObjects;
+using Tuber.Application.Exceptions;
+using Tuber.Application.ValueObjects;
 
 namespace Domain.UnitTests.ValueObjects;
 

@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
-using Tuber.Application.Banks.Commands.BankUpdate;  
-using Tuber.Application.Banks.Queries.BankGetPaged;
+using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Application.Banks.Services;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.Banks.Commands.BankUpdate;
 internal class BankUpdateCommandHandler_UnitTests

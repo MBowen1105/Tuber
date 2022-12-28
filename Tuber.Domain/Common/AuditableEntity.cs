@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Application.Models;
 
-namespace Tuber.Domain.Common;
+namespace Tuber.Application.Common;
 public class AuditableEntity
 {
     public Guid CreatedByUserId { get; set; }

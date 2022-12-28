@@ -2,8 +2,8 @@
 using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 using Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.Application.Subcategories.Queries.SubcategoryGetById;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Models;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.Subcategories;
 public class SubcategoryProfile : Profile

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Domain.Interfaces.SystemClock;
+using Tuber.Application.Interfaces.SystemClock;
 
 namespace Tuber.SystemClock;
 public static class DependencyInjection
@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddScoped<IDateTimeService, DateTimeService>();
+        services.AddScoped<ISystemClock, SystemClock>();
 
         return services;
     }

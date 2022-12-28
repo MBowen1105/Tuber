@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿namespace Tuber.Application.Exceptions;
 public class InvalidPageNumberException : Exception
 {
     public InvalidPageNumberException(int badValue)

@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿namespace Tuber.Application.Exceptions;
 public class TemperatureBelowAbsoluteZeroException : Exception
 {
     public TemperatureBelowAbsoluteZeroException(double badValue)

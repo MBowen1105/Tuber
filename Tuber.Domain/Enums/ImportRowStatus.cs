@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Enums;
+﻿namespace Tuber.Application.Enums;
 public enum ImportRowStatus
 {
     NotSet = 0,

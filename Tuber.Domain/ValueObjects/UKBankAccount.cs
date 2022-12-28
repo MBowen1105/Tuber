@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
-using Tuber.Domain.Exceptions;
+using Tuber.Application.Exceptions;
 using ValueOf;
 
-namespace Tuber.Domain.ValueObjects;
+namespace Tuber.Application.ValueObjects;
 
 public class UKBankAccount : ValueOf<string, UKBankAccount>
 {

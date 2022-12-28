@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tuber.Domain.Models;
+using Tuber.Application.Models;
 
 namespace Tuber.Persistence.Banks;
 

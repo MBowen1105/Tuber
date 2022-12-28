@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Application.Common;
 
-namespace Tuber.Domain.Models;
+namespace Tuber.Application.Models;
 public class ImportTemplate : AuditableEntity
 {
     public static readonly string FriendlyName = "Import Template";

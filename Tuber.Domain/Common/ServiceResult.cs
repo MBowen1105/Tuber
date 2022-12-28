@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Common;
+﻿namespace Tuber.Application.Common;
 public class ServiceResult<T> where T : new()
 {
     //  Valid Service result

@@ -1,18 +1,18 @@
 ﻿using FluentAssertions;
 using Moq;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Enums;
+using Tuber.Application.Exceptions;
 using Tuber.Application.Imports.Services;
-using Tuber.Domain.Enums;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.SystemClock;
-using Tuber.Domain.Models;
+using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
 {
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
-    private readonly Mock<IDateTimeService> _mockDateTimeService = new();
+    private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly Mock<ICategorySubcategoryRetrievalService> _mockCategorySubcategoryRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
@@ -43,7 +43,7 @@ internal class ImportValidationService_CoOp_UnitTests
         _mockCurrentUserService.Setup(x => x.User())
             .Returns(new User { UserId = Guid.NewGuid() });
 
-        _mockDateTimeService.Setup(x => x.UtcNow())
+        _mockSystemClock.Setup(x => x.UtcNow())
             .Returns(new DateTime(2022, 12, 15));
 
         //_mockCategorySubcategoryRetrievalService.Setup(x => x.SuggestCategorisation(
@@ -56,7 +56,7 @@ internal class ImportValidationService_CoOp_UnitTests
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,
-            _mockDateTimeService.Object,
+            _mockSystemClock.Object,
             _mockCategorySubcategoryRetrievalService.Object);
     }
 

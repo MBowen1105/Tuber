@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.Interfaces.FileSystem;
+﻿using Tuber.Application.Common.Interfaces.FileSystem;
 
 namespace Tuber.FileSystem;
 internal class FileSystem : IFileSystem

@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Application.Common;
 
-namespace Tuber.Domain.Models;
+namespace Tuber.Application.Models;
 public class Bank : AuditableEntity
 {
     public static readonly string FriendlyName = "Bank";

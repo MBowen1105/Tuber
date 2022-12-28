@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Dtos;
+﻿namespace Tuber.Application.Dtos;
 public class BankGetById_ImportTemplate
 {
     public Guid ImportTemplateId { get; set; }

@@ -2,12 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Persistence.BankAccounts;
 using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.Imports;
 using Tuber.Persistence.Subcategories;
-using Tuber.Domain.Interfaces.DAL;
 
 namespace Tuber.Persistence;
 public static class DependencyInjection

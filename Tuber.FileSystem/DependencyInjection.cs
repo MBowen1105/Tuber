@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Domain.Interfaces.FileSystem;
+using Tuber.Application.Common.Interfaces.FileSystem;
 
 namespace Tuber.FileSystem;
 public static class DependencyInjection

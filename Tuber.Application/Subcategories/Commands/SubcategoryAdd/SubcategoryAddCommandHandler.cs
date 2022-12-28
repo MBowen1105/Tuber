@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 

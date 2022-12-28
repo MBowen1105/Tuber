@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Models;
+﻿namespace Tuber.Application.Models;
 public class User
 {
     public Guid UserId { get; set; }

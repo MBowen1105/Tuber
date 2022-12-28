@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.Subcategories;
-using Tuber.Domain.Models;
+using Tuber.Application.Models;
 
 namespace Tuber.Persistence.CategorySubcategories;
 public static class CategorySubcategorySeeding

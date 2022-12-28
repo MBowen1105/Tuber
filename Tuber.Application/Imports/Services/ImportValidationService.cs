@@ -1,12 +1,11 @@
-﻿using Tuber.Application.Categories.Services;
+﻿using Tuber.Application.Common;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Enums;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Models;
 using Tuber.Core.Validation;
-using Tuber.Domain.Common;
-using Tuber.Domain.Enums;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.SystemClock;
-using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Services;
 public class ImportValidationService : IImportValidationService
@@ -14,13 +13,13 @@ public class ImportValidationService : IImportValidationService
     public static readonly char ValidationMessageSeperator = '\n';
 
     private readonly ICurrentUserService _currentUserService;
-    private readonly IDateTimeService _dateTimeService;
+    private readonly ISystemClock _dateTimeService;
     private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
 
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
-        IDateTimeService dateTimeService,
+        ISystemClock dateTimeService,
         ICategorySubcategoryRetrievalService categoryRetrievalService)
     {
         _currentUserService = currentUserService;
@@ -87,7 +86,7 @@ public class ImportValidationService : IImportValidationService
 
             var referenceOnStatementValue = "";
             if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length >= importTemplate.ReferenceOnStatementStartCharacter)
-                referenceOnStatementValue = descriptionOnStatementValue.Substring(importTemplate.ReferenceOnStatementStartCharacter);
+                referenceOnStatementValue = descriptionOnStatementValue[importTemplate.ReferenceOnStatementStartCharacter..];
 
             var descriptionValue = descriptionOnStatementValue;
             if (importTemplate.ReferenceOnStatementStartCharacter > 0)

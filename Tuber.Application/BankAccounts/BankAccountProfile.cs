@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
 using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Models;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.BankAccounts;
 public class BankAccountProfile : Profile

@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.API.Common;
+﻿namespace Tuber.Application.API.Common;
 public abstract class PagedAPIRequest
 {
     public int PageNumber { get; init; } = 1;

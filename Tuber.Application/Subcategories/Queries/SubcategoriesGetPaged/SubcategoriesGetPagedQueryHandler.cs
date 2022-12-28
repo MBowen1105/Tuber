@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged
 {

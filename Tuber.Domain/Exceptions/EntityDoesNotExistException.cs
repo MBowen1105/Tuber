@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿namespace Tuber.Application.Exceptions;
 public class EntityDoesNotExistException : Exception
 {
     public EntityDoesNotExistException(string entityName, string columnName, string key)

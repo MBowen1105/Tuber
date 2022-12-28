@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Models;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.ImportTemplates;
 public class ImportTemplateProfile : Profile

@@ -1,4 +1,4 @@
-﻿using Tuber.Domain.Dtos;
+﻿using Tuber.Application.Dtos;
 
 namespace Tuber.Application.Banks.Queries.BankGetById;
 public class BankGetByIdAPIResponse

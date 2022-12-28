@@ -1,4 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Application.Common;
+using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Models;
 using Tuber.Persistence.BankAccounts;
 using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
@@ -7,16 +11,12 @@ using Tuber.Persistence.Imports;
 using Tuber.Persistence.ImportTemplates;
 using Tuber.Persistence.Subcategories;
 using Tuber.Persistence.Users;
-using Tuber.Domain.Common;
-using Tuber.Domain.Interfaces.Authorisation;
-using Tuber.Domain.Interfaces.SystemClock;
-using Tuber.Domain.Models;
 
 namespace Tuber.Persistence;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly IDateTimeService _dateTimeService;
+    private readonly ISystemClock _systemClock;
     private readonly ICurrentUserService _currentUserService;
 
     public DbSet<Bank> Banks { get; set; }
@@ -29,11 +29,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        IDateTimeService dateTimeService,
+        ISystemClock systemClock,
         ICurrentUserService currentUserService)
         : base(options)
     {
-        _dateTimeService = dateTimeService;
+        _systemClock = systemClock;
         _currentUserService = currentUserService;
     }
 
@@ -51,14 +51,14 @@ public class ApplicationDbContext : DbContext
             {
                 case EntityState.Added:
                     entry.Entity.CreatedByUserId = currentUser.UserId;
-                    entry.Entity.CreatedOnUtc = _dateTimeService.UtcNow();
+                    entry.Entity.CreatedOnUtc = _systemClock.UtcNow();
                     entry.Entity.UpdatedByUserId = null;
                     entry.Entity.UpdatedOnUtc = null;
                     break;
 
                 case EntityState.Modified:
                     entry.Entity.UpdatedByUserId = _currentUserService.User().UserId;
-                    entry.Entity.UpdatedOnUtc = _dateTimeService.UtcNow();
+                    entry.Entity.UpdatedOnUtc = _systemClock.UtcNow();
                     break;
             }
         }

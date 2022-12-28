@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Enums;
+﻿using Tuber.Application.Enums;
 
-namespace Tuber.Domain.Models;
+namespace Tuber.Application.Models;
 public class Import
 {
     public static readonly string FriendlyName = "Import";

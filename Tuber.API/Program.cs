@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.Application.DependencyInjection.AddDependencyInjection(builder.Services);
-Tuber.DAL.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
+Tuber.Persistence.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
 Tuber.FileSystem.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.SystemClock.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.Authentication.DependencyInjection.AddDependencyInjection(builder.Services);
@@ -26,21 +26,22 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-BankEndpoints.QueryEndpoints(app);
 BankEndpoints.CommandEndpoints(app);
+BankEndpoints.QueryEndpoints(app);
 
+BankAccountEndpoints.CommandEndpoints(app);
 BankAccountEndpoints.QueryEndpoints(app);
 
-ImportTemplateEndpoints.QueryEndpoints(app);
 ImportTemplateEndpoints.CommandEndpoints(app);
+ImportTemplateEndpoints.QueryEndpoints(app);
 
-ImportEndpoints.QueryEndpoints(app);
 ImportEndpoints.CommandEndpoints(app);
+ImportEndpoints.QueryEndpoints(app);
 
-CategoryEndpoints.QueryEndpoints(app);
 CategoryEndpoints.CommandEndpoints(app);
+CategoryEndpoints.QueryEndpoints(app);
 
-SubcategoryEndpoints.QueryEndpoints(app);
 SubcategoryEndpoints.CommandEndpoints(app);
+SubcategoryEndpoints.QueryEndpoints(app);
 
 app.Run();

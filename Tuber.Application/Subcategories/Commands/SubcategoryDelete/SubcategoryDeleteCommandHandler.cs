@@ -1,8 +1,8 @@
 ﻿using MediatR;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Models;
 using Tuber.Core.Exceptions;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Models;
 
 namespace Tuber.Application.Subcategories.Commands.SubcategoryDelete
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Tuber.Application.Banks.Commands.AddBank;
-using Tuber.Domain.Interfaces.BLL;
+using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.Application.Banks.Commands.BankAdd;
 

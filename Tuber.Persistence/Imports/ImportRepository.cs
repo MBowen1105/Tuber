@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Models;
 
 namespace Tuber.Persistence.Imports;
 public class ImportRepository : IImportRepository

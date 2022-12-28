@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Tuber.Domain.API.Common;
+using Tuber.Application.API.Common;
 
 namespace Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 public class SubcategoriesGetPagedQueryRequest : PagedRequest, IRequest<SubcategoriesGetPagedQueryResponse>

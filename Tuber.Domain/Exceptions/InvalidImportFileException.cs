@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿namespace Tuber.Application.Exceptions;
 public class InvalidImportFileException : Exception
 {
     public InvalidImportFileException(string importFileLocation, string failureMessage)

@@ -1,8 +1,8 @@
-﻿using Tuber.Domain.Common;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+﻿using Tuber.Application.Common;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.Categories.Services;
 public class CategoryRetrievalService : ICategoryRetrievalService

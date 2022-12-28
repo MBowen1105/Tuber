@@ -3,10 +3,10 @@ using FluentAssertions;
 using Moq;
 using Tuber.Application.BankAccounts;
 using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
-using Tuber.Domain.Common;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.BankAccounts.Queries.BankAccountGetById;
 internal class BankAccountGetByIdQueryHandler_UnitTests

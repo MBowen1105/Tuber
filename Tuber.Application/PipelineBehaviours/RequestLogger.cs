@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using Tuber.Domain.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces.Authorisation;
 
 namespace Tuber.Application.PipelineBehaviours;
 

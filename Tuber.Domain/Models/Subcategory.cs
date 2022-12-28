@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Common;
+﻿using Tuber.Application.Common;
 
-namespace Tuber.Domain.Models;
+namespace Tuber.Application.Models;
 public class Subcategory : AuditableEntity
 {
     public static readonly string FriendlyName = "Subcategory";

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Tuber.Domain.API.Common;
+namespace Tuber.Application.API.Common;
 public record BadRequestResponse(
     string ErrorMessage, 
     string PropertyName,

@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.Application.Banks.Services;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.Banks.Services;
 internal class BankUpdaterService_UnitTests
@@ -20,12 +20,6 @@ internal class BankUpdaterService_UnitTests
         BankId = GOOD_ID,
         BankName = "New Bank",
         OrderBy = 10,
-        //IsDeleted = false,
-        //BankAccounts = new List<BankAccount>(),
-        //CreatedByUserId = Guid.NewGuid(),
-        //CreatedOnUtc = DATETIMESTAMP,
-        //UpdatedByUserId = null,
-        //UpdatedOnUtc = null,
     };
 
     private IBankUpdaterService _sut;

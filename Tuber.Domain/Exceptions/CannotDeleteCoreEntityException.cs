@@ -1,4 +1,4 @@
-﻿namespace Tuber.Domain.Exceptions;
+﻿namespace Tuber.Application.Exceptions;
 public class CannotDeleteCoreEntityException : Exception
 {
     public CannotDeleteCoreEntityException(string entityName, Guid key)

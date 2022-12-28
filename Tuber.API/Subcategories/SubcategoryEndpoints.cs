@@ -6,7 +6,7 @@ using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 using Tuber.Application.Subcategories.Commands.SubcategoryDelete;
 using Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.Application.Subcategories.Queries.SubcategoryGetById;
-using Tuber.Domain.Exceptions;
+using Tuber.Application.Exceptions;
 
 namespace Tuber.API.Categories;
 

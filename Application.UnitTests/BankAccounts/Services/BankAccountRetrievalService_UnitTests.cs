@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.Application.BankAccounts.Services;
-using Tuber.Domain.Exceptions;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Exceptions;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.BankAccounts.Services;
 internal class BankAccountRetrievalService_UnitTests

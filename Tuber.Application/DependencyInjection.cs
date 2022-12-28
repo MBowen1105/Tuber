@@ -6,11 +6,11 @@ using System.Reflection;
 using Tuber.Application.BankAccounts.Services;
 using Tuber.Application.Banks.Services;
 using Tuber.Application.Categories.Services;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Imports.Services;
 using Tuber.Application.ImportTemplates.Services;
 using Tuber.Application.PipelineBehaviours;
 using Tuber.Application.Subcategories.Services;
-using Tuber.Domain.Interfaces.BLL;
 
 namespace Tuber.Application;
 public static class DependencyInjection
@@ -29,6 +29,7 @@ public static class DependencyInjection
         services.AddAutoMapper(assembly);
 
         services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
+        services.AddScoped<IBankAccountUpdaterService, BankAccountUpdaterService>();
 
         services.AddScoped<IBankRetrievalService, BankRetrievalService>();
         services.AddScoped<IBankUpdaterService, BankUpdaterService>();

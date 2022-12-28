@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
-using Tuber.Domain.Exceptions;
+using Tuber.Application.Exceptions;
 
 namespace Tuber.API.ImportTemplates;
 

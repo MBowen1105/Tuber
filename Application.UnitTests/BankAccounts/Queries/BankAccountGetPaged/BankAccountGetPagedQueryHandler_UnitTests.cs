@@ -2,10 +2,10 @@
 using FluentAssertions;
 using Moq;
 using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
-using Tuber.Domain.Common;
-using Tuber.Domain.Dtos;
-using Tuber.Domain.Interfaces.BLL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common;
+using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Dtos;
+using Tuber.Application.Models;
 
 namespace Tuber.Application.UnitTests.BankAccounts.Queries.BankAccountGetPaged;
 internal class BankAccountGetPagedQueryHandler_UnitTests

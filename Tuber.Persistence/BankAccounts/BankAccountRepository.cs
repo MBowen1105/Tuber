@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Tuber.Domain.Interfaces.DAL;
-using Tuber.Domain.Models;
+using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Models;
 
 namespace Tuber.Persistence.BankAccounts;
 public class BankAccountRepository : Repository<BankAccount>, IBankAccountRepository
@@ -11,6 +11,16 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     }
 
     #region "Commands"
+    public BankAccount Add(BankAccount bankAccount)
+    {
+        throw new NotImplementedException();
+    }
+
+    public BankAccount Update(BankAccount bankAccount)
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
 
     #region "Queries"
@@ -46,6 +56,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
         return (int)Math.Ceiling(pages);
     }
 
+   
     #endregion
 
     public ApplicationDbContext ApplicationDbContext

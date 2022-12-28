@@ -8,7 +8,7 @@ using Tuber.Application.Categories.Commands.CategoryUpdate;
 using Tuber.Application.Categories.Queries.CategoriesGetPaged;
 using Tuber.Application.Categories.Queries.CategoryGetById;
 using Tuber.Application.Categorys.Queries.CategoryGetById;
-using Tuber.Domain.Exceptions;
+using Tuber.Application.Exceptions;
 
 namespace Tuber.API.Categories;
 

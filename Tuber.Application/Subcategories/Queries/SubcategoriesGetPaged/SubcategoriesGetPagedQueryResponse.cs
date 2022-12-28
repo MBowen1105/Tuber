@@ -1,5 +1,5 @@
 ﻿using Tuber.Core.Common;
-using Tuber.Domain.Dtos;
+using Tuber.Application.Dtos;
 
 namespace Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 public class SubcategoriesGetPagedQueryResponse : PagedQueryResponseBase

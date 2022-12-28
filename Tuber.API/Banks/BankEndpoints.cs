@@ -8,7 +8,7 @@ using Tuber.Application.Banks.Commands.BankDelete;
 using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Application.Banks.Queries.BankGetById;  
 using Tuber.Application.Banks.Queries.BankGetPaged; 
-using Tuber.Domain.Exceptions;
+using Tuber.Application.Exceptions;
 
 namespace Tuber.API.Banks;
 
