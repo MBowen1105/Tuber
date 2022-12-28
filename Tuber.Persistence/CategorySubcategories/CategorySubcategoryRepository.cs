@@ -51,6 +51,8 @@ public class CategorySubcategoryRepository : ICategorySubcategoryRepository
     public CategorySubcategory GetById(Guid categorySubcategoryId)
     {
         var categorySubcategory = _context.CategorySubcategories
+            .Include(x => x.Category)
+            .Include(x => x.Subcategory)
             .FirstOrDefault(x => x.CategorySubcategoryId == categorySubcategoryId && x.IsDeleted == false);
 
         return categorySubcategory ?? new CategorySubcategory();

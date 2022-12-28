@@ -10,5 +10,5 @@ public class CategorySubcategory
     public virtual Subcategory? Subcategory { get; set; }
     public bool IsDeleted { get; set; }
 
-    public string ShortName => $"{Category?.CategoryName}/{Subcategory?.SubcategoryName}";
+    public string ShortName => $"{Category?.CategoryName}/{Subcategory?.SubcategoryName}".TrimEnd('/');
 }

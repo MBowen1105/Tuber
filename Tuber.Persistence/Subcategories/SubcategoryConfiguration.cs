@@ -22,5 +22,7 @@ public class SubcategoryConfiguration : IEntityTypeConfiguration<Subcategory>
 
         builder.Property(x => x.IsDeleted)
             .IsRequired();
+
+        SubcategorySeeding.Seed(builder);
     }
 }

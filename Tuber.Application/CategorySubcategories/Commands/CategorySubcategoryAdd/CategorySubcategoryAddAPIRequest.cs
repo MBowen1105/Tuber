@@ -2,5 +2,5 @@
 public class CategorySubcategoryAddAPIRequest
 {
     public Guid CategoryId { get; init; }
-    public Guid SubcategoryId { get; init; }
+    public Guid? SubcategoryId { get; init; }
 }

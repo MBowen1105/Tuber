@@ -22,6 +22,7 @@ public class CategorySubcategoryAddCommandHandler : IRequestHandler<CategorySubc
             CategorySubcategoryId = serviceResult.Payload.CategorySubcategoryId,
             CategoryId = serviceResult.Payload.CategoryId,
             SubcategoryId = serviceResult.Payload.SubcategoryId,
+            Exceptions = serviceResult.Exceptions,
         });
     }
 }

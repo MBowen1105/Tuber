@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tuber.Application.CategorySubcategories.Commands.AddCategorySubcategory;
 using Tuber.Application.CategorySubcategories.Commands.BankAdd;
 using Tuber.Application.CategorySubcategories.Commands.CategorySubcategoryAdd;
+using Tuber.Application.CategorySubcategories.Queries.CategorySubcategoryGetById;
 
 namespace Tuber.API.CategorySubcategories;
 
@@ -54,24 +55,24 @@ public static class CategorySubcategoryEndpoints
 
     public static void QueryEndpoints(WebApplication app)
     {
-        //app.MapGet("/CategorySubcategory/get/{id}", async (Guid categorySubcategoryId,
-        //    [FromServices] IMediator mediator,
-        //    [FromServices] IMapper mapper) =>
-        //{
-        //    // Call query handler. This first invokes the pipeline behaviour.
-        //    var queryResponse = await mediator.Send(new CategorySubcategoryGetByIdQueryRequest
-        //    {
-        //        CategorySubcategoryId = categorySubcategoryId
-        //    });
+        app.MapGet("/CategorySubcategory/get/{categorySubcategoryId}", async (Guid categorySubcategoryId,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new CategorySubcategoryGetByIdQueryRequest
+            {
+                CategorySubcategoryId = categorySubcategoryId
+            });
 
-        //    if (queryResponse.HasExceptions)
-        //        return Results.BadRequest(queryResponse.Exceptions);
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
 
-        //    //  Map Handler response to API Response and return.
-        //    var apiResponse = mapper.Map<CategorySubcategoryGetByIdQueryResponse, CategorySubcategoryGetByIdAPIResponse>(queryResponse);
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<CategorySubcategoryGetByIdQueryResponse, CategorySubcategoryGetByIdAPIResponse>(queryResponse);
 
-        //    return Results.Ok(apiResponse);
-        //})
-        //.WithName("CategorySubcategoryGetById");
+            return Results.Ok(apiResponse);
+        })
+        .WithName("CategorySubcategoryGetById");
     }
 }

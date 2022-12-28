@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Application.Models;
+using Tuber.Persistence.Banks;
 
 namespace Tuber.Persistence.CategorySubcategories;
 
@@ -18,5 +19,7 @@ public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<Categor
 
         builder.Property(x => x.IsDeleted)
             .IsRequired();
+
+        CategorySubcategorySeeding.Seed(builder);
     }
 }
