@@ -16,12 +16,19 @@ public class CategorySubcategoryDeletionService : ICategorySubcategoryDeletionSe
 
     public ServiceResult<int> Delete(Guid categorySubcategoryId)
     {
-        var categorySubcategory = _categorySubcategoryRepo.Delete(categorySubcategoryId);
+        var categorySubcategoryModel = _categorySubcategoryRepo.GetById(categorySubcategoryId);
 
-        if (categorySubcategory == 0)
+        if (categorySubcategoryModel.CategorySubcategoryId == Guid.Empty)
             return new ServiceResult<int>(
-                payload: 0,
-                exception: new EntityDoesNotExistException(CategorySubcategory.FriendlyName, categorySubcategoryId));
+                 payload: 0,
+                 exception: new EntityDoesNotExistException(Category.FriendlyName, categorySubcategoryId));
+
+        if (categorySubcategoryModel.IsCoreCategorySubcategory)
+            return new ServiceResult<int>(
+                 payload: 0,
+                 exception: new CannotDeleteCoreEntityException(CategorySubcategory.FriendlyName, categorySubcategoryId));
+
+        var categorySubcategory = _categorySubcategoryRepo.Delete(categorySubcategoryId);
 
         _categorySubcategoryRepo.SaveChanges();
 

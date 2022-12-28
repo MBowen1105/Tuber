@@ -16,15 +16,22 @@ public class SubcategoryDeletionService : ISubcategoryDeletionService
 
     public ServiceResult<int> Delete(Guid subcategoryId)
     {
-        var subcategory = _subcategoryRepo.Delete(subcategoryId);
+        var subcategoryModel = _subcategoryRepo.GetById(subcategoryId);
 
-        if (subcategory == 0)
+        if (subcategoryModel.SubcategoryId == Guid.Empty)
             return new ServiceResult<int>(
-                payload: 0,
-                exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
+                 payload: 0,
+                 exception: new EntityDoesNotExistException(Subcategory.FriendlyName, subcategoryId));
+
+        if (subcategoryModel.IsCoreSubcategory)
+            return new ServiceResult<int>(
+                 payload: 0,
+                 exception: new CannotDeleteCoreEntityException(Subcategory.FriendlyName, subcategoryId));
+
+        var subcategory = _subcategoryRepo.Delete(subcategoryId);
 
         _subcategoryRepo.SaveChanges();
 
-        return new ServiceResult<int>(0);
+        return new ServiceResult<int>(subcategory);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Tuber.Application.Common.Interfaces;
+using Tuber.Application.Exceptions;
 using Tuber.Application.Models;
 using Tuber.Core.Exceptions;
 
@@ -25,6 +26,10 @@ namespace Tuber.Application.CategorySubcategories.Commands.CategorySubcategoryDe
             if (serviceResultGetById.HasFailed)
                 return Task.FromResult(new CategorySubcategoryDeleteCommandResponse(
                     new EntityToDeleteDoesNotExistException(CategorySubcategory.FriendlyName, request.CategorySubcategoryId)));
+
+            if (serviceResultGetById.Payload.IsCoreCategorySubcategory)
+                return Task.FromResult(new CategorySubcategoryDeleteCommandResponse(
+                    new CannotDeleteCoreEntityException(CategorySubcategory.FriendlyName, request.CategorySubcategoryId)));
 
             var serviceResultDelete = _categorySubcategoryDeletionService.Delete(request.CategorySubcategoryId);
 
