@@ -6,6 +6,7 @@ using System.Reflection;
 using Tuber.Application.BankAccounts.Services;
 using Tuber.Application.Banks.Services;
 using Tuber.Application.Categories.Services;
+using Tuber.Application.CategorySubcategories.Services;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Imports.Services;
 using Tuber.Application.ImportTemplates.Services;
@@ -40,6 +41,8 @@ public static class DependencyInjection
         services.AddScoped<ICategoryDeletionService, CategoryDeletionService>();
 
         services.AddScoped<ICategorySubcategoryRetrievalService, CategorySubcategoryRetrievalService>();
+        services.AddScoped<ICategorySubcategoryUpdaterService, CategorySubcategoryUpdaterService>();
+        services.AddScoped<ICategorySubcategoryDeletionService, CategorySubcategoryDeletionService>();
 
         services.AddScoped<IImportRetrievalService, ImportRetrievalService>();
         services.AddScoped<IImportUpdaterService, ImportUpdaterService>();

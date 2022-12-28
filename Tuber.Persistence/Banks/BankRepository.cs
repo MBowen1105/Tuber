@@ -104,10 +104,17 @@ public class BankRepository : IBankRepository
         return (int)Math.Ceiling(totalPages);
     }
 
+    public bool Exists(string bankName)
+    {
+        return _context.Banks.Any(x => x.BankName == bankName);
+    }
+
     #endregion
 
     public int SaveChanges()
     {
         return _context.SaveChanges();
     }
+
+
 }

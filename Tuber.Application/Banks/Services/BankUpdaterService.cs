@@ -14,11 +14,16 @@ public class BankUpdaterService : IBankUpdaterService
         _bankRepo = bankRepo;
     }
 
-    public ServiceResult<Bank> Add(string name, int orderBy)
+    public ServiceResult<Bank> Add(string bankName, int orderBy)
     {
+        if (_bankRepo.Exists(bankName))
+            return new ServiceResult<Bank>(
+                payload: new Bank(),
+                exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bankName));
+
         var bank = new Bank
         {
-            BankName = name,
+            BankName = bankName,
             OrderBy = orderBy
         };
 

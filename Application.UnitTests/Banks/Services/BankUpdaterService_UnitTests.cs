@@ -59,6 +59,7 @@ internal class BankUpdaterService_UnitTests
     }
     #endregion
 
+
     #region "BankUpdate"
 
     #endregion

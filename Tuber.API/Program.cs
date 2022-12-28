@@ -1,6 +1,7 @@
 using Tuber.API.BankAccounts;
 using Tuber.API.Banks;
 using Tuber.API.Categories;
+using Tuber.API.CategorySubcategories;
 using Tuber.API.ImportTemplates;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,5 +44,8 @@ CategoryEndpoints.QueryEndpoints(app);
 
 SubcategoryEndpoints.CommandEndpoints(app);
 SubcategoryEndpoints.QueryEndpoints(app);
+
+CategorySubcategoryEndpoints.CommandEndpoints(app);
+CategorySubcategoryEndpoints.QueryEndpoints(app);
 
 app.Run();
