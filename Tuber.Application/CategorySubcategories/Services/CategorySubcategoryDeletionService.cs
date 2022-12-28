@@ -25,6 +25,6 @@ public class CategorySubcategoryDeletionService : ICategorySubcategoryDeletionSe
 
         _categorySubcategoryRepo.SaveChanges();
 
-        return new ServiceResult<int>(payload: 0);
+        return new ServiceResult<int>(payload: 1);
     }
 }
