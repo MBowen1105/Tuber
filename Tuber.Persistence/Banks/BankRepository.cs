@@ -12,6 +12,7 @@ public class BankRepository : IBankRepository
         _context = context;
     }
 
+
     #region "Commands"
     public Bank Add(Bank bank)
     {

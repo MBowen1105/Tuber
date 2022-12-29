@@ -14,6 +14,8 @@ namespace Tuber.Application.BankAccounts.Commands.BankAccountUpdate
 
         public Task<BankAccountUpdateCommandResponse> Handle(BankAccountUpdateCommandRequest request, CancellationToken cancellationToken)
         {
+            //TODO: Validate BankAccount object
+
             var serviceResult = _bankAccountUpdaterService.Update(
                 bankAccountId: request.BankAccountId,
                 bankAccountName: request.BankAccountName,

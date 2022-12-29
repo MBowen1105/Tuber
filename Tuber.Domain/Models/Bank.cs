@@ -10,10 +10,10 @@ public class Bank : AuditableEntity
         BankId = Guid.Empty;
         BankName = "";
         OrderBy = int.MaxValue;
-        ImportTemplateId = null;
-        IsDeleted = false;       
         BankAccounts = new List<BankAccount>();
+        ImportTemplateId = null;
         ImportTemplate = null;
+        IsDeleted = false;       
     }
 
     public Guid BankId { get; set; }

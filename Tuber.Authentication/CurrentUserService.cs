@@ -1,4 +1,4 @@
-﻿using Tuber.Application.Common.Interfaces.Authorisation;
+﻿using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Models;
 
 namespace Tuber.Authentication;

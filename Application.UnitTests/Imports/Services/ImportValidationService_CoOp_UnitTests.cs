@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
 using Tuber.Application.Imports.Services;
@@ -16,7 +16,7 @@ internal class ImportValidationService_CoOp_UnitTests
     private readonly Mock<ICategorySubcategoryRetrievalService> _mockCategorySubcategoryRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
-    private ImportTemplate _importTemplate = new ImportTemplate
+    private readonly ImportTemplate _importTemplate = new()
     {
         ImportTemplateId = Guid.NewGuid(),
         ImportTemplateName = "",

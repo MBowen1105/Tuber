@@ -1,6 +1,6 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Enums;
 using Tuber.Application.Interfaces.SystemClock;

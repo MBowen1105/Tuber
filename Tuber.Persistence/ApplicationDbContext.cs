@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.Application.Common;
-using Tuber.Application.Common.Interfaces.Authorisation;
+using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Interfaces.SystemClock;
 using Tuber.Application.Models;
 using Tuber.Persistence.BankAccounts;
@@ -65,8 +65,6 @@ public class ApplicationDbContext : DbContext
 
         return base.SaveChanges();
     }
-
-    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
