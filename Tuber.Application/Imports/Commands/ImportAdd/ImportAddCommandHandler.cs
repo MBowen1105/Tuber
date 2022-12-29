@@ -44,9 +44,13 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
         var importTemplate = importTemplateRetrievalServiceResult.Payload;
 
         //  Does the Text Import File exist?
-        var workingDirectory = Environment.CurrentDirectory;
-        var projectDirectory = Directory.GetParent(workingDirectory)!.FullName;
+        //var workingDirectory = Environment.CurrentDirectory;
+        //var projectDirectory = Directory.GetParent(workingDirectory)!.FullName;
+        var workingDirectory = _fileSystem.CurrentDirectory();
+        var projectDirectory = _fileSystem.GetParent(workingDirectory)!.FullName;
+
         var importFileUrl = $@"{projectDirectory}\Tuber.FileSystem\Import Folder\{request.ImportFileName}";
+        
         if (!_fileSystem.Exists(importFileUrl))
             return Task.FromResult(new ImportAddCommandResponse
             {

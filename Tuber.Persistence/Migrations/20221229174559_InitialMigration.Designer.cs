@@ -12,7 +12,7 @@ using Tuber.Persistence;
 namespace Tuber.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221205171431_InitialMigration")]
+    [Migration("20221229174559_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -25,11 +25,16 @@ namespace Tuber.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Bank", b =>
                 {
                     b.Property<Guid>("BankId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<Guid>("CreatedByUserId")
                         .HasColumnType("uniqueidentifier");
@@ -44,11 +49,6 @@ namespace Tuber.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
@@ -73,65 +73,70 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
+                            BankName = "Co-Op Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7605),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4853),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
-                            Name = "Co-Op Bank",
                             OrderBy = 10
                         },
                         new
                         {
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
+                            BankName = "Lloyds Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7613),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4869),
                             IsDeleted = false,
-                            Name = "Lloyds Bank",
                             OrderBy = 20
                         },
                         new
                         {
                             BankId = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
+                            BankName = "Barclays Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7615),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4873),
                             IsDeleted = false,
-                            Name = "Barclays Bank",
                             OrderBy = 30
                         },
                         new
                         {
                             BankId = new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"),
+                            BankName = "Virgin",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7617),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4878),
                             IsDeleted = false,
-                            Name = "Virgin",
                             OrderBy = 40
                         },
                         new
                         {
                             BankId = new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"),
+                            BankName = "West Bromwich Building Society",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7619),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4880),
                             IsDeleted = false,
-                            Name = "West Bromwich Building Society",
                             OrderBy = 50
                         },
                         new
                         {
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
+                            BankName = "TSB",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(7621),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(4883),
                             IsDeleted = true,
-                            Name = "TSB",
                             OrderBy = 50
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
+            modelBuilder.Entity("Tuber.Application.Models.BankAccount", b =>
                 {
                     b.Property<Guid>("BankAccountId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BankAccountName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<Guid>("BankId")
                         .HasColumnType("uniqueidentifier");
@@ -149,11 +154,6 @@ namespace Tuber.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("OrderBy")
                         .HasColumnType("int");
@@ -188,12 +188,12 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("0c942b54-d561-499a-843b-e4387e7e6415"),
+                            BankAccountName = "Salary",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9241),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6750),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
-                            Name = "Salary",
                             OrderBy = 10,
                             UKBankAccount = "09411905",
                             UKSortCode = "089191"
@@ -201,12 +201,12 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("552d16a1-d98b-48e9-8580-13029843c116"),
+                            BankAccountName = "Cash",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9245),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6755),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
-                            Name = "Cash",
                             OrderBy = 20,
                             UKBankAccount = "00985630",
                             UKSortCode = "089191"
@@ -214,12 +214,12 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"),
+                            BankAccountName = "Savings",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9248),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6758),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
-                            Name = "Savings",
                             OrderBy = 30,
                             UKBankAccount = "09405515",
                             UKSortCode = "089191"
@@ -227,12 +227,12 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"),
+                            BankAccountName = "Lloyds 93DIX",
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9324),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6762),
                             ImportTemplateId = new Guid("f642096e-6573-4deb-96be-efba9016499c"),
                             IsDeleted = false,
-                            Name = "Lloyds 93DIX",
                             OrderBy = 10,
                             UKBankAccount = "09405515",
                             UKSortCode = "901111"
@@ -240,12 +240,12 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"),
+                            BankAccountName = "Lloyds 25PAR",
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9328),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6764),
                             ImportTemplateId = new Guid("f642096e-6573-4deb-96be-efba9016499c"),
                             IsDeleted = false,
-                            Name = "Lloyds 25PAR",
                             OrderBy = 20,
                             UKBankAccount = "09405515",
                             UKSortCode = "901111"
@@ -253,20 +253,20 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             BankAccountId = new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"),
+                            BankAccountName = "TSB Bank Account",
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9331),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6767),
                             IsDeleted = true,
-                            Name = "TSB Bank Account",
                             OrderBy = 10,
                             UKBankAccount = "98765555",
                             UKSortCode = "440191",
                             UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 299, DateTimeKind.Utc).AddTicks(9332)
+                            UpdatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(6768)
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Category", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Category", b =>
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -309,7 +309,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("27d48d80-b231-4c28-b1e5-af2100d24913"),
                             CategoryName = "Transfer",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(4283),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2241),
                             IsCoreCategory = true,
                             IsDeleted = false
                         },
@@ -318,7 +318,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"),
                             CategoryName = "Motor",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(4286),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2244),
                             IsCoreCategory = true,
                             IsDeleted = false
                         },
@@ -327,7 +327,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("ebb8bab4-a579-41ca-b42b-bf1bdb9b52f9"),
                             CategoryName = "Mortage",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(4289),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2249),
                             IsCoreCategory = false,
                             IsDeleted = false
                         },
@@ -336,13 +336,13 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("3eefa969-31e0-46d3-9d81-d514035dd3de"),
                             CategoryName = "Child Maintenance",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(4291),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2251),
                             IsCoreCategory = false,
                             IsDeleted = false
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.CategorySubcategory", b =>
+            modelBuilder.Entity("Tuber.Application.Models.CategorySubcategory", b =>
                 {
                     b.Property<Guid>("CategorySubcategoryId")
                         .ValueGeneratedOnAdd()
@@ -350,6 +350,9 @@ namespace Tuber.Persistence.Migrations
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsCoreCategorySubcategory")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -359,10 +362,40 @@ namespace Tuber.Persistence.Migrations
 
                     b.HasKey("CategorySubcategoryId");
 
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SubcategoryId");
+
                     b.ToTable("CategorySubcategories", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CategorySubcategoryId = new Guid("e79d158e-dd3c-4b13-86da-e0b8f9109ff7"),
+                            CategoryId = new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"),
+                            IsCoreCategorySubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryId = new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c")
+                        },
+                        new
+                        {
+                            CategorySubcategoryId = new Guid("c7f625d8-3b1c-4861-9589-f2e85e0596b3"),
+                            CategoryId = new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"),
+                            IsCoreCategorySubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryId = new Guid("179d1384-e290-4bb7-a52d-038a3221d330")
+                        },
+                        new
+                        {
+                            CategorySubcategoryId = new Guid("80172b90-d0e3-41f1-bc00-985fc14f5926"),
+                            CategoryId = new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"),
+                            IsCoreCategorySubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryId = new Guid("3077c60b-5d01-4982-b60e-d032cf75d926")
+                        });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Import", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Import", b =>
                 {
                     b.Property<Guid>("ImportId")
                         .ValueGeneratedOnAdd()
@@ -439,7 +472,7 @@ namespace Tuber.Persistence.Migrations
                     b.ToTable("Imports", (string)null);
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.ImportTemplate", b =>
+            modelBuilder.Entity("Tuber.Application.Models.ImportTemplate", b =>
                 {
                     b.Property<Guid>("ImportTemplateId")
                         .ValueGeneratedOnAdd()
@@ -478,6 +511,11 @@ namespace Tuber.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImportTemplateName")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -501,11 +539,6 @@ namespace Tuber.Persistence.Migrations
 
                     b.Property<int>("SortCodeColumnNumber")
                         .HasColumnType("int");
-
-                    b.Property<string>("TemplateName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.Property<int>("TransactionTypeColumnNumber")
                         .HasColumnType("int");
@@ -531,20 +564,20 @@ namespace Tuber.Persistence.Migrations
                             AccountNumberColumnNumber = 0,
                             BalanceOnStatementColumnNumber = 6,
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(2336),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(9637),
                             DateColumnNumber = 1,
                             DateTemplate = "yyyy-mm-dd",
                             DescriptionOnStatementColumnNumber = 2,
                             ExpectedColumnCount = 6,
                             ExpectedHeaderRowCount = 1,
                             ImportFileName = "",
+                            ImportTemplateName = "Co-Op Bank Template",
                             IsDeleted = false,
                             MoneyInColumnNumber = 4,
                             MoneyOutColumnNumber = 5,
                             ReferenceOnStatementStartCharacter = 19,
                             SeperatorChar = ",",
                             SortCodeColumnNumber = 0,
-                            TemplateName = "Co-Op Bank Template",
                             TransactionTypeColumnNumber = 3
                         },
                         new
@@ -553,25 +586,25 @@ namespace Tuber.Persistence.Migrations
                             AccountNumberColumnNumber = 4,
                             BalanceOnStatementColumnNumber = 8,
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 5, 17, 14, 31, 300, DateTimeKind.Utc).AddTicks(2341),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 974, DateTimeKind.Utc).AddTicks(9643),
                             DateColumnNumber = 1,
                             DateTemplate = "dd-mmm-yyyy",
                             DescriptionOnStatementColumnNumber = 5,
                             ExpectedColumnCount = 8,
                             ExpectedHeaderRowCount = 1,
                             ImportFileName = "",
+                            ImportTemplateName = "Lloyds Bank Template",
                             IsDeleted = false,
                             MoneyInColumnNumber = 7,
                             MoneyOutColumnNumber = 6,
                             ReferenceOnStatementStartCharacter = 0,
                             SeperatorChar = ",",
                             SortCodeColumnNumber = 3,
-                            TemplateName = "Lloyds Bank Template",
                             TransactionTypeColumnNumber = 2
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Subcategory", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Subcategory", b =>
                 {
                     b.Property<Guid>("SubcategoryId")
                         .ValueGeneratedOnAdd()
@@ -607,9 +640,38 @@ namespace Tuber.Persistence.Migrations
                     b.HasIndex("UpdatedByUserId");
 
                     b.ToTable("Subcategories", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            SubcategoryId = new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c"),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2848),
+                            IsCoreSubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryName = "Fuel"
+                        },
+                        new
+                        {
+                            SubcategoryId = new Guid("179d1384-e290-4bb7-a52d-038a3221d330"),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2859),
+                            IsCoreSubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryName = "Insurance"
+                        },
+                        new
+                        {
+                            SubcategoryId = new Guid("3077c60b-5d01-4982-b60e-d032cf75d926"),
+                            CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
+                            CreatedOnUtc = new DateTime(2022, 12, 29, 17, 45, 58, 975, DateTimeKind.Utc).AddTicks(2861),
+                            IsCoreSubcategory = true,
+                            IsDeleted = false,
+                            SubcategoryName = "Tax"
+                        });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.User", b =>
+            modelBuilder.Entity("Tuber.Application.Models.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
@@ -651,19 +713,19 @@ namespace Tuber.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Bank", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.User", "CreatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "CreatedByUser")
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.ImportTemplate", "ImportTemplate")
+                    b.HasOne("Tuber.Application.Models.ImportTemplate", "ImportTemplate")
                         .WithMany()
                         .HasForeignKey("ImportTemplateId");
 
-                    b.HasOne("Tuber.Domain.Models.User", "UpdatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "UpdatedByUser")
                         .WithMany()
                         .HasForeignKey("UpdatedByUserId");
 
@@ -674,21 +736,21 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("UpdatedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.BankAccount", b =>
+            modelBuilder.Entity("Tuber.Application.Models.BankAccount", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.Bank", null)
+                    b.HasOne("Tuber.Application.Models.Bank", null)
                         .WithMany("BankAccounts")
                         .HasForeignKey("BankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.User", "CreatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "CreatedByUser")
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.User", "UpdatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "UpdatedByUser")
                         .WithMany()
                         .HasForeignKey("UpdatedByUserId");
 
@@ -697,15 +759,15 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("UpdatedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Category", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Category", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.User", "CreatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "CreatedByUser")
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.User", "UpdatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "UpdatedByUser")
                         .WithMany()
                         .HasForeignKey("UpdatedByUserId");
 
@@ -714,9 +776,26 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("UpdatedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Import", b =>
+            modelBuilder.Entity("Tuber.Application.Models.CategorySubcategory", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.User", "ImportedByUser")
+                    b.HasOne("Tuber.Application.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tuber.Application.Models.Subcategory", "Subcategory")
+                        .WithMany()
+                        .HasForeignKey("SubcategoryId");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Subcategory");
+                });
+
+            modelBuilder.Entity("Tuber.Application.Models.Import", b =>
+                {
+                    b.HasOne("Tuber.Application.Models.User", "ImportedByUser")
                         .WithMany()
                         .HasForeignKey("ImportedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -725,15 +804,15 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("ImportedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.ImportTemplate", b =>
+            modelBuilder.Entity("Tuber.Application.Models.ImportTemplate", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.User", "CreatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "CreatedByUser")
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.User", "UpdatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "UpdatedByUser")
                         .WithMany()
                         .HasForeignKey("UpdatedByUserId");
 
@@ -742,15 +821,15 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("UpdatedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Subcategory", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Subcategory", b =>
                 {
-                    b.HasOne("Tuber.Domain.Models.User", "CreatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "CreatedByUser")
                         .WithMany()
                         .HasForeignKey("CreatedByUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tuber.Domain.Models.User", "UpdatedByUser")
+                    b.HasOne("Tuber.Application.Models.User", "UpdatedByUser")
                         .WithMany()
                         .HasForeignKey("UpdatedByUserId");
 
@@ -759,7 +838,7 @@ namespace Tuber.Persistence.Migrations
                     b.Navigation("UpdatedByUser");
                 });
 
-            modelBuilder.Entity("Tuber.Domain.Models.Bank", b =>
+            modelBuilder.Entity("Tuber.Application.Models.Bank", b =>
                 {
                     b.Navigation("BankAccounts");
                 });
