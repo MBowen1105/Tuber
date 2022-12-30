@@ -12,6 +12,7 @@ public class ImportRetrievalService : IImportRetrievalService
     {
         _importRepo = importRepo;
     }
+
     public ServiceResult<List<Import>> GetByBankAccountId(Guid bankAccountId)
     {
         var importList = _importRepo.GetByBankAccountId(bankAccountId);

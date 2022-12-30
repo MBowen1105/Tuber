@@ -14,17 +14,17 @@ public class ImportValidationService : IImportValidationService
 
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _dateTimeService;
-    private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
+    private readonly ITransactionRetrievalService _transactionRetrievalService;
 
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
         ISystemClock dateTimeService,
-        ICategorySubcategoryRetrievalService categoryRetrievalService)
+        ITransactionRetrievalService transactionRetrievalService)
     {
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
-        _categoryRetrievalService = categoryRetrievalService;
+        _transactionRetrievalService = transactionRetrievalService;
     }
 
     public ServiceResult<List<Import>> Validate(
@@ -153,7 +153,7 @@ public class ImportValidationService : IImportValidationService
             Guid? suggestedSubcategoryId = null;
             if (suggestCategorisation)
             {
-                (suggestedCategoryId, suggestedSubcategoryId) = _categoryRetrievalService.SuggestCategorisation(
+                (suggestedCategoryId, suggestedSubcategoryId) = _transactionRetrievalService.SuggestCategorisation(
                     dateValue, descriptionValue, referenceOnStatementValue,
                     moneyInValue, moneyOutValue);
             }

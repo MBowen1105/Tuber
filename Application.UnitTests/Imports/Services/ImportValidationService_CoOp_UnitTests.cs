@@ -13,7 +13,7 @@ internal class ImportValidationService_CoOp_UnitTests
 {
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
-    private readonly Mock<ICategorySubcategoryRetrievalService> _mockCategorySubcategoryRetrievalService = new();
+    private readonly Mock<ITransactionRetrievalService> _mockTransactionRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
     private readonly ImportTemplate _importTemplate = new()
@@ -46,18 +46,18 @@ internal class ImportValidationService_CoOp_UnitTests
         _mockSystemClock.Setup(x => x.UtcNow())
             .Returns(new DateTime(2022, 12, 15));
 
-        //_mockCategorySubcategoryRetrievalService.Setup(x => x.SuggestCategorisation(
-        //    It.Is<string>(x => x == "20221215"),
-        //    It.Is<string>(x => x == "Description Value"),
-        //    It.Is<string>(x => x == "Reference on Statement Value"),
-        //    It.Is<string>(x => x == "Money In Value"),
-        //    It.Is<string>(x => x == "Money Out Value"))
-        //        .Returns();
+        _mockTransactionRetrievalService.Setup(x => x.SuggestCategorisation(
+            It.Is<string>(x => x == "20221215"),
+            It.Is<string>(x => x == "Description Value"),
+            It.Is<string>(x => x == "Reference on Statement Value"),
+            It.Is<string>(x => x == "Money In Value"),
+            It.Is<string>(x => x == "Money Out Value")))
+                .Returns((null, null));
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,
             _mockSystemClock.Object,
-            _mockCategorySubcategoryRetrievalService.Object);
+            _mockTransactionRetrievalService.Object);
     }
 
     #region "Validate"
