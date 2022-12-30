@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 using Tuber.Core.Exceptions;
 
 namespace Tuber.Application.Banks.Commands.BankDelete

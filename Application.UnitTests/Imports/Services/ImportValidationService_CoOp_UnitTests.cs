@@ -6,14 +6,14 @@ using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
 using Tuber.Application.Imports.Services;
 using Tuber.Application.Interfaces.SystemClock;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
 {
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
-    private readonly Mock<ITransactionRetrievalService> _mockTransactionRetrievalService = new();
+    private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
     private readonly ImportTemplate _importTemplate = new()
@@ -46,18 +46,19 @@ internal class ImportValidationService_CoOp_UnitTests
         _mockSystemClock.Setup(x => x.UtcNow())
             .Returns(new DateTime(2022, 12, 15));
 
-        _mockTransactionRetrievalService.Setup(x => x.SuggestCategorisation(
+        _mockLedgerRetrievalService.Setup(x => x.SuggestCategorisation(
+            It.IsAny<Guid>(),
             It.Is<string>(x => x == "20221215"),
             It.Is<string>(x => x == "Description Value"),
             It.Is<string>(x => x == "Reference on Statement Value"),
             It.Is<string>(x => x == "Money In Value"),
             It.Is<string>(x => x == "Money Out Value")))
-                .Returns((null, null));
+                .Returns(Guid.Empty);
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,
             _mockSystemClock.Object,
-            _mockTransactionRetrievalService.Object);
+            _mockLedgerRetrievalService.Object);
     }
 
     #region "Validate"
@@ -77,7 +78,7 @@ internal class ImportValidationService_CoOp_UnitTests
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);
-        serviceResult.Payload.Count().Should().Be(2);
+        serviceResult.Payload.Count.Should().Be(2);
     }
 
     [Test, Parallelizable]
@@ -94,7 +95,7 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<InvalidImportFileException>();
 
-        serviceResult.Payload.Count().Should().Be(0);
+        serviceResult.Payload.Count.Should().Be(0);
     }
 
     [Test, Parallelizable]
@@ -111,7 +112,7 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<InvalidImportFileException>();
 
-        serviceResult.Payload.Count().Should().Be(0);
+        serviceResult.Payload.Count.Should().Be(0);
     }
 
     [Test, Parallelizable]

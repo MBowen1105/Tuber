@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Tuber.Application.Common;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Domain.UnitTests.Common;
 internal class ServiceResult_UnitTests

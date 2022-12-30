@@ -8,6 +8,7 @@ using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.CategorySubcategories;
 using Tuber.Persistence.Imports;
+using Tuber.Persistence.Ledgers;
 using Tuber.Persistence.Subcategories;
 
 namespace Tuber.Persistence;
@@ -31,6 +32,7 @@ public static class DependencyInjection
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
         services.AddScoped<ICategorySubcategoryRepository, CategorySubcategoryRepository>();
+        services.AddScoped<ILedgerRepository, LedgerRepository>();
 
         return services;
     }

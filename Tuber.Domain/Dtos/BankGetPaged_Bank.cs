@@ -1,4 +1,4 @@
-﻿using Tuber.Application.Models;
+﻿using Tuber.Domain.Models;
 
 namespace Tuber.Application.Dtos;
 public class BankGetPaged_Bank

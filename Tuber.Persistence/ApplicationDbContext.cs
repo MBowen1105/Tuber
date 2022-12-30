@@ -2,13 +2,14 @@
 using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Interfaces.SystemClock;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 using Tuber.Persistence.BankAccounts;
 using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.CategorySubcategories;
 using Tuber.Persistence.Imports;
 using Tuber.Persistence.ImportTemplates;
+using Tuber.Persistence.Ledgers;
 using Tuber.Persistence.Subcategories;
 using Tuber.Persistence.Users;
 
@@ -27,6 +28,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Subcategory> Subcategories { get; set; }
     public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
+    public DbSet<Ledger> Ledgers { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         ISystemClock systemClock,
@@ -76,6 +78,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new SubcategoryConfiguration());
         modelBuilder.ApplyConfiguration(new CategorySubcategoryConfiguration());
+        modelBuilder.ApplyConfiguration(new LedgerConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

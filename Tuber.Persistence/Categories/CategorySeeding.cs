@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Persistence.Users;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Persistence.Categories;
 public static class CategorySeeding

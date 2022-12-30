@@ -5,7 +5,7 @@ using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.BankAccounts.Queries.BankAccountGetPaged;
 internal class BankAccountGetPagedQueryHandler_UnitTests

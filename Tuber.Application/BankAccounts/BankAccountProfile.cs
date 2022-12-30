@@ -2,7 +2,7 @@
 using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
 using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.BankAccounts;
 public class BankAccountProfile : Profile

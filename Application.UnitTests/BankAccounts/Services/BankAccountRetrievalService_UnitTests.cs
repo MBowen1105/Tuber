@@ -4,7 +4,7 @@ using Tuber.Application.BankAccounts.Services;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.BankAccounts.Services;
 internal class BankAccountRetrievalService_UnitTests

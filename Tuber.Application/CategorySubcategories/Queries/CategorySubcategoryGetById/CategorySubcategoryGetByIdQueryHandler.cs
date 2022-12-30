@@ -2,7 +2,7 @@
 using MediatR;
 using Tuber.Application.CategorySubcategories.Queries.CategorySubcategoryGetById;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.CategorySubcategorys.Queries.CategorySubcategoryGetById
 {

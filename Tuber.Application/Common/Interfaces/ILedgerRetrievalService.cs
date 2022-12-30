@@ -1,11 +1,10 @@
 ﻿namespace Tuber.Application.Common.Interfaces;
-public interface ITransactionRetrievalService
+public interface ILedgerRetrievalService
 {
-    (Guid? categoryId, Guid? subcategoryId) SuggestCategorisation(
+    Guid? SuggestCategorisation(Guid bankAccountId,
     string? dateISO8601,
     string? description,
     string? reference,
     string? moneyIn,
     string? moneyOut);
-
 }

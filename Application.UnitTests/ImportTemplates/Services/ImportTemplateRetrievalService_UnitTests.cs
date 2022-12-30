@@ -3,7 +3,7 @@ using Moq;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
 using Tuber.Application.ImportTemplates.Services;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.ImportTemplates.Services;
 

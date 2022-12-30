@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.Models;
+﻿namespace Tuber.Domain.Models;
 public class CategorySubcategory
 {
     public static readonly string FriendlyName = "Category/Subcategory";

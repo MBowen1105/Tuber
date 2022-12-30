@@ -2,7 +2,7 @@
 using Tuber.Application.Imports.Commands.ImportAdd;
 using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports;
 public class ImportProfile : Profile

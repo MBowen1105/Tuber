@@ -1,6 +1,6 @@
 ﻿using Tuber.Application.Common;
 
-namespace Tuber.Application.Models;
+namespace Tuber.Domain.Models;
 public class Category : AuditableEntity
 {
     public static readonly string FriendlyName = "Category";

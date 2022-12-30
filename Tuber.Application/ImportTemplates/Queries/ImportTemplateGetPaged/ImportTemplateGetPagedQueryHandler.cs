@@ -2,7 +2,7 @@
 using MediatR;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged
 {

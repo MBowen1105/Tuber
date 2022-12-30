@@ -2,7 +2,7 @@
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.ImportTemplates;
 public class ImportTemplateProfile : Profile

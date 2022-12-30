@@ -4,7 +4,7 @@ using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Enums;
 using Tuber.Application.Interfaces.SystemClock;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Services;
 public class ImportUpdaterService : IImportUpdaterService

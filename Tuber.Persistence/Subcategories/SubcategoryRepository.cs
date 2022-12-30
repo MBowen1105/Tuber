@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Persistence.Subcategories;
 public class SubcategoryRepository : ISubcategoryRepository

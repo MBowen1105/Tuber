@@ -1,7 +1,7 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Services;
 public class ImportRetrievalService : IImportRetrievalService

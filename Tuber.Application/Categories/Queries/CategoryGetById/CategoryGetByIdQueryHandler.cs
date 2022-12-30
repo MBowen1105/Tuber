@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Categories.Queries.CategoryGetById
 {

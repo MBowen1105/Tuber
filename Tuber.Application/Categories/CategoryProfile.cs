@@ -5,7 +5,7 @@ using Tuber.Application.Categories.Queries.CategoriesGetPaged;
 using Tuber.Application.Categories.Queries.CategoryGetById;
 using Tuber.Application.Categorys.Queries.CategoryGetById;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Categories;
 public class CategoryProfile : Profile

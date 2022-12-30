@@ -2,7 +2,7 @@
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Banks.Services;
 public class BankUpdaterService : IBankUpdaterService

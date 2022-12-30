@@ -3,7 +3,7 @@ using Moq;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 using Tuber.Application.Subcategories.Services;
 
 namespace Application.UnitTests.Subcategories.Services;

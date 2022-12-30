@@ -3,7 +3,7 @@ using Tuber.Application.CategorySubcategories.Commands.AddCategorySubcategory;
 using Tuber.Application.CategorySubcategories.Commands.BankAdd;
 using Tuber.Application.CategorySubcategories.Commands.CategorySubcategoryAdd;
 using Tuber.Application.CategorySubcategories.Queries.CategorySubcategoryGetById;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.CategorySubcategorys;
 public class CategorySubcategoryProfile : Profile

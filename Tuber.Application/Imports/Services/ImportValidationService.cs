@@ -4,7 +4,7 @@ using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
 using Tuber.Application.Interfaces.SystemClock;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 using Tuber.Core.Validation;
 
 namespace Tuber.Application.Imports.Services;
@@ -14,17 +14,16 @@ public class ImportValidationService : IImportValidationService
 
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _dateTimeService;
-    private readonly ITransactionRetrievalService _transactionRetrievalService;
-
+    private readonly ILedgerRetrievalService _ledgerRetrievalService;
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
         ISystemClock dateTimeService,
-        ITransactionRetrievalService transactionRetrievalService)
+        ILedgerRetrievalService transactionRetrievalService)
     {
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
-        _transactionRetrievalService = transactionRetrievalService;
+        _ledgerRetrievalService = transactionRetrievalService;
     }
 
     public ServiceResult<List<Import>> Validate(
@@ -149,12 +148,11 @@ public class ImportValidationService : IImportValidationService
             if (validationFailureMessages.EndsWith(ValidationMessageSeperator))
                 validationFailureMessages = validationFailureMessages[..^1];
 
-            Guid? suggestedCategoryId = null;
-            Guid? suggestedSubcategoryId = null;
+            Guid? suggestedCategorySubcategoryId = null;
             if (suggestCategorisation)
             {
-                (suggestedCategoryId, suggestedSubcategoryId) = _transactionRetrievalService.SuggestCategorisation(
-                    dateValue, descriptionValue, referenceOnStatementValue,
+                suggestedCategorySubcategoryId = _ledgerRetrievalService.SuggestCategorisation(
+                    bankAccountId, dateValue, descriptionValue, referenceOnStatementValue,
                     moneyInValue, moneyOutValue);
             }
 
@@ -179,8 +177,7 @@ public class ImportValidationService : IImportValidationService
                 BalanceOnStatementValue = balanceOnStatementValue,
                 SortCodeValue = sortCodeValue,
                 AccountNumberValue = accountNumberValue,
-                SuggestedCategoryId = suggestedCategoryId,
-                SuggestedSubcategoryId = suggestedSubcategoryId,
+                SuggestedCategorySubcategoryId = suggestedCategorySubcategoryId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,

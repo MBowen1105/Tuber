@@ -1,6 +1,6 @@
 ﻿using Moq;
 using Tuber.Application.Common.Interfaces.Authentication;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Persistence.UnitTests.Common;
 internal static class MockCurrentUserService

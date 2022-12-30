@@ -1,6 +1,6 @@
 ﻿using Tuber.Application.Enums;
 
-namespace Tuber.Application.Models;
+namespace Tuber.Domain.Models;
 public class Import
 {
     public static readonly string FriendlyName = "Import";
@@ -18,8 +18,7 @@ public class Import
     public string? BalanceOnStatementValue { get; set; }
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
-    public Guid? SuggestedCategoryId { get; set; }
-    public Guid? SuggestedSubcategoryId { get; set; }
+    public Guid? SuggestedCategorySubcategoryId { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }

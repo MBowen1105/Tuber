@@ -4,7 +4,7 @@ using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Application.Banks.Services;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Dtos;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.Banks.Commands.BankUpdate;
 internal class BankUpdateCommandHandler_UnitTests

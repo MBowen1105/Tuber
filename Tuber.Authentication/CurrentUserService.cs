@@ -1,5 +1,5 @@
 ﻿using Tuber.Application.Common.Interfaces.Authentication;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Authentication;
 

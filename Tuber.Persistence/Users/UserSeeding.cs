@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tuber.Application.Models;
+using Tuber.Domain.Models;
 
 namespace Tuber.Persistence.Users;
 public static class UserSeeding

@@ -10,6 +10,7 @@ using Tuber.Application.CategorySubcategories.Services;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Imports.Services;
 using Tuber.Application.ImportTemplates.Services;
+using Tuber.Application.Ledgers.Services;
 using Tuber.Application.PipelineBehaviours;
 using Tuber.Application.Subcategories.Services;
 
@@ -54,6 +55,7 @@ public static class DependencyInjection
         services.AddScoped<ISubcategoryUpdaterService, SubcategoryUpdaterService>();
         services.AddScoped<ISubcategoryDeletionService, SubcategoryDeletionService>();
 
+        services.AddScoped<ILedgerRetrievalService, LedgerRetrievalService>();
 
         var config = new MapperConfiguration(cfg =>
         {
