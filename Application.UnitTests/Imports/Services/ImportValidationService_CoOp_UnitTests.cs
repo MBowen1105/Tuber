@@ -53,7 +53,7 @@ internal class ImportValidationService_CoOp_UnitTests
             It.Is<string>(x => x == "Reference on Statement Value"),
             It.Is<double>(x => x == 0),
             It.Is<double>(x => x == 0)))
-                .Returns(new ServiceResult<Guid?>(Guid.NewGuid()));
+                .Returns(new ServiceResult<Ledger>(new Ledger()));
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,

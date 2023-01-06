@@ -1,55 +1,161 @@
 ﻿using FluentAssertions;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Interfaces.SystemClock;
 using Tuber.Application.Ledgers.Services;
 using Tuber.Domain.Models;
 
 namespace Application.UnitTests.Ledgers.Services;
 public class LedgerRetrievalService_UnitTests
 {
-    private readonly Guid CategorySubcategoryId = Guid.Parse("975f7dda-5b90-4002-b511-9e378371e643");
-    private readonly Guid MatchGuid = Guid.Parse("d4bb9734-fd5d-47e5-a0c1-818d343cf05e");
     private readonly Mock<ILedgerRepository> _mockLedgerRepo = new();
+    private readonly Mock<ISystemClock> _mockSystemClock = new();
+    private readonly DateTime TodayUtc = new(2023, 1, 6);
+
+    private readonly Guid BankAccountId = Guid.NewGuid();
+    
+    private readonly Guid LedgerId1 = Guid.NewGuid();
+    private readonly Guid LedgerId2 = Guid.NewGuid();
+    private readonly Guid LedgerId3 = Guid.NewGuid();
+
+    private readonly Guid CategorySubcategoryId1 = Guid.NewGuid();
+    private readonly Guid CategorySubcategoryId2 = Guid.NewGuid();
+    private readonly Guid CategorySubcategoryId3 = Guid.NewGuid();
+
 
     [SetUp]
     public void SetUp()
     {
+        _mockSystemClock.Setup(x => x.Today())
+            .Returns(TodayUtc);
+
+        _mockLedgerRepo.Setup(x => x.GetBetweenDates(
+            It.IsAny<Guid>(),
+            It.IsAny<DateTime>(),
+            It.IsAny<DateTime>()))
+            .Returns(new List<Ledger>()
+            {
+                new Ledger
+                {
+                    LedgerId = LedgerId1,
+                    BankAccountId = BankAccountId,
+                    DateUtc = TodayUtc,
+                    Description = "M&S BANK",
+                    Reference = "",
+                    MoneyIn = 100.0,
+                    MoneyOut = null,
+                    CategorySubcategoryId = CategorySubcategoryId1,
+                },
+                new Ledger
+                {
+                    LedgerId = LedgerId2,
+                    BankAccountId = BankAccountId,
+                    DateUtc= TodayUtc.AddDays(-1),
+                    Description = "M&S BANK",
+                    Reference = "",
+                    MoneyIn = null,
+                    MoneyOut = 100.0,
+                    CategorySubcategoryId = CategorySubcategoryId2,
+                },
+                new Ledger
+                {
+                    LedgerId = LedgerId3,
+                    BankAccountId = BankAccountId,
+                    DateUtc = TodayUtc.AddDays(-2),
+                    Description = "M&S BANK",
+                    Reference = "Ref1",
+                    MoneyIn = 100.0,
+                    MoneyOut = null,
+                    CategorySubcategoryId = CategorySubcategoryId3,
+                }
+            });
+    }
+
+    [Test, Parallelizable]
+    public void ExactMatch_ReturnsLedgerEntry1()
+    {
+        var sut = new LedgerRetrievalService(
+            _mockLedgerRepo.Object,
+            _mockSystemClock.Object);
+
+        var serviceResult = sut.SuggestCategorisation(
+            bankAccountId: BankAccountId,
+            description: "M&S BANK",
+            reference: "",
+            moneyIn: 100.0,
+            moneyOut: null);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
+        serviceResult.Exceptions.Count.Should().Be(0);
+
+        serviceResult.Payload.LedgerId.Should().Be(LedgerId1);
 
     }
 
-    [Test]
-    public void Test()
+    [Test, Parallelizable]
+    public void MatchWithoutAmounts_ReturnsLedgerEntry1()
     {
-        //_mockLedgerRepo.Setup(x => x.QueryDatabase(
-        //    It.IsAny<FormattableString>()))
-        //    .Returns(new Ledger
-        //    {
-        //        LedgerId = MatchGuid,
-        //        Description = "Test Description",
-        //        CategorySubcategoryId = CategorySubcategoryId,
-        //    });
+        var sut = new LedgerRetrievalService(
+            _mockLedgerRepo.Object,
+            _mockSystemClock.Object);
 
-        //var sut = new LedgerRetrievalService(_mockLedgerRepo.Object);
+        var serviceResult = sut.SuggestCategorisation(
+            bankAccountId: BankAccountId,
+            description: "M&S BANK",
+            reference: "",
+            moneyIn: 9.0,
+            moneyOut: null);
 
-        //var serviceResult = sut.SuggestCategorisation(
-        //    bankAccountId: Guid.NewGuid(),
-        //    dateISO8601: "20220101",
-        //    description: "test desc",
-        //    reference: "",
-        //    moneyIn: 100.0,
-        //    moneyOut: null);
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
+        serviceResult.Exceptions.Count.Should().Be(0);
 
-        //serviceResult.IsSuccess.Should().BeTrue();
-        //serviceResult.HasFailed.Should().BeFalse();
-        //serviceResult.Exceptions.Count.Should().Be(0);
+        serviceResult.Payload.LedgerId.Should().Be(LedgerId1);
 
-        //serviceResult.Payload.Should().Be(MatchGuid);
+    }
+
+    [Test, Parallelizable]
+    public void MatchJustDescriptionAndReference_ReturnsLedgerEntry3()
+    {
+        var sut = new LedgerRetrievalService(
+            _mockLedgerRepo.Object,
+            _mockSystemClock.Object);
+
+        var serviceResult = sut.SuggestCategorisation(
+            bankAccountId: BankAccountId,
+            description: "M&S BANK",
+            reference: "Ref1",
+            moneyIn: 100.0,
+            moneyOut: null);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
+        serviceResult.Exceptions.Count.Should().Be(0);
+
+        serviceResult.Payload.LedgerId.Should().Be(LedgerId3);
+
+    }
+
+    [Test, Parallelizable]
+    public void MatchJustDescription_ReturnsLedgerEntry1()
+    {
+        var sut = new LedgerRetrievalService(
+            _mockLedgerRepo.Object,
+            _mockSystemClock.Object);
+
+        var serviceResult = sut.SuggestCategorisation(
+            bankAccountId: BankAccountId,
+            description: "M&S BANK",
+            reference: "No ref match",
+            moneyIn: 9.99,
+            moneyOut: null);
+
+        serviceResult.IsSuccess.Should().BeTrue();
+        serviceResult.HasFailed.Should().BeFalse();
+        serviceResult.Exceptions.Count.Should().Be(0);
+
+        serviceResult.Payload.LedgerId.Should().Be(LedgerId1);
 
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Text;
-using Tuber.Application.Common;
-using Tuber.Application.Common.DateRanges;
+﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Domain.Models;
 
 namespace Tuber.Application.Ledgers.Services;
 public class LedgerRetrievalService : ILedgerRetrievalService
@@ -13,54 +11,58 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     private readonly ISystemClock _systemClock;
     private const int HorizonDays = 60;
 
-    public LedgerRetrievalService(ILedgerRepository ledgerRepository,
+    public LedgerRetrievalService(
+        ILedgerRepository ledgerRepository,
         ISystemClock systemClock)
     {
         _ledgerRepository = ledgerRepository;
         _systemClock = systemClock;
     }
 
-    public ServiceResult<Guid?> SuggestCategorisation(
+    public ServiceResult<Ledger> SuggestCategorisation(
         Guid bankAccountId, string? description, string? reference,
         double? moneyIn, double? moneyOut)
     {
         //  List all live transactions 40 days old or less.
         var toDate = _systemClock.Today();
-        var fromDate = toDate.AddDays(-(int)DateTime.Today.DayOfWeek).AddDays(HorizonDays);
+        var fromDate = toDate.AddDays(-HorizonDays).AddDays(-1).AddSeconds(1);
 
         var ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId, fromDate, toDate);
 
         var resultList = ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.CategorySubcategoryId != null
+            .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
                 && x.Reference == reference
                 && x.MoneyIn == moneyIn
-                && x.MoneyOut == moneyOut)
+                && x.MoneyOut == moneyOut
+                && x.CategorySubcategoryId != null)
             .ToList();
 
         if (resultList.Any())
-            return new ServiceResult<Guid?>(resultList.First().CategorySubcategoryId);
+            return new ServiceResult<Ledger>(resultList.First());
 
         resultList = ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.CategorySubcategoryId != null
+            .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
-                && x.Reference == reference)
+                && x.Reference == reference
+                && x.CategorySubcategoryId != null)
             .ToList();
 
         if (resultList.Any())
-            return new ServiceResult<Guid?>(resultList.First().CategorySubcategoryId);
+            return new ServiceResult<Ledger>(resultList.First());
 
         resultList = ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.CategorySubcategoryId != null
-                && x.Description == description)
+            .Where(x => x.BankAccountId == bankAccountId
+                && x.Description == description
+                && x.CategorySubcategoryId != null)
             .ToList();
 
         if (resultList.Any())
-            return new ServiceResult<Guid?>(resultList.First().CategorySubcategoryId);
+            return new ServiceResult<Ledger>(resultList.First());
 
-        return new ServiceResult<Guid?>(null);
+        return new ServiceResult<Ledger>(new Ledger());
     }
 }
