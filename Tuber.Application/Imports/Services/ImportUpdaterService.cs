@@ -67,7 +67,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 ImportRowStatus = row.ImportRowStatus,
                 ValidationFailureMessages = row.ValidationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
-                ImportedUtc = _dateTimeService.UtcNow()
+                ImportedUtc = _dateTimeService.NowUtc()
             });
         }
 

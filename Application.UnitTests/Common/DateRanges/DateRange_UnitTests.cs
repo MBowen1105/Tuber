@@ -33,6 +33,7 @@ internal class DateRange_UnitTests
         toDate.Should().Be(correctToDateTime);
     }
 
+
     [Test, Parallelizable]
     [TestCase("2022-12-26", "2022-12-19 00:00:00", "2022-12-25 23:59:59")]
     [TestCase("2022-12-28", "2022-12-19 00:00:00", "2022-12-25 23:59:59")]

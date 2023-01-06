@@ -24,10 +24,11 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         double? moneyIn, double? moneyOut)
     {
         //  List all live transactions 40 days old or less.
-        var toDate = _systemClock.Today();
+        var toDate = _systemClock.TodayUtc();
         var fromDate = toDate.AddDays(-HorizonDays).AddDays(-1).AddSeconds(1);
 
-        var ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId, fromDate, toDate);
+        var ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId,
+            fromDate, toDate);
 
         var resultList = ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)

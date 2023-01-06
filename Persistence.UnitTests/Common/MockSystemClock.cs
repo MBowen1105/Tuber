@@ -10,7 +10,7 @@ public static class MockSystemClock
     {
         Mock<ISystemClock> mockSystemClock = new();
 
-        mockSystemClock.Setup(x => x.UtcNow())
+        mockSystemClock.Setup(x => x.NowUtc())
                 .Returns(MockDateTimeUtc);
 
         return mockSystemClock;

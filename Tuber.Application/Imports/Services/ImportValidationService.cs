@@ -184,7 +184,7 @@ public class ImportValidationService : IImportValidationService
                     : ImportRowStatus.IsInvalid,
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
-                ImportedUtc = _dateTimeService.UtcNow()
+                ImportedUtc = _dateTimeService.NowUtc()
             };
             validatedRows.Add(newImportRow);
         }

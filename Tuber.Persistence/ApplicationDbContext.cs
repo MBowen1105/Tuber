@@ -53,14 +53,14 @@ public class ApplicationDbContext : DbContext
             {
                 case EntityState.Added:
                     entry.Entity.CreatedByUserId = currentUser.UserId;
-                    entry.Entity.CreatedOnUtc = _systemClock.UtcNow();
+                    entry.Entity.CreatedOnUtc = _systemClock.NowUtc();
                     entry.Entity.UpdatedByUserId = null;
                     entry.Entity.UpdatedOnUtc = null;
                     break;
 
                 case EntityState.Modified:
                     entry.Entity.UpdatedByUserId = _currentUserService.User().UserId;
-                    entry.Entity.UpdatedOnUtc = _systemClock.UtcNow();
+                    entry.Entity.UpdatedOnUtc = _systemClock.NowUtc();
                     break;
             }
         }

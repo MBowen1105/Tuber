@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Interfaces.SystemClock;
 using Tuber.Application.Ledgers.Services;
@@ -21,12 +22,13 @@ public class LedgerRetrievalService_UnitTests
     private readonly Guid CategorySubcategoryId1 = Guid.NewGuid();
     private readonly Guid CategorySubcategoryId2 = Guid.NewGuid();
     private readonly Guid CategorySubcategoryId3 = Guid.NewGuid();
-
+    
+    private ILedgerRetrievalService _sut;
 
     [SetUp]
     public void SetUp()
     {
-        _mockSystemClock.Setup(x => x.Today())
+        _mockSystemClock.Setup(x => x.TodayUtc())
             .Returns(TodayUtc);
 
         _mockLedgerRepo.Setup(x => x.GetBetweenDates(
@@ -69,16 +71,16 @@ public class LedgerRetrievalService_UnitTests
                     CategorySubcategoryId = CategorySubcategoryId3,
                 }
             });
+
+        _sut = new LedgerRetrievalService(
+            _mockLedgerRepo.Object,
+            _mockSystemClock.Object);
     }
 
     [Test, Parallelizable]
     public void ExactMatch_ReturnsLedgerEntry1()
     {
-        var sut = new LedgerRetrievalService(
-            _mockLedgerRepo.Object,
-            _mockSystemClock.Object);
-
-        var serviceResult = sut.SuggestCategorisation(
+        var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
             description: "M&S BANK",
             reference: "",
@@ -96,11 +98,7 @@ public class LedgerRetrievalService_UnitTests
     [Test, Parallelizable]
     public void MatchWithoutAmounts_ReturnsLedgerEntry1()
     {
-        var sut = new LedgerRetrievalService(
-            _mockLedgerRepo.Object,
-            _mockSystemClock.Object);
-
-        var serviceResult = sut.SuggestCategorisation(
+        var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
             description: "M&S BANK",
             reference: "",
@@ -118,11 +116,7 @@ public class LedgerRetrievalService_UnitTests
     [Test, Parallelizable]
     public void MatchJustDescriptionAndReference_ReturnsLedgerEntry3()
     {
-        var sut = new LedgerRetrievalService(
-            _mockLedgerRepo.Object,
-            _mockSystemClock.Object);
-
-        var serviceResult = sut.SuggestCategorisation(
+        var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
             description: "M&S BANK",
             reference: "Ref1",
@@ -140,11 +134,7 @@ public class LedgerRetrievalService_UnitTests
     [Test, Parallelizable]
     public void MatchJustDescription_ReturnsLedgerEntry1()
     {
-        var sut = new LedgerRetrievalService(
-            _mockLedgerRepo.Object,
-            _mockSystemClock.Object);
-
-        var serviceResult = sut.SuggestCategorisation(
+        var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
             description: "M&S BANK",
             reference: "No ref match",

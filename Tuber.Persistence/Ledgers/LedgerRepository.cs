@@ -1,4 +1,5 @@
 ﻿using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Application.Extensions;
 using Tuber.Domain.Models;
 
 namespace Tuber.Persistence.Ledgers;

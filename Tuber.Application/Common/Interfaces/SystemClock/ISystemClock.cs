@@ -1,6 +1,6 @@
 ﻿namespace Tuber.Application.Interfaces.SystemClock;
 public interface ISystemClock
 {
-    DateTime UtcNow();
-    DateTime Today();
+    DateTime NowUtc();
+    DateTime TodayUtc();
 }

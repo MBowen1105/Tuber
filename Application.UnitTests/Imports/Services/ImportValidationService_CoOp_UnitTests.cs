@@ -15,8 +15,10 @@ internal class ImportValidationService_CoOp_UnitTests
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
+
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
+
     private readonly ImportTemplate _importTemplate = new()
     {
         ImportTemplateId = Guid.NewGuid(),
@@ -44,7 +46,7 @@ internal class ImportValidationService_CoOp_UnitTests
         _mockCurrentUserService.Setup(x => x.User())
             .Returns(new User { UserId = Guid.NewGuid() });
 
-        _mockSystemClock.Setup(x => x.UtcNow())
+        _mockSystemClock.Setup(x => x.NowUtc())
             .Returns(new DateTime(2022, 12, 15));
 
         _mockLedgerRetrievalService.Setup(x => x.SuggestCategorisation(
