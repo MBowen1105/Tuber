@@ -4,6 +4,7 @@ namespace Tuber.SystemClock
 {
     public class SystemClock : ISystemClock
     {
-        public System.DateTime UtcNow() => System.DateTime.UtcNow;
+        public DateTime UtcNow() => DateTime.UtcNow;
+        public DateTime Today() => DateTime.Today;
     }
 }

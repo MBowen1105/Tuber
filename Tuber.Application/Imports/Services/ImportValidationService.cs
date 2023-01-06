@@ -48,7 +48,8 @@ public class ImportValidationService : IImportValidationService
         var rowIndex = 0;
         var validatedRows = new List<Import>();
         var previousDateValue = "";
-        var moneyValue = 0.0;
+        var moneyIn = 0.0;
+        var moneyOut = 0.0;
 
         while (i < allRows.Length)
         {
@@ -106,21 +107,21 @@ public class ImportValidationService : IImportValidationService
                 ? ""
                 : column[importTemplate.MoneyInColumnNumber - 1];
 
-            if (moneyInValue != "" && !double.TryParse(moneyInValue, out moneyValue))
+            if (moneyInValue != "" && !double.TryParse(moneyInValue, out moneyIn))
                 validationFailureMessages = $"Invalid Money In value. Must be a valid amount.{ValidationMessageSeperator}";
-            else if (moneyInValue != "" && moneyValue < 0.0)
+            else if (moneyInValue != "" && moneyIn < 0.0)
                 validationFailureMessages = $"Money In value cannot be negative.{ValidationMessageSeperator}";
-            else if (moneyInValue != "" && moneyValue == 0.0)
+            else if (moneyInValue != "" && moneyIn == 0.0)
                 validationFailureMessages = $"Money In value cannot be zero.{ValidationMessageSeperator}";
 
             var moneyOutValue = (importTemplate.MoneyOutColumnNumber == 0)
                 ? ""
                 : column[importTemplate.MoneyOutColumnNumber - 1];
-            if (moneyOutValue != "" && !double.TryParse(moneyOutValue, out moneyValue))
+            if (moneyOutValue != "" && !double.TryParse(moneyOutValue, out moneyOut))
                 validationFailureMessages = $"Invalid Money Out value. Must be a valid amount.{ValidationMessageSeperator}";
-            else if (moneyOutValue != "" && moneyValue < 0.0)
+            else if (moneyOutValue != "" && moneyOut < 0.0)
                 validationFailureMessages = $"Money Out value cannot be negative.{ValidationMessageSeperator}";
-            else if (moneyOutValue != "" && moneyValue == 0.0)
+            else if (moneyOutValue != "" && moneyOut == 0.0)
                 validationFailureMessages = $"Money Out value cannot be zero.{ValidationMessageSeperator}";
 
             if (moneyInValue == "" && moneyOutValue == "")
@@ -151,9 +152,9 @@ public class ImportValidationService : IImportValidationService
             Guid? suggestedCategorySubcategoryId = null;
             if (suggestCategorisation)
             {
-                suggestedCategorySubcategoryId = _ledgerRetrievalService.SuggestCategorisation(
-                    bankAccountId, dateValue, descriptionValue, referenceOnStatementValue,
-                    moneyInValue, moneyOutValue);
+                var serviceResult = _ledgerRetrievalService.SuggestCategorisation(
+                    bankAccountId, descriptionValue, referenceOnStatementValue,
+                    moneyIn, moneyOut);
             }
 
             if (previousDateValue == dateValue)

@@ -2,4 +2,5 @@
 public interface ISystemClock
 {
     DateTime UtcNow();
+    DateTime Today();
 }

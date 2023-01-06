@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
+using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
@@ -48,12 +49,11 @@ internal class ImportValidationService_CoOp_UnitTests
 
         _mockLedgerRetrievalService.Setup(x => x.SuggestCategorisation(
             It.IsAny<Guid>(),
-            It.Is<string>(x => x == "20221215"),
             It.Is<string>(x => x == "Description Value"),
             It.Is<string>(x => x == "Reference on Statement Value"),
-            It.Is<string>(x => x == "Money In Value"),
-            It.Is<string>(x => x == "Money Out Value")))
-                .Returns(Guid.Empty);
+            It.Is<double>(x => x == 0),
+            It.Is<double>(x => x == 0)))
+                .Returns(new ServiceResult<Guid?>(Guid.NewGuid()));
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,

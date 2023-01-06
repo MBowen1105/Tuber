@@ -1,5 +1,4 @@
 ﻿using Tuber.Application.Common;
-using Tuber.Domain.Models;
 
 namespace Tuber.Domain.Models;
 public class Ledger : AuditableEntity

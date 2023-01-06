@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tuber.Persistence;
 
@@ -11,9 +12,11 @@ using Tuber.Persistence;
 namespace Tuber.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221230122737_ChangedDateUtcOnLedgerFileToBeStringFromDateTime")]
+    partial class ChangedDateUtcOnLedgerFileToBeStringFromDateTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,7 +75,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             BankName = "Co-Op Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1156),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8559),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
                             OrderBy = 10
@@ -82,7 +85,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             BankName = "Lloyds Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1163),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8565),
                             IsDeleted = false,
                             OrderBy = 20
                         },
@@ -91,7 +94,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"),
                             BankName = "Barclays Bank",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1216),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8567),
                             IsDeleted = false,
                             OrderBy = 30
                         },
@@ -100,7 +103,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"),
                             BankName = "Virgin",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1218),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8569),
                             IsDeleted = false,
                             OrderBy = 40
                         },
@@ -109,7 +112,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"),
                             BankName = "West Bromwich Building Society",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1221),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8572),
                             IsDeleted = false,
                             OrderBy = 50
                         },
@@ -118,7 +121,7 @@ namespace Tuber.Persistence.Migrations
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             BankName = "TSB",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(1223),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 135, DateTimeKind.Utc).AddTicks(8573),
                             IsDeleted = true,
                             OrderBy = 50
                         });
@@ -188,7 +191,7 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "Salary",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2800),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(64),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
                             OrderBy = 10,
@@ -201,7 +204,7 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "Cash",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2804),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(69),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
                             OrderBy = 20,
@@ -214,7 +217,7 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "Savings",
                             BankId = new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2808),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(72),
                             ImportTemplateId = new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
                             IsDeleted = false,
                             OrderBy = 30,
@@ -227,7 +230,7 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "Lloyds 93DIX",
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2811),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(75),
                             ImportTemplateId = new Guid("f642096e-6573-4deb-96be-efba9016499c"),
                             IsDeleted = false,
                             OrderBy = 10,
@@ -240,7 +243,7 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "Lloyds 25PAR",
                             BankId = new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2814),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(78),
                             ImportTemplateId = new Guid("f642096e-6573-4deb-96be-efba9016499c"),
                             IsDeleted = false,
                             OrderBy = 20,
@@ -253,13 +256,13 @@ namespace Tuber.Persistence.Migrations
                             BankAccountName = "TSB Bank Account",
                             BankId = new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2818),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(81),
                             IsDeleted = true,
                             OrderBy = 10,
                             UKBankAccount = "98765555",
                             UKSortCode = "440191",
                             UpdatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            UpdatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(2818)
+                            UpdatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(82)
                         });
                 });
 
@@ -306,7 +309,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("27d48d80-b231-4c28-b1e5-af2100d24913"),
                             CategoryName = "Transfer",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(8830),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(4831),
                             IsCoreCategory = true,
                             IsDeleted = false
                         },
@@ -315,7 +318,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"),
                             CategoryName = "Motor",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(8833),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(4833),
                             IsCoreCategory = true,
                             IsDeleted = false
                         },
@@ -324,7 +327,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("ebb8bab4-a579-41ca-b42b-bf1bdb9b52f9"),
                             CategoryName = "Mortage",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(8838),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(4837),
                             IsCoreCategory = false,
                             IsDeleted = false
                         },
@@ -333,7 +336,7 @@ namespace Tuber.Persistence.Migrations
                             CategoryId = new Guid("3eefa969-31e0-46d3-9d81-d514035dd3de"),
                             CategoryName = "Child Maintenance",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(8840),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(4839),
                             IsCoreCategory = false,
                             IsDeleted = false
                         });
@@ -558,7 +561,7 @@ namespace Tuber.Persistence.Migrations
                             AccountNumberColumnNumber = 0,
                             BalanceOnStatementColumnNumber = 6,
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(6712),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(2921),
                             DateColumnNumber = 1,
                             DateTemplate = "yyyy-mm-dd",
                             DescriptionOnStatementColumnNumber = 2,
@@ -580,7 +583,7 @@ namespace Tuber.Persistence.Migrations
                             AccountNumberColumnNumber = 4,
                             BalanceOnStatementColumnNumber = 8,
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(6718),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(2927),
                             DateColumnNumber = 1,
                             DateTemplate = "dd-mmm-yyyy",
                             DescriptionOnStatementColumnNumber = 5,
@@ -621,8 +624,7 @@ namespace Tuber.Persistence.Migrations
 
                     b.Property<string>("DateUtc")
                         .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -710,7 +712,7 @@ namespace Tuber.Persistence.Migrations
                         {
                             SubcategoryId = new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(9621),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(5387),
                             IsCoreSubcategory = true,
                             IsDeleted = false,
                             SubcategoryName = "Fuel"
@@ -719,7 +721,7 @@ namespace Tuber.Persistence.Migrations
                         {
                             SubcategoryId = new Guid("179d1384-e290-4bb7-a52d-038a3221d330"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(9634),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(5397),
                             IsCoreSubcategory = true,
                             IsDeleted = false,
                             SubcategoryName = "Insurance"
@@ -728,7 +730,7 @@ namespace Tuber.Persistence.Migrations
                         {
                             SubcategoryId = new Guid("3077c60b-5d01-4982-b60e-d032cf75d926"),
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
-                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 29, 19, 767, DateTimeKind.Utc).AddTicks(9637),
+                            CreatedOnUtc = new DateTime(2022, 12, 30, 12, 27, 37, 136, DateTimeKind.Utc).AddTicks(5399),
                             IsCoreSubcategory = true,
                             IsDeleted = false,
                             SubcategoryName = "Tax"

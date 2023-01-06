@@ -1,4 +1,5 @@
 ﻿using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Domain.Models;
 
 namespace Tuber.Persistence.Ledgers;
 public class LedgerRepository : ILedgerRepository
@@ -10,13 +11,13 @@ public class LedgerRepository : ILedgerRepository
         _context = context;
     }
 
-    public Guid? SuggestCategorisation(Guid bankAccountId, string? dateISO8601,
-        string? description, string? reference, string? moneyIn, string? moneyOut)
+    public List<Ledger> GetBetweenDates(
+        Guid bankAccountId, DateTime fromDate, DateTime toDate)
     {
-        //  Look for matches from the most specific to the least specific
-
-        //  Is there an exact match in this ledger?
-        return null;
+        return _context.Ledgers
+            .Where(x => x.BankAccountId == bankAccountId &&
+                x.DateUtc >= fromDate && x.DateUtc <= toDate)
+            .ToList();
     }
 
     public int SaveChanges()

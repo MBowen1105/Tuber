@@ -6,7 +6,5 @@ public interface ILedgerRepository : IRepository<Ledger>
     //  Repository Commands
 
     //  Repository Queries
-    Guid? SuggestCategorisation(
-         Guid bankAccountId, string? dateISO8601, string? description, string? reference,
-         string? moneyIn, string? moneyOut);
+    List<Ledger> GetBetweenDates(Guid bankAccountId, DateTime fromDate, DateTime toDate);
 }

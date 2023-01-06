@@ -19,7 +19,8 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         builder.HasOne(x => x.CategorySubcategory);
 
         builder.Property(x => x.DateUtc)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(8);
 
         builder.Property(x => x.Description)
             .IsRequired()
