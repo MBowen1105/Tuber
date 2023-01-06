@@ -66,15 +66,15 @@ public static class DateRange
 
     public static (DateTime, DateTime) CurrentYear(DateTime todayUtc)
     {
-        var fromDateUtc = new DateTime(DateTime.Today.Year, 1, 1);
-        var toDateUtc = new DateTime(DateTime.Today.Year - 1, 12, 31);
+        var fromDateUtc = new DateTime(todayUtc.Year, 1, 1);
+        var toDateUtc = new DateTime(todayUtc.Year, 12, 31).AddDays(1).AddSeconds(-1);
         return (fromDateUtc, toDateUtc);
     }
 
     public static (DateTime, DateTime) PreviousYear(DateTime todayUtc)
     {
-        var fromDateUtc = new DateTime(DateTime.Today.Year - 1, 1, 1);
-        var toDateUtc = new DateTime(DateTime.Today.Year - 1, 12, 31);
+        var fromDateUtc = new DateTime(todayUtc.Year - 1, 1, 1);
+        var toDateUtc = new DateTime(todayUtc.Year - 1, 12, 31);
         return (fromDateUtc, toDateUtc);
     }
 
