@@ -104,4 +104,18 @@ internal class DateRange_UnitTests
         fromDate.Should().Be(correctFromDateTime);
         toDate.Should().Be(correctToDateTime);
     }
+
+    [Test, Parallelizable]
+    [TestCase("2022-01-15", "2021-10-01 00:00:00", "2021-12-31 23:59:59")]
+    [TestCase("2022-05-15", "2022-01-01 00:00:00", "2022-03-31 23:59:59")]
+    [TestCase("2022-08-15", "2022-04-01 00:00:00", "2022-06-30 23:59:59")]
+    [TestCase("2022-11-15", "2022-07-01 00:00:00", "2022-09-30 23:59:59")]
+    public void PreviousQuarter_ReturnsCorrectFromToDates(
+        DateTime today, DateTime correctFromDateTime, DateTime correctToDateTime)
+    {
+        var (fromDate, toDate) = DateRange.PreviousQuarter(today);
+
+        fromDate.Should().Be(correctFromDateTime);
+        toDate.Should().Be(correctToDateTime);
+    }
 }
