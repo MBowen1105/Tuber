@@ -131,4 +131,17 @@ internal class DateRange_UnitTests
         fromDate.Should().Be(correctFromDateTime);
         toDate.Should().Be(correctToDateTime);
     }
+
+    [Test, Parallelizable]
+    [TestCase("2022-01-01", "2021-01-01 00:00:00", "2021-12-31 23:59:59")]
+    [TestCase("2022-06-15", "2021-01-01 00:00:00", "2021-12-31 23:59:59")]
+    [TestCase("2022-12-31", "2021-01-01 00:00:00", "2021-12-31 23:59:59")]
+    public void PreviousYear_ReturnsCorrectFromToDates(
+        DateTime today, DateTime correctFromDateTime, DateTime correctToDateTime)
+    {
+        var (fromDate, toDate) = DateRange.PreviousYear(today);
+
+        fromDate.Should().Be(correctFromDateTime);
+        toDate.Should().Be(correctToDateTime);
+    }
 }

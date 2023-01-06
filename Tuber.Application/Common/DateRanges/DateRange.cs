@@ -74,7 +74,7 @@ public static class DateRange
     public static (DateTime, DateTime) PreviousYear(DateTime todayUtc)
     {
         var fromDateUtc = new DateTime(todayUtc.Year - 1, 1, 1);
-        var toDateUtc = new DateTime(todayUtc.Year - 1, 12, 31);
+        var toDateUtc = new DateTime(todayUtc.Year - 1, 12, 31).AddDays(1).AddSeconds(-1);
         return (fromDateUtc, toDateUtc);
     }
 
