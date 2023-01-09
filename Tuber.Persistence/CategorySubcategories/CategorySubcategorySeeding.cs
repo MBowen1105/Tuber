@@ -9,6 +9,10 @@ public static class CategorySubcategorySeeding
     public static readonly Guid MotorFuelId = Guid.Parse("e79d158e-dd3c-4b13-86da-e0b8f9109ff7");
     public static readonly Guid MotorInsuranceId = Guid.Parse("c7f625d8-3b1c-4861-9589-f2e85e0596b3");
     public static readonly Guid MotorTaxId = Guid.Parse("80172b90-d0e3-41f1-bc00-985fc14f5926");
+    public static readonly Guid HouseholdServicesGasId = Guid.Parse("002e1e54-7359-4b50-aa57-0efb62f0a42c");
+    public static readonly Guid HouseholdServicesElectricityId = Guid.Parse("7f50d5aa-2959-4629-8eaa-e824b311549f");
+    public static readonly Guid HouseholdServicesWaterId = Guid.Parse("7870b00b-d2d3-481b-9701-73f386262e8b");
+
     public static readonly Guid EntertainmentGamblingId = Guid.Parse("a99dcad5-5ea6-4d71-9f8c-a7f3db005a83");
 
     public static void Seed(EntityTypeBuilder<CategorySubcategory> builder)
@@ -36,9 +40,37 @@ public static class CategorySubcategorySeeding
            {
                CategorySubcategoryId = MotorTaxId,
                CategoryId = CategorySeeding.MotorCategoryId,
-               SubcategoryId = SubcategorySeeding.TaxSubcategoryId,
+               SubcategoryId = SubcategorySeeding.RoadTaxSubcategoryId,
                IsCoreCategorySubcategory = true,
            });
+
+        builder.HasData(
+           new CategorySubcategory
+           {
+               CategorySubcategoryId =HouseholdServicesGasId,
+               CategoryId = CategorySeeding.HouseholdServicesCategoryId,
+               SubcategoryId = SubcategorySeeding.GasSubcategoryId,
+               IsCoreCategorySubcategory = true,
+           });
+
+        builder.HasData(
+           new CategorySubcategory
+           {
+               CategorySubcategoryId = HouseholdServicesElectricityId,
+               CategoryId = CategorySeeding.HouseholdServicesCategoryId,
+               SubcategoryId = SubcategorySeeding.ElectricitySubcategoryId,
+               IsCoreCategorySubcategory = true,
+           });
+
+        builder.HasData(
+           new CategorySubcategory
+           {
+               CategorySubcategoryId = HouseholdServicesWaterId,
+               CategoryId = CategorySeeding.HouseholdServicesCategoryId,
+               SubcategoryId = SubcategorySeeding.WaterSubcategoryId,
+               IsCoreCategorySubcategory = true,
+           });
+
 
         builder.HasData(
            new CategorySubcategory
@@ -46,7 +78,6 @@ public static class CategorySubcategorySeeding
                CategorySubcategoryId = EntertainmentGamblingId,
                CategoryId = CategorySeeding.EntertainmentCategoryId,
                SubcategoryId = SubcategorySeeding.GamblingSubcategoryId,
-               IsCoreCategorySubcategory = false,
            });
     }
 }
