@@ -7,7 +7,7 @@ using Tuber.Application.Ledgers.Services;
 using Tuber.Domain.Models;
 
 namespace Application.UnitTests.Ledgers.Services;
-public class LedgerRetrievalService_UnitTests
+public class LedgerRetrievalService_SuggestCategorisation_UnitTests
 {
     private readonly Mock<ILedgerRepository> _mockLedgerRepo = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
@@ -78,7 +78,7 @@ public class LedgerRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void ExactMatch_ReturnsLedgerEntry1()
+    public void SuggestCategorisation_ExactMatch_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
@@ -96,7 +96,7 @@ public class LedgerRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void MatchWithoutAmounts_ReturnsLedgerEntry1()
+    public void SuggestCategorisation_MatchWithoutAmounts_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
@@ -114,7 +114,7 @@ public class LedgerRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void MatchJustDescriptionAndReference_ReturnsLedgerEntry3()
+    public void SuggestCategorisation_MatchJustDescriptionAndReference_ReturnsLedgerEntry3()
     {
         var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,
@@ -132,7 +132,7 @@ public class LedgerRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void MatchJustDescription_ReturnsLedgerEntry1()
+    public void SuggestCategorisation_MatchJustDescription_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
             bankAccountId: BankAccountId,

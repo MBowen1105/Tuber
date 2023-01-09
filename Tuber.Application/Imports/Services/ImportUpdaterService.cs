@@ -26,7 +26,9 @@ public class ImportUpdaterService : IImportUpdaterService
         _dateTimeService = dateTimeService;
     }
 
-    public ServiceResult<ImportResult> Add(Guid bankAccountId, List<Import> validatedRows)
+    public ServiceResult<ImportResult> Add(
+        Guid bankAccountId,
+        List<Import> validatedRows)
     {
         //  Check Bank Account Exists
         var bankAccountServiceResult = _bankAccountRetrieverService.GetById(bankAccountId);
@@ -64,6 +66,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 BalanceOnStatementValue = row.BalanceOnStatementValue,
                 SortCodeValue = row.SortCodeValue,
                 AccountNumberValue = row.AccountNumberValue,
+                SuggestedCategorySubcategoryId = row.SuggestedCategorySubcategoryId,
                 ImportRowStatus = row.ImportRowStatus,
                 ValidationFailureMessages = row.ValidationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
@@ -81,6 +84,4 @@ public class ImportUpdaterService : IImportUpdaterService
                 InvalidRowCount = invalidRowCount,
             });
     }
-
-
 }

@@ -87,6 +87,7 @@ public class ImportValidationService : IImportValidationService
             var referenceOnStatementValue = "";
             if (importTemplate.ReferenceOnStatementStartCharacter > 0 && descriptionOnStatementValue.Length >= importTemplate.ReferenceOnStatementStartCharacter)
                 referenceOnStatementValue = descriptionOnStatementValue[importTemplate.ReferenceOnStatementStartCharacter..];
+            referenceOnStatementValue = referenceOnStatementValue.TrimEnd();
 
             var descriptionValue = descriptionOnStatementValue;
             if (importTemplate.ReferenceOnStatementStartCharacter > 0)
@@ -96,6 +97,7 @@ public class ImportValidationService : IImportValidationService
                     : importTemplate.ReferenceOnStatementStartCharacter - 1;
                 descriptionValue = descriptionOnStatementValue[..n];
             }
+            descriptionValue = descriptionValue.TrimEnd();
 
             var transactionTypeValue = (importTemplate.TransactionTypeColumnNumber == 0)
                 ? ""
@@ -155,6 +157,7 @@ public class ImportValidationService : IImportValidationService
                 var serviceResult = _ledgerRetrievalService.SuggestCategorisation(
                     bankAccountId, descriptionValue, referenceOnStatementValue,
                     moneyIn, moneyOut);
+                suggestedCategorySubcategoryId = serviceResult.Payload.CategorySubcategoryId;
             }
 
             if (previousDateValue == dateValue)
