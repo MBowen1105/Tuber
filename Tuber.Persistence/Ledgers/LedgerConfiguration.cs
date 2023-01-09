@@ -10,13 +10,14 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
     {
         builder.ToTable("Ledgers");
 
+        //builder.HasOne(x => x.BankAccount);
+
+        //builder.HasOne(x => x.CategorySubcategory);
+
         builder.HasOne(x => x.CreatedByUser);
 
-        builder.HasOne(x => x.UpdatedByUser);
-
-        builder.HasOne(x => x.BankAccount);
-
-        builder.HasOne(x => x.CategorySubcategory);
+        builder.Property(x => x.BankAccountId)
+            .IsRequired();
 
         builder.Property(x => x.DateUtc)
             .IsRequired()
@@ -33,6 +34,9 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
           .HasMaxLength(15);
 
         builder.Property(x => x.Balance)
+           .IsRequired();
+
+        builder.Property(x => x.CategorySubcategoryId)
            .IsRequired();
 
         builder.Property(x => x.CreatedByUserId)

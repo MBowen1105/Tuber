@@ -16,8 +16,8 @@ public class Ledger : AuditableEntity
         MoneyOut = 0;
         Balance= 0;
         CategorySubcategoryId = null;
-        BankAccount = new BankAccount();
-        CategorySubcategory = new CategorySubcategory();
+        //BankAccount = new BankAccount();
+        //CategorySubcategory = new CategorySubcategory();
     }
 
     public Guid LedgerId { get; init; }
@@ -31,6 +31,6 @@ public class Ledger : AuditableEntity
     public double Balance { get; set; }
     public Guid? CategorySubcategoryId { get; set; }
     public bool IsDeleted { get; set; }
-    public virtual BankAccount BankAccount { get; set; }
-    public virtual CategorySubcategory CategorySubcategory { get; set; }
+    //public virtual BankAccount BankAccount { get; set; }
+    //public virtual CategorySubcategory CategorySubcategory { get; set; }
 }

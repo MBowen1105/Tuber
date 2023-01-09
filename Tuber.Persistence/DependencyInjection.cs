@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Persistence.BankAccounts;
@@ -21,9 +22,12 @@ public static class DependencyInjection
 
         var cs = config.GetConnectionString("ApplicationDbConnection");
 
+        //HACK: Remove references to EnableSensitiveDataLogging() and UseLoggerFactory()
         services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(cs,
-                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
+                .EnableSensitiveDataLogging()
+                .UseLoggerFactory(LoggerFactory.Create(builder=>builder.AddDebug())));
        
         services.AddScoped<IBankRepository, BankRepository>();
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();

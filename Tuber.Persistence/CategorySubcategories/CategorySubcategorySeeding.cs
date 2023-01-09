@@ -6,33 +6,47 @@ using Tuber.Domain.Models;
 namespace Tuber.Persistence.CategorySubcategories;
 public static class CategorySubcategorySeeding
 {
+    public static readonly Guid MotorFuelId = Guid.Parse("e79d158e-dd3c-4b13-86da-e0b8f9109ff7");
+    public static readonly Guid MotorInsuranceId = Guid.Parse("c7f625d8-3b1c-4861-9589-f2e85e0596b3");
+    public static readonly Guid MotorTaxId = Guid.Parse("80172b90-d0e3-41f1-bc00-985fc14f5926");
+    public static readonly Guid EntertainmentGamblingId = Guid.Parse("a99dcad5-5ea6-4d71-9f8c-a7f3db005a83");
+
     public static void Seed(EntityTypeBuilder<CategorySubcategory> builder)
     {
         builder.HasData(
             new CategorySubcategory
             {
-                CategorySubcategoryId = Guid.Parse("e79d158e-dd3c-4b13-86da-e0b8f9109ff7"),
-                CategoryId = CategorySeeding.MOTOR_CATEGORY_ID,
-                SubcategoryId = SubcategorySeeding.FUEL_SUBCATEGORY,
+                CategorySubcategoryId = MotorFuelId,
+                CategoryId = CategorySeeding.MotorCategoryId,
+                SubcategoryId = SubcategorySeeding.FuelSubcategoryId,
                 IsCoreCategorySubcategory= true,
             });
 
         builder.HasData(
             new CategorySubcategory
             {
-                CategorySubcategoryId = Guid.Parse("c7f625d8-3b1c-4861-9589-f2e85e0596b3"),
-                CategoryId = CategorySeeding.MOTOR_CATEGORY_ID,
-                SubcategoryId = SubcategorySeeding.INSURANCE_SUBCATEGORY,
+                CategorySubcategoryId = MotorInsuranceId,
+                CategoryId = CategorySeeding.MotorCategoryId,
+                SubcategoryId = SubcategorySeeding.InsuranceSubcategoryId,
                 IsCoreCategorySubcategory = true,
             });
 
         builder.HasData(
            new CategorySubcategory
            {
-               CategorySubcategoryId = Guid.Parse("80172b90-d0e3-41f1-bc00-985fc14f5926"),
-               CategoryId = CategorySeeding.MOTOR_CATEGORY_ID,
-               SubcategoryId = SubcategorySeeding.TAX_SUBCATEGORY,
+               CategorySubcategoryId = MotorTaxId,
+               CategoryId = CategorySeeding.MotorCategoryId,
+               SubcategoryId = SubcategorySeeding.TaxSubcategoryId,
                IsCoreCategorySubcategory = true,
+           });
+
+        builder.HasData(
+           new CategorySubcategory
+           {
+               CategorySubcategoryId = EntertainmentGamblingId,
+               CategoryId = CategorySeeding.EntertainmentCategoryId,
+               SubcategoryId = SubcategorySeeding.GamblingSubcategoryId,
+               IsCoreCategorySubcategory = false,
            });
     }
 }

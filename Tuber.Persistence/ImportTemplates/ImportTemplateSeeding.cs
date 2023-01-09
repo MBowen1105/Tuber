@@ -5,12 +5,15 @@ using Tuber.Domain.Models;
 namespace Tuber.Persistence.ImportTemplates;
 public static class ImportTemplateSeeding
 {
+    public static readonly Guid CoOpImportTemplateId = Guid.Parse("44ec6e81-2ebf-4ec7-84b2-f74a87431962");
+    public static readonly Guid LloydsImportTemplateId = Guid.Parse("f642096e-6573-4deb-96be-efba9016499c");
+
     public static void Seed(EntityTypeBuilder<ImportTemplate> builder)
     {
         builder.HasData(
             new ImportTemplate
             {
-                ImportTemplateId = Guid.Parse("44ec6e81-2ebf-4ec7-84b2-f74a87431962"),
+                ImportTemplateId = CoOpImportTemplateId,
                 ImportTemplateName = "Co-Op Bank Template",
                 ImportFileName = "",
                 ExpectedColumnCount = 6,
@@ -30,7 +33,7 @@ public static class ImportTemplateSeeding
             },
             new ImportTemplate
             {
-                ImportTemplateId = Guid.Parse("f642096e-6573-4deb-96be-efba9016499c"),
+                ImportTemplateId = LloydsImportTemplateId,
                 ImportTemplateName = "Lloyds Bank Template",
                 ImportFileName = "",
                 ExpectedColumnCount=8,
