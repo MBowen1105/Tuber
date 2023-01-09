@@ -31,6 +31,28 @@ public static class ImportEndpoints
             return Results.Created($"/import/", apiResponse);
         })
         .WithName("ImportAdd");
+
+
+        app.MapPut("/import/update", async (ImportUpdateAPIRequest APIRequest,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper,
+            [FromServices] IEnumerable<IValidator<ImportUpdateAPIRequest>> validators) =>
+        {
+            //  Map API request to query
+            var query = mapper.Map<ImportUpdateAPIRequest, ImportUpdateCommandRequest>(APIRequest);
+
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(query);
+
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
+
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<ImportUpdateCommandResponse, ImportUpdateAPIResponse>(queryResponse);
+
+            return Results.Accepted($"/import/{apiResponse.Id}", apiResponse);
+        })
+        .WithName("ImportUpdate");
     }
 
     public static void QueryEndpoints(WebApplication app)
