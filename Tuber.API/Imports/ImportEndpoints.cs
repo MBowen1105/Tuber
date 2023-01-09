@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tuber.Application.Imports.Commands.ImportAdd;
+using Tuber.Application.Imports.Commands.ImportUpdate;
 using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 
 namespace Tuber.API.Banks;
@@ -50,7 +51,7 @@ public static class ImportEndpoints
             //  Map Handler response to API Response and return.
             var apiResponse = mapper.Map<ImportUpdateCommandResponse, ImportUpdateAPIResponse>(queryResponse);
 
-            return Results.Accepted($"/import/{apiResponse.Id}", apiResponse);
+            return Results.Accepted($"/import/{apiResponse.ImportId}", apiResponse);
         })
         .WithName("ImportUpdate");
     }

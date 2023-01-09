@@ -20,6 +20,21 @@ public class ImportRepository : IImportRepository
         return import;
     }
 
+    public Import Update(Guid importId, Guid categorySubcategoryId, string? notes)
+    {
+        var import = _context.Imports
+            .FirstOrDefault(x => x.ImportId == importId);
+
+        if (import is null)
+            return new Import();
+
+        import.SuggestedCategorySubcategoryId = categorySubcategoryId;
+        import.Notes =notes;
+
+        return import;
+    }
+
+
     public void Clear(Guid bankAccountId)
     {
         var existingRows = _context.Imports

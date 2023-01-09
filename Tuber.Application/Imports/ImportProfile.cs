@@ -3,6 +3,7 @@ using Tuber.Application.Imports.Commands.ImportAdd;
 using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 using Tuber.Application.Dtos;
 using Tuber.Domain.Models;
+using Tuber.Application.Imports.Commands.ImportUpdate;
 
 namespace Tuber.Application.Imports;
 public class ImportProfile : Profile
@@ -18,6 +19,9 @@ public class ImportProfile : Profile
         CreateMap<ImportAddAPIRequest, ImportAddCommandRequest>();
         CreateMap<ImportAddCommandResponse, ImportAddAPIResponse>();
 
+        //  ImportUpdate
+        CreateMap<ImportUpdateAPIRequest, ImportUpdateCommandRequest>();
+        CreateMap<ImportUpdateCommandResponse, ImportUpdateAPIResponse>();
     }
 
 }

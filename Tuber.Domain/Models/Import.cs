@@ -19,6 +19,7 @@ public class Import
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
     public Guid? SuggestedCategorySubcategoryId { get; set; }
+    public string? Notes { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }

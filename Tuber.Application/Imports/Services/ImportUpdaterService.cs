@@ -67,6 +67,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 SortCodeValue = row.SortCodeValue,
                 AccountNumberValue = row.AccountNumberValue,
                 SuggestedCategorySubcategoryId = row.SuggestedCategorySubcategoryId,
+                Notes = "",
                 ImportRowStatus = row.ImportRowStatus,
                 ValidationFailureMessages = row.ValidationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
@@ -83,5 +84,19 @@ public class ImportUpdaterService : IImportUpdaterService
                 ValidRowCount = validRowCount,
                 InvalidRowCount = invalidRowCount,
             });
+    }
+
+    public ServiceResult<Import> Update(
+       Guid importId,
+       Guid categorySubcategoryId,
+       string? notes)
+    {
+        var import = _importRepo.Update(importId,
+            categorySubcategoryId,
+            notes);
+
+        _importRepo.SaveChanges();
+
+        return new ServiceResult<Import>(import);
     }
 }

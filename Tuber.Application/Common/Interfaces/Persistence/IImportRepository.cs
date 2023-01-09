@@ -5,6 +5,8 @@ public interface IImportRepository : IRepository<Import>
 {
     //  Repository Commands
     Import Add(Import import);
+
+    Import Update(Guid importId, Guid categorySubcategoryId, string? notes);
     void Clear(Guid bankAccountId);
 
     //  Repository Queries
