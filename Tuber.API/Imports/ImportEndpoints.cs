@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,27 @@ public static class ImportEndpoints
             return Results.Accepted($"/import/{apiResponse.ImportId}", apiResponse);
         })
         .WithName("ImportUpdate");
+
+
+        app.MapGet("/import/accept/{bankAccountId}", async (Guid bankAccountId,
+            [FromServices] IMediator mediator,
+            [FromServices] IMapper mapper) =>
+        {
+            // Call query handler. This first invokes the pipeline behaviour.
+            var queryResponse = await mediator.Send(new ImportAcceptCommandRequest
+            {
+                BankAccountId = bankAccountId
+            });
+
+            if (queryResponse.HasExceptions)
+                return Results.BadRequest(queryResponse.Exceptions);
+
+            //  Map Handler response to API Response and return.
+            var apiResponse = mapper.Map<ImportAcceptCommandResponse, ImportAcceptAPIResponse>(queryResponse);
+
+            return Results.Ok(apiResponse);
+        })
+        .WithName("ImportAccept");
     }
 
     public static void QueryEndpoints(WebApplication app)
