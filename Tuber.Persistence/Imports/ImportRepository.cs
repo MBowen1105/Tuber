@@ -57,6 +57,9 @@ public class ImportRepository : IImportRepository
         return _context.Imports
             .Include(x => x.ImportedByUser)
             .Include(x => x.BankAccount)
+            .Include(x => x.CategorySubcategory)
+            .Include(x => x.CategorySubcategory.Category)
+            .Include(x => x.CategorySubcategory.Subcategory)
             .Where(x => x.BankAccountId == bankAccountId)
             .OrderBy(x => x.DateValueISO8601)
             .ThenBy(x => x.ImportRowNumber)

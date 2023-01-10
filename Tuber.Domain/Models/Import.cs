@@ -26,4 +26,5 @@ public class Import
     public DateTime ImportedUtc { get; set; }
     public virtual User? ImportedByUser { get; set; }
     public virtual BankAccount BankAccount { get; set; }
+    public virtual CategorySubcategory CategorySubcategory { get; set; }
 }
