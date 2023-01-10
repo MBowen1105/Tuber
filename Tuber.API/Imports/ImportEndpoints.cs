@@ -3,6 +3,7 @@ using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Tuber.Application.Imports.Commands.ImportAccept;
 using Tuber.Application.Imports.Commands.ImportAdd;
 using Tuber.Application.Imports.Commands.ImportUpdate;
 using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
@@ -57,7 +58,7 @@ public static class ImportEndpoints
         .WithName("ImportUpdate");
 
 
-        app.MapGet("/import/accept/{bankAccountId}", async (Guid bankAccountId,
+        app.MapPut("/import/accept/{bankAccountId}", async (Guid bankAccountId,
             [FromServices] IMediator mediator,
             [FromServices] IMapper mapper) =>
         {

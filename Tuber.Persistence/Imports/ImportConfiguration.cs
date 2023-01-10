@@ -17,7 +17,7 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
         builder.Property(x => x.ImportRowNumber)
             .IsRequired();
 
-        builder.Property(x => x.DateValue)
+        builder.Property(x => x.DateValueISO8601)
             .HasMaxLength(10);
 
         builder.Property(x => x.DescriptionOnStatementValue)

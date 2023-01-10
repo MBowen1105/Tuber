@@ -4,6 +4,7 @@ using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 using Tuber.Application.Dtos;
 using Tuber.Domain.Models;
 using Tuber.Application.Imports.Commands.ImportUpdate;
+using Tuber.Application.Imports.Commands.ImportAccept;
 
 namespace Tuber.Application.Imports;
 public class ImportProfile : Profile
@@ -22,6 +23,9 @@ public class ImportProfile : Profile
         //  ImportUpdate
         CreateMap<ImportUpdateAPIRequest, ImportUpdateCommandRequest>();
         CreateMap<ImportUpdateCommandResponse, ImportUpdateAPIResponse>();
+
+        //  ImportAccept
+        CreateMap<ImportAcceptCommandResponse, ImportAcceptAPIResponse>();
     }
 
 }

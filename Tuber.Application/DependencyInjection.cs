@@ -56,6 +56,7 @@ public static class DependencyInjection
         services.AddScoped<ISubcategoryDeletionService, SubcategoryDeletionService>();
 
         services.AddScoped<ILedgerRetrievalService, LedgerRetrievalService>();
+        services.AddScoped<ILedgerUpdaterService, LedgerUpdaterService>();
 
         var config = new MapperConfiguration(cfg =>
         {

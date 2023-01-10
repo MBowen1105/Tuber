@@ -57,7 +57,7 @@ public class ImportRepository : IImportRepository
         return _context.Imports
             .Include(x => x.ImportedByUser)
             .Where(x => x.BankAccountId == bankAccountId)
-            .OrderBy(x => x.DateValue)
+            .OrderBy(x => x.DateValueISO8601)
             .ThenBy(x => x.ImportRowNumber)
             .ToList();
     }

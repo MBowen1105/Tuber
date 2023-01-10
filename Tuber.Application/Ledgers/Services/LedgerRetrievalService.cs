@@ -9,7 +9,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
 {
     private readonly ILedgerRepository _ledgerRepository;
     private readonly ISystemClock _systemClock;
-    private const int HorizonDays = 60;
+    private const int HorizonDays = 365;
 
     public LedgerRetrievalService(
         ILedgerRepository ledgerRepository,

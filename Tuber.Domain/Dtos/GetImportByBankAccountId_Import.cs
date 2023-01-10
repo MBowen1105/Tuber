@@ -6,7 +6,7 @@ public class GetImportByBankAccountId_Import
     public Guid ImportId { get; set; }
     public Guid BankAccountId { get; set; }
     public int ImportRowNumber { get; set; }
-    public string? DateValue { get; set; }
+    public string? DateValueISO8601 { get; set; }
     public string? DescriptionOnStatementValue { get; set; }
     public string? DescriptionValue { get; set; }
     public string? ReferenceOnStatementValue { get; set; }

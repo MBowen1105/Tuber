@@ -12,6 +12,20 @@ public class LedgerRepository : ILedgerRepository
         _context = context;
     }
 
+    public Ledger Add(Ledger ledger)
+    {
+        try
+        {
+            _context.Ledgers.Add(ledger);
+        }
+        catch (Exception)
+        {
+            //  Return a null Ledger object
+            ledger = new Ledger();
+        }
+        return ledger;
+    }
+
     public List<Ledger> GetBetweenDates(
         Guid bankAccountId, DateTime fromDate, DateTime toDate)
     {

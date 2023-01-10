@@ -50,6 +50,7 @@ public class ImportValidationService : IImportValidationService
         var previousDateValue = "";
         var moneyIn = 0.0;
         var moneyOut = 0.0;
+        var validDateISO8601Value = "";
 
         while (i < allRows.Length)
         {
@@ -74,7 +75,7 @@ public class ImportValidationService : IImportValidationService
             else
             {
                 //  Transform value dates into ISO8601 format
-                dateValue = DateTimeValidation.ToISO8601(dateValue, importTemplate.DateTemplate);
+                validDateISO8601Value = DateTimeValidation.ToISO8601(dateValue, importTemplate.DateTemplate);
             }
 
             var descriptionOnStatementValue = column[importTemplate.DescriptionOnStatementColumnNumber - 1];
@@ -171,7 +172,7 @@ public class ImportValidationService : IImportValidationService
             {
                 BankAccountId = bankAccountId,
                 ImportRowNumber = rowIndex,
-                DateValue = dateValue,
+                DateValueISO8601 = validDateISO8601Value,
                 DescriptionOnStatementValue = descriptionOnStatementValue,
                 DescriptionValue = descriptionValue,
                 ReferenceOnStatementValue = referenceOnStatementValue,

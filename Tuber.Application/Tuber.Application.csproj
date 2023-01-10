@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Imports\Commands\ImportAccept\" />
     <Folder Include="Subcategories\Commands\SubcategoryUpdate\" />
     <Folder Include="Subcategories\Queries\SubcategoriesGetByCategoryPaged\" />
   </ItemGroup>

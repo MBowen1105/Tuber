@@ -56,7 +56,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 ImportId = Guid.NewGuid(),
                 BankAccountId = bankAccountId,
                 ImportRowNumber = row.ImportRowNumber,
-                DateValue = row.DateValue,
+                DateValueISO8601 = row.DateValueISO8601,
                 DescriptionOnStatementValue = row.DescriptionOnStatementValue,
                 DescriptionValue = row.DescriptionValue!.Trim(),
                 ReferenceOnStatementValue = row.ReferenceOnStatementValue,
