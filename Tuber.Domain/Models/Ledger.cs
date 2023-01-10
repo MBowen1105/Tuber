@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Tuber.Application.Common;
+﻿using Tuber.Application.Common;
 
 namespace Tuber.Domain.Models;
 public class Ledger : AuditableEntity
@@ -11,6 +10,7 @@ public class Ledger : AuditableEntity
         LedgerId = Guid.Empty;
         BankAccountId = Guid.Empty;
         DateUtc = DateTime.MinValue;
+        RowNumber = 0;
         Description = string.Empty;
         Reference = string.Empty;
         TransactionType = string.Empty;
@@ -29,6 +29,7 @@ public class Ledger : AuditableEntity
     public Guid LedgerId { get; init; }
     public Guid BankAccountId { get; set; }
     public DateTime DateUtc { get; set; }
+    public int RowNumber { get; set; }
     public string Description { get; set; }
     public string? Reference { get; set; }
     public string TransactionType { get; set; }
@@ -40,6 +41,6 @@ public class Ledger : AuditableEntity
     public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
-    //public virtual BankAccount BankAccount { get; set; }
-    //public virtual CategorySubcategory CategorySubcategory { get; set; }
+    //public virtual BankAccount? BankAccount { get; set; }
+    //public virtual CategorySubcategory? CategorySubcategory { get; set; }
 }

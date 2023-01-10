@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetById;
 using Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.ImportTemplates;

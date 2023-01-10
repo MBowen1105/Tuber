@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.Dtos;
+﻿namespace Tuber.Domain.Dtos;
 public record ImportTemplateGetPaged_ImportTemplate
 {
     public Guid ImportTemplateId { get; set; }

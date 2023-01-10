@@ -1,4 +1,4 @@
-﻿using Tuber.Application.Dtos;
+﻿using Tuber.Domain.Dtos;
 
 namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
 public class ImportGetByBankAccountIdAPIResponse

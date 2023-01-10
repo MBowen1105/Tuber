@@ -2,7 +2,7 @@
 using Tuber.Application.Subcategories.Commands.SubcategoryAdd;
 using Tuber.Application.Subcategories.Queries.SubcategoriesGetPaged;
 using Tuber.Application.Subcategories.Queries.SubcategoryGetById;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Subcategories;

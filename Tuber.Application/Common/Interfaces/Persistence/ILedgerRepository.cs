@@ -11,4 +11,6 @@ public interface ILedgerRepository : IRepository<Ledger>
     List<Ledger> GetBetweenDates(Guid bankAccountId, DateTime fromDate, DateTime toDate);
 
     Ledger GetByValues(Guid bankAccountId, DateTime dateUtc, string description, double? moneyIn, double? moneyOut);
+    List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize);
+    int CountPages(int pageSize);
 }

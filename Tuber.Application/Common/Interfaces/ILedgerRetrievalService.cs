@@ -8,4 +8,8 @@ public interface ILedgerRetrievalService
     string? reference,
     double? moneyIn,
     double? moneyOut);
+
+    ServiceResult<List<Ledger>> GetPaged(Guid bankAccountId, int pageNumber, int pageSize);
+
+    int CountPages(int pageSize);
 }

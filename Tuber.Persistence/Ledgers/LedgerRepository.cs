@@ -51,6 +51,29 @@ public class LedgerRepository : ILedgerRepository
     #endregion
 
     #region "Queries"
+    public List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize)
+    {
+        return _context.Ledgers
+            .Include(x => x.CreatedByUser)
+            .Include(x => x.UpdatedByUser)
+            .Where(x => x.IsDeleted == false)
+            .OrderBy(x => x.DateUtc)
+            .ThenBy(x => x.RowNumber)
+            .Skip(pageNumber * pageSize - pageSize)
+            .Take(pageSize)
+            .ToList();
+    }
+
+    public int CountPages(int pageSize)
+    {
+        var itemCount = _context.Ledgers
+            .Count(x => x.IsDeleted == false);
+
+        var totalPages = itemCount / (pageSize * 1.0);
+
+        return (int)Math.Ceiling(totalPages);
+    }
+
     public List<Ledger> GetBetweenDates(
         Guid bankAccountId, DateTime fromDate, DateTime toDate)
     {

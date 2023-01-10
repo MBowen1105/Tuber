@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Domain.Models;
-using Tuber.Persistence.Banks;
 
 namespace Tuber.Persistence.CategorySubcategories;
 
@@ -9,13 +8,20 @@ public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<Categor
 {
     public void Configure(EntityTypeBuilder<CategorySubcategory> builder)
     {
-        builder.ToTable("CategorySubcategories");
+        builder.ToTable("CategorySubcategories")
+            .HasKey(x => x.CategorySubcategoryId);
+
+        builder.HasOne(x => x.Category);
+
+        builder.HasOne(x => x.Subcategory);
 
         builder.Property(x => x.CategorySubcategoryId)
             .IsRequired();
 
         builder.Property(x => x.CategoryId)
             .IsRequired();
+
+        builder.Property(x => x.SubcategoryId);
 
         builder.Property(x => x.IsCoreCategorySubcategory)
             .IsRequired();

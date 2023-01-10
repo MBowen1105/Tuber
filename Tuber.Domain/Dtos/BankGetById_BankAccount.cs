@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.Dtos;
+﻿namespace Tuber.Domain.Dtos;
 public class BankGetById_BankAccount
 {
     public Guid BankAccountId { get; set; }

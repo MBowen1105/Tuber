@@ -4,7 +4,7 @@ using Tuber.Application.Banks.Commands.BankAdd;
 using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Application.Banks.Queries.BankGetById;
 using Tuber.Application.Banks.Queries.BankGetPaged;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Banks;
@@ -36,5 +36,4 @@ public class BankProfile : Profile
         CreateMap<BankAccount, BankGetById_BankAccount>();
         CreateMap<BankAccount, BankGetPaged_BankAccount>();
     }
-
 }

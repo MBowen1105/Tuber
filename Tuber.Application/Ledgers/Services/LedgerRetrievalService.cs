@@ -7,7 +7,7 @@ using Tuber.Domain.Models;
 namespace Tuber.Application.Ledgers.Services;
 public class LedgerRetrievalService : ILedgerRetrievalService
 {
-    private readonly ILedgerRepository _ledgerRepository;
+    private readonly ILedgerRepository _ledgerRepo;
     private readonly ISystemClock _systemClock;
 
     private List<Ledger> _ledgerTransactionList = new();
@@ -19,7 +19,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         ILedgerRepository ledgerRepository,
         ISystemClock systemClock)
     {
-        _ledgerRepository = ledgerRepository;
+        _ledgerRepo = ledgerRepository;
         _systemClock = systemClock;
     }
 
@@ -34,7 +34,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
             var fromDate = toDate.AddDays(-HorizonDays)
                 .AddDays(-1).AddSeconds(1);
 
-            _ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId,
+            _ledgerTransactionList = _ledgerRepo.GetBetweenDates(bankAccountId,
                 fromDate, toDate);
         }
 
@@ -76,4 +76,14 @@ public class LedgerRetrievalService : ILedgerRetrievalService
 
         return new ServiceResult<Ledger>(new Ledger());
     }
+
+    public ServiceResult<List<Ledger>> GetPaged(
+        Guid bankAccountId,
+        int pageNumber, int
+        pageSize) =>
+        new ServiceResult<List<Ledger>>(
+            payload: _ledgerRepo.GetPaged(bankAccountId, pageNumber, pageSize));
+
+    public int CountPages(int pageSize) =>
+        _ledgerRepo.CountPages(pageSize);
 }

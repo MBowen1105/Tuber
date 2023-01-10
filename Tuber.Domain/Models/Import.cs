@@ -25,6 +25,6 @@ public class Import
     public Guid ImportedByUserId { get; set; }
     public DateTime ImportedUtc { get; set; }
     public virtual User? ImportedByUser { get; set; }
-    public virtual BankAccount BankAccount { get; set; }
-    public virtual CategorySubcategory CategorySubcategory { get; set; }
+    public virtual BankAccount BankAccount { get; set; } = new();
+    public virtual CategorySubcategory CategorySubcategory { get; set; } = new();
 }

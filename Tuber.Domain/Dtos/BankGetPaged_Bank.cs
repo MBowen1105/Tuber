@@ -1,6 +1,6 @@
-﻿using Tuber.Domain.Models;
+﻿using Tuber.Domain.Dtos;
 
-namespace Tuber.Application.Dtos;
+namespace Tuber.Domain.Dtos;
 public class BankGetPaged_Bank
 {
     public Guid BankId { get; init; }

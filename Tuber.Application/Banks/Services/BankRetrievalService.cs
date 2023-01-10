@@ -26,14 +26,8 @@ public class BankRetrievalService : IBankRetrievalService
         return new ServiceResult<Bank>(bank);
     }
 
-    public ServiceResult<List<Bank>> GetPaged(int pageNumber, int pageSize)
-    {
-        return new ServiceResult<List<Bank>>(
-            payload: _bankRepository.GetPaged(pageNumber, pageSize));
-    }
+    public ServiceResult<List<Bank>> GetPaged(int pageNumber, int pageSize) => 
+        new(payload: _bankRepository.GetPaged(pageNumber, pageSize));
 
-    public int CountPages(int pageSize)
-    {
-        return _bankRepository.CountPages(pageSize);
-    }
+    public int CountPages(int pageSize) => _bankRepository.CountPages(pageSize);
 }

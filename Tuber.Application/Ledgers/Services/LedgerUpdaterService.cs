@@ -42,6 +42,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             {
                 BankAccountId = import.BankAccountId,
                 DateUtc = dateTimeValue,
+                RowNumber = import.ImportRowNumber,
                 Description = import.DescriptionValue!,
                 Reference = import.ReferenceOnStatementValue!,
                 TransactionType = import.TransactionTypeValue!,

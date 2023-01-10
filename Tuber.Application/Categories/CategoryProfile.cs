@@ -4,7 +4,7 @@ using Tuber.Application.Categories.Commands.CategoryUpdate;
 using Tuber.Application.Categories.Queries.CategoriesGetPaged;
 using Tuber.Application.Categories.Queries.CategoryGetById;
 using Tuber.Application.Categorys.Queries.CategoryGetById;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Categories;

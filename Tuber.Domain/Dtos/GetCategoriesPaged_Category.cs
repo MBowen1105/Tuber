@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.Dtos;
+﻿namespace Tuber.Domain.Dtos;
 public class GetCategoriesPaged_Category
 {
     public Guid CategoryId { get; init; }

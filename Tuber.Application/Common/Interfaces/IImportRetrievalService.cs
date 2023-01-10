@@ -1,5 +1,4 @@
-﻿using Tuber.Application.Dtos;
-using Tuber.Domain.Models;
+﻿using Tuber.Domain.Models;
 
 namespace Tuber.Application.Common.Interfaces;
 public interface IImportRetrievalService

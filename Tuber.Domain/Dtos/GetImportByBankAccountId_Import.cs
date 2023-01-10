@@ -1,6 +1,6 @@
 ﻿using Tuber.Application.Enums;
 
-namespace Tuber.Application.Dtos;
+namespace Tuber.Domain.Dtos;
 public class GetImportByBankAccountId_Import
 {
     public Guid ImportId { get; set; }

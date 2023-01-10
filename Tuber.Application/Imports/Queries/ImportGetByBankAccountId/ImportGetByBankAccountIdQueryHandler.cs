@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Dtos;
 using Tuber.Application.Enums;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId

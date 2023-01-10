@@ -1,5 +1,5 @@
 ﻿using Tuber.Core.Common;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 
 namespace Tuber.Application.Banks.Queries.BankGetById;
 public class BankGetByIdQueryResponse : CommandQueryResponseBase

@@ -1,5 +1,5 @@
 ﻿using Tuber.Application.API.Common;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 
 namespace Tuber.Application.Banks.Queries.BankGetPaged;
 public class BankGetPagedAPIResponse : PagedAPIResponse

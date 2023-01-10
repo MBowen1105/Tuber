@@ -1,5 +1,5 @@
 ﻿using Tuber.Application.API.Common;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 
 namespace Tuber.Application.ImportTemplates.Queries.ImportTemplateGetPaged;
 public class ImportTemplateGetPagedAPIResponse : PagedAPIResponse

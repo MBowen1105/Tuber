@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Dtos;
+using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Banks.Queries.BankGetPaged
