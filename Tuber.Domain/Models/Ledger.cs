@@ -31,7 +31,7 @@ public class Ledger : AuditableEntity
     public double? MoneyOut { get; set; }
     public double Balance { get; set; }
     public Guid? CategorySubcategoryId { get; set; }
-
+    public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
     //public virtual BankAccount BankAccount { get; set; }

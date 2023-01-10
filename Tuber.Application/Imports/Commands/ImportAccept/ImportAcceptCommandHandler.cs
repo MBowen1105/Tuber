@@ -28,6 +28,9 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
                 {
                     BankAccountId = request.BankAccountId,
                     TotalAcceptedRowCount = 0,
+                    TotalCreatedRowCount = 0,
+                    TotalUpdatedRowCount = 0,
+                    TotalAlreadyReconciledCount= 0,
                     Exceptions = getImportServiceResult.Exceptions,
                 });
 
@@ -39,6 +42,9 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
                 {
                     BankAccountId = request.BankAccountId,
                     TotalAcceptedRowCount = 0,
+                    TotalCreatedRowCount = 0,
+                    TotalUpdatedRowCount = 0,
+                    TotalAlreadyReconciledCount = 0,
                     Exceptions = new List<Exception>
                     {
                         new ImportHasUnassignedCategoriesException(request.BankAccountId),
@@ -54,6 +60,9 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
             {
                 BankAccountId = serviceResult.Payload.BankAccountId,
                 TotalAcceptedRowCount = serviceResult.Payload.TotalAcceptedRowCount,
+                TotalCreatedRowCount = serviceResult.Payload.TotalCreatedRowCount,
+                TotalUpdatedRowCount = serviceResult.Payload.TotalUpdatedRowCount,
+                TotalAlreadyReconciledCount = serviceResult.Payload.TotalAlreadyReconciledCount,
                 Exceptions = serviceResult.Exceptions,
             };
 

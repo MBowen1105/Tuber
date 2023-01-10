@@ -63,7 +63,7 @@ namespace Tuber.Persistence.Migrations
                     ImportId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BankAccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ImportRowNumber = table.Column<int>(type: "int", nullable: false),
-                    DateValue = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    DateValueISO8601 = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     DescriptionOnStatementValue = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     DescriptionValue = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
                     ReferenceOnStatementValue = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
@@ -74,6 +74,7 @@ namespace Tuber.Persistence.Migrations
                     SortCodeValue = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     AccountNumberValue = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     SuggestedCategorySubcategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImportRowStatus = table.Column<int>(type: "int", nullable: false),
                     ValidationFailureMessages = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImportedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -146,6 +147,8 @@ namespace Tuber.Persistence.Migrations
                     MoneyOut = table.Column<double>(type: "float", nullable: true),
                     Balance = table.Column<double>(type: "float", nullable: false),
                     CategorySubcategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsManualEntry = table.Column<bool>(type: "bit", nullable: false),
+                    IsReconciled = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedByUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOnUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -310,16 +313,16 @@ namespace Tuber.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "Banks",
                 columns: new[] { "BankId", "BankName", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "OrderBy", "UpdatedByUserId", "UpdatedOnUtc" },
-                values: new object[] { new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), "TSB", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(168), null, true, 50, null, null });
+                values: new object[] { new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), "TSB", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9422), null, true, 50, null, null });
 
             migrationBuilder.InsertData(
                 table: "Banks",
                 columns: new[] { "BankId", "BankName", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "OrderBy", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), "Barclays Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(163), null, 30, null, null },
-                    { new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"), "West Bromwich Building Society", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(166), null, 50, null, null },
-                    { new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"), "Virgin", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(164), null, 40, null, null }
+                    { new Guid("1bde22e1-aa11-4f6f-ad78-4fd91cea3d64"), "Barclays Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9367), null, 30, null, null },
+                    { new Guid("5a250fff-d109-429a-b59d-e7582c6272a0"), "West Bromwich Building Society", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9420), null, 50, null, null },
+                    { new Guid("71eb1f8c-e3f3-4053-ad82-dbc90f16b5bf"), "Virgin", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9418), null, 40, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -327,51 +330,63 @@ namespace Tuber.Persistence.Migrations
                 columns: new[] { "CategoryId", "CategoryName", "CreatedByUserId", "CreatedOnUtc", "IsCoreCategory", "IsDeleted", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("27d48d80-b231-4c28-b1e5-af2100d24913"), "Transfer", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(6747), true, false, null, null },
-                    { new Guid("3eefa969-31e0-46d3-9d81-d514035dd3de"), "Child Maintenance", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(6767), false, false, null, null },
-                    { new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), "Motor", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(6749), true, false, null, null },
-                    { new Guid("ebb8bab4-a579-41ca-b42b-bf1bdb9b52f9"), "Mortage", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(6764), false, false, null, null },
-                    { new Guid("ff39de05-0b97-4c98-b013-9cee276774cf"), "Entertainment", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(6770), false, false, null, null }
+                    { new Guid("27d48d80-b231-4c28-b1e5-af2100d24913"), "Transfer", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7827), true, false, null, null },
+                    { new Guid("3eefa969-31e0-46d3-9d81-d514035dd3de"), "Child Maintenance", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7858), false, false, null, null },
+                    { new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), "Household Services", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7832), true, false, null, null },
+                    { new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), "Motor", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7829), true, false, null, null },
+                    { new Guid("ba134b1e-095b-4dc7-800d-94f27a1d9747"), "Bank Charged", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7833), true, false, null, null },
+                    { new Guid("ebb8bab4-a579-41ca-b42b-bf1bdb9b52f9"), "Mortage", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7830), true, false, null, null },
+                    { new Guid("ff39de05-0b97-4c98-b013-9cee276774cf"), "Entertainment", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(7831), true, false, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "ImportTemplates",
                 columns: new[] { "ImportTemplateId", "AccountNumberColumnNumber", "BalanceOnStatementColumnNumber", "CreatedByUserId", "CreatedOnUtc", "DateColumnNumber", "DateTemplate", "DescriptionOnStatementColumnNumber", "ExpectedColumnCount", "ExpectedHeaderRowCount", "ImportFileName", "ImportTemplateName", "MoneyInColumnNumber", "MoneyOutColumnNumber", "ReferenceOnStatementStartCharacter", "SeperatorChar", "SortCodeColumnNumber", "TransactionTypeColumnNumber", "UpdatedByUserId", "UpdatedOnUtc" },
-                values: new object[] { new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 0, 6, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(4944), 1, "yyyy-mm-dd", 2, 6, 1, "", "Co-Op Bank Template", 4, 5, 19, ",", 0, 3, null, null });
+                values: new object[] { new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 0, 6, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(6049), 1, "yyyy-mm-dd", 2, 6, 1, "", "Co-Op Bank Template", 4, 5, 19, ",", 0, 3, null, null });
 
             migrationBuilder.InsertData(
                 table: "ImportTemplates",
                 columns: new[] { "ImportTemplateId", "AccountNumberColumnNumber", "BalanceOnStatementColumnNumber", "CreatedByUserId", "CreatedOnUtc", "DateColumnNumber", "DateTemplate", "DescriptionOnStatementColumnNumber", "ExpectedColumnCount", "ExpectedHeaderRowCount", "ImportFileName", "ImportTemplateName", "MoneyInColumnNumber", "MoneyOutColumnNumber", "SeperatorChar", "SortCodeColumnNumber", "TransactionTypeColumnNumber", "UpdatedByUserId", "UpdatedOnUtc" },
-                values: new object[] { new Guid("f642096e-6573-4deb-96be-efba9016499c"), 4, 8, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(4947), 1, "dd-mmm-yyyy", 5, 8, 1, "", "Lloyds Bank Template", 7, 6, ",", 3, 2, null, null });
+                values: new object[] { new Guid("f642096e-6573-4deb-96be-efba9016499c"), 4, 8, new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(6053), 1, "dd-mmm-yyyy", 5, 8, 1, "", "Lloyds Bank Template", 7, 6, ",", 3, 2, null, null });
 
             migrationBuilder.InsertData(
                 table: "Ledgers",
-                columns: new[] { "LedgerId", "Balance", "BankAccountId", "CategorySubcategoryId", "CreatedByUserId", "CreatedOnUtc", "DateUtc", "Description", "MoneyIn", "MoneyOut", "Reference", "TransactionType", "UpdatedByUserId", "UpdatedOnUtc" },
-                values: new object[] { new Guid("b581cb5c-8510-48de-b292-bd02641ec08d"), 604.44000000000005, new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("a99dcad5-5ea6-4d71-9f8c-a7f3db005a83"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(9153), new DateTime(2022, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CAMELOT LOTTERY", null, 10.0, "A00143/3965", "DD", null, null });
+                columns: new[] { "LedgerId", "Balance", "BankAccountId", "CategorySubcategoryId", "CreatedByUserId", "CreatedOnUtc", "DateUtc", "Description", "IsManualEntry", "IsReconciled", "MoneyIn", "MoneyOut", "Reference", "TransactionType", "UpdatedByUserId", "UpdatedOnUtc" },
+                values: new object[,]
+                {
+                    { new Guid("62846f42-1c01-4b2c-bca1-118dcc5cb7c1"), 2056.3200000000002, new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("daaf4e6f-00dd-40c0-837f-cb566deb743f"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 191, DateTimeKind.Utc).AddTicks(290), new DateTime(2022, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "DEBIT INTEREST", false, false, 0.17000000000000001, null, "INTEREST", "DD", null, null },
+                    { new Guid("97730458-05ef-4e84-9e9f-d7b3d601976f"), 1406.3199999999999, new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("a913b3e2-ab64-4a83-8e61-b41930638b9f"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 191, DateTimeKind.Utc).AddTicks(283), new DateTime(2022, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "EE LIMITED", false, false, null, 24.57, "Q08791420324918228", "DD", null, null },
+                    { new Guid("b581cb5c-8510-48de-b292-bd02641ec08d"), 1430.8900000000001, new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), new Guid("a99dcad5-5ea6-4d71-9f8c-a7f3db005a83"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 191, DateTimeKind.Utc).AddTicks(288), new DateTime(2022, 5, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "CAMELOT LOTTERY", false, false, null, 8.0, "A00143/3965", "DD", null, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Subcategories",
                 columns: new[] { "SubcategoryId", "CreatedByUserId", "CreatedOnUtc", "IsCoreSubcategory", "IsDeleted", "SubcategoryName", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("179d1384-e290-4bb7-a52d-038a3221d330"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(7297), true, false, "Insurance", null, null },
-                    { new Guid("3077c60b-5d01-4982-b60e-d032cf75d926"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(7300), true, false, "Tax", null, null },
-                    { new Guid("85ae154e-960e-4d35-8e77-a9e7d71eddf1"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(7302), false, false, "Gambling", null, null },
-                    { new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(7287), true, false, "Fuel", null, null }
+                    { new Guid("04ff391a-26fc-408b-b930-731114e2d994"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8390), true, false, "Gas", null, null },
+                    { new Guid("179d1384-e290-4bb7-a52d-038a3221d330"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8382), true, false, "Insurance", null, null },
+                    { new Guid("3077c60b-5d01-4982-b60e-d032cf75d926"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8385), true, false, "Road Tax", null, null },
+                    { new Guid("566195ce-d7a0-4252-8258-8b7b76b7846c"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8393), true, false, "Water", null, null },
+                    { new Guid("66e06ca1-305c-48db-88bc-155b040fc82f"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8387), true, false, "Electricity", null, null },
+                    { new Guid("85ae154e-960e-4d35-8e77-a9e7d71eddf1"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8400), false, false, "Gambling", null, null },
+                    { new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8373), true, false, "Fuel", null, null },
+                    { new Guid("ccbd867f-a971-4d3c-b879-2fccb8b92981"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8398), true, false, "Debit Interest", null, null },
+                    { new Guid("d1d1f7ac-1609-4537-a965-eb118ce91a5b"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(8395), true, false, "Mobile", null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "BankAccounts",
                 columns: new[] { "BankAccountId", "BankAccountName", "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "IsDeleted", "OrderBy", "UKBankAccount", "UKSortCode", "UpdatedByUserId", "UpdatedOnUtc" },
-                values: new object[] { new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"), "TSB Bank Account", new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1938), null, true, 10, "98765555", "440191", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1939) });
+                values: new object[] { new Guid("8cd1c1cf-a8e6-4148-a78c-99cd34c02997"), "TSB Bank Account", new Guid("123fc61c-0267-479e-875d-9e1d65bbcaff"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1511), null, true, 10, "98765555", "440191", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1511) });
 
             migrationBuilder.InsertData(
                 table: "Banks",
                 columns: new[] { "BankId", "BankName", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "OrderBy", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), "Lloyds Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(161), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 20, null, null },
-                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Co-Op Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(154), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 10, null, null }
+                    { new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), "Lloyds Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9365), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 20, null, null },
+                    { new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), "Co-Op Bank", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 189, DateTimeKind.Utc).AddTicks(9358), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 10, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -379,9 +394,14 @@ namespace Tuber.Persistence.Migrations
                 columns: new[] { "CategorySubcategoryId", "CategoryId", "IsCoreCategorySubcategory", "IsDeleted", "SubcategoryId" },
                 values: new object[,]
                 {
+                    { new Guid("002e1e54-7359-4b50-aa57-0efb62f0a42c"), new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), true, false, new Guid("04ff391a-26fc-408b-b930-731114e2d994") },
+                    { new Guid("7870b00b-d2d3-481b-9701-73f386262e8b"), new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), true, false, new Guid("566195ce-d7a0-4252-8258-8b7b76b7846c") },
+                    { new Guid("7f50d5aa-2959-4629-8eaa-e824b311549f"), new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), true, false, new Guid("66e06ca1-305c-48db-88bc-155b040fc82f") },
                     { new Guid("80172b90-d0e3-41f1-bc00-985fc14f5926"), new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), true, false, new Guid("3077c60b-5d01-4982-b60e-d032cf75d926") },
+                    { new Guid("a913b3e2-ab64-4a83-8e61-b41930638b9f"), new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), true, false, new Guid("d1d1f7ac-1609-4537-a965-eb118ce91a5b") },
                     { new Guid("a99dcad5-5ea6-4d71-9f8c-a7f3db005a83"), new Guid("ff39de05-0b97-4c98-b013-9cee276774cf"), false, false, new Guid("85ae154e-960e-4d35-8e77-a9e7d71eddf1") },
                     { new Guid("c7f625d8-3b1c-4861-9589-f2e85e0596b3"), new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), true, false, new Guid("179d1384-e290-4bb7-a52d-038a3221d330") },
+                    { new Guid("daaf4e6f-00dd-40c0-837f-cb566deb743f"), new Guid("ba134b1e-095b-4dc7-800d-94f27a1d9747"), true, false, new Guid("ccbd867f-a971-4d3c-b879-2fccb8b92981") },
                     { new Guid("e79d158e-dd3c-4b13-86da-e0b8f9109ff7"), new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), true, false, new Guid("cac01b14-67a7-4372-8eb1-5e9a0e8a007c") }
                 });
 
@@ -390,11 +410,11 @@ namespace Tuber.Persistence.Migrations
                 columns: new[] { "BankAccountId", "BankAccountName", "BankId", "CreatedByUserId", "CreatedOnUtc", "ImportTemplateId", "OrderBy", "UKBankAccount", "UKSortCode", "UpdatedByUserId", "UpdatedOnUtc" },
                 values: new object[,]
                 {
-                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), "Salary", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1930), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 10, "09411905", "089191", null, null },
-                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), "Cash", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1933), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 20, "00985630", "089191", null, null },
-                    { new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"), "Lloyds 93DIX", new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1935), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 10, "09405515", "901111", null, null },
-                    { new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"), "Lloyds 25PAR", new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1937), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 20, "09405515", "901111", null, null },
-                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), "Savings", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 9, 14, 24, 2, 496, DateTimeKind.Utc).AddTicks(1934), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 30, "09405515", "089191", null, null }
+                    { new Guid("0c942b54-d561-499a-843b-e4387e7e6415"), "Salary", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1495), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 10, "09411905", "089191", null, null },
+                    { new Guid("552d16a1-d98b-48e9-8580-13029843c116"), "Cash", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1499), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 20, "00985630", "089191", null, null },
+                    { new Guid("72fcf015-7f1b-49ef-8ea3-25d1ed15b936"), "Lloyds 93DIX", new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1507), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 10, "09405515", "901111", null, null },
+                    { new Guid("c38c85bd-19db-4b90-a1fa-aeb74610b70b"), "Lloyds 25PAR", new Guid("627daf5d-2c35-4644-8bc8-83b7f74278a9"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1509), new Guid("f642096e-6573-4deb-96be-efba9016499c"), 20, "09405515", "901111", null, null },
+                    { new Guid("d2b75a9d-94af-41e4-8777-71251a92d3bf"), "Savings", new Guid("b63263ae-efc7-4ccb-ae50-7c17c3b2c2d6"), new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 10, 11, 57, 12, 190, DateTimeKind.Utc).AddTicks(1504), new Guid("44ec6e81-2ebf-4ec7-84b2-f74a87431962"), 30, "09405515", "089191", null, null }
                 });
 
             migrationBuilder.CreateIndex(

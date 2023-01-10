@@ -1,6 +1,8 @@
-﻿using Tuber.Application.Common.Interfaces.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Extensions;
 using Tuber.Domain.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Tuber.Persistence.Ledgers;
 public class LedgerRepository : ILedgerRepository
@@ -12,6 +14,7 @@ public class LedgerRepository : ILedgerRepository
         _context = context;
     }
 
+    #region "Commands"
     public Ledger Add(Ledger ledger)
     {
         try
@@ -26,6 +29,28 @@ public class LedgerRepository : ILedgerRepository
         return ledger;
     }
 
+    public Ledger Update(Ledger pLedger)
+    {
+        var ledger = _context.Ledgers
+            .FirstOrDefault(x => x.LedgerId == pLedger.LedgerId && x.IsDeleted == false);
+
+        if (ledger is null)
+            return new Ledger();
+
+        ledger.DateUtc = pLedger.DateUtc;
+        ledger.Description = pLedger.Description;
+        ledger.Reference = pLedger.Reference;
+        ledger.TransactionType = pLedger.TransactionType;
+        ledger.MoneyIn = pLedger.MoneyIn;
+        ledger.MoneyOut = pLedger.MoneyOut;
+        ledger.Balance = pLedger.Balance;
+        ledger.CategorySubcategoryId = pLedger.CategorySubcategoryId;
+
+        return ledger;
+    }
+    #endregion
+
+    #region "Queries"
     public List<Ledger> GetBetweenDates(
         Guid bankAccountId, DateTime fromDate, DateTime toDate)
     {
@@ -35,9 +60,24 @@ public class LedgerRepository : ILedgerRepository
             .ToList();
     }
 
+    public Ledger GetByValues(Guid bankAccountId, DateTime dateUtc, string description, double? moneyIn, double? moneyOut)
+    {
+        var ledger = _context.Ledgers
+        .FirstOrDefault(x => x.BankAccountId == bankAccountId &&
+                x.DateUtc == dateUtc &&
+                x.Description == description &&
+                x.MoneyIn == moneyIn &&
+                x.MoneyOut == moneyOut);
+
+        return ledger ?? new Ledger();
+    }
+    #endregion
+
+
     public int SaveChanges()
     {
         return _context.SaveChanges();
     }
+
 
 }

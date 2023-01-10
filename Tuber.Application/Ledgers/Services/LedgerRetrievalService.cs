@@ -9,7 +9,11 @@ public class LedgerRetrievalService : ILedgerRetrievalService
 {
     private readonly ILedgerRepository _ledgerRepository;
     private readonly ISystemClock _systemClock;
-    private const int HorizonDays = 365;
+
+    private List<Ledger> _ledgerTransactionList = new();
+    private Guid _currentBankAccountId = Guid.Empty;
+
+    private const int HorizonDays = 365;    //TODO: Add to Settings table.
 
     public LedgerRetrievalService(
         ILedgerRepository ledgerRepository,
@@ -23,14 +27,20 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         Guid bankAccountId, string? description, string? reference,
         double? moneyIn, double? moneyOut)
     {
-        //  List all live transactions 40 days old or less.
-        var toDate = _systemClock.TodayUtc();
-        var fromDate = toDate.AddDays(-HorizonDays).AddDays(-1).AddSeconds(1);
+        if (_currentBankAccountId != bankAccountId)
+        {
+            //  List all live transactions 40 days old or less.
+            var toDate = _systemClock.TodayUtc();
+            var fromDate = toDate.AddDays(-HorizonDays)
+                .AddDays(-1).AddSeconds(1);
 
-        var ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId,
-            fromDate, toDate);
+            _ledgerTransactionList = _ledgerRepository.GetBetweenDates(bankAccountId,
+                fromDate, toDate);
+        }
 
-        var resultList = ledgerTransactionList
+        _currentBankAccountId = bankAccountId;
+
+        var resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
@@ -43,7 +53,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         if (resultList.Any())
             return new ServiceResult<Ledger>(resultList.First());
 
-        resultList = ledgerTransactionList
+        resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
@@ -54,7 +64,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         if (resultList.Any())
             return new ServiceResult<Ledger>(resultList.First());
 
-        resultList = ledgerTransactionList
+        resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description

@@ -12,6 +12,7 @@ public static class SubcategorySeeding
     public static readonly Guid GasSubcategoryId = Guid.Parse("04ff391a-26fc-408b-b930-731114e2d994");
     public static readonly Guid WaterSubcategoryId = Guid.Parse("566195ce-d7a0-4252-8258-8b7b76b7846c");
     public static readonly Guid MobileSubcategoryId = Guid.Parse("d1d1f7ac-1609-4537-a965-eb118ce91a5b");
+    public static readonly Guid DebitInterestSubcategoryId = Guid.Parse("ccbd867f-a971-4d3c-b879-2fccb8b92981");
 
     public static readonly Guid GamblingSubcategoryId = Guid.Parse("85ae154e-960e-4d35-8e77-a9e7d71eddf1");
     
@@ -82,6 +83,16 @@ public static class SubcategorySeeding
           {
               SubcategoryId = MobileSubcategoryId,
               SubcategoryName = "Mobile",
+              IsCoreSubcategory = true,
+              CreatedOnUtc = DateTime.UtcNow,
+              CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+          });
+
+        builder.HasData(
+          new Subcategory
+          {
+              SubcategoryId = DebitInterestSubcategoryId,
+              SubcategoryName = "Debit Interest",
               IsCoreSubcategory = true,
               CreatedOnUtc = DateTime.UtcNow,
               CreatedByUserId = UserSeeding.ADMIN_USER.UserId,

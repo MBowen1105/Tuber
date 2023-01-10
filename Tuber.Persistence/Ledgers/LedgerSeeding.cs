@@ -51,7 +51,7 @@ public static class LedgerSeeding
                 MoneyIn = 0.17,
                 MoneyOut = null,
                 Balance = 2056.32,
-                CategorySubcategoryId = CategorySubcategories.CategorySubcategorySeeding.InterestEarnedId,
+                CategorySubcategoryId = CategorySubcategories.CategorySubcategorySeeding.BankChargesDebitInterestId,
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
