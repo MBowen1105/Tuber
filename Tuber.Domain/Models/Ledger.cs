@@ -1,4 +1,5 @@
-﻿using Tuber.Application.Common;
+﻿using System.Runtime.CompilerServices;
+using Tuber.Application.Common;
 
 namespace Tuber.Domain.Models;
 public class Ledger : AuditableEntity
@@ -17,6 +18,10 @@ public class Ledger : AuditableEntity
         MoneyOut = 0;
         Balance = 0;
         CategorySubcategoryId = null;
+        TransferBankAccountId = null;
+        IsManualEntry = false;
+        IsReconciled = false;
+        IsDeleted = false;
         //BankAccount = new BankAccount();
         //CategorySubcategory = new CategorySubcategory();
     }
@@ -31,6 +36,7 @@ public class Ledger : AuditableEntity
     public double? MoneyOut { get; set; }
     public double Balance { get; set; }
     public Guid? CategorySubcategoryId { get; set; }
+    public Guid? TransferBankAccountId { get; set; }
     public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
