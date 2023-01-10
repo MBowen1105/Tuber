@@ -28,7 +28,7 @@ public class ImportRepository : IImportRepository
         if (import is null)
             return new Import();
 
-        import.SuggestedCategorySubcategoryId = categorySubcategoryId;
+        import.CategorySubcategoryId = categorySubcategoryId;
         import.Notes =notes;
 
         return import;

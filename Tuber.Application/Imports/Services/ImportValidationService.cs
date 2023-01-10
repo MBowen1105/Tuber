@@ -182,7 +182,7 @@ public class ImportValidationService : IImportValidationService
                 BalanceOnStatementValue = balanceOnStatementValue,
                 SortCodeValue = sortCodeValue,
                 AccountNumberValue = accountNumberValue,
-                SuggestedCategorySubcategoryId = suggestedCategorySubcategoryId,
+                CategorySubcategoryId = suggestedCategorySubcategoryId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,

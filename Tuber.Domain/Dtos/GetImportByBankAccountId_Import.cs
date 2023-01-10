@@ -17,7 +17,7 @@ public class GetImportByBankAccountId_Import
     public string? BalanceOnStatementValue { get; set; }
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
-    public Guid? SuggestedCategorySubcategoryId { get; set; }
+    public Guid? CategorySubcategoryId { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string ImportRowStatusDesc { get; set; } = "";
     public string? ValidationFailureMessages { get; set; }

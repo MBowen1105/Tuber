@@ -48,7 +48,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
                 MoneyIn = moneyIn,
                 MoneyOut = moneyOut,
                 Balance = double.Parse(import.BalanceOnStatementValue!),
-                CategorySubcategoryId = import.SuggestedCategorySubcategoryId
+                CategorySubcategoryId = import.CategorySubcategoryId
             };
 
             //  Is there an EXACT matching transaction on this ledger?

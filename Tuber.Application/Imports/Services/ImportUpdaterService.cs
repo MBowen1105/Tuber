@@ -66,7 +66,7 @@ public class ImportUpdaterService : IImportUpdaterService
                 BalanceOnStatementValue = row.BalanceOnStatementValue,
                 SortCodeValue = row.SortCodeValue,
                 AccountNumberValue = row.AccountNumberValue,
-                SuggestedCategorySubcategoryId = row.SuggestedCategorySubcategoryId,
+                CategorySubcategoryId = row.CategorySubcategoryId,
                 Notes = "",
                 ImportRowStatus = row.ImportRowStatus,
                 ValidationFailureMessages = row.ValidationFailureMessages,
