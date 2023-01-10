@@ -4,6 +4,7 @@ namespace Tuber.Domain.Models;
 public class Ledger : AuditableEntity
 {
     public static readonly string FriendlyName = "Ledger";
+
     public Ledger()
     {
         LedgerId = Guid.Empty;
@@ -14,7 +15,7 @@ public class Ledger : AuditableEntity
         TransactionType = string.Empty;
         MoneyIn = 0;
         MoneyOut = 0;
-        Balance= 0;
+        Balance = 0;
         CategorySubcategoryId = null;
         //BankAccount = new BankAccount();
         //CategorySubcategory = new CategorySubcategory();
@@ -30,6 +31,8 @@ public class Ledger : AuditableEntity
     public double? MoneyOut { get; set; }
     public double Balance { get; set; }
     public Guid? CategorySubcategoryId { get; set; }
+
+    public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
     //public virtual BankAccount BankAccount { get; set; }
     //public virtual CategorySubcategory CategorySubcategory { get; set; }
