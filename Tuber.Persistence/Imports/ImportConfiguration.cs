@@ -8,8 +8,13 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
 {
     public void Configure(EntityTypeBuilder<Import> builder)
     {
-        builder.ToTable("Imports")
-            .HasOne(x => x.ImportedByUser);
+        builder.ToTable("Imports");
+
+        builder.HasOne(x => x.BankAccount);
+
+        builder.HasOne(x => x.ImportedByUser);
+
+        builder.HasOne(x => x.CategorySubcategory);
 
         builder.Property(x => x.BankAccountId)
             .IsRequired();
@@ -40,6 +45,8 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
 
         builder.Property(x => x.BalanceOnStatementValue)
             .HasMaxLength(10);
+
+        builder.Property(x => x.CategorySubcategoryId);
 
         builder.Property(x => x.SortCodeValue)
             .HasMaxLength(10);

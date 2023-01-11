@@ -10,9 +10,9 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
     {
         builder.ToTable("Ledgers");
 
-        //builder.HasOne(x => x.BankAccount);
+        builder.HasOne(x => x.BankAccount);
 
-        //builder.HasOne(x => x.CategorySubcategory);
+        builder.HasOne(x => x.CategorySubcategory);
 
         builder.HasOne(x => x.CreatedByUser);
 
@@ -51,6 +51,6 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
             .HasDefaultValue(false)
             .IsRequired();
 
-        LedgerSeeding.Seed(builder);
+        //LedgerSeeding.Seed(builder);
     }
 }

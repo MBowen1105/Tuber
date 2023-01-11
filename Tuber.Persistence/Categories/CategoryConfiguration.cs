@@ -19,7 +19,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         builder.Property(x => x.IsCoreCategory)
             .IsRequired();
-        
+
         builder.Property(x => x.IsDeleted)
             .IsRequired();
 

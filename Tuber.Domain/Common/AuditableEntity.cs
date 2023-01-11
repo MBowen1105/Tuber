@@ -7,6 +7,6 @@ public class AuditableEntity
     public DateTime CreatedOnUtc { get; set; }
     public Guid? UpdatedByUserId { get; set; }
     public DateTime? UpdatedOnUtc { get; set; }
-    virtual public User? CreatedByUser { get; set; }
-    virtual public User? UpdatedByUser { get; set; }
+    public virtual User? CreatedByUser { get; set; }
+    public virtual User? UpdatedByUser { get; set; }
 }

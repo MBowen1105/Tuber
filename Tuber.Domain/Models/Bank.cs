@@ -21,6 +21,6 @@ public class Bank : AuditableEntity
     public int OrderBy { get; set; }
     public Guid? ImportTemplateId { get; set; }
     public bool IsDeleted { get; set; }
-    public virtual ICollection<BankAccount>? BankAccounts { get; set; }
-    public virtual ImportTemplate? ImportTemplate { get; init; }
+    public ICollection<BankAccount>? BankAccounts { get; set; }
+    public ImportTemplate? ImportTemplate { get; init; }
 }

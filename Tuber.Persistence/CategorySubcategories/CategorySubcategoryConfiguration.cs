@@ -8,8 +8,7 @@ public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<Categor
 {
     public void Configure(EntityTypeBuilder<CategorySubcategory> builder)
     {
-        builder.ToTable("CategorySubcategories")
-            .HasKey(x => x.CategorySubcategoryId);
+        builder.ToTable("CategorySubcategories");
 
         builder.HasOne(x => x.Category);
 
