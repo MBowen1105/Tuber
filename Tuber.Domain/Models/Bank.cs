@@ -11,4 +11,5 @@ public class Bank : AuditableEntity
     public Guid? ImportTemplateId { get; init; } = null;
     public bool IsDeleted { get; set; } = false;
     public ICollection<BankAccount> BankAccounts { get; init; } = new List<BankAccount>();
+    public ImportTemplate? ImportTemplate { get; init; } = null;
 }

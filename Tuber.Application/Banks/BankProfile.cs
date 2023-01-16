@@ -16,7 +16,6 @@ public class BankProfile : Profile
         CreateMap<BankGetByIdQueryResponse, BankGetByIdAPIResponse>();
 
         CreateMap<Bank, BankGetByIdQueryResponse>()
-            .ForMember(dest => dest.ImportTemplate, act => act.Ignore())
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
 
         //  BanksGetPaged
