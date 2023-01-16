@@ -12,7 +12,8 @@ public class AppConfigUpdateCommandHandler : IRequestHandler<AppConfigUpdateComm
         _AppConfigUpdaterService = AppConfigUpdaterService;
     }
 
-    public Task<AppConfigUpdateCommandResponse> Handle(AppConfigUpdateCommandRequest request, CancellationToken cancellationToken)
+    public Task<AppConfigUpdateCommandResponse> Handle(AppConfigUpdateCommandRequest request, 
+        CancellationToken cancellationToken)
     {
         var serviceResult = _AppConfigUpdaterService.Update(request.CategorySuggestionHorizonDays);
 
