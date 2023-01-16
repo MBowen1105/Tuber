@@ -19,10 +19,14 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     private readonly Guid LedgerId2 = Guid.NewGuid();
     private readonly Guid LedgerId3 = Guid.NewGuid();
 
-    private readonly Guid CategorySubcategoryId1 = Guid.NewGuid();
-    private readonly Guid CategorySubcategoryId2 = Guid.NewGuid();
-    private readonly Guid CategorySubcategoryId3 = Guid.NewGuid();
-    
+    private readonly Guid CategoryId1 = Guid.NewGuid();
+    private readonly Guid CategoryId2 = Guid.NewGuid();
+    private readonly Guid CategoryId3 = Guid.NewGuid();
+
+    private readonly Guid SubcategoryId1 = Guid.NewGuid();
+    private readonly Guid SubcategoryId2 = Guid.NewGuid();
+    private readonly Guid SubcategoryId3 = Guid.NewGuid();
+
     private ILedgerRetrievalService _sut;
 
     [SetUp]
@@ -46,7 +50,9 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                     Reference = "",
                     MoneyIn = 100.0,
                     MoneyOut = null,
-                    CategorySubcategoryId = CategorySubcategoryId1,
+                    CategoryId = CategoryId1,
+                    SubcategoryId = SubcategoryId1,
+                    IsReconciled = true,
                 },
                 new Ledger
                 {
@@ -57,7 +63,9 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                     Reference = "",
                     MoneyIn = null,
                     MoneyOut = 100.0,
-                    CategorySubcategoryId = CategorySubcategoryId2,
+                    CategoryId = CategoryId2,
+                    SubcategoryId = SubcategoryId2,
+                    IsReconciled = true,
                 },
                 new Ledger
                 {
@@ -68,7 +76,9 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                     Reference = "Ref1",
                     MoneyIn = 100.0,
                     MoneyOut = null,
-                    CategorySubcategoryId = CategorySubcategoryId3,
+                    CategoryId = CategoryId3,
+                    SubcategoryId = SubcategoryId3,
+                    IsReconciled = true,
                 }
             });
 

@@ -27,8 +27,9 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public BankAccount GetById(Guid bankAccountId)
     {
         var bankAccount = _context.Set<BankAccount>()
-            .Include(x => x.CreatedByUser)
-            .Include(x => x.UpdatedByUser)
+            //.Include(x => x.Bank)
+            //.Include(x => x.CreatedByUser)
+            //.Include(x => x.UpdatedByUser)
             .FirstOrDefault(x => x.BankAccountId == bankAccountId && x.IsDeleted == false);
 
         return bankAccount ?? new BankAccount();
@@ -37,8 +38,9 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     public List<BankAccount> GetPaged(int pageNumber, int pageSize)
     {
         return _context.Set<BankAccount>()
-            .Include(x => x.CreatedByUser)
-            .Include(x => x.UpdatedByUser)
+            //.Include(x => x.Bank)
+            //.Include(x => x.CreatedByUser)
+            //.Include(x => x.UpdatedByUser)
             .Where(x => x.IsDeleted == false)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
@@ -56,7 +58,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
         return (int)Math.Ceiling(pages);
     }
 
-   
+
     #endregion
 
     public ApplicationDbContext ApplicationDbContext

@@ -44,7 +44,8 @@ public class LedgerRepository : ILedgerRepository
         ledger.MoneyIn = pLedger.MoneyIn;
         ledger.MoneyOut = pLedger.MoneyOut;
         ledger.Balance = pLedger.Balance;
-        ledger.CategorySubcategoryId = pLedger.CategorySubcategoryId;
+        ledger.CategoryId = pLedger.CategoryId;
+        ledger.SubcategoryId = pLedger.SubcategoryId;
 
         return ledger;
     }
@@ -101,6 +102,4 @@ public class LedgerRepository : ILedgerRepository
     {
         return _context.SaveChanges();
     }
-
-
 }

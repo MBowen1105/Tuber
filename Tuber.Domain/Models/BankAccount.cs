@@ -24,5 +24,4 @@ public class BankAccount : AuditableEntity
     public Guid BankId { get; set; }
     public Guid? ImportTemplateId { get; set; }
     public bool IsDeleted { get; set; }
-    public Bank? Bank { get; set; }
 }

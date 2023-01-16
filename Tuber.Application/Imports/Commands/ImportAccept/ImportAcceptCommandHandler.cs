@@ -36,7 +36,7 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
 
             //  Check to ensue that every transaction on the inport has been coded.
             var hasUncodedItems = getImportServiceResult
-                .Payload.Any(x => x.CategorySubcategoryId == null);
+                .Payload.Any(x => x.CategoryId == null);
             if (hasUncodedItems)
                 return Task.FromResult(new ImportAcceptCommandResponse
                 {

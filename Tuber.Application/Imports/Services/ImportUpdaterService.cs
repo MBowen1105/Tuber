@@ -10,18 +10,15 @@ namespace Tuber.Application.Imports.Services;
 public class ImportUpdaterService : IImportUpdaterService
 {
     private readonly IImportRepository _importRepo;
-    private readonly IBankAccountRetrievalService _bankAccountRetrieverService;
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _dateTimeService;
 
     public ImportUpdaterService(
         IImportRepository importRepo,
-        IBankAccountRetrievalService bankAccountRetrieverService,
         ICurrentUserService currentUserService,
         ISystemClock dateTimeService)
     {
         _importRepo = importRepo;
-        _bankAccountRetrieverService = bankAccountRetrieverService;
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
     }
@@ -30,15 +27,6 @@ public class ImportUpdaterService : IImportUpdaterService
         Guid bankAccountId,
         List<Import> validatedRows)
     {
-        //  Check Bank Account Exists
-        var bankAccountServiceResult = _bankAccountRetrieverService.GetById(bankAccountId);
-        if (bankAccountServiceResult.HasFailed)
-        {
-            return new ServiceResult<ImportResult>(
-                payload: new ImportResult(),
-                exceptionList: bankAccountServiceResult.Exceptions);
-        }
-
         _importRepo.Clear(bankAccountId);
 
         var validRowCount = 0;
@@ -51,7 +39,7 @@ public class ImportUpdaterService : IImportUpdaterService
             else
                 invalidRowCount++;
 
-            _importRepo.Add(new Import
+            var import = new Import
             {
                 ImportId = Guid.NewGuid(),
                 BankAccountId = bankAccountId,
@@ -66,13 +54,16 @@ public class ImportUpdaterService : IImportUpdaterService
                 BalanceOnStatementValue = row.BalanceOnStatementValue,
                 SortCodeValue = row.SortCodeValue,
                 AccountNumberValue = row.AccountNumberValue,
-                CategorySubcategoryId = row.CategorySubcategoryId,
+                CategoryId = row.CategoryId,
+                SubcategoryId = row.SubcategoryId,
                 Notes = "",
                 ImportRowStatus = row.ImportRowStatus,
                 ValidationFailureMessages = row.ValidationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
-                ImportedUtc = _dateTimeService.NowUtc()
-            });
+                ImportedUtc = _dateTimeService.NowUtc(),
+                //BankAccount = row.BankAccount,
+            };
+            _importRepo.Add(import);
         }
 
         _importRepo.SaveChanges();
@@ -88,11 +79,13 @@ public class ImportUpdaterService : IImportUpdaterService
 
     public ServiceResult<Import> Update(
        Guid importId,
-       Guid categorySubcategoryId,
+       Guid categoryId,
+       Guid? subcategoryId,
        string? notes)
     {
         var import = _importRepo.Update(importId,
-            categorySubcategoryId,
+            categoryId,
+            subcategoryId,
             notes);
 
         _importRepo.SaveChanges();

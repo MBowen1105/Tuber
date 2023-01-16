@@ -9,5 +9,5 @@ public interface ICategorySubcategoryRepository : IRepository<CategorySubcategor
 
     //  Repository Queries
     CategorySubcategory GetById(Guid categorySubcategoryId);
-    string? Exists(Guid categoryId, Guid subcategoryId);
+    bool IsValid(Guid categoryId, Guid? subcategoryId);
 }

@@ -15,6 +15,7 @@ internal class ImportValidationService_CoOp_UnitTests
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
+    private readonly Mock<IBankAccountRetrievalService> _mockBankAccountRetrievalService = new();
 
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
@@ -57,10 +58,18 @@ internal class ImportValidationService_CoOp_UnitTests
             It.Is<double>(x => x == 0)))
                 .Returns(new ServiceResult<Ledger>(new Ledger()));
 
+        _mockBankAccountRetrievalService.Setup(x => x.GetById(
+            It.Is<Guid>(x => x.Equals(_bankAccountId))))
+            .Returns(new ServiceResult<BankAccount>(new BankAccount
+            {
+                BankAccountId = Guid.NewGuid(),
+            }));
+
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,
             _mockSystemClock.Object,
-            _mockLedgerRetrievalService.Object);
+            _mockLedgerRetrievalService.Object,
+            _mockBankAccountRetrievalService.Object);
     }
 
     #region "Validate"
@@ -238,7 +247,7 @@ internal class ImportValidationService_CoOp_UnitTests
         serviceResult.Exceptions.Count.Should().Be(0);
     }
 
-    [Test, Parallelizable]    
+    [Test, Parallelizable]
     public void Validate_BothMoneyInAndOutMissingValues_ReturnsImportListWithValidationFailureMessage()
     {
         string[] allRows = {
@@ -279,7 +288,7 @@ internal class ImportValidationService_CoOp_UnitTests
         var messages = serviceResult.Payload.First().ValidationFailureMessages!.Split(ImportValidationService.ValidationMessageSeperator);
         messages.Should().HaveCount(1);
         messages[0].Should().Contain(failureMessage);
-        
+
 
         serviceResult.IsSuccess.Should().BeTrue();
         serviceResult.Exceptions.Count.Should().Be(0);

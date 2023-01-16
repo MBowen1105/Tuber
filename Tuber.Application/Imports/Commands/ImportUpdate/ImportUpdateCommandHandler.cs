@@ -18,10 +18,13 @@ public class ImportUpdateCommandHandler : IRequestHandler<ImportUpdateCommandReq
         _categorySubcategoryRetrievalService = categorySubcategoryRetrievalService;
     }
 
-    public Task<ImportUpdateCommandResponse> Handle(ImportUpdateCommandRequest request, CancellationToken cancellationToken)
+    public Task<ImportUpdateCommandResponse> Handle(ImportUpdateCommandRequest request, 
+        CancellationToken cancellationToken)
     {
-        //  Does the given CategorySubcategoryId exist?
-        var serviceResult = _categorySubcategoryRetrievalService.GetById(request.CategorySubcategoryId);
+        //  Is the given combination of Category and Subcategory valid?
+        var serviceResult = _categorySubcategoryRetrievalService.IsValid(
+            request.CategoryId, request.SubcategoryId);
+
         if (serviceResult.HasFailed)
         {
             return Task.FromResult(new ImportUpdateCommandResponse
@@ -32,16 +35,23 @@ public class ImportUpdateCommandHandler : IRequestHandler<ImportUpdateCommandReq
 
         var importUpdaterServiceResult = _importUpdaterService.Update(
             request.ImportId,
-            request.CategorySubcategoryId,
+            request.CategoryId,
+            request.SubcategoryId,
             request.Notes);
+
+        var categoryName = "Category Name";
+        var subcategoryName = "Subcategory Name";
 
         return Task.FromResult(new ImportUpdateCommandResponse
         {
             ImportId = request.ImportId,
             DescriptionValue = importUpdaterServiceResult.Payload.DescriptionValue!,
-            CategorySubcategoryId = request.CategorySubcategoryId,
-            CategoryName = serviceResult.Payload.Category!.CategoryName,
-            SubcategoryName = serviceResult.Payload.Subcategory!.SubcategoryName,
+            CategoryId = request.CategoryId,
+            SubcategoryId = request.SubcategoryId,
+            CategoryName = categoryName,
+            SubcategoryName = subcategoryName,
+            //CategoryName = serviceResult.Payload.Category!.CategoryName,
+            //SubcategoryName = serviceResult.Payload.Subcategory!.SubcategoryName,
             Notes = request.Notes,
         });
     }

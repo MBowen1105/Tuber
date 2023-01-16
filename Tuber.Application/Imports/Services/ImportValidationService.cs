@@ -15,15 +15,18 @@ public class ImportValidationService : IImportValidationService
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _dateTimeService;
     private readonly ILedgerRetrievalService _ledgerRetrievalService;
+    private readonly IBankAccountRetrievalService _bankAccountRetrievalService;
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
         ISystemClock dateTimeService,
-        ILedgerRetrievalService transactionRetrievalService)
+        ILedgerRetrievalService transactionRetrievalService,
+        IBankAccountRetrievalService bankAccountRetrievalService)
     {
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
         _ledgerRetrievalService = transactionRetrievalService;
+        _bankAccountRetrievalService = bankAccountRetrievalService;
     }
 
     public ServiceResult<List<Import>> Validate(
@@ -32,6 +35,17 @@ public class ImportValidationService : IImportValidationService
         bool suggestCategorisation,
         string[] allRows)
     {
+        //  Check Bank Account Exists
+        var bankAccountServiceResult = _bankAccountRetrievalService.GetById(bankAccountId);
+        if (bankAccountServiceResult.HasFailed)
+        {
+            return new ServiceResult<List<Import>>(
+                payload: new List<Import>(),
+                exceptionList: bankAccountServiceResult.Exceptions);
+        }
+
+        var bankAccount = bankAccountServiceResult.Payload;
+
         //  Check the first row of the array against the expected number of columns
         var cols = allRows[0].Split(importTemplate.SeperatorChar);
 
@@ -152,13 +166,15 @@ public class ImportValidationService : IImportValidationService
             if (validationFailureMessages.EndsWith(ValidationMessageSeperator))
                 validationFailureMessages = validationFailureMessages[..^1];
 
-            Guid? suggestedCategorySubcategoryId = null;
+            Guid? suggestedCategoryId = null;
+            Guid? suggestedSubcategoryId = null;
             if (suggestCategorisation)
             {
-                var serviceResult = _ledgerRetrievalService.SuggestCategorisation(
+                var suggestCategorisationServiceResult = _ledgerRetrievalService.SuggestCategorisation(
                     bankAccountId, descriptionValue, referenceOnStatementValue,
                     moneyIn, moneyOut);
-                suggestedCategorySubcategoryId = serviceResult.Payload.CategorySubcategoryId;
+                suggestedCategoryId = suggestCategorisationServiceResult.Payload.CategoryId;
+                suggestedSubcategoryId = suggestCategorisationServiceResult.Payload.SubcategoryId;
             }
 
             if (previousDateValue == dateValue)
@@ -182,13 +198,15 @@ public class ImportValidationService : IImportValidationService
                 BalanceOnStatementValue = balanceOnStatementValue,
                 SortCodeValue = sortCodeValue,
                 AccountNumberValue = accountNumberValue,
-                CategorySubcategoryId = suggestedCategorySubcategoryId,
+                CategoryId = suggestedCategoryId,
+                SubcategoryId = suggestedSubcategoryId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
-                ImportedUtc = _dateTimeService.NowUtc()
+                ImportedUtc = _dateTimeService.NowUtc(),
+                //BankAccount = bankAccount,
             };
             validatedRows.Add(newImportRow);
         }

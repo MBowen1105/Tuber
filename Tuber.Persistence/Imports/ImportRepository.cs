@@ -20,7 +20,7 @@ public class ImportRepository : IImportRepository
         return import;
     }
 
-    public Import Update(Guid importId, Guid categorySubcategoryId, string? notes)
+    public Import Update(Guid importId, Guid categoryId, Guid? subcategoryId, string? notes)
     {
         var import = _context.Imports
             .FirstOrDefault(x => x.ImportId == importId);
@@ -28,8 +28,9 @@ public class ImportRepository : IImportRepository
         if (import is null)
             return new Import();
 
-        import.CategorySubcategoryId = categorySubcategoryId;
-        import.Notes =notes;
+        import.CategoryId = categoryId;
+        import.SubcategoryId = subcategoryId;
+        import.Notes = notes;
 
         return import;
     }
@@ -55,11 +56,11 @@ public class ImportRepository : IImportRepository
     public List<Import> GetByBankAccountId(Guid bankAccountId)
     {
         return _context.Imports
-            .Include(x => x.ImportedByUser)
-            .Include(x => x.BankAccount)
-            .Include(x => x.CategorySubcategory)
-            .Include(x => x.CategorySubcategory.Category)
-            .Include(x => x.CategorySubcategory.Subcategory)
+            //.Include(x => x.ImportedByUser)
+            //.Include(x => x.BankAccount)
+            //.Include(x => x.CategorySubcategory)
+            //.Include(x => x.CategorySubcategory.Category)
+            //.Include(x => x.CategorySubcategory.Subcategory)
             .Where(x => x.BankAccountId == bankAccountId)
             .OrderBy(x => x.DateValueISO8601)
             .ThenBy(x => x.ImportRowNumber)

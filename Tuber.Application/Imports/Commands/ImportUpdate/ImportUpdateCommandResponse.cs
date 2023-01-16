@@ -8,7 +8,8 @@ public class ImportUpdateCommandResponse : CommandQueryResponseBase
     {
         ImportId = Guid.Empty;
         DescriptionValue = "";
-        CategorySubcategoryId = Guid.Empty;
+        CategoryId = Guid.Empty;
+        SubcategoryId = null;
         CategoryName = "";
         SubcategoryName = "";
         Notes = "";
@@ -16,8 +17,9 @@ public class ImportUpdateCommandResponse : CommandQueryResponseBase
 
     public Guid ImportId { get; init; }
     public string DescriptionValue { get; init; } = "";
-    public Guid CategorySubcategoryId { get; init; }
+    public Guid CategoryId { get; init; }
     public string CategoryName { get; init; } = "";
+    public Guid? SubcategoryId { get; init; }
     public string SubcategoryName { get; init; } = "";
     public string Notes { get; init; } = "";
 }

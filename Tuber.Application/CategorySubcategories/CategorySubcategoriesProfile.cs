@@ -14,7 +14,7 @@ public class CategorySubcategoryProfile : Profile
 
         CreateMap<CategorySubcategory, CategorySubcategoryGetByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore())
-            .ForMember(dest => dest.ShortName, act => act.MapFrom(x => x.ShortName.TrimEnd('/')));
+            .ForMember(dest => dest.ShortName, act => act.Ignore());
         CreateMap<CategorySubcategoryGetByIdQueryResponse, CategorySubcategoryGetByIdAPIResponse>();
 
         //  CategorySubcategoryAdd

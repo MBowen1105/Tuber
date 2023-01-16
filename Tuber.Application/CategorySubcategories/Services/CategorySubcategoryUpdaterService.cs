@@ -16,12 +16,13 @@ public class CategorySubcategoryUpdaterService : ICategorySubcategoryUpdaterServ
 
     public ServiceResult<CategorySubcategory> Add(Guid categoryId, Guid subcategoryId)
     {
-        var shortName = _categorySubcategoryRepo.Exists(categoryId, subcategoryId);
+        var isValid = _categorySubcategoryRepo.IsValid(categoryId, subcategoryId);
 
-        if (shortName != null)
+        if (isValid)
             return new ServiceResult<CategorySubcategory>(
                 payload: new CategorySubcategory(),
-                exception: new EntityAlreadyExistsException(CategorySubcategory.FriendlyName, "Name", shortName));
+                exception: new EntityAlreadyExistsException(
+                    CategorySubcategory.FriendlyName, "Key", $"{categoryId}/{subcategoryId}"));
         
         var categorySubcategory = new CategorySubcategory
         {

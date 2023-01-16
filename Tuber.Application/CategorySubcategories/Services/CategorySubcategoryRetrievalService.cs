@@ -25,4 +25,12 @@ public class CategorySubcategoryRetrievalService : ICategorySubcategoryRetrieval
 
         return new ServiceResult<CategorySubcategory>(categorySubcategory);
     }
+
+    public ServiceResult<bool> IsValid(Guid categoryId, Guid? subcategoryId)
+    {
+        var isValid = _categorySubcategoryRepository.IsValid(categoryId, subcategoryId);
+
+        return new ServiceResult<bool>(isValid);
+
+    }
 }

@@ -17,13 +17,14 @@ public class Ledger : AuditableEntity
         MoneyIn = 0;
         MoneyOut = 0;
         Balance = 0;
-        CategorySubcategoryId = null;
+        CategoryId = Guid.Empty;
+        SubcategoryId = null;
         TransferBankAccountId = null;
         IsManualEntry = false;
         IsReconciled = false;
         IsDeleted = false;
-        BankAccount = new BankAccount();
-        CategorySubcategory = new CategorySubcategory();
+        //BankAccount = new BankAccount();
+        //CategorySubcategory = new CategorySubcategory();
     }
 
     public Guid LedgerId { get; init; }
@@ -35,12 +36,13 @@ public class Ledger : AuditableEntity
     public string TransactionType { get; set; }
     public double? MoneyIn { get; set; }
     public double? MoneyOut { get; set; }
-    public double Balance { get; set; }
-    public Guid? CategorySubcategoryId { get; set; }
+    public double Balance { get; set; }            
+    public Guid CategoryId { get; set; }
+    public Guid? SubcategoryId { get; set; }
     public Guid? TransferBankAccountId { get; set; }
     public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
-    public BankAccount? BankAccount { get; set; }
-    public CategorySubcategory? CategorySubcategory { get; set; }
+    //public BankAccount? BankAccount { get; set; }
+    //public CategorySubcategory? CategorySubcategory { get; set; }
 }

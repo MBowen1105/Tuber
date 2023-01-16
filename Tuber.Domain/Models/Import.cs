@@ -18,13 +18,12 @@ public class Import
     public string? BalanceOnStatementValue { get; set; }
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
-    public Guid? CategorySubcategoryId { get; set; }
+    public Guid? CategoryId { get; set; }
+    public Guid? SubcategoryId { get; set; }
     public string? Notes { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }
     public DateTime ImportedUtc { get; set; }
-    public User? ImportedByUser { get; set; }
-    public BankAccount BankAccount { get; set; } = new();
-    public CategorySubcategory CategorySubcategory { get; set; } = new();
+    
 }

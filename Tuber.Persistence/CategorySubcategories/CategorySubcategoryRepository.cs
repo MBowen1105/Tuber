@@ -51,24 +51,23 @@ public class CategorySubcategoryRepository : ICategorySubcategoryRepository
     public CategorySubcategory GetById(Guid categorySubcategoryId)
     {
         var categorySubcategory = _context.CategorySubcategories
-            .Include(x => x.Category)
-            .Include(x => x.Subcategory)
+            //.Include(x => x.Category)
+            //.Include(x => x.Subcategory)
             .FirstOrDefault(x => x.CategorySubcategoryId == categorySubcategoryId && x.IsDeleted == false);
 
         return categorySubcategory ?? new CategorySubcategory();
     }
 
-    public string? Exists(Guid categoryId, Guid subcategoryId)
+    public bool IsValid(Guid categoryId, Guid? subcategoryId)
     {
         var categorySubcategory = _context.CategorySubcategories
-            .Include(x => x.Category)
-            .Include(x => x.Subcategory)
             .FirstOrDefault(x => x.CategoryId == categoryId &&
                 x.SubcategoryId == subcategoryId &&
                 x.IsDeleted == false);
         if (categorySubcategory != null )
-            return categorySubcategory.ShortName;
-        return null;
+            return true;
+            //return categorySubcategory.ShortName;
+        return false;
     }
     #endregion
 }

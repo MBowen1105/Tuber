@@ -10,9 +10,9 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
     {
         builder.ToTable("Ledgers");
 
-        builder.HasOne(x => x.BankAccount);
+        //builder.HasOne(x => x.BankAccount);
 
-        builder.HasOne(x => x.CategorySubcategory);
+        //builder.HasOne(x => x.CategorySubcategory);
 
         builder.HasOne(x => x.CreatedByUser);
 
@@ -38,8 +38,10 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         builder.Property(x => x.Balance)
            .IsRequired();
 
-        builder.Property(x => x.CategorySubcategoryId)
+        builder.Property(x => x.CategoryId)
            .IsRequired();
+
+        builder.Property(x => x.SubcategoryId);
 
         builder.Property(x => x.CreatedByUserId)
             .IsRequired();

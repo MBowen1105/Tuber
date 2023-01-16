@@ -12,7 +12,6 @@ public class BankRepository : IBankRepository
         _context = context;
     }
 
-
     #region "Commands"
     public Bank Add(Bank bank)
     {
@@ -116,6 +115,4 @@ public class BankRepository : IBankRepository
     {
         return _context.SaveChanges();
     }
-
-
 }

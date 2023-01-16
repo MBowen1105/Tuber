@@ -47,7 +47,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
                 && x.Reference == reference
                 && x.MoneyIn == moneyIn
                 && x.MoneyOut == moneyOut
-                && x.CategorySubcategoryId != null)
+                && x.IsReconciled == true)
             .ToList();
 
         if (resultList.Any())
@@ -58,7 +58,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
                 && x.Reference == reference
-                && x.CategorySubcategoryId != null)
+                && x.IsReconciled == true)
             .ToList();
 
         if (resultList.Any())
@@ -68,7 +68,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
-                && x.CategorySubcategoryId != null)
+                && x.IsReconciled == true)
             .ToList();
 
         if (resultList.Any())
@@ -81,8 +81,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         Guid bankAccountId,
         int pageNumber, int
         pageSize) =>
-        new ServiceResult<List<Ledger>>(
-            payload: _ledgerRepo.GetPaged(bankAccountId, pageNumber, pageSize));
+        new(payload: _ledgerRepo.GetPaged(bankAccountId, pageNumber, pageSize));
 
     public int CountPages(int pageSize) =>
         _ledgerRepo.CountPages(pageSize);

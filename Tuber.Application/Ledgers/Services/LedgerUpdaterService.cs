@@ -49,7 +49,8 @@ public class LedgerUpdaterService : ILedgerUpdaterService
                 MoneyIn = moneyIn,
                 MoneyOut = moneyOut,
                 Balance = double.Parse(import.BalanceOnStatementValue!),
-                CategorySubcategoryId = import.CategorySubcategoryId
+                CategoryId = (Guid)import.CategoryId!,
+                SubcategoryId = import.SubcategoryId
             };
 
             //  Is there an EXACT matching transaction on this ledger?
@@ -78,7 +79,8 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             existingLedger.Reference = ledger.Reference;
             existingLedger.TransactionType = ledger.TransactionType;
             existingLedger.Balance = ledger.Balance;
-            existingLedger.CategorySubcategoryId = ledger.CategorySubcategoryId;
+            existingLedger.CategoryId = ledger.CategoryId;
+            existingLedger.SubcategoryId = ledger.SubcategoryId;
             existingLedger.IsManualEntry = false;
 
             _ledgerRepo.Update(existingLedger);

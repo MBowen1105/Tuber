@@ -10,8 +10,9 @@ public class LedgerProfile : Profile
     {
         //  LedgerGetPaged
         CreateMap<Ledger, LedgerGetPaged_Ledger>()
-            .ForMember(dest => dest.BankAccountBankAccountName, act => act.Ignore())
-            .ForMember(dest => dest.CategorySubcategoryShortName, act => act.Ignore());
+            .ForMember(dest => dest.BankAccountName, src => src.Ignore())
+            .ForMember(dest => dest.CategoryName, src => src.Ignore())
+            .ForMember(dest => dest.SubcategoryName, src => src.Ignore());
         CreateMap<LedgerGetPagedQueryResponse, LedgerGetPagedAPIResponse>();
     }
 }
