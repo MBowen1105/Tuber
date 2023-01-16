@@ -16,7 +16,7 @@ public class BankUpdaterService : IBankUpdaterService
 
     public ServiceResult<Bank> Add(string bankName, int orderBy)
     {
-        if (_bankRepo.Exists(bankName))
+        if (_bankRepo.NameExists(bankName))
             return new ServiceResult<Bank>(
                 payload: new Bank(),
                 exception: new EntityAlreadyExistsException(Bank.FriendlyName, "Name", bankName));

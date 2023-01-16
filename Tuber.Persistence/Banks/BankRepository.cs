@@ -46,7 +46,6 @@ public class BankRepository : IBankRepository
     public int Delete(Guid bankId)
     {
         var bank = _context.Banks
-            .Include(x => x.BankAccounts)
             .FirstOrDefault(x => x.BankId == bankId && x.IsDeleted == false);
 
         if (bank == null)
@@ -70,8 +69,6 @@ public class BankRepository : IBankRepository
     {
         var bank = _context.Banks
             .Include(x => x.BankAccounts)
-                .Where(x => x.IsDeleted == false)
-            .Include(x => x.ImportTemplate)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .FirstOrDefault(x => x.BankId == id && x.IsDeleted == false);
@@ -83,10 +80,8 @@ public class BankRepository : IBankRepository
     {
         return _context.Banks
             .Include(x => x.BankAccounts)
-                .Where(x => x.IsDeleted == false)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
-            .Include(x => x.ImportTemplate)
             .Where(x => x.IsDeleted == false)
             .OrderBy(x => x.OrderBy)
             .Skip(pageNumber * pageSize - pageSize)
@@ -104,7 +99,7 @@ public class BankRepository : IBankRepository
         return (int)Math.Ceiling(totalPages);
     }
 
-    public bool Exists(string bankName)
+    public bool NameExists(string bankName)
     {
         return _context.Banks.Any(x => x.BankName == bankName);
     }

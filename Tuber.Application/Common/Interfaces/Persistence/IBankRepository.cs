@@ -11,6 +11,6 @@ public interface IBankRepository : IRepository<Bank>
     //  Repository Queries
     Bank GetById(Guid bankId);
     List<Bank> GetPaged(int pageNumber, int pageSize);
-    bool Exists(string bankName);
+    bool NameExists(string bankName);
     int CountPages(int pageSize);
 }

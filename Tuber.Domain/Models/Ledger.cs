@@ -23,8 +23,6 @@ public class Ledger : AuditableEntity
         IsManualEntry = false;
         IsReconciled = false;
         IsDeleted = false;
-        //BankAccount = new BankAccount();
-        //CategorySubcategory = new CategorySubcategory();
     }
 
     public Guid LedgerId { get; init; }
@@ -43,6 +41,4 @@ public class Ledger : AuditableEntity
     public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
-    //public BankAccount? BankAccount { get; set; }
-    //public CategorySubcategory? CategorySubcategory { get; set; }
 }

@@ -8,6 +8,5 @@ public class CategorySubcategory
     public Guid? SubcategoryId { get; set; }    
     public bool IsCoreCategorySubcategory { get; set; }
     public bool IsDeleted { get; set; }
-    //public string ShortName => $"{Category?.CategoryName}/{Subcategory?.SubcategoryName}".TrimEnd('/');
    
 }

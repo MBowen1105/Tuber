@@ -5,22 +5,10 @@ public class Bank : AuditableEntity
 {
     public static readonly string FriendlyName = "Bank";
 
-    public Bank()
-    {
-        BankId = Guid.Empty;
-        BankName = "";
-        OrderBy = int.MaxValue;
-        BankAccounts = new List<BankAccount>();
-        ImportTemplateId = null;
-        ImportTemplate = null;
-        IsDeleted = false;       
-    }
-
-    public Guid BankId { get; set; }
-    public string BankName { get; set; }
-    public int OrderBy { get; set; }
-    public Guid? ImportTemplateId { get; set; }
-    public bool IsDeleted { get; set; }
-    public ICollection<BankAccount>? BankAccounts { get; set; }
-    public ImportTemplate? ImportTemplate { get; init; }
+    public Guid BankId { get; init; } = Guid.Empty;
+    public string BankName { get; set; } = string.Empty;
+    public int OrderBy { get; set; } = int.MaxValue;
+    public Guid? ImportTemplateId { get; init; } = null;
+    public bool IsDeleted { get; set; } = false;
+    public ICollection<BankAccount> BankAccounts { get; init; } = new List<BankAccount>();
 }

@@ -5,6 +5,7 @@ public class BankAccount : AuditableEntity
 {
     public static readonly string FriendlyName = "Bank Account";
 
+    //TODO: Remove constructor?
     public BankAccount()
     {
         BankAccountId = Guid.Empty;

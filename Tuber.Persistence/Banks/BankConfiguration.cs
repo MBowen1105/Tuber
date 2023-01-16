@@ -9,12 +9,9 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
 {
     public void Configure(EntityTypeBuilder<Bank> modelBuilder)
     {
-        modelBuilder.ToTable("Banks")
-            .HasMany(x => x.BankAccounts);
-            //.WithOne(x => x.Bank)
-            //.HasForeignKey(x => x.BankId);
+        modelBuilder.ToTable("Banks");
 
-        modelBuilder.HasOne(x => x.ImportTemplate);
+        modelBuilder.HasMany(x => x.BankAccounts);
 
         modelBuilder.HasOne(x => x.CreatedByUser);
 
