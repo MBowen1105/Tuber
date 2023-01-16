@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tuber.Domain.Models;
 
-namespace Tuber.Persistence.Settings;
+namespace Tuber.Persistence.AppConfigs;
 
-public class SettingConfiguration : IEntityTypeConfiguration<Setting>
+public class AppConfigConfiguration : IEntityTypeConfiguration<AppConfig>
 {
-    public void Configure(EntityTypeBuilder<Setting> builder)
+    public void Configure(EntityTypeBuilder<AppConfig> builder)
     {
-        builder.ToTable("Settings");
+        builder.ToTable("AppConfigs");
 
         builder.HasOne(x => x.CreatedByUser);
 
@@ -18,6 +18,6 @@ public class SettingConfiguration : IEntityTypeConfiguration<Setting>
             .IsRequired()
             .HasDefaultValue(365);
 
-        SettingSeeding.Seed(builder);
+        AppConfigSeeding.Seed(builder);
     }
 }

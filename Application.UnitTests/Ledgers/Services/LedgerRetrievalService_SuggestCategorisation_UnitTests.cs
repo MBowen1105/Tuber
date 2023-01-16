@@ -10,6 +10,7 @@ namespace Application.UnitTests.Ledgers.Services;
 public class LedgerRetrievalService_SuggestCategorisation_UnitTests
 {
     private readonly Mock<ILedgerRepository> _mockLedgerRepo = new();
+    private readonly Mock<IAppConfigRepository> _mockAppConfigRepo = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly DateTime TodayUtc = new(2023, 1, 6);
 
@@ -39,7 +40,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
             It.IsAny<Guid>(),
             It.IsAny<DateTime>(),
             It.IsAny<DateTime>()))
-            .Returns(new List<Ledger>()
+                .Returns(new List<Ledger>()
             {
                 new Ledger
                 {
@@ -82,8 +83,12 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                 }
             });
 
+        _mockAppConfigRepo.Setup(x => x.Get())
+                .Returns(new AppConfig());
+
         _sut = new LedgerRetrievalService(
             _mockLedgerRepo.Object,
+            _mockAppConfigRepo.Object,
             _mockSystemClock.Object);
     }
 

@@ -1,3 +1,4 @@
+using Tuber.API.AppConfigs;
 using Tuber.API.BankAccounts;
 using Tuber.API.Banks;
 using Tuber.API.Categories;
@@ -51,5 +52,8 @@ CategorySubcategoryEndpoints.QueryEndpoints(app);
 
 LedgerEndpoints.CommandEndpoints(app);
 LedgerEndpoints.QueryEndpoints(app);
+
+AppConfigEndpoints.CommandEndpoints(app);
+AppConfigEndpoints.QueryEndpoints(app);
 
 app.Run();

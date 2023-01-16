@@ -8,18 +8,22 @@ namespace Tuber.Application.Ledgers.Services;
 public class LedgerRetrievalService : ILedgerRetrievalService
 {
     private readonly ILedgerRepository _ledgerRepo;
+    private readonly IAppConfigRepository _appConfigRepo;
+
     private readonly ISystemClock _systemClock;
 
     private List<Ledger> _ledgerTransactionList = new();
     private Guid _currentBankAccountId = Guid.Empty;
 
-    private const int HorizonDays = 365;    //TODO: Add to Settings table.
+    
 
     public LedgerRetrievalService(
         ILedgerRepository ledgerRepository,
+        IAppConfigRepository appConfigRepo,
         ISystemClock systemClock)
     {
         _ledgerRepo = ledgerRepository;
+        _appConfigRepo = appConfigRepo;
         _systemClock = systemClock;
     }
 
@@ -29,9 +33,9 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     {
         if (_currentBankAccountId != bankAccountId)
         {
-            //  List all live transactions 40 days old or less.
+            var settings = _appConfigRepo.Get();
             var toDate = _systemClock.TodayUtc();
-            var fromDate = toDate.AddDays(-HorizonDays)
+            var fromDate = toDate.AddDays(-settings.CategorySuggestionHorizonDays)
                 .AddDays(-1).AddSeconds(1);
 
             _ledgerTransactionList = _ledgerRepo.GetBetweenDates(bankAccountId,

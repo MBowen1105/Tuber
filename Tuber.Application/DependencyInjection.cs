@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tuber.Application.AppConfigs.Services;
 using Tuber.Application.BankAccounts.Services;
 using Tuber.Application.Banks.Services;
 using Tuber.Application.Categories.Services;
@@ -57,6 +58,8 @@ public static class DependencyInjection
 
         services.AddScoped<ILedgerRetrievalService, LedgerRetrievalService>();
         services.AddScoped<ILedgerUpdaterService, LedgerUpdaterService>();
+
+        services.AddScoped<IAppConfigRetrievalService, AppConfigRetrievalService>();
 
         var config = new MapperConfiguration(cfg =>
         {

@@ -2,13 +2,13 @@
 using Tuber.Persistence.Users;
 using Tuber.Domain.Models;
 
-namespace Tuber.Persistence.Settings;
-public static class SettingSeeding
+namespace Tuber.Persistence.AppConfigs;
+public static class AppConfigSeeding
 {
-    public static void Seed(EntityTypeBuilder<Setting> builder)
+    public static void Seed(EntityTypeBuilder<AppConfig> builder)
     {
         builder.HasData(
-            new Setting
+            new AppConfig
             {
                 CategorySuggestionHorizonDays = 365,
                 CreatedOnUtc = DateTime.UtcNow,

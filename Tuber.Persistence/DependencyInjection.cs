@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Tuber.Application.Common.Interfaces.Persistence;
+using Tuber.Persistence.AppConfigs;
 using Tuber.Persistence.BankAccounts;
 using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
@@ -37,6 +38,7 @@ public static class DependencyInjection
         services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
         services.AddScoped<ICategorySubcategoryRepository, CategorySubcategoryRepository>();
         services.AddScoped<ILedgerRepository, LedgerRepository>();
+        services.AddScoped<IAppConfigRepository, AppConfigRepository>();
 
         return services;
     }

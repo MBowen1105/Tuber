@@ -29,6 +29,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Subcategory> Subcategories { get; set; }
     public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
     public DbSet<Ledger> Ledgers { get; set; }
+    public DbSet<AppConfig> AppConfigs { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         ISystemClock systemClock,
