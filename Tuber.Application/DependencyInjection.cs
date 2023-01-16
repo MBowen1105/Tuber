@@ -60,6 +60,7 @@ public static class DependencyInjection
         services.AddScoped<ILedgerUpdaterService, LedgerUpdaterService>();
 
         services.AddScoped<IAppConfigRetrievalService, AppConfigRetrievalService>();
+        services.AddScoped<IAppConfigUpdaterService, AppConfigUpdaterService>();
 
         var config = new MapperConfiguration(cfg =>
         {

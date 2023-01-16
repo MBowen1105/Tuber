@@ -5,6 +5,6 @@ public class AppConfig : AuditableEntity
 {
     public static readonly string FriendlyName = "AppConfig";
 
-    public Guid AppConfigId { get; init; } = Guid.Empty;
+    public Guid AppConfigId { get; init; }
     public int CategorySuggestionHorizonDays { get; set; } = 365;
 }

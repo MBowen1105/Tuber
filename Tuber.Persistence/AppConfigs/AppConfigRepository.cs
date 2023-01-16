@@ -15,19 +15,19 @@ public class AppConfigRepository : IAppConfigRepository
     #region "Commands"
  
 
-    public AppConfig Update(AppConfig appConfig)
+    public AppConfig Update(int categorySuggestionHorizonDays)
     {
-        var AppConfigModel = _context.AppConfigs
+        var appConfig = _context.AppConfigs
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .FirstOrDefault();
 
-        if (AppConfigModel is null)
+        if (appConfig is null)
             return new AppConfig();
 
-        AppConfigModel.CategorySuggestionHorizonDays = appConfig.CategorySuggestionHorizonDays;
+        appConfig.CategorySuggestionHorizonDays = categorySuggestionHorizonDays;
 
-        return AppConfigModel;
+        return appConfig;
     }
 
     #endregion

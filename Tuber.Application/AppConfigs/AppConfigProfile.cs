@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tuber.Application.AppConfigs.Commands.AppConfigUpdate;
 using Tuber.Application.AppConfigs.Queries.AppConfigGet;
 using Tuber.Domain.Models;
 
@@ -13,7 +14,7 @@ public class AppConfigProfile : Profile
             .ForMember(dest => dest.Exceptions, opt=>opt.Ignore());
 
         //  AppConfigUpdate
-        //CreateMap<AppConfigUpdateAPIRequest, AppConfigUpdateCommandRequest>();
-        //CreateMap<AppConfigUpdateCommandResponse, AppConfigUpdateAPIResponse>();
+        CreateMap<AppConfigUpdateAPIRequest, AppConfigUpdateCommandRequest>();
+        CreateMap<AppConfigUpdateCommandResponse, AppConfigUpdateAPIResponse>();
     }
 }

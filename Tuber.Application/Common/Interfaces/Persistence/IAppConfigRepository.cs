@@ -4,7 +4,7 @@ namespace Tuber.Application.Common.Interfaces.Persistence;
 public interface IAppConfigRepository : IRepository<AppConfig>
 {
     //  Repository Commands
-    AppConfig Update(AppConfig appConfig);
+    AppConfig Update(int categorySuggestionHorizonDays);
 
     //  Repository Queries
     AppConfig Get();

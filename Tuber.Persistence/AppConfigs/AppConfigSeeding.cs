@@ -10,6 +10,7 @@ public static class AppConfigSeeding
         builder.HasData(
             new AppConfig
             {
+                AppConfigId = Guid.Parse("DE570E94-96CE-4FB8-B33E-22420790F577"),
                 CategorySuggestionHorizonDays = 365,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,

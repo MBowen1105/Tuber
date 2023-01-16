@@ -3,6 +3,7 @@ using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Interfaces.SystemClock;
 using Tuber.Domain.Models;
+using Tuber.Persistence.AppConfigs;
 using Tuber.Persistence.BankAccounts;
 using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
@@ -80,6 +81,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new SubcategoryConfiguration());
         modelBuilder.ApplyConfiguration(new CategorySubcategoryConfiguration());
         modelBuilder.ApplyConfiguration(new LedgerConfiguration());
+        modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
