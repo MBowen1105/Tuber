@@ -81,6 +81,7 @@ public class BankRepository : IBankRepository
     {
         return _context.Banks
             .Include(x => x.BankAccounts)
+            .Include(x => x.ImportTemplate)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .Where(x => x.IsDeleted == false)

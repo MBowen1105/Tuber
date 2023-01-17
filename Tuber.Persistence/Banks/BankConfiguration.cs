@@ -13,6 +13,8 @@ public class BankConfiguration : IEntityTypeConfiguration<Bank>
 
         modelBuilder.HasMany(x => x.BankAccounts);
 
+        modelBuilder.HasOne(x => x.ImportTemplate);
+
         modelBuilder.HasOne(x => x.CreatedByUser);
 
         modelBuilder.HasOne(x => x.UpdatedByUser);
