@@ -56,11 +56,10 @@ public class ImportRepository : IImportRepository
     public List<Import> GetByBankAccountId(Guid bankAccountId)
     {
         return _context.Imports
-            //.Include(x => x.ImportedByUser)
-            //.Include(x => x.BankAccount)
-            //.Include(x => x.CategorySubcategory)
-            //.Include(x => x.CategorySubcategory.Category)
-            //.Include(x => x.CategorySubcategory.Subcategory)
+            .Include(x => x.BankAccount)
+            .Include(x => x.Category)
+            .Include(x => x.Subcategory)
+            .Include(x => x.ImportedByUser)
             .Where(x => x.BankAccountId == bankAccountId)
             .OrderBy(x => x.DateValueISO8601)
             .ThenBy(x => x.ImportRowNumber)

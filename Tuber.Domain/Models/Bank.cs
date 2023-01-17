@@ -8,8 +8,6 @@ public class Bank : AuditableEntity
     public Guid BankId { get; init; } = Guid.Empty;
     public string BankName { get; set; } = string.Empty;
     public int OrderBy { get; set; } = int.MaxValue;
-    public Guid? ImportTemplateId { get; init; } = null;
     public bool IsDeleted { get; set; } = false;
     public virtual ICollection<BankAccount> BankAccounts { get; init; } = new List<BankAccount>();
-    public virtual ImportTemplate? ImportTemplate { get; init; } = null;
 }

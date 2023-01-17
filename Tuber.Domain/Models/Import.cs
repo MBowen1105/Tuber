@@ -25,5 +25,9 @@ public class Import
     public string? ValidationFailureMessages { get; set; }
     public Guid ImportedByUserId { get; set; }
     public DateTime ImportedUtc { get; set; }
-    
+
+    public virtual BankAccount? BankAccount { get; set; }
+    public virtual Category? Category { get; set; }
+    public virtual Subcategory? Subcategory { get; set; }
+    public virtual User? ImportedByUser { get; set; }
 }

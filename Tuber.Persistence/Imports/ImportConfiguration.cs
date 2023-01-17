@@ -10,11 +10,14 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
     {
         builder.ToTable("Imports");
 
-        //builder.HasOne(x => x.BankAccount);
+        builder.HasOne(x => x.BankAccount);
 
-        //builder.HasOne(x => x.ImportedByUser);
+        builder.HasOne(x => x.Category);
 
-        //builder.HasOne(x => x.CategorySubcategory);
+        builder.HasOne(x => x.Subcategory);
+
+        builder.HasOne(x => x.ImportedByUser);
+
 
         builder.Property(x => x.BankAccountId)
             .IsRequired();
