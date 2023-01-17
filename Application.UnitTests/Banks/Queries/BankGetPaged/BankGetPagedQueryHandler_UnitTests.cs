@@ -7,8 +7,8 @@ using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.UnitTests.Banks.Queries.GetBank;
-internal class GetBankPagedQueryHandler_UnitTests
+namespace Tuber.Application.UnitTests.Banks.Queries.BankGetPaged;
+internal class BankGetPagedQueryHandler_UnitTests
 {
     private Bank[] _bankArray;
     private List<BankGetPaged_Bank> _bankDtoList;

@@ -31,7 +31,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<CategorySubcategory> CategorySubcategories { get; set; }
     public DbSet<Ledger> Ledgers { get; set; }
     public DbSet<AppConfig> AppConfigs { get; set; }
-
+    
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         ISystemClock systemClock,
         ICurrentUserService currentUserService)

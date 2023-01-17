@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tuber.Application\Tuber.Application.csproj" />
+    <ProjectReference Include="..\Tuber.Persistence\Tuber.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
