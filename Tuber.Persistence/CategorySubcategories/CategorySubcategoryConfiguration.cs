@@ -10,9 +10,9 @@ public class CategorySubcategoryConfiguration : IEntityTypeConfiguration<Categor
     {
         builder.ToTable("CategorySubcategories");
 
-        //builder.HasOne(x => x.Category);
+        builder.HasOne(x => x.Category);
 
-        //builder.HasOne(x => x.Subcategory);
+        builder.HasOne(x => x.Subcategory);
 
         builder.Property(x => x.CategorySubcategoryId)
             .IsRequired();
