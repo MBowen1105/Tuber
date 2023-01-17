@@ -206,7 +206,7 @@ public class ImportValidationService : IImportValidationService
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
                 ImportedUtc = _dateTimeService.NowUtc(),
-                //BankAccount = bankAccount,
+                BankAccount = bankAccount,
             };
             validatedRows.Add(newImportRow);
         }

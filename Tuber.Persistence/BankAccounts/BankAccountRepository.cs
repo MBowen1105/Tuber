@@ -28,6 +28,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     {
         var bankAccount = _context.Set<BankAccount>()
             .Include(x => x.Bank)
+            .Include(x => x.ImportTemplate)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .FirstOrDefault(x => x.BankAccountId == bankAccountId && x.IsDeleted == false);
@@ -39,6 +40,7 @@ public class BankAccountRepository : Repository<BankAccount>, IBankAccountReposi
     {
         return _context.Set<BankAccount>()
             .Include(x => x.Bank)
+            .Include(x => x.ImportTemplate)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .Where(x => x.IsDeleted == false)

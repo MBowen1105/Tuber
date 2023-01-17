@@ -8,47 +8,53 @@ namespace Tuber.Application.Imports.Commands.ImportAdd;
 public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, ImportAddCommandResponse>
 {
     private readonly IFileSystem _fileSystem;
-    private readonly IImportTemplateRetrievalService _importTemplateRetrievalService;
+    private readonly IBankAccountRetrievalService _bankAccountRetrievalService;
     private readonly IImportValidationService _importvalidationService;
     private readonly IImportUpdaterService _importUpdaterService;
-    private readonly ICategorySubcategoryRetrievalService _categoryRetrievalService;
 
 
     public ImportAddCommandHandler(
         IFileSystem fileSystem,
-        IImportTemplateRetrievalService importTemplateRetrievalService,
+        IBankAccountRetrievalService importTemplateRetrievalService,
         IImportValidationService importValidationService,
-        IImportUpdaterService importUpdaterService,
-        ICategorySubcategoryRetrievalService categoryRetrievalService)
+        IImportUpdaterService importUpdaterService)
     {
         _fileSystem = fileSystem;
-        _importTemplateRetrievalService = importTemplateRetrievalService;
+        _bankAccountRetrievalService = importTemplateRetrievalService;
         _importvalidationService = importValidationService;
         _importUpdaterService = importUpdaterService;
-        _categoryRetrievalService = categoryRetrievalService;
-     }
+    }
 
-    public Task<ImportAddCommandResponse> Handle(ImportAddCommandRequest request, CancellationToken cancellationToken)
+    public Task<ImportAddCommandResponse> Handle(
+        ImportAddCommandRequest request,
+        CancellationToken cancellationToken)
     {
-        //  Get appropriate Import Template.
-        var importTemplateRetrievalServiceResult = _importTemplateRetrievalService.GetById(request.ImportTemplateId);
-        if (importTemplateRetrievalServiceResult.HasFailed)
+        //  Get appropriate Import Template ID from the BankAccount.
+        var bankAccountRetrievalServiceResult = _bankAccountRetrievalService.GetById(request.BankAccountId);
+        if (bankAccountRetrievalServiceResult.HasFailed)
         {
             return Task.FromResult(new ImportAddCommandResponse
             {
-                Exceptions = importTemplateRetrievalServiceResult.Exceptions,
+                Exceptions = bankAccountRetrievalServiceResult.Exceptions,
             });
         }
 
-        //  Save valid Import Template
-        var importTemplate = importTemplateRetrievalServiceResult.Payload;
+        //  Save Import Template if one is defined
+        var importTemplate = bankAccountRetrievalServiceResult.Payload.ImportTemplate;
+        if (importTemplate == null)
+            return Task.FromResult(new ImportAddCommandResponse
+            {
+                Exceptions = new List<Exception> {
+                    new BankAccountHasNoImportTemplateDefinedException(bankAccountRetrievalServiceResult.Payload.BankAccountName)
+                }
+            });
 
         //  Does the Text Import File exist?
         var workingDirectory = _fileSystem.CurrentDirectory();
         var projectDirectory = _fileSystem.GetParent(workingDirectory)!.FullName;
 
         var importFileUrl = $@"{projectDirectory}\Tuber.FileSystem\Import Folder\{request.ImportFileName}";
-        
+
         if (!_fileSystem.Exists(importFileUrl))
             return Task.FromResult(new ImportAddCommandResponse
             {
@@ -68,7 +74,7 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
             });
 
         var importValidationServiceResult = _importvalidationService.Validate(
-            importTemplate, 
+            importTemplate,
             request.BankAccountId,
             request.SuggestCategorisation,
             allRows);
