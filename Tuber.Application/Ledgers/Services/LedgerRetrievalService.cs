@@ -15,7 +15,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     private List<Ledger> _ledgerTransactionList = new();
     private Guid _currentBankAccountId = Guid.Empty;
 
-    
+
 
     public LedgerRetrievalService(
         ILedgerRepository ledgerRepository,

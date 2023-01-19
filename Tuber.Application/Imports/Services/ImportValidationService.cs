@@ -173,7 +173,9 @@ public class ImportValidationService : IImportValidationService
                 var suggestCategorisationServiceResult = _ledgerRetrievalService.SuggestCategorisation(
                     bankAccountId, descriptionValue, referenceOnStatementValue,
                     moneyIn, moneyOut);
-                suggestedCategoryId = suggestCategorisationServiceResult.Payload.CategoryId;
+                suggestedCategoryId = (suggestCategorisationServiceResult.Payload.CategoryId == Guid.Empty)
+                    ? null
+                    : suggestCategorisationServiceResult.Payload.CategoryId;
                 suggestedSubcategoryId = suggestCategorisationServiceResult.Payload.SubcategoryId;
             }
 
