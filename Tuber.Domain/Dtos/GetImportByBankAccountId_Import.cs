@@ -5,7 +5,7 @@ public class GetImportByBankAccountId_Import
 {
     public Guid ImportId { get; set; }
     public Guid BankAccountId { get; set; }
-    public string BankAccountName { get; init; } = "";
+    public string BankAccountBankAccountName { get; init; } = "";
     public int ImportRowNumber { get; set; }
     public string? DateValueISO8601 { get; set; }
     public string? DescriptionOnStatementValue { get; set; }
@@ -18,9 +18,9 @@ public class GetImportByBankAccountId_Import
     public string? SortCodeValue { get; set; }
     public string? AccountNumberValue { get; set; }
     public Guid? CategoryId { get; set; }
-    public string? CategoryShortName { get; set; }
+    public string? CategoryCategoryName { get; set; }
     public Guid? SubcategoryId { get; set; }
-    public string? SubcategoryShortName { get; set; }
+    public string? SubcategorySubcategoryName { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string ImportRowStatusDesc { get; set; } = "";
     public string? ValidationFailureMessages { get; set; }

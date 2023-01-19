@@ -55,15 +55,15 @@ public class ImportRepository : IImportRepository
     #region "Queries"
     public List<Import> GetByBankAccountId(Guid bankAccountId)
     {
-        return _context.Imports
+        var imports = _context.Imports
             .Include(x => x.BankAccount)
             .Include(x => x.Category)
             .Include(x => x.Subcategory)
             .Include(x => x.ImportedByUser)
             .Where(x => x.BankAccountId == bankAccountId)
             .OrderBy(x => x.DateValueISO8601)
-            .ThenBy(x => x.ImportRowNumber)
-            .ToList();
+            .ThenBy(x => x.ImportRowNumber);
+        return imports.ToList();
     }
 
     #endregion

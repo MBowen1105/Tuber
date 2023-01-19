@@ -14,11 +14,7 @@ public class ImportProfile : Profile
         //  ImportGetByBankAccountId
         CreateMap<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>();
         CreateMap<Import, GetImportByBankAccountId_Import>()
-            .ForMember(dest => dest.BankAccountName, opt => opt.Ignore())
-            .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()))
-            .ForMember(dest => dest.CategoryShortName, opt => opt.Ignore())
-            .ForMember(dest => dest.SubcategoryShortName, opt => opt.Ignore())
-            .ForMember(dest => dest.ImportedByUserFullName, opt => opt.Ignore());
+            .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
         //  ImportAdd
         CreateMap<ImportAddAPIRequest, ImportAddCommandRequest>();
