@@ -58,7 +58,7 @@ public static class CategorySeeding
             new Category
             {
                 CategoryId = BankChargesCategoryId,
-                CategoryName = "Bank Charged",
+                CategoryName = "Bank Charges",
                 IsCoreCategory = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,

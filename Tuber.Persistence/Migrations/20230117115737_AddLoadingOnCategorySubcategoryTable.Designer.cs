@@ -394,7 +394,7 @@ namespace Tuber.Persistence.Migrations
                         new
                         {
                             CategoryId = new Guid("ba134b1e-095b-4dc7-800d-94f27a1d9747"),
-                            CategoryName = "Bank Charged",
+                            CategoryName = "Bank Charges",
                             CreatedByUserId = new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"),
                             CreatedOnUtc = new DateTime(2023, 1, 17, 11, 57, 37, 349, DateTimeKind.Utc).AddTicks(8573),
                             IsCoreCategory = true,

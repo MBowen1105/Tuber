@@ -41,4 +41,7 @@ public class Ledger : AuditableEntity
     public bool IsManualEntry { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
+    public virtual BankAccount? BankAccount { get; set; }
+    public virtual Category? Category { get; set; }
+    public virtual Subcategory? Subcategory { get; set; }
 }

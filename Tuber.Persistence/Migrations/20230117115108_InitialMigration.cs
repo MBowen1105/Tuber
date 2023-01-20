@@ -368,7 +368,7 @@ namespace Tuber.Persistence.Migrations
                     { new Guid("3eefa969-31e0-46d3-9d81-d514035dd3de"), "Child Maintenance", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4337), false, false, null, null },
                     { new Guid("93678674-f2b0-48a3-91c3-050b506d258d"), "Household Services", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4323), true, false, null, null },
                     { new Guid("97ea6440-ddb5-42ad-967f-5c9d34646b14"), "Motor", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4319), true, false, null, null },
-                    { new Guid("ba134b1e-095b-4dc7-800d-94f27a1d9747"), "Bank Charged", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4323), true, false, null, null },
+                    { new Guid("ba134b1e-095b-4dc7-800d-94f27a1d9747"), "Bank Charges", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4323), true, false, null, null },
                     { new Guid("ebb8bab4-a579-41ca-b42b-bf1bdb9b52f9"), "Mortage", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4320), true, false, null, null },
                     { new Guid("ff39de05-0b97-4c98-b013-9cee276774cf"), "Entertainment", new Guid("02ceedc1-d3b4-4e5e-8844-0d853c24463b"), new DateTime(2023, 1, 17, 11, 51, 7, 687, DateTimeKind.Utc).AddTicks(4322), true, false, null, null }
                 });

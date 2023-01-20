@@ -55,6 +55,9 @@ public class LedgerRepository : ILedgerRepository
     public List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize)
     {
         return _context.Ledgers
+            .Include(x => x.BankAccount)
+            .Include(x => x.Category)
+            .Include(x => x.Subcategory)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
             .Where(x => x.IsDeleted == false)
