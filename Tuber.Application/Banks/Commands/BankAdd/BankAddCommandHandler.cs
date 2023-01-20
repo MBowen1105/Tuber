@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Tuber.Application.Banks.Commands.AddBank;
 using Tuber.Application.Common.Interfaces;
 
 namespace Tuber.Application.Banks.Commands.BankAdd;

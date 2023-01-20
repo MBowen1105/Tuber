@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Tuber.Application.Banks.Commands.AddBank;
 using Tuber.Application.Banks.Commands.BankAdd;
 using Tuber.Application.Banks.Commands.BankUpdate;
 using Tuber.Application.Banks.Queries.BankGetById;
