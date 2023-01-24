@@ -8,7 +8,7 @@ public class LedgerAddCreditCommandRequest : IRequest<LedgerAddCreditCommandResp
     public string Description { get; set; } = "";
     public string? Reference { get; set; }
     public string TransactionType { get; set; } = "";
-    public double? MoneyIn { get; set; }
+    public double MoneyIn { get; set; }
     public Guid CategoryId { get; set; }
     public Guid? SubcategoryId { get; set; }
 }

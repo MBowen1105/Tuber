@@ -47,6 +47,8 @@ public class LedgerRepository : ILedgerRepository
 
         return ledger;
     }
+
+
     #endregion
 
     #region "Queries"
@@ -109,6 +111,18 @@ public class LedgerRepository : ILedgerRepository
 
         return ledger ?? new Ledger();
     }
+
+    public double? GetBalancePriorTo(Guid bankAccountId, DateTime dateUtc)
+    {
+        var ledger = _context.Ledgers
+            .Where(x => x.BankAccountId == bankAccountId
+                && x.DateUtc < dateUtc
+                && x.IsDeleted == false)
+            .OrderByDescending(x => x.DateUtc)
+            .ThenByDescending(x => x.RowNumber)
+            .FirstOrDefault();
+        return ledger?.Balance;
+    }
     #endregion
 
 
@@ -116,4 +130,6 @@ public class LedgerRepository : ILedgerRepository
     {
         return _context.SaveChanges();
     }
+
+
 }

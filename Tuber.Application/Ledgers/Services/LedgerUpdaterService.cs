@@ -1,7 +1,6 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Exceptions;
 using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
@@ -9,11 +8,14 @@ namespace Tuber.Application.Ledgers.Services;
 public class LedgerUpdaterService : ILedgerUpdaterService
 {
     private readonly ILedgerRepository _ledgerRepo;
+    private readonly IBankAccountRepository _bankAccountRepo;
 
     public LedgerUpdaterService(
-        ILedgerRepository ledgerRepo)
+        ILedgerRepository ledgerRepo,
+        IBankAccountRepository bankAccountRepo)
     {
         _ledgerRepo = ledgerRepo;
+        _bankAccountRepo = bankAccountRepo;
     }
 
     public ServiceResult<AcceptResult> Accept(Guid bankAccountId, List<Import> imports)
@@ -53,9 +55,9 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
             //  Is there an EXACT matching transaction on this ledger?
             var existingLedger = _ledgerRepo.GetByValues(
-                ledger.BankAccountId, ledger.DateUtc, 
+                ledger.BankAccountId, ledger.DateUtc,
                 ledger.Description, ledger.MoneyIn, ledger.MoneyOut);
-            
+
             if (existingLedger.LedgerId == Guid.Empty)
             {
                 //  No matching Ledger transaction
@@ -98,8 +100,10 @@ public class LedgerUpdaterService : ILedgerUpdaterService
     }
 
     public ServiceResult<Ledger> AddCredit(Guid bankAccountId, DateTime dateUtc, string description,
-        string? reference, string transactionType, double? moneyIn, Guid categoryId, Guid? subcategoryId)
+        string? reference, string transactionType, double moneyIn, Guid categoryId, Guid? subcategoryId)
     {
+        double balanceBF = GetBalancePriorTo(bankAccountId, dateUtc);
+
         var ledger = new Ledger
         {
             BankAccountId = bankAccountId,
@@ -110,12 +114,15 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             TransactionType = transactionType,
             MoneyIn = moneyIn,
             MoneyOut = null,
+            Balance = balanceBF + moneyIn,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
-            IsManualEntry= true,
+            IsManualEntry = true,
         };
 
         ledger = _ledgerRepo.Add(ledger);
+
+        CalculateBalances(bankAccountId, dateUtc, balanceBF);
 
         _ledgerRepo.SaveChanges();
 
@@ -135,5 +142,32 @@ public class LedgerUpdaterService : ILedgerUpdaterService
     private int NextRowNumber(Guid bankAccountId, DateTime dateUtc)
     {
         return _ledgerRepo.NextRowNumber(bankAccountId, dateUtc);
+    }
+
+    private double GetBalancePriorTo(Guid bankAccountId, DateTime dateUtc)
+    {
+        //  Get the balance of the transaction immediately prior to this one or null if there are none.
+        var balanceBF = _ledgerRepo.GetBalancePriorTo(bankAccountId, dateUtc);
+
+        //  If there is no transaction prior to this one, take the opening balance of the account
+        if (balanceBF is not null)
+            return (double)balanceBF;
+
+        var bankAccount = _bankAccountRepo.GetById(bankAccountId);
+        return bankAccount.OpeningBalance;
+    }
+
+    private void CalculateBalances(Guid bankAccountId, DateTime dateUtc, double balanceBF)
+    {
+        //  Read all ledger transactions on or after this one
+        var ledgerTransactionsList = _ledgerRepo.GetBetweenDates(bankAccountId, dateUtc, DateTime.MaxValue);
+
+        //  Recalculate the balances
+        var runningBalance = balanceBF;
+        foreach (var lt in ledgerTransactionsList)
+        {
+            lt.Balance = runningBalance + (double)lt.MoneyIn! - (double)lt.MoneyOut!;
+            _ledgerRepo.Update(lt);
+        }
     }
 }

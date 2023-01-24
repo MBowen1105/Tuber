@@ -9,7 +9,7 @@ public interface ILedgerRepository : IRepository<Ledger>
 
     //  Repository Queries
     List<Ledger> GetBetweenDates(Guid bankAccountId, DateTime fromDate, DateTime toDate);
-
+    double? GetBalancePriorTo(Guid bankAccountId, DateTime dateUtc);
     Ledger GetByValues(Guid bankAccountId, DateTime dateUtc, string description, double? moneyIn, double? moneyOut);
     List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize);
     int NextRowNumber(Guid bankAccountId, DateTime dateUtc);
