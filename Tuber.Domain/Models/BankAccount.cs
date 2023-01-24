@@ -12,6 +12,7 @@ public class BankAccount : AuditableEntity
         BankAccountName = "";
         UKSortCode = "";
         UKBankAccount = "";
+        OpeningBalance = 0;
         OrderBy = int.MaxValue;
         BankId = Guid.Empty;
         IsDeleted = false;
@@ -24,6 +25,8 @@ public class BankAccount : AuditableEntity
     public int OrderBy { get; set; }
     public Guid BankId { get; set; }
     public Guid? ImportTemplateId { get; set; }
+
+    public double OpeningBalance { get; set; }
     public bool IsDeleted { get; set; }
     public virtual Bank? Bank { get; set; }
     public virtual ImportTemplate? ImportTemplate { get; set; }   

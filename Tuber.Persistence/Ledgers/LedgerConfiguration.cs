@@ -31,6 +31,9 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
         builder.Property(x => x.TransactionType)
           .HasMaxLength(15);
 
+        builder.Property(x => x.Balance)
+          .HasMaxLength(15);
+
         builder.Property(x => x.CategoryId)
            .IsRequired();
 

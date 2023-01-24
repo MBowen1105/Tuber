@@ -28,6 +28,10 @@ public class BankAccountConfiguration : IEntityTypeConfiguration<BankAccount>
             .IsRequired()
             .HasMaxLength(8);
 
+        builder.Property(x => x.OpeningBalance)
+            .HasDefaultValue(0)
+           .IsRequired();
+
         builder.Property(x => x.BankId)
            .IsRequired();
 
