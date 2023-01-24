@@ -1,17 +1,44 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Tuber.Application.Banks.Commands.BankAdd;
+using Tuber.Application.Ledgers.Commands.LedgerAddCredit;
 using Tuber.Application.Ledgers.Queries.LedgerGetPaged;
 
 namespace Tuber.API.Ledgers;
 
 public static class LedgerEndpoints
 {
+
+    #region "Command Endpoints"
     public static void CommandEndpoints(WebApplication app)
     {
-    }
+        app.MapPut("/ledger/addcredit", async (LedgerAddCreditAPIRequest APIRequest,
+                [FromServices] IMediator mediator,
+                [FromServices] IMapper mapper,
+                [FromServices] IEnumerable<IValidator<LedgerAddCreditAPIRequest>> validators) =>
+            {
+                //  Map API request to query
+                var query = mapper.Map<LedgerAddCreditAPIRequest, LedgerAddCreditCommandRequest>(APIRequest);
 
+                // Call query handler. This first invokes the pipeline behaviour.
+                var queryResponse = await mediator.Send(query);
+
+                if (queryResponse.HasExceptions)
+                    return Results.BadRequest(queryResponse.Exceptions);
+
+                //  Map Handler response to API Response and return.
+                var apiResponse = mapper.Map<LedgerAddCreditCommandResponse, LedgerAddCreditAPIResponse>(queryResponse);
+
+                return Results.Created($"/ledger/{apiResponse.LedgerId}", apiResponse);
+            })
+            .WithName("LedgerAddCredit");
+    }
+    #endregion
+
+    #region "Query Endpoints"
     public static void QueryEndpoints(WebApplication app)
     {
         app.MapPut("/ledger/get", async (LedgerGetPagedAPIRequest APIRequest,
@@ -36,4 +63,5 @@ public static class LedgerEndpoints
         })
         .WithName("LedgerGetPaged");
     }
+    #endregion
 }

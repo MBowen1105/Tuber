@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Extensions;
+using Tuber.Application.Ledgers.Queries.LedgerGetPaged;
 using Tuber.Domain.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Tuber.Persistence.Ledgers;
 public class LedgerRepository : ILedgerRepository
@@ -43,7 +42,6 @@ public class LedgerRepository : ILedgerRepository
         ledger.TransactionType = pLedger.TransactionType;
         ledger.MoneyIn = pLedger.MoneyIn;
         ledger.MoneyOut = pLedger.MoneyOut;
-        ledger.Balance = pLedger.Balance;
         ledger.CategoryId = pLedger.CategoryId;
         ledger.SubcategoryId = pLedger.SubcategoryId;
 
@@ -66,6 +64,19 @@ public class LedgerRepository : ILedgerRepository
             .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
+    }
+
+    public int NextRowNumber(Guid bankAccountId, DateTime dateUtc)
+    {
+        var ledger = _context.Ledgers
+            .Where(x => x.BankAccountId == bankAccountId
+                && x.DateUtc == dateUtc
+                && x.IsDeleted == false)
+            .OrderByDescending(x => x.RowNumber)
+            .FirstOrDefault();
+        return (ledger is null)
+            ? 1
+            : ledger.RowNumber + 1;
     }
 
     public int CountPages(int pageSize)

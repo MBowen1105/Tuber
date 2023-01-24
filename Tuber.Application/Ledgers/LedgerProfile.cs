@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tuber.Application.Ledgers.Commands.LedgerAddCredit;
 using Tuber.Application.Ledgers.Queries.LedgerGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
@@ -11,5 +12,9 @@ public class LedgerProfile : Profile
         //  LedgerGetPaged
         CreateMap<Ledger, LedgerGetPaged_Ledger>();
         CreateMap<LedgerGetPagedQueryResponse, LedgerGetPagedAPIResponse>();
+
+        //  LedgerAddCredit
+        CreateMap<LedgerAddCreditAPIRequest, LedgerAddCreditCommandRequest>();
+        CreateMap<LedgerAddCreditCommandResponse, LedgerAddCreditAPIResponse>();
     }
 }

@@ -12,5 +12,6 @@ public interface ILedgerRepository : IRepository<Ledger>
 
     Ledger GetByValues(Guid bankAccountId, DateTime dateUtc, string description, double? moneyIn, double? moneyOut);
     List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize);
+    int NextRowNumber(Guid bankAccountId, DateTime dateUtc);
     int CountPages(int pageSize);
 }

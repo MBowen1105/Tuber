@@ -26,10 +26,12 @@ namespace Tuber.Application.Ledgers.Queries.LedgerGetPaged
                 request.PageNumber, 
                 request.PageSize);
 
+            var ledgerList = _mapper.Map<List<Ledger>, List<LedgerGetPaged_Ledger>>(serviceResult.Payload);
+
             var response = new LedgerGetPagedQueryResponse
             {
                 LedgerCount = serviceResult.Payload.Count,
-                Ledgers = _mapper.Map<List<Ledger>, List<LedgerGetPaged_Ledger>>(serviceResult.Payload),
+                Ledgers = ledgerList,
                 TotalPages = _ledgerRetrievalService.CountPages(request.PageSize)
             };
 

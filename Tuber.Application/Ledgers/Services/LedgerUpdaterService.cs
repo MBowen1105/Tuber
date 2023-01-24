@@ -1,8 +1,7 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
-using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Exceptions;
 using Tuber.Domain.Common;
 using Tuber.Domain.Models;
 
@@ -48,7 +47,6 @@ public class LedgerUpdaterService : ILedgerUpdaterService
                 TransactionType = import.TransactionTypeValue!,
                 MoneyIn = moneyIn,
                 MoneyOut = moneyOut,
-                Balance = double.Parse(import.BalanceOnStatementValue!),
                 CategoryId = (Guid)import.CategoryId!,
                 SubcategoryId = import.SubcategoryId
             };
@@ -78,7 +76,6 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             //  TODO: Update unreconcilled Ledger Transaction and add this Import Transaction
             existingLedger.Reference = ledger.Reference;
             existingLedger.TransactionType = ledger.TransactionType;
-            existingLedger.Balance = ledger.Balance;
             existingLedger.CategoryId = ledger.CategoryId;
             existingLedger.SubcategoryId = ledger.SubcategoryId;
             existingLedger.IsManualEntry = false;
@@ -98,5 +95,45 @@ public class LedgerUpdaterService : ILedgerUpdaterService
                 TotalUpdatedRowCount = updatedCount,
                 TotalAlreadyReconciledCount = alreadyReconciledCount,
             });
+    }
+
+    public ServiceResult<Ledger> AddCredit(Guid bankAccountId, DateTime dateUtc, string description,
+        string? reference, string transactionType, double? moneyIn, Guid categoryId, Guid? subcategoryId)
+    {
+        var ledger = new Ledger
+        {
+            BankAccountId = bankAccountId,
+            DateUtc = dateUtc,
+            RowNumber = NextRowNumber(bankAccountId, dateUtc),
+            Description = description,
+            Reference = reference,
+            TransactionType = transactionType,
+            MoneyIn = moneyIn,
+            MoneyOut = null,
+            CategoryId = categoryId,
+            SubcategoryId = subcategoryId,
+            IsManualEntry= true,
+        };
+
+        ledger = _ledgerRepo.Add(ledger);
+
+        _ledgerRepo.SaveChanges();
+
+        return new ServiceResult<Ledger>(payload: ledger);
+    }
+
+    public ServiceResult<Ledger> AddDebit(Guid bankAccountId, DateTime dateUtc, string description, string? reference, string transactionType, double? moneyOut, Guid categoryId, Guid? subcategoryId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ServiceResult<Ledger> AddTransfer(Guid bankAccountId, DateTime dateUtc, string description, string? reference, string transactionType, double? moneyOut, Guid categoryId, Guid? subcategoryId, Guid? transferBankAccountId)
+    {
+        throw new NotImplementedException();
+    }
+
+    private int NextRowNumber(Guid bankAccountId, DateTime dateUtc)
+    {
+        return _ledgerRepo.NextRowNumber(bankAccountId, dateUtc);
     }
 }
