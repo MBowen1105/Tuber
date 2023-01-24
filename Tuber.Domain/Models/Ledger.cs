@@ -16,6 +16,7 @@ public class Ledger : AuditableEntity
         TransactionType = string.Empty;
         MoneyIn = 0;
         MoneyOut = 0;
+        Balance = 0;
         CategoryId = Guid.Empty;
         SubcategoryId = null;
         TransferBankAccountId = null;
@@ -33,6 +34,7 @@ public class Ledger : AuditableEntity
     public string TransactionType { get; set; }
     public double? MoneyIn { get; set; }
     public double? MoneyOut { get; set; }
+    public double Balance { get; set; }
     public Guid CategoryId { get; set; }
     public Guid? SubcategoryId { get; set; }
     public Guid? TransferBankAccountId { get; set; }

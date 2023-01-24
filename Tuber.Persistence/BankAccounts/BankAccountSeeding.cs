@@ -11,6 +11,7 @@ public static class BankAccountSeeding
     public static readonly Guid Lloyds93DIXAccountId = Guid.Parse("72fcf015-7f1b-49ef-8ea3-25d1ed15b936");
     public static readonly Guid Lloyds25PARAccountId = Guid.Parse("c38c85bd-19db-4b90-a1fa-aeb74610b70b");
     public static readonly Guid TSBBankAccountId = Guid.Parse("8cd1c1cf-a8e6-4148-a78c-99cd34c02997");
+    public static readonly Guid PayPalAccountId = Guid.Parse("c8637e26759849ce89d682f2f184f540");
 
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
@@ -82,6 +83,21 @@ public static class BankAccountSeeding
                 BankAccountName = "TSB Bank Account",
                 UKSortCode = "440191",
                 UKBankAccount = "98765555",
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = PayPalAccountId,
+                BankId = Banks.BankSeeding.PayPalId,
+                BankAccountName = "PayPal",
+                UKSortCode = "",
+                UKBankAccount = "",
                 OrderBy = 10,
                 ImportTemplateId = null,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
