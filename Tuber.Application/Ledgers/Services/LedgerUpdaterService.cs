@@ -2,6 +2,7 @@
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Domain.Common;
+using Tuber.Domain.Enums;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Ledgers.Services;
@@ -80,7 +81,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             existingLedger.TransactionType = ledger.TransactionType;
             existingLedger.CategoryId = ledger.CategoryId;
             existingLedger.SubcategoryId = ledger.SubcategoryId;
-            existingLedger.IsManualEntry = false;
+            existingLedger.TransactionOrigin = TransactionOrigin.Imported;
 
             _ledgerRepo.Update(existingLedger);
             updatedCount++;
@@ -117,7 +118,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             Balance = balanceBF + moneyIn,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
-            IsManualEntry = true,
+            TransactionOrigin = TransactionOrigin.Manual,
         };
 
         ledger = _ledgerRepo.Add(ledger);
@@ -147,7 +148,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             Balance = balanceBF - moneyOut,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
-            IsManualEntry = true,
+            TransactionOrigin = TransactionOrigin.Manual,
         };
 
         ledger = _ledgerRepo.Add(ledger);
@@ -179,7 +180,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             TransferBankAccountId = transferBankAccountId,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
-            IsManualEntry = true,
+            TransactionOrigin = TransactionOrigin.Manual,
         };
 
         ledger = _ledgerRepo.Add(ledger);
@@ -203,10 +204,10 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             TransferBankAccountId = bankAccountId,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
-            IsManualEntry = true,
+            TransactionOrigin = TransactionOrigin.Manual,
         };
 
-        balancingLedger = _ledgerRepo.Add(balancingLedger);
+        _ledgerRepo.Add(balancingLedger);
 
         RecalculateBalances(transferBankAccountId, dateUtc, balanceBF);
 

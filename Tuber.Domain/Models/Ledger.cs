@@ -1,4 +1,5 @@
 ﻿using Tuber.Application.Common;
+using Tuber.Domain.Enums;
 
 namespace Tuber.Domain.Models;
 public class Ledger : AuditableEntity
@@ -20,7 +21,7 @@ public class Ledger : AuditableEntity
         CategoryId = Guid.Empty;
         SubcategoryId = null;
         TransferBankAccountId = null;
-        IsManualEntry = false;
+        TransactionOrigin = TransactionOrigin.Unknown;
         IsReconciled = false;
         IsDeleted = false;
     }
@@ -38,7 +39,7 @@ public class Ledger : AuditableEntity
     public Guid CategoryId { get; set; }
     public Guid? SubcategoryId { get; set; }
     public Guid? TransferBankAccountId { get; set; }
-    public bool IsManualEntry { get; set; }
+    public TransactionOrigin TransactionOrigin { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
     public virtual BankAccount? BankAccount { get; set; }

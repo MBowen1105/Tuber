@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tuber.Domain.Enums;
 using Tuber.Domain.Models;
 using Tuber.Persistence.Users;
 
@@ -24,7 +25,7 @@ public static class LedgerSeeding
                 SubcategoryId = null,
                 TransferBankAccountId = BankAccounts.BankAccountSeeding.PayPalAccountId,
                 IsDeleted = false,
-                IsManualEntry = true,
+                TransactionOrigin = TransactionOrigin.Seeded,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
@@ -44,7 +45,7 @@ public static class LedgerSeeding
                 SubcategoryId = null,
                 TransferBankAccountId = BankAccounts.BankAccountSeeding.PayPalAccountId,
                 IsDeleted = false,
-                IsManualEntry = true,
+                TransactionOrigin = TransactionOrigin.Seeded,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             },
@@ -62,7 +63,7 @@ public static class LedgerSeeding
                 Balance = 564.63,
                 CategoryId = Categories.CategorySeeding.HouseholdServicesCategoryId,
                 SubcategoryId = Subcategories.SubcategorySeeding.InternetSubcategoryId,
-                IsManualEntry = true,
+                TransactionOrigin = TransactionOrigin.Seeded,
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,

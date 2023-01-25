@@ -1,4 +1,6 @@
-﻿namespace Tuber.Domain.Dtos;
+﻿using Tuber.Domain.Enums;
+
+namespace Tuber.Domain.Dtos;
 public class LedgerGetPaged_Ledger
 {
     public Guid LedgerId { get; init; }
@@ -16,7 +18,7 @@ public class LedgerGetPaged_Ledger
     public Guid? SubcategoryId { get; init; }
     public string SubcategorySubcategoryName { get; init; } = "";
     public Guid? TransferBankAccountId { get; init; }
-    public bool IsManualEntry { get; init; }
+    public TransactionOrigin TransactionOrigin { get; init; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; init; }
 }
