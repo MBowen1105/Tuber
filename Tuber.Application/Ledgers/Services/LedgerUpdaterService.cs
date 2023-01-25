@@ -122,16 +122,41 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
         ledger = _ledgerRepo.Add(ledger);
 
-        CalculateBalances(bankAccountId, dateUtc, balanceBF);
+        RecalculateBalances(bankAccountId, dateUtc, balanceBF);
 
         _ledgerRepo.SaveChanges();
 
         return new ServiceResult<Ledger>(payload: ledger);
     }
 
-    public ServiceResult<Ledger> AddDebit(Guid bankAccountId, DateTime dateUtc, string description, string? reference, string transactionType, double? moneyOut, Guid categoryId, Guid? subcategoryId)
+    public ServiceResult<Ledger> AddDebit(Guid bankAccountId, DateTime dateUtc, string description,
+        string? reference, string transactionType, double moneyOut, Guid categoryId, Guid? subcategoryId)
     {
-        throw new NotImplementedException();
+        double balanceBF = GetBalancePriorTo(bankAccountId, dateUtc);
+
+        var ledger = new Ledger
+        {
+            BankAccountId = bankAccountId,
+            DateUtc = dateUtc,
+            RowNumber = NextRowNumber(bankAccountId, dateUtc),
+            Description = description,
+            Reference = reference,
+            TransactionType = transactionType,
+            MoneyIn = null,
+            MoneyOut = moneyOut,
+            Balance = balanceBF - moneyOut,
+            CategoryId = categoryId,
+            SubcategoryId = subcategoryId,
+            IsManualEntry = true,
+        };
+
+        ledger = _ledgerRepo.Add(ledger);
+
+        RecalculateBalances(bankAccountId, dateUtc, balanceBF);
+
+        _ledgerRepo.SaveChanges();
+
+        return new ServiceResult<Ledger>(payload: ledger);
     }
 
     public ServiceResult<Ledger> AddTransfer(Guid bankAccountId, DateTime dateUtc, string description, string? reference, string transactionType, double? moneyOut, Guid categoryId, Guid? subcategoryId, Guid? transferBankAccountId)
@@ -157,7 +182,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
         return bankAccount.OpeningBalance;
     }
 
-    private void CalculateBalances(Guid bankAccountId, DateTime dateUtc, double balanceBF)
+    private void RecalculateBalances(Guid bankAccountId, DateTime dateUtc, double balanceBF)
     {
         //  Read all ledger transactions on or after this one
         var ledgerTransactionsList = _ledgerRepo.GetBetweenDates(bankAccountId, dateUtc, DateTime.MaxValue);
@@ -166,7 +191,14 @@ public class LedgerUpdaterService : ILedgerUpdaterService
         var runningBalance = balanceBF;
         foreach (var lt in ledgerTransactionsList)
         {
-            lt.Balance = runningBalance + (double)lt.MoneyIn! - (double)lt.MoneyOut!;
+            double amountIn = lt.MoneyIn ?? 0;
+            double amountOut = lt.MoneyOut?? 0;
+            
+            runningBalance = runningBalance + amountIn! - amountOut!;
+
+            lt.Balance = runningBalance;
+
+            //  TODO: New Repo method to update a list of domains
             _ledgerRepo.Update(lt);
         }
     }

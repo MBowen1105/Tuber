@@ -28,8 +28,9 @@ public static class DependencyInjection
                 options.UseSqlServer(cs,
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
                 .EnableSensitiveDataLogging()
-                .UseLoggerFactory(LoggerFactory.Create(builder=>builder.AddDebug())));
-       
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddDebug())));
+
+
         services.AddScoped<IBankRepository, BankRepository>();
         services.AddScoped<IBankAccountRepository, BankAccountRepository>();
         services.AddScoped<IImportTemplateRepository, ImportTemplateRepository>();

@@ -6,6 +6,7 @@ namespace Tuber.Persistence.Subcategories;
 public static class SubcategorySeeding
 {
     public static readonly Guid FuelSubcategoryId = Guid.Parse("cac01b14-67a7-4372-8eb1-5e9a0e8a007c");
+    public static readonly Guid RepaymentsSubcategoryId = Guid.Parse("5ab8de02-7a92-4df0-8ab3-8c3450fd9545");
     public static readonly Guid InsuranceSubcategoryId = Guid.Parse("179d1384-e290-4bb7-a52d-038a3221d330");
     public static readonly Guid RoadTaxSubcategoryId = Guid.Parse("3077c60b-5d01-4982-b60e-d032cf75d926");
     public static readonly Guid ElectricitySubcategoryId = Guid.Parse("66e06ca1-305c-48db-88bc-155b040fc82f");
@@ -113,6 +114,16 @@ public static class SubcategorySeeding
             {
                 SubcategoryId = InternetSubcategoryId,
                 SubcategoryName = "Internet",
+                IsCoreSubcategory = false,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+            });
+
+        builder.HasData(
+            new Subcategory
+            {
+                SubcategoryId = RepaymentsSubcategoryId,
+                SubcategoryName = "Repayments",
                 IsCoreSubcategory = false,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
