@@ -159,9 +159,60 @@ public class LedgerUpdaterService : ILedgerUpdaterService
         return new ServiceResult<Ledger>(payload: ledger);
     }
 
-    public ServiceResult<Ledger> AddTransfer(Guid bankAccountId, DateTime dateUtc, string description, string? reference, string transactionType, double? moneyOut, Guid categoryId, Guid? subcategoryId, Guid? transferBankAccountId)
+    public ServiceResult<Ledger> AddTransferOut(Guid bankAccountId, DateTime dateUtc, string description, 
+        string? reference, double moneyOut, Guid categoryId, Guid? subcategoryId,
+        Guid transferBankAccountId)
     {
-        throw new NotImplementedException();
+        double balanceBF = GetBalancePriorTo(bankAccountId, dateUtc);
+
+        var ledger = new Ledger
+        {
+            BankAccountId = bankAccountId,
+            DateUtc = dateUtc,
+            RowNumber = NextRowNumber(bankAccountId, dateUtc),
+            Description = description,
+            Reference = reference,
+            TransactionType = "TRANOUT",
+            MoneyIn = null,
+            MoneyOut = moneyOut,
+            Balance = balanceBF - moneyOut,
+            TransferBankAccountId = transferBankAccountId,
+            CategoryId = categoryId,
+            SubcategoryId = subcategoryId,
+            IsManualEntry = true,
+        };
+
+        ledger = _ledgerRepo.Add(ledger);
+
+        RecalculateBalances(bankAccountId, dateUtc, balanceBF);
+
+        //  Add the balancing transaction
+        balanceBF = GetBalancePriorTo(transferBankAccountId, dateUtc);
+
+        var balancingLedger = new Ledger
+        {
+            BankAccountId = transferBankAccountId,
+            DateUtc = dateUtc,
+            RowNumber = NextRowNumber(transferBankAccountId, dateUtc),
+            Description = description,
+            Reference = reference,
+            TransactionType = "TRANIN",
+            MoneyIn = moneyOut,
+            MoneyOut = null,
+            Balance = balanceBF + moneyOut,
+            TransferBankAccountId = bankAccountId,
+            CategoryId = categoryId,
+            SubcategoryId = subcategoryId,
+            IsManualEntry = true,
+        };
+
+        balancingLedger = _ledgerRepo.Add(balancingLedger);
+
+        RecalculateBalances(transferBankAccountId, dateUtc, balanceBF);
+
+        _ledgerRepo.SaveChanges();
+
+        return new ServiceResult<Ledger>(payload: ledger);
     }
 
     private int NextRowNumber(Guid bankAccountId, DateTime dateUtc)

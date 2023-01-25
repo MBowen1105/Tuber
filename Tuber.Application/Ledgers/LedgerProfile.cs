@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Tuber.Application.Ledgers.Commands.LedgerAddCredit;
 using Tuber.Application.Ledgers.Commands.LedgerAddDebit;
+using Tuber.Application.Ledgers.Commands.LedgerAddTransferOut;
 using Tuber.Application.Ledgers.Queries.LedgerGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
@@ -21,5 +22,9 @@ public class LedgerProfile : Profile
         //  LedgerAddCredit
         CreateMap<LedgerAddDebitAPIRequest, LedgerAddDebitCommandRequest>();
         CreateMap<LedgerAddDebitCommandResponse, LedgerAddDebitAPIResponse>();
+
+        //  LedgerAddTransferOut
+        CreateMap<LedgerAddTransferOutAPIRequest, LedgerAddTransferOutCommandRequest>();
+        CreateMap<LedgerAddTransferOutCommandResponse, LedgerAddTransferOutAPIResponse>();
     }
 }
