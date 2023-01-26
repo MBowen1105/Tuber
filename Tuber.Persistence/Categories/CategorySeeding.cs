@@ -16,6 +16,7 @@ public static class CategorySeeding
     public static readonly Guid OtherIncomeCategoryId = Guid.Parse("d2ccc713-366d-4f7d-8716-fab5932ec73c");
     public static readonly Guid PoliticalDonationsCategoryId = Guid.Parse("643d121f-84ed-436b-af50-13225be46aef");
     public static readonly Guid DirectorsLoanCategoryId = Guid.Parse("1c1397e2-6f8e-4a70-b497-8e8e0167a1b8");
+    public static readonly Guid PersonalHealthInsuranceCategoryId = Guid.Parse("4401527f-626e-432f-a048-f10ef4efa2c1");
 
     public static void Seed(EntityTypeBuilder<Category> builder)
     {
@@ -100,6 +101,13 @@ public static class CategorySeeding
             new Category
             {
                 CategoryId = DirectorsLoanCategoryId,
+                CategoryName = "Directors Loan",
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+            },
+            new Category
+            {
+                CategoryId = PersonalHealthInsuranceCategoryId,
                 CategoryName = "Directors Loan",
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,

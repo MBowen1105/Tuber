@@ -19,8 +19,9 @@ public static class BankAccountSeeding
     public static readonly Guid HondaMotorAccountId = Guid.Parse("85a437ee-b0b4-449c-9c81-8a2b40c94feb");
     public static readonly Guid BupaHealthAccountId = Guid.Parse("8219473f-a6c6-44ea-b9eb-561032dd372e");
     public static readonly Guid AnnaBankCySolCheckAccountId = Guid.Parse("6219e157-8c03-4eaa-b78f-4fde4a2b19d0");
+    public static readonly Guid ScottishFriendlyPHIAccountId = Guid.Parse("7d516d57-1e24-4f0c-9e23-67200adabe51");
 
-    
+
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
         builder.HasData(
@@ -222,6 +223,22 @@ public static class BankAccountSeeding
                 BankAccountId = AnnaBankCySolCheckAccountId,
                 BankId = Banks.BankSeeding.AnnaBankId,
                 BankAccountName = "Ctrus Solutions Check A/C",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = ScottishFriendlyPHIAccountId,
+                BankId = Banks.BankSeeding.ScottishFriendlyId,
+                BankAccountName = "Scottish Friendly PHI A/C",
                 UKSortCode = "",
                 UKBankAccount = "",
                 OpeningBalance = 0,
