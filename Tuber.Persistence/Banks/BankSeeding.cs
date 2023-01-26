@@ -20,6 +20,7 @@ public static class BankSeeding
     public static readonly Guid ScottishFriendlyId = Guid.Parse("bfd54588-6c22-43c9-a207-ce52c645f324");
     public static readonly Guid EETelecomId = Guid.Parse("8680ec5a-7f6c-4ca0-9326-34ad11a24ddc");
     public static readonly Guid WorcestershireCouncilId = Guid.Parse("c5cff082-2dc8-4359-9909-30849738703e");
+    public static readonly Guid VirginMoneyId = Guid.Parse("444c4c70-139e-4014-b4a4-0ffd1bc89276");
 
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
@@ -68,7 +69,7 @@ public static class BankSeeding
             {
                 BankId = TSBBankId,
                 BankName = "TSB",
-                OrderBy = 50,
+                OrderBy = 60,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = true,
@@ -77,7 +78,7 @@ public static class BankSeeding
             {
                 BankId = PayPalId,
                 BankName = "PayPal",
-                OrderBy = 60,
+                OrderBy = 70,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -86,7 +87,7 @@ public static class BankSeeding
             {
                 BankId = PensionId,
                 BankName = "Scottish Widows",
-                OrderBy = 70,
+                OrderBy = 80,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -95,7 +96,7 @@ public static class BankSeeding
             {
                 BankId = PrincipalityId,
                 BankName = "Principality Building Society",
-                OrderBy = 80,
+                OrderBy = 90,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -113,7 +114,7 @@ public static class BankSeeding
             {
                 BankId = BupaId,
                 BankName = "BUPA",
-                OrderBy = 100,
+                OrderBy = 110,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -122,7 +123,7 @@ public static class BankSeeding
             {
                 BankId = AnnaBankId,
                 BankName = "Anna Bank",
-                OrderBy = 110,
+                OrderBy = 120,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -131,7 +132,7 @@ public static class BankSeeding
             {
                 BankId = ScottishFriendlyId,
                 BankName = "Scottish Friendly",
-                OrderBy = 120,
+                OrderBy = 130,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -140,7 +141,7 @@ public static class BankSeeding
             {
                 BankId = EETelecomId,
                 BankName = "EE Telecom",
-                OrderBy = 130,
+                OrderBy = 140,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,
@@ -149,7 +150,16 @@ public static class BankSeeding
             {
                 BankId = WorcestershireCouncilId,
                 BankName = "Worcestershire Council",
-                OrderBy = 140,
+                OrderBy = 150,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                IsDeleted = false,
+            },
+            new Bank
+            {
+                BankId = VirginMoneyId,
+                BankName = "Virgin Money",
+                OrderBy = 160,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,

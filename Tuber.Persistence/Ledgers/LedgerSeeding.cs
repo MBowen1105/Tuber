@@ -382,7 +382,7 @@ public static class LedgerSeeding
                 Balance = 0.00,
                 CategoryId = Categories.CategorySeeding.TransferCategoryId,
                 SubcategoryId = null,
-                TransferBankAccountId = BankAccounts.BankAccountSeeding.HondaMotorAccountId,
+                TransferBankAccountId = BankAccounts.BankAccountSeeding.HondaFinanceAccountId,
                 TransactionOrigin = TransactionOrigin.Seeded,
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -391,7 +391,7 @@ public static class LedgerSeeding
             new Ledger
             {
                 LedgerId = Guid.Parse("bf009ba6-7586-4ab9-9597-87502f284a3f"),
-                BankAccountId = BankAccounts.BankAccountSeeding.HondaMotorAccountId,
+                BankAccountId = BankAccounts.BankAccountSeeding.HondaFinanceAccountId,
                 DateUtc = new DateTime(2022, 4, 21),
                 RowNumber = 1,
                 Description = "HONDA FINANCE EURO",
@@ -402,7 +402,7 @@ public static class LedgerSeeding
                 Balance = 0.00,
                 CategoryId = Categories.CategorySeeding.TransferCategoryId,
                 SubcategoryId = null,
-                TransferBankAccountId = BankAccounts.BankAccountSeeding.HondaMotorAccountId,
+                TransferBankAccountId = BankAccounts.BankAccountSeeding.HondaFinanceAccountId,
                 TransactionOrigin = TransactionOrigin.Seeded,
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
