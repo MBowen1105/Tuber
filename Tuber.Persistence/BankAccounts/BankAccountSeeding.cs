@@ -153,7 +153,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Paypal
             new BankAccount
@@ -170,7 +170,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Pension
             new BankAccount
@@ -187,7 +187,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Principality
             new BankAccount
@@ -204,7 +204,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  WBBS
             new BankAccount
@@ -221,7 +221,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Co-Op Travel Card
             new BankAccount
@@ -238,7 +238,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Honda Finance A/C
             new BankAccount
@@ -255,7 +255,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  BUPA
             new BankAccount
@@ -272,7 +272,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Cyrus Solutions
             new BankAccount
@@ -289,7 +289,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Scottish Friendly
             new BankAccount
@@ -306,7 +306,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  EE
             new BankAccount
@@ -323,7 +323,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Worcs Council Tax A/C
             new BankAccount
@@ -340,13 +340,13 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             },
             //  Virgin ISA
             new BankAccount
             {
                 BankAccountId = VirginISAAccountId,
-                BankId = Banks.BankSeeding.VirginMoneyId,
+                BankId = Banks.BankSeeding.VirginBankId,
                 BankAccountName = "Virgin Money ISA",
                 UKSortCode = "",
                 UKBankAccount = "",
@@ -357,7 +357,7 @@ public static class BankAccountSeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 UpdatedOnUtc = DateTime.UtcNow,
-                IsDeleted = true,
+                IsDeleted = false,
             });
     }
 }
