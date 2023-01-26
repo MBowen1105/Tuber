@@ -96,6 +96,8 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
             BankAccountId = request.BankAccountId,
             ImportFileName = request.ImportFileName,
             TotalImportRowCount = importUpdaterServiceResult.Payload.TotalRowCount,
+            CategorisedRowCount = importUpdaterServiceResult.Payload.CategorisedRowCount,
+            UncategorisedRowCount = importUpdaterServiceResult.Payload.UncategorisedRowCount,
             ValidImportRowCount = importUpdaterServiceResult.Payload.ValidRowCount,
             InvalidImportRowCount = importUpdaterServiceResult.Payload.InvalidRowCount,
         });

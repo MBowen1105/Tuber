@@ -31,6 +31,8 @@ public class ImportUpdaterService : IImportUpdaterService
 
         var validRowCount = 0;
         var invalidRowCount = 0;
+        var categorisedRowCount = 0;
+        var uncategorisedRowCount = 0;
 
         foreach (var row in validatedRows)
         {
@@ -38,6 +40,11 @@ public class ImportUpdaterService : IImportUpdaterService
                 validRowCount++;
             else
                 invalidRowCount++;
+
+            if (row.CategoryId == null)
+                uncategorisedRowCount++;
+            else
+                categorisedRowCount++;
 
             var import = new Import
             {
@@ -61,8 +68,8 @@ public class ImportUpdaterService : IImportUpdaterService
                 ValidationFailureMessages = row.ValidationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
                 ImportedUtc = _dateTimeService.NowUtc(),
-                //BankAccount = row.BankAccount,
             };
+
             _importRepo.Add(import);
         }
 
@@ -72,6 +79,8 @@ public class ImportUpdaterService : IImportUpdaterService
             payload: new ImportResult()
             {
                 TotalRowCount = validatedRows.Count,
+                CategorisedRowCount = categorisedRowCount,
+                UncategorisedRowCount = uncategorisedRowCount,
                 ValidRowCount = validRowCount,
                 InvalidRowCount = invalidRowCount,
             });
