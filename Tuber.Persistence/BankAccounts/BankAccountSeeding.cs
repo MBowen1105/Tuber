@@ -21,6 +21,7 @@ public static class BankAccountSeeding
     public static readonly Guid AnnaBankCySolCheckAccountId = Guid.Parse("6219e157-8c03-4eaa-b78f-4fde4a2b19d0");
     public static readonly Guid ScottishFriendlyPHIAccountId = Guid.Parse("7d516d57-1e24-4f0c-9e23-67200adabe51");
     public static readonly Guid EETelecomAccountId = Guid.Parse("315e3cc7-3dcd-4f16-906a-4f433df80139");
+    public static readonly Guid CouncilTaxAccountId = Guid.Parse("bbce5ac1-da50-4ec7-8a72-3011174c649c");
 
 
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
@@ -256,6 +257,22 @@ public static class BankAccountSeeding
                 BankAccountId = EETelecomAccountId,
                 BankId = Banks.BankSeeding.EETelecomId,
                 BankAccountName = "EE Telecom A/C",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = CouncilTaxAccountId,
+                BankId = Banks.BankSeeding.WorcestershireCouncilId,
+                BankAccountName = "Council Tax A/C",
                 UKSortCode = "",
                 UKBankAccount = "",
                 OpeningBalance = 0,

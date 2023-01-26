@@ -19,6 +19,7 @@ public static class BankSeeding
     public static readonly Guid AnnaBankId = Guid.Parse("7115fa18-0319-4d9e-a45a-b7974f0381cf");
     public static readonly Guid ScottishFriendlyId = Guid.Parse("bfd54588-6c22-43c9-a207-ce52c645f324");
     public static readonly Guid EETelecomId = Guid.Parse("8680ec5a-7f6c-4ca0-9326-34ad11a24ddc");
+    public static readonly Guid WorcestershireCouncilId = Guid.Parse("c5cff082-2dc8-4359-9909-30849738703e");
 
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
@@ -140,6 +141,15 @@ public static class BankSeeding
                 BankId = EETelecomId,
                 BankName = "EE Telecom",
                 OrderBy = 130,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                IsDeleted = false,
+            },
+            new Bank
+            {
+                BankId = WorcestershireCouncilId,
+                BankName = "Worcestershire Council",
+                OrderBy = 140,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,

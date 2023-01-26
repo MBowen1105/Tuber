@@ -17,6 +17,7 @@ public static class SubcategorySeeding
     public static readonly Guid GamblingSubcategoryId = Guid.Parse("85ae154e-960e-4d35-8e77-a9e7d71eddf1");
     public static readonly Guid InternetSubcategoryId = Guid.Parse("de86efb2-764c-48b0-841a-7e29ecb83640");
     public static readonly Guid LoyaltySubcategoryId = Guid.Parse("45048692-c142-48e4-83b8-fdd7177443c9");
+    public static readonly Guid CouncilTaxSubcategoryId = Guid.Parse("cb84a787-21d3-48eb-96c7-4dc404a8793d");
 
     public static void Seed(EntityTypeBuilder<Subcategory> builder)
     {
@@ -135,6 +136,16 @@ public static class SubcategorySeeding
            {
                SubcategoryId = LoyaltySubcategoryId,
                SubcategoryName = "Loyalty",
+               IsCoreSubcategory = false,
+               CreatedOnUtc = DateTime.UtcNow,
+               CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+           });
+
+        builder.HasData(
+           new Subcategory
+           {
+               SubcategoryId = CouncilTaxSubcategoryId,
+               SubcategoryName = "Council Tax",
                IsCoreSubcategory = false,
                CreatedOnUtc = DateTime.UtcNow,
                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
