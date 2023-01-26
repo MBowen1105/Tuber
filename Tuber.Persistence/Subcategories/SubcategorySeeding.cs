@@ -16,7 +16,8 @@ public static class SubcategorySeeding
     public static readonly Guid DebitInterestSubcategoryId = Guid.Parse("ccbd867f-a971-4d3c-b879-2fccb8b92981");
     public static readonly Guid GamblingSubcategoryId = Guid.Parse("85ae154e-960e-4d35-8e77-a9e7d71eddf1");
     public static readonly Guid InternetSubcategoryId = Guid.Parse("de86efb2-764c-48b0-841a-7e29ecb83640");
-    
+    public static readonly Guid LoyaltySubcategoryId = Guid.Parse("45048692-c142-48e4-83b8-fdd7177443c9");
+
     public static void Seed(EntityTypeBuilder<Subcategory> builder)
     {
         builder.HasData(
@@ -128,5 +129,15 @@ public static class SubcategorySeeding
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             });
+
+        builder.HasData(
+           new Subcategory
+           {
+               SubcategoryId = LoyaltySubcategoryId,
+               SubcategoryName = "Loyalty",
+               IsCoreSubcategory = false,
+               CreatedOnUtc = DateTime.UtcNow,
+               CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+           });
     }
 }

@@ -307,6 +307,26 @@ public static class LedgerSeeding
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+            },
+            new Ledger
+            {
+                LedgerId = Guid.Parse("0a7eea23-0537-408e-935a-36e89ea0db6c"),
+                BankAccountId = BankAccounts.BankAccountSeeding.CoOpSalaryAccountId,
+                DateUtc = new DateTime(2022, 4, 19),
+                RowNumber = 4,
+                Description = "EVERYDAYREWARD NET",
+                Reference = "",
+                TransactionType = "CREDIT",
+                MoneyIn = 1,
+                MoneyOut = null,
+                Balance = 0.00,
+                CategoryId = Categories.CategorySeeding.OtherIncomeCategoryId,
+                SubcategoryId = Subcategories.SubcategorySeeding.LoyaltySubcategoryId,
+                TransferBankAccountId = null,
+                TransactionOrigin = TransactionOrigin.Seeded,
+                IsDeleted = false,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             });
     }
 }

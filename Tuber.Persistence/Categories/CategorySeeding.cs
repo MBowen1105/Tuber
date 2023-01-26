@@ -13,7 +13,8 @@ public static class CategorySeeding
     public static readonly Guid BankChargesCategoryId = Guid.Parse("ba134b1e-095b-4dc7-800d-94f27a1d9747");
     public static readonly Guid InvestmentIncomeCategoryId = Guid.Parse("90af6d97-3a28-47e9-b180-6cd406782c56");
     public static readonly Guid ChildMaintenanceCategoryId = Guid.Parse("3eefa969-31e0-46d3-9d81-d514035dd3de");
-    
+    public static readonly Guid OtherIncomeCategoryId = Guid.Parse("d2ccc713-366d-4f7d-8716-fab5932ec73c");
+
     public static void Seed(EntityTypeBuilder<Category> builder)
     {
         builder.HasData(
@@ -77,6 +78,13 @@ public static class CategorySeeding
             {
                 CategoryId = ChildMaintenanceCategoryId,
                 CategoryName = "Child Maintenance",
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+            },
+            new Category
+            {
+                CategoryId = OtherIncomeCategoryId,
+                CategoryName = "Other Income",
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             });
