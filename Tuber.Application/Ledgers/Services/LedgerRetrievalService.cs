@@ -50,8 +50,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
                 && x.Description == description
                 && x.Reference == reference
                 && x.MoneyIn == moneyIn
-                && x.MoneyOut == moneyOut
-                && x.IsReconciled == true)
+                && x.MoneyOut == moneyOut)
             .ToList();
 
         if (resultList.Any())
@@ -61,8 +60,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
                 && x.Description == description
-                && x.Reference == reference
-                && x.IsReconciled == true)
+                && x.Reference == reference)
             .ToList();
 
         if (resultList.Any())
@@ -71,8 +69,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
             .Where(x => x.BankAccountId == bankAccountId
-                && x.Description == description
-                && x.IsReconciled == true)
+                && x.Description == description)
             .ToList();
 
         if (resultList.Any())

@@ -168,15 +168,20 @@ public class ImportValidationService : IImportValidationService
 
             Guid? suggestedCategoryId = null;
             Guid? suggestedSubcategoryId = null;
+            Guid? suggestedTransferBankAccountId = null;
             if (suggestCategorisation)
             {
                 var suggestCategorisationServiceResult = _ledgerRetrievalService.SuggestCategorisation(
                     bankAccountId, descriptionValue, referenceOnStatementValue,
                     moneyIn, moneyOut);
+
                 suggestedCategoryId = (suggestCategorisationServiceResult.Payload.CategoryId == Guid.Empty)
                     ? null
                     : suggestCategorisationServiceResult.Payload.CategoryId;
+
                 suggestedSubcategoryId = suggestCategorisationServiceResult.Payload.SubcategoryId;
+
+                suggestedTransferBankAccountId = suggestCategorisationServiceResult.Payload.TransferBankAccountId;
             }
 
             if (previousDateValue == dateValue)
@@ -202,6 +207,7 @@ public class ImportValidationService : IImportValidationService
                 AccountNumberValue = accountNumberValue,
                 CategoryId = suggestedCategoryId,
                 SubcategoryId = suggestedSubcategoryId,
+                TransferBankAccountId = suggestedTransferBankAccountId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,

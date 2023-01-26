@@ -12,6 +12,10 @@ public static class BankAccountSeeding
     public static readonly Guid Lloyds25PARAccountId = Guid.Parse("c38c85bd-19db-4b90-a1fa-aeb74610b70b");
     public static readonly Guid TSBBankAccountId = Guid.Parse("8cd1c1cf-a8e6-4148-a78c-99cd34c02997");
     public static readonly Guid PayPalAccountId = Guid.Parse("c8637e26759849ce89d682f2f184f540");
+    public static readonly Guid PensionAccountId = Guid.Parse("f0781ba0-c93d-4115-8230-7329e4708c07");
+    public static readonly Guid PrincipalityMortgageAccountId = Guid.Parse("f9d4bc01-e0b0-43e1-9ef3-b068dfc2fc4a");
+    public static readonly Guid WBBSSavingsAccountId = Guid.Parse("1b0a51db-1635-4df2-9faa-7f5d6f0450f1");
+    public static readonly Guid CoOpTravelCreditCardAccountId = Guid.Parse("462c8d2c-ddd6-4de5-bc98-21c6094ffa3e");
 
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
@@ -102,6 +106,70 @@ public static class BankAccountSeeding
                 BankAccountId = PayPalAccountId,
                 BankId = Banks.BankSeeding.PayPalId,
                 BankAccountName = "PayPal",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = PensionAccountId,
+                BankId = Banks.BankSeeding.PensionId,
+                BankAccountName = "Scottish Widows Pension",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = PrincipalityMortgageAccountId,
+                BankId = Banks.BankSeeding.PrincipalityId,
+                BankAccountName = "Principality Building Society",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = WBBSSavingsAccountId,
+                BankId = Banks.BankSeeding.WBBSBankId,
+                BankAccountName = "West Bromwich Building Society",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = CoOpTravelCreditCardAccountId,
+                BankId = Banks.BankSeeding.CoOpBankId,
+                BankAccountName = "Co-Op Travel Credit Card",
                 UKSortCode = "",
                 UKBankAccount = "",
                 OpeningBalance = 0,

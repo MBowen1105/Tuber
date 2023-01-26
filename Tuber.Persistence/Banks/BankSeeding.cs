@@ -12,6 +12,8 @@ public static class BankSeeding
     public static readonly Guid WBBSBankId = Guid.Parse("5a250fff-d109-429a-b59d-e7582c6272a0");
     public static readonly Guid TSBBankId = Guid.Parse("123fc61c-0267-479e-875d-9e1d65bbcaff");
     public static readonly Guid PayPalId = Guid.Parse("64fba8d3-cef0-4a73-8f69-3fecfd186bb1");
+    public static readonly Guid PensionId = Guid.Parse("ac5c2909-d1c7-448a-b59c-8509e19b313d");
+    public static readonly Guid PrincipalityId = Guid.Parse("72dfefb5-6408-4e5d-baaa-1217a2c230a4");
 
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
@@ -72,7 +74,25 @@ public static class BankSeeding
                 OrderBy = 60,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
-                IsDeleted = true,
+                IsDeleted = false,
+            },
+            new Bank
+            {
+                BankId = PensionId,
+                BankName = "Scottish Widows",
+                OrderBy = 70,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                IsDeleted = false,
+            },
+            new Bank
+            {
+                BankId = PrincipalityId,
+                BankName = "Principality Building Society",
+                OrderBy = 80,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                IsDeleted = false,
             });
     }
 }

@@ -20,6 +20,7 @@ public class Import
     public string? AccountNumberValue { get; set; }
     public Guid? CategoryId { get; set; }
     public Guid? SubcategoryId { get; set; }
+    public Guid? TransferBankAccountId { get; set; }
     public string? Notes { get; set; }
     public ImportRowStatus ImportRowStatus { get; set; }
     public string? ValidationFailureMessages { get; set; }
