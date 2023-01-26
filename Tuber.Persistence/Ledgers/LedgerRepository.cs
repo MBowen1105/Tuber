@@ -54,7 +54,7 @@ public class LedgerRepository : ILedgerRepository
     #region "Queries"
     public List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize)
     {
-        return _context.Ledgers
+        var result = _context.Ledgers
             .Include(x => x.BankAccount)
             .Include(x => x.Category)
             .Include(x => x.Subcategory)
@@ -66,6 +66,7 @@ public class LedgerRepository : ILedgerRepository
             .Skip(pageNumber * pageSize - pageSize)
             .Take(pageSize)
             .ToList();
+        return result;
     }
 
     public int NextRowNumber(Guid bankAccountId, DateTime dateUtc)

@@ -81,8 +81,11 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     public ServiceResult<List<Ledger>> GetPaged(
         Guid bankAccountId,
         int pageNumber, int
-        pageSize) =>
-        new(payload: _ledgerRepo.GetPaged(bankAccountId, pageNumber, pageSize));
+        pageSize)
+    {
+        var ledgerList = _ledgerRepo.GetPaged(bankAccountId, pageNumber, pageSize);
+        return new ServiceResult<List<Ledger>>(ledgerList);
+    }
 
     public int CountPages(int pageSize) =>
         _ledgerRepo.CountPages(pageSize);
