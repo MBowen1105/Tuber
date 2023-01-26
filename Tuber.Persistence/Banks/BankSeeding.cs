@@ -14,6 +14,7 @@ public static class BankSeeding
     public static readonly Guid PayPalId = Guid.Parse("64fba8d3-cef0-4a73-8f69-3fecfd186bb1");
     public static readonly Guid PensionId = Guid.Parse("ac5c2909-d1c7-448a-b59c-8509e19b313d");
     public static readonly Guid PrincipalityId = Guid.Parse("72dfefb5-6408-4e5d-baaa-1217a2c230a4");
+    public static readonly Guid HondaId = Guid.Parse("71302810-87a8-484c-83e2-148211a5b82d");
 
     public static void Seed(EntityTypeBuilder<Bank> builder)
     {
@@ -90,6 +91,15 @@ public static class BankSeeding
                 BankId = PrincipalityId,
                 BankName = "Principality Building Society",
                 OrderBy = 80,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                IsDeleted = false,
+            },
+            new Bank
+            {
+                BankId = HondaId,
+                BankName = "Honda Finance",
+                OrderBy = 100,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
                 IsDeleted = false,

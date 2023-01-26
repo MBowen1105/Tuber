@@ -16,7 +16,8 @@ public static class BankAccountSeeding
     public static readonly Guid PrincipalityMortgageAccountId = Guid.Parse("f9d4bc01-e0b0-43e1-9ef3-b068dfc2fc4a");
     public static readonly Guid WBBSSavingsAccountId = Guid.Parse("1b0a51db-1635-4df2-9faa-7f5d6f0450f1");
     public static readonly Guid CoOpTravelCreditCardAccountId = Guid.Parse("462c8d2c-ddd6-4de5-bc98-21c6094ffa3e");
-
+    public static readonly Guid HondaMotorAccountId = Guid.Parse("85a437ee-b0b4-449c-9c81-8a2b40c94feb");
+    
     public static void Seed(EntityTypeBuilder<BankAccount> builder)
     {
         builder.HasData(
@@ -170,6 +171,22 @@ public static class BankAccountSeeding
                 BankAccountId = CoOpTravelCreditCardAccountId,
                 BankId = Banks.BankSeeding.CoOpBankId,
                 BankAccountName = "Co-Op Travel Credit Card",
+                UKSortCode = "",
+                UKBankAccount = "",
+                OpeningBalance = 0,
+                OrderBy = 10,
+                ImportTemplateId = null,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                CreatedOnUtc = DateTime.UtcNow,
+                UpdatedByUserId = UserSeeding.ADMIN_USER.UserId,
+                UpdatedOnUtc = DateTime.UtcNow,
+                IsDeleted = true,
+            },
+            new BankAccount
+            {
+                BankAccountId = HondaMotorAccountId,
+                BankId = Banks.BankSeeding.HondaId,
+                BankAccountName = "Honda Motors",
                 UKSortCode = "",
                 UKBankAccount = "",
                 OpeningBalance = 0,

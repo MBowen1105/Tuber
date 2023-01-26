@@ -60,7 +60,7 @@ public class LedgerRepository : ILedgerRepository
             .Include(x => x.Subcategory)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
-            .Where(x => x.IsDeleted == false)
+            .Where(x => x.BankAccountId == bankAccountId && x.IsDeleted == false)
             .OrderBy(x => x.DateUtc)
             .ThenBy(x => x.RowNumber)
             .Skip(pageNumber * pageSize - pageSize)
