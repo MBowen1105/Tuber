@@ -1,10 +1,10 @@
-﻿namespace Tuber.Application.BankAccounts.Queries.BankAccountGetById;
-public class BankAccountGetByIdAPIResponse
+﻿namespace Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetById;
+public class InstitutionAccountGetByIdAPIResponse
 {
-    public Guid BankAccountId { get; init; }
-    public Guid BankId { get; init; }
-    public string BankAccountName { get; init; } = "";
-    public string UKBankAccount { get; init; } = "";
+    public Guid InstitutionAccountId { get; init; }
+    public Guid InstitutionId { get; init; }
+    public string InstitutionAccountName { get; init; } = "";
+    public string UKInstitutionAccount { get; init; } = "";
     public string UKSortCode { get; init; } = "";
     public int OrderBy { get; init; }
     public string CreatedByUserFullName { get; init; } = "";

@@ -15,7 +15,7 @@ public class LedgerAddDebitCommandHandler
 
     public Task<LedgerAddDebitCommandResponse> Handle(LedgerAddDebitCommandRequest request, CancellationToken cancellationToken)
     {
-        var serviceResult = _ledgerUpdaterService.AddDebit(request.BankAccountId, request.DateUtc,
+        var serviceResult = _ledgerUpdaterService.AddDebit(request.InstitutionAccountId, request.DateUtc,
              request.Description, request.Reference, request.TransactionType,
              request.MoneyOut, request.CategoryId, request.SubcategoryId);
 

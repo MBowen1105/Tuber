@@ -3,5 +3,5 @@
 namespace Tuber.Application.Ledgers.Queries.LedgerGetPaged;
 public class LedgerGetPagedAPIRequest : PagedAPIRequest
 {
-    public Guid BankAccountId { get; init; }
+    public Guid InstitutionAccountId { get; init; }
 }

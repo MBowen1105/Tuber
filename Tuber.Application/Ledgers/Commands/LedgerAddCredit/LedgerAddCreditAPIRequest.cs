@@ -1,7 +1,7 @@
 ﻿namespace Tuber.Application.Ledgers.Commands.LedgerAddCredit;
 public class LedgerAddCreditAPIRequest
 {
-    public Guid BankAccountId { get; set; }
+    public Guid InstitutionAccountId { get; set; }
     public DateTime DateUtc { get; set; }
     public string Description { get; set; } = "";
     public string? Reference { get; set; }

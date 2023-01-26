@@ -15,7 +15,7 @@ public class LedgerAddCreditCommandHandler
 
     public Task<LedgerAddCreditCommandResponse> Handle(LedgerAddCreditCommandRequest request, CancellationToken cancellationToken)
     {
-        var serviceResult = _ledgerUpdaterService.AddCredit(request.BankAccountId, request.DateUtc,
+        var serviceResult = _ledgerUpdaterService.AddCredit(request.InstitutionAccountId, request.DateUtc,
              request.Description, request.Reference, request.TransactionType,
              request.MoneyIn, request.CategoryId, request.SubcategoryId);
 

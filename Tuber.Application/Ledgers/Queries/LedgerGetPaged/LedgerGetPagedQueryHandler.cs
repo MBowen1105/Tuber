@@ -22,7 +22,7 @@ namespace Tuber.Application.Ledgers.Queries.LedgerGetPaged
             CancellationToken cancellationToken)
         {
             var serviceResult = _ledgerRetrievalService.GetPaged(
-                request.BankAccountId, 
+                request.InstitutionAccountId, 
                 request.PageNumber, 
                 request.PageSize);
 

@@ -6,7 +6,7 @@ public class ImportAddCommandResponse : CommandQueryResponseBase
 {
     public ImportAddCommandResponse()
     {
-        BankAccountId = Guid.Empty;
+        InstitutionAccountId = Guid.Empty;
         ImportFileName = "";
         TotalImportRowCount = 0;
         CategorisedRowCount = 0;
@@ -15,7 +15,7 @@ public class ImportAddCommandResponse : CommandQueryResponseBase
         InvalidImportRowCount = 0;
     }
 
-    public Guid BankAccountId { get; set; }
+    public Guid InstitutionAccountId { get; set; }
     public string ImportFileName { get; set; }
     public int TotalImportRowCount { get; set; }
     public int CategorisedRowCount { get; init; }

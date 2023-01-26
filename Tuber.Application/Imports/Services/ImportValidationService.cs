@@ -15,13 +15,13 @@ public class ImportValidationService : IImportValidationService
     private readonly ICurrentUserService _currentUserService;
     private readonly ISystemClock _dateTimeService;
     private readonly ILedgerRetrievalService _ledgerRetrievalService;
-    private readonly IBankAccountRetrievalService _bankAccountRetrievalService;
+    private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
         ISystemClock dateTimeService,
         ILedgerRetrievalService transactionRetrievalService,
-        IBankAccountRetrievalService bankAccountRetrievalService)
+        IInstitutionAccountRetrievalService bankAccountRetrievalService)
     {
         _currentUserService = currentUserService;
         _dateTimeService = dateTimeService;
@@ -35,7 +35,7 @@ public class ImportValidationService : IImportValidationService
         bool suggestCategorisation,
         string[] allRows)
     {
-        //  Check Bank Account Exists
+        //  Check Institution Account Exists
         var bankAccountServiceResult = _bankAccountRetrievalService.GetById(bankAccountId);
         if (bankAccountServiceResult.HasFailed)
         {
@@ -168,7 +168,7 @@ public class ImportValidationService : IImportValidationService
 
             Guid? suggestedCategoryId = null;
             Guid? suggestedSubcategoryId = null;
-            Guid? suggestedTransferBankAccountId = null;
+            Guid? suggestedTransferInstitutionAccountId = null;
             if (suggestCategorisation)
             {
                 var suggestCategorisationServiceResult = _ledgerRetrievalService.SuggestCategorisation(
@@ -181,7 +181,7 @@ public class ImportValidationService : IImportValidationService
 
                 suggestedSubcategoryId = suggestCategorisationServiceResult.Payload.SubcategoryId;
 
-                suggestedTransferBankAccountId = suggestCategorisationServiceResult.Payload.TransferBankAccountId;
+                suggestedTransferInstitutionAccountId = suggestCategorisationServiceResult.Payload.TransferInstitutionAccountId;
             }
 
             if (previousDateValue == dateValue)
@@ -193,7 +193,7 @@ public class ImportValidationService : IImportValidationService
             }
             var newImportRow = new Import
             {
-                BankAccountId = bankAccountId,
+                InstitutionAccountId = bankAccountId,
                 ImportRowNumber = rowIndex,
                 DateValueISO8601 = validDateISO8601Value,
                 DescriptionOnStatementValue = descriptionOnStatementValue,
@@ -207,14 +207,14 @@ public class ImportValidationService : IImportValidationService
                 AccountNumberValue = accountNumberValue,
                 CategoryId = suggestedCategoryId,
                 SubcategoryId = suggestedSubcategoryId,
-                TransferBankAccountId = suggestedTransferBankAccountId,
+                TransferInstitutionAccountId = suggestedTransferInstitutionAccountId,
                 ImportRowStatus = (validationFailureMessages.Length == 0)
                     ? ImportRowStatus.IsValid
                     : ImportRowStatus.IsInvalid,
                 ValidationFailureMessages = validationFailureMessages,
                 ImportedByUserId = _currentUserService.User().UserId,
                 ImportedUtc = _dateTimeService.NowUtc(),
-                BankAccount = bankAccount,
+                InstitutionAccount = bankAccount,
             };
             validatedRows.Add(newImportRow);
         }

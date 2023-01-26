@@ -14,7 +14,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly DateTime TodayUtc = new(2023, 1, 6);
 
-    private readonly Guid BankAccountId = Guid.NewGuid();
+    private readonly Guid InstitutionAccountId = Guid.NewGuid();
     
     private readonly Guid LedgerId1 = Guid.NewGuid();
     private readonly Guid LedgerId2 = Guid.NewGuid();
@@ -45,7 +45,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                 new Ledger
                 {
                     LedgerId = LedgerId1,
-                    BankAccountId = BankAccountId,
+                    InstitutionAccountId = InstitutionAccountId,
                     DateUtc = TodayUtc,
                     Description = "M&S BANK",
                     Reference = "",
@@ -58,7 +58,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                 new Ledger
                 {
                     LedgerId = LedgerId2,
-                    BankAccountId = BankAccountId,
+                    InstitutionAccountId = InstitutionAccountId,
                     DateUtc= TodayUtc.AddDays(-1),
                     Description = "M&S BANK",
                     Reference = "",
@@ -71,7 +71,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
                 new Ledger
                 {
                     LedgerId = LedgerId3,
-                    BankAccountId = BankAccountId,
+                    InstitutionAccountId = InstitutionAccountId,
                     DateUtc = TodayUtc.AddDays(-2),
                     Description = "M&S BANK",
                     Reference = "Ref1",
@@ -96,7 +96,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     public void SuggestCategorisation_ExactMatch_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
-            bankAccountId: BankAccountId,
+            bankAccountId: InstitutionAccountId,
             description: "M&S BANK",
             reference: "",
             moneyIn: 100.0,
@@ -114,7 +114,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     public void SuggestCategorisation_MatchWithoutAmounts_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
-            bankAccountId: BankAccountId,
+            bankAccountId: InstitutionAccountId,
             description: "M&S BANK",
             reference: "",
             moneyIn: 9.0,
@@ -132,7 +132,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     public void SuggestCategorisation_MatchJustDescriptionAndReference_ReturnsLedgerEntry3()
     {
         var serviceResult = _sut.SuggestCategorisation(
-            bankAccountId: BankAccountId,
+            bankAccountId: InstitutionAccountId,
             description: "M&S BANK",
             reference: "Ref1",
             moneyIn: 100.0,
@@ -150,7 +150,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
     public void SuggestCategorisation_MatchJustDescription_ReturnsLedgerEntry1()
     {
         var serviceResult = _sut.SuggestCategorisation(
-            bankAccountId: BankAccountId,
+            bankAccountId: InstitutionAccountId,
             description: "M&S BANK",
             reference: "No ref match",
             moneyIn: 9.99,

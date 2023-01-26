@@ -4,29 +4,29 @@ using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.BankAccounts.Queries.BankAccountGetPaged
+namespace Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetPaged
 {
-    public class BankAccountGetPagedQueryHandler : IRequestHandler<BankAccountGetPagedQueryRequest, BankAccountGetPagedQueryResponse>
+    public class InstitutionAccountGetPagedQueryHandler : IRequestHandler<InstitutionAccountGetPagedQueryRequest, InstitutionAccountGetPagedQueryResponse>
     {
-        private readonly IBankAccountRetrievalService _bankAccountRetrieverService;
+        private readonly IInstitutionAccountRetrievalService _bankAccountRetrieverService;
         private readonly IMapper _mapper;
 
-        public BankAccountGetPagedQueryHandler(IBankAccountRetrievalService bankAccountRetrieverService,
+        public InstitutionAccountGetPagedQueryHandler(IInstitutionAccountRetrievalService bankAccountRetrieverService,
             IMapper mapper)
         {
             _bankAccountRetrieverService = bankAccountRetrieverService;
             _mapper = mapper;
         }
 
-        public Task<BankAccountGetPagedQueryResponse> Handle(BankAccountGetPagedQueryRequest request, CancellationToken cancellationToken)
+        public Task<InstitutionAccountGetPagedQueryResponse> Handle(InstitutionAccountGetPagedQueryRequest request, CancellationToken cancellationToken)
         {
             var serviceResult = _bankAccountRetrieverService.GetPaged(request.PageNumber, request.PageSize);
 
-            var response = new BankAccountGetPagedQueryResponse
+            var response = new InstitutionAccountGetPagedQueryResponse
             {
-                BankAccountCount = serviceResult.Payload.Count,
+                InstitutionAccountCount = serviceResult.Payload.Count,
                 TotalPages = _bankAccountRetrieverService.CountPages(request.PageSize),
-                BankAccounts = _mapper.Map<List<BankAccount>, List<BankAccountGetPaged_BankAccount>>(serviceResult.Payload)
+                InstitutionAccounts = _mapper.Map<List<InstitutionAccount>, List<InstitutionAccountGetPaged_InstitutionAccount>>(serviceResult.Payload)
             };
 
             return Task.FromResult(response);

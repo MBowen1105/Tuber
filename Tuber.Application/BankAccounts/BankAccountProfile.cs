@@ -1,26 +1,26 @@
 ﻿using AutoMapper;
-using Tuber.Application.BankAccounts.Queries.BankAccountGetById;
-using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetById;
+using Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetPaged;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.BankAccounts;
-public class BankAccountProfile : Profile
+namespace Tuber.Application.InstitutionAccounts;
+public class InstitutionAccountProfile : Profile
 {
-    public BankAccountProfile()
+    public InstitutionAccountProfile()
     {
-        //  BankAccountGetById
-        CreateMap<BankAccountGetByIdQueryResponse, BankAccountGetByIdAPIResponse>();
-        CreateMap<BankAccount, BankAccountGetByIdQueryResponse>()
+        //  InstitutionAccountGetById
+        CreateMap<InstitutionAccountGetByIdQueryResponse, InstitutionAccountGetByIdAPIResponse>();
+        CreateMap<InstitutionAccount, InstitutionAccountGetByIdQueryResponse>()
             .ForMember(dest => dest.Exceptions, act => act.Ignore());
 
-        //  BanksGetPaged
-        CreateMap<BankAccountGetPagedQueryResponse, BankAccountGetPagedAPIResponse>();
-        CreateMap<BankAccount, BankAccountGetPaged_BankAccount>();
+        //  InstitutionsGetPaged
+        CreateMap<InstitutionAccountGetPagedQueryResponse, InstitutionAccountGetPagedAPIResponse>();
+        CreateMap<InstitutionAccount, InstitutionAccountGetPaged_InstitutionAccount>();
 
-        //  TODO: BankAccountAdd
-        //  TODO: BankAccountUpdate
-        //  TODO: BankAccountDelete
+        //  TODO: InstitutionAccountAdd
+        //  TODO: InstitutionAccountUpdate
+        //  TODO: InstitutionAccountDelete
     }
 
 }

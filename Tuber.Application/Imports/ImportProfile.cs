@@ -2,7 +2,7 @@
 using Tuber.Application.Imports.Commands.ImportAccept;
 using Tuber.Application.Imports.Commands.ImportAdd;
 using Tuber.Application.Imports.Commands.ImportUpdate;
-using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
+using Tuber.Application.Imports.Queries.ImportGetByInstitutionAccountId;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
@@ -11,9 +11,9 @@ public class ImportProfile : Profile
 {
     public ImportProfile()
     {
-        //  ImportGetByBankAccountId
-        CreateMap<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>();
-        CreateMap<Import, GetImportByBankAccountId_Import>()
+        //  ImportGetByInstitutionAccountId
+        CreateMap<ImportGetByInstitutionAccountIdQueryResponse, ImportGetByInstitutionAccountIdAPIResponse>();
+        CreateMap<Import, GetImportByInstitutionAccountId_Import>()
             .ForMember(dest => dest.ImportRowStatusDesc, opt => opt.MapFrom(src => src.ImportRowStatus.ToString()));
 
         //  ImportAdd

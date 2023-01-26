@@ -14,7 +14,7 @@ public class LedgerConfiguration : IEntityTypeConfiguration<Ledger>
 
         builder.HasOne(x => x.UpdatedByUser);
 
-        builder.Property(x => x.BankAccountId)
+        builder.Property(x => x.InstitutionAccountId)
             .IsRequired();
 
         builder.Property(x => x.DateUtc)

@@ -1,50 +1,50 @@
 ﻿using FluentAssertions;
 using Moq;
-using Tuber.Application.BankAccounts.Services;
+using Tuber.Application.InstitutionAccounts.Services;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.UnitTests.BankAccounts.Services;
-internal class BankAccountRetrievalService_UnitTests
+namespace Tuber.Application.UnitTests.InstitutionAccounts.Services;
+internal class InstitutionAccountRetrievalService_UnitTests
 {
     private static readonly Guid GOOD_ID = Guid.Parse("2a6976f3-8006-4635-b6e8-8c5b0cfac6fe");
     private static readonly Guid BAD_ID = Guid.Parse("1ff93507-902d-4eb1-a264-3ec211334db5");
 
-    private readonly Mock<IBankAccountRepository> _mockBankAccountRepository = new();
+    private readonly Mock<IInstitutionAccountRepository> _mockInstitutionAccountRepository = new();
 
-    private readonly BankAccount GOOD_BANKACCOUNT = new()
+    private readonly InstitutionAccount GOOD_BANKACCOUNT = new()
     {
-        BankAccountId = GOOD_ID,
+        InstitutionAccountId = GOOD_ID,
     };
-    private IBankAccountRetrievalService _sut;
+    private IInstitutionAccountRetrievalService _sut;
 
     [SetUp]
     public void Setup()
     {
-        _mockBankAccountRepository.Setup(x => x.GetById(It.Is<Guid>(x => x == GOOD_ID)))
+        _mockInstitutionAccountRepository.Setup(x => x.GetById(It.Is<Guid>(x => x == GOOD_ID)))
             .Returns(GOOD_BANKACCOUNT);
 
-        _mockBankAccountRepository.Setup(x => x.GetById(It.Is<Guid>(x => x == BAD_ID)))
-            .Returns(new BankAccount());
+        _mockInstitutionAccountRepository.Setup(x => x.GetById(It.Is<Guid>(x => x == BAD_ID)))
+            .Returns(new InstitutionAccount());
 
-        _mockBankAccountRepository.Setup(x => x.GetPaged(
+        _mockInstitutionAccountRepository.Setup(x => x.GetPaged(
             It.Is<int>(x => x == 1),
             It.Is<int>(x => x == 2)))
-                .Returns(new List<BankAccount>() { GOOD_BANKACCOUNT, GOOD_BANKACCOUNT });
+                .Returns(new List<InstitutionAccount>() { GOOD_BANKACCOUNT, GOOD_BANKACCOUNT });
 
-        _mockBankAccountRepository.Setup(x => x.GetPaged(
+        _mockInstitutionAccountRepository.Setup(x => x.GetPaged(
             It.Is<int>(x => x == 2),
             It.Is<int>(x => x == 2)))
-                .Returns(new List<BankAccount>());
+                .Returns(new List<InstitutionAccount>());
 
-        _sut = new BankAccountRetrievalService(_mockBankAccountRepository.Object);
+        _sut = new InstitutionAccountRetrievalService(_mockInstitutionAccountRepository.Object);
     }
 
     #region "GetById"
     [Test, Parallelizable]
-    public void GetById_ExistingBankAccount_ReturnsBankAccountWithNoExceptions()
+    public void GetById_ExistingInstitutionAccount_ReturnsInstitutionAccountWithNoExceptions()
     {
         var serviceResult = _sut.GetById(GOOD_ID);
 
@@ -54,21 +54,21 @@ internal class BankAccountRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void GetById_NonExistingBankAccount_ReturnsNullBankAccountWithExceptions()
+    public void GetById_NonExistingInstitutionAccount_ReturnsNullInstitutionAccountWithExceptions()
     {
         var serviceResult = _sut.GetById(BAD_ID);
 
         serviceResult.IsSuccess.Should().BeFalse();
         serviceResult.Exceptions.Count.Should().Be(1);
         serviceResult.Exceptions.First().Should().BeOfType<EntityDoesNotExistException>();
-        serviceResult.Payload.Should().BeEquivalentTo(new BankAccount());
+        serviceResult.Payload.Should().BeEquivalentTo(new InstitutionAccount());
     }
     #endregion
 
     #region "GetPaged"
 
     [Test, Parallelizable]
-    public void GetPaged_ExistingBankAccounts_ReturnsBankAccountListWithNoExceptions()
+    public void GetPaged_ExistingInstitutionAccounts_ReturnsInstitutionAccountListWithNoExceptions()
     {
         var serviceResult = _sut.GetPaged(1,2);
 
@@ -79,7 +79,7 @@ internal class BankAccountRetrievalService_UnitTests
     }
 
     [Test, Parallelizable]
-    public void GetPaged_WithNoBankAccounts_ReturnsEmptyBankAccountListWithNoExceptions()
+    public void GetPaged_WithNoInstitutionAccounts_ReturnsEmptyInstitutionAccountListWithNoExceptions()
     {
         var serviceResult = _sut.GetPaged(2, 2);
 

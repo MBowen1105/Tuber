@@ -5,27 +5,27 @@ using Tuber.Application.Enums;
 using Tuber.Domain.Dtos;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId
+namespace Tuber.Application.Imports.Queries.ImportGetByInstitutionAccountId
 {
-    public class ImportGetByBankAccountIdQueryHandler : IRequestHandler<ImportGetByBankAccountIdQueryRequest, ImportGetByBankAccountIdQueryResponse>
+    public class ImportGetByInstitutionAccountIdQueryHandler : IRequestHandler<ImportGetByInstitutionAccountIdQueryRequest, ImportGetByInstitutionAccountIdQueryResponse>
     {
         private readonly IImportRetrievalService _importRetrievalService;
         private readonly IMapper _mapper;
 
-        public ImportGetByBankAccountIdQueryHandler(
+        public ImportGetByInstitutionAccountIdQueryHandler(
             IImportRetrievalService importRetrievalService, IMapper mapper)
         {
             _importRetrievalService = importRetrievalService;
             _mapper = mapper;
         }
 
-        public Task<ImportGetByBankAccountIdQueryResponse> Handle(ImportGetByBankAccountIdQueryRequest request, CancellationToken cancellationToken)
+        public Task<ImportGetByInstitutionAccountIdQueryResponse> Handle(ImportGetByInstitutionAccountIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var serviceResult = _importRetrievalService.GetByBankAccountId(request.BankAccountId);
+            var serviceResult = _importRetrievalService.GetByInstitutionAccountId(request.InstitutionAccountId);
 
-            var importDtoList = _mapper.Map<List<Import>, List<GetImportByBankAccountId_Import>>(serviceResult.Payload!);
+            var importDtoList = _mapper.Map<List<Import>, List<GetImportByInstitutionAccountId_Import>>(serviceResult.Payload!);
 
-            var response = new ImportGetByBankAccountIdQueryResponse
+            var response = new ImportGetByInstitutionAccountIdQueryResponse
             {
                 TotalImportRowCount = importDtoList.Count,
                 ValidImportRowCount = importDtoList.Count(x => x.ImportRowStatus == ImportRowStatus.IsValid),

@@ -9,7 +9,7 @@ public class Ledger : AuditableEntity
     public Ledger()
     {
         LedgerId = Guid.Empty;
-        BankAccountId = Guid.Empty;
+        InstitutionAccountId = Guid.Empty;
         DateUtc = DateTime.MinValue;
         RowNumber = 0;
         Description = string.Empty;
@@ -20,14 +20,14 @@ public class Ledger : AuditableEntity
         Balance = 0;
         CategoryId = Guid.Empty;
         SubcategoryId = null;
-        TransferBankAccountId = null;
+        TransferInstitutionAccountId = null;
         TransactionOrigin = TransactionOrigin.Unknown;
         IsReconciled = false;
         IsDeleted = false;
     }
 
     public Guid LedgerId { get; init; }
-    public Guid BankAccountId { get; set; }
+    public Guid InstitutionAccountId { get; set; }
     public DateTime DateUtc { get; set; }
     public int RowNumber { get; set; }
     public string Description { get; set; }
@@ -38,11 +38,11 @@ public class Ledger : AuditableEntity
     public double Balance { get; set; }
     public Guid CategoryId { get; set; }
     public Guid? SubcategoryId { get; set; }
-    public Guid? TransferBankAccountId { get; set; }
+    public Guid? TransferInstitutionAccountId { get; set; }
     public TransactionOrigin TransactionOrigin { get; set; }
     public bool IsReconciled { get; init; }
     public bool IsDeleted { get; set; }
-    public virtual BankAccount? BankAccount { get; set; }
+    public virtual InstitutionAccount? InstitutionAccount { get; set; }
     public virtual Category? Category { get; set; }
     public virtual Subcategory? Subcategory { get; set; }
 }

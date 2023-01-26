@@ -3,7 +3,7 @@
 namespace Tuber.Application.Ledgers.Commands.LedgerAddDebit;
 public class LedgerAddDebitCommandRequest : IRequest<LedgerAddDebitCommandResponse>
 {
-    public Guid BankAccountId { get; set; }
+    public Guid InstitutionAccountId { get; set; }
     public DateTime DateUtc { get; set; }
     public string Description { get; set; } = "";
     public string? Reference { get; set; }

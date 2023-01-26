@@ -9,7 +9,7 @@ internal class AddImportCommandResponse_UnitTests
     {
         var sut = new ImportAddCommandResponse();
 
-        sut.BankAccountId.Should().Be(Guid.Empty);
+        sut.InstitutionAccountId.Should().Be(Guid.Empty);
         sut.ImportFileName.Should().Be("");
         sut.ValidImportRowCount.Should().Be(0);
         sut.InvalidImportRowCount.Should().Be(0);

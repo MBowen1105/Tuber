@@ -8,14 +8,14 @@ namespace Tuber.Application.Imports.Commands.ImportAdd;
 public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, ImportAddCommandResponse>
 {
     private readonly IFileSystem _fileSystem;
-    private readonly IBankAccountRetrievalService _bankAccountRetrievalService;
+    private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
     private readonly IImportValidationService _importvalidationService;
     private readonly IImportUpdaterService _importUpdaterService;
 
 
     public ImportAddCommandHandler(
         IFileSystem fileSystem,
-        IBankAccountRetrievalService importTemplateRetrievalService,
+        IInstitutionAccountRetrievalService importTemplateRetrievalService,
         IImportValidationService importValidationService,
         IImportUpdaterService importUpdaterService)
     {
@@ -29,8 +29,8 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
         ImportAddCommandRequest request,
         CancellationToken cancellationToken)
     {
-        //  Get appropriate Import Template ID from the BankAccount.
-        var bankAccountRetrievalServiceResult = _bankAccountRetrievalService.GetById(request.BankAccountId);
+        //  Get appropriate Import Template ID from the InstitutionAccount.
+        var bankAccountRetrievalServiceResult = _bankAccountRetrievalService.GetById(request.InstitutionAccountId);
         if (bankAccountRetrievalServiceResult.HasFailed)
         {
             return Task.FromResult(new ImportAddCommandResponse
@@ -45,7 +45,7 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
             return Task.FromResult(new ImportAddCommandResponse
             {
                 Exceptions = new List<Exception> {
-                    new BankAccountHasNoImportTemplateDefinedException(bankAccountRetrievalServiceResult.Payload.BankAccountName)
+                    new InstitutionAccountHasNoImportTemplateDefinedException(bankAccountRetrievalServiceResult.Payload.InstitutionAccountName)
                 }
             });
 
@@ -75,7 +75,7 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
 
         var importValidationServiceResult = _importvalidationService.Validate(
             importTemplate,
-            request.BankAccountId,
+            request.InstitutionAccountId,
             request.SuggestCategorisation,
             allRows);
 
@@ -88,12 +88,12 @@ public class ImportAddCommandHandler : IRequestHandler<ImportAddCommandRequest, 
         }
 
         var importUpdaterServiceResult = _importUpdaterService.Add(
-            request.BankAccountId,
+            request.InstitutionAccountId,
             importValidationServiceResult.Payload);
 
         return Task.FromResult(new ImportAddCommandResponse
         {
-            BankAccountId = request.BankAccountId,
+            InstitutionAccountId = request.InstitutionAccountId,
             ImportFileName = request.ImportFileName,
             TotalImportRowCount = importUpdaterServiceResult.Payload.TotalRowCount,
             CategorisedRowCount = importUpdaterServiceResult.Payload.CategorisedRowCount,

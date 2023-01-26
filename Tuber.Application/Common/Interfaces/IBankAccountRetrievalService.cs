@@ -1,9 +1,9 @@
 ﻿using Tuber.Domain.Models;
 
 namespace Tuber.Application.Common.Interfaces;
-public interface IBankAccountRetrievalService
+public interface IInstitutionAccountRetrievalService
 {
-    ServiceResult<List<BankAccount>> GetPaged(int pageNumber, int pageSize);
-    ServiceResult<BankAccount> GetById(Guid bankAccountId);
+    ServiceResult<List<InstitutionAccount>> GetPaged(int pageNumber, int pageSize);
+    ServiceResult<InstitutionAccount> GetById(Guid bankAccountId);
     int CountPages(int pageSize);
 }

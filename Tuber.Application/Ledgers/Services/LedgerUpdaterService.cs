@@ -9,11 +9,11 @@ namespace Tuber.Application.Ledgers.Services;
 public class LedgerUpdaterService : ILedgerUpdaterService
 {
     private readonly ILedgerRepository _ledgerRepo;
-    private readonly IBankAccountRepository _bankAccountRepo;
+    private readonly IInstitutionAccountRepository _bankAccountRepo;
 
     public LedgerUpdaterService(
         ILedgerRepository ledgerRepo,
-        IBankAccountRepository bankAccountRepo)
+        IInstitutionAccountRepository bankAccountRepo)
     {
         _ledgerRepo = ledgerRepo;
         _bankAccountRepo = bankAccountRepo;
@@ -42,7 +42,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
             var ledger = new Ledger
             {
-                BankAccountId = import.BankAccountId,
+                InstitutionAccountId = import.InstitutionAccountId,
                 DateUtc = dateTimeValue,
                 RowNumber = import.ImportRowNumber,
                 Description = import.DescriptionValue!,
@@ -56,7 +56,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
             //  Is there an EXACT matching transaction on this ledger?
             var existingLedger = _ledgerRepo.GetByValues(
-                ledger.BankAccountId, ledger.DateUtc,
+                ledger.InstitutionAccountId, ledger.DateUtc,
                 ledger.Description, ledger.MoneyIn, ledger.MoneyOut);
 
             if (existingLedger.LedgerId == Guid.Empty)
@@ -92,7 +92,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
         return new ServiceResult<AcceptResult>(
             new AcceptResult
             {
-                BankAccountId = bankAccountId,
+                InstitutionAccountId = bankAccountId,
                 TotalAcceptedRowCount = imports.Count,
                 TotalCreatedRowCount = createdCount,
                 TotalUpdatedRowCount = updatedCount,
@@ -107,7 +107,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
         var ledger = new Ledger
         {
-            BankAccountId = bankAccountId,
+            InstitutionAccountId = bankAccountId,
             DateUtc = dateUtc,
             RowNumber = NextRowNumber(bankAccountId, dateUtc),
             Description = description,
@@ -137,7 +137,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
         var ledger = new Ledger
         {
-            BankAccountId = bankAccountId,
+            InstitutionAccountId = bankAccountId,
             DateUtc = dateUtc,
             RowNumber = NextRowNumber(bankAccountId, dateUtc),
             Description = description,
@@ -162,13 +162,13 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
     public ServiceResult<Ledger> AddTransferOut(Guid bankAccountId, DateTime dateUtc, string description, 
         string? reference, double moneyOut, Guid categoryId, Guid? subcategoryId,
-        Guid transferBankAccountId)
+        Guid transferInstitutionAccountId)
     {
         double balanceBF = GetBalancePriorTo(bankAccountId, dateUtc);
 
         var ledger = new Ledger
         {
-            BankAccountId = bankAccountId,
+            InstitutionAccountId = bankAccountId,
             DateUtc = dateUtc,
             RowNumber = NextRowNumber(bankAccountId, dateUtc),
             Description = description,
@@ -177,7 +177,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
             MoneyIn = null,
             MoneyOut = moneyOut,
             Balance = balanceBF - moneyOut,
-            TransferBankAccountId = transferBankAccountId,
+            TransferInstitutionAccountId = transferInstitutionAccountId,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
             TransactionOrigin = TransactionOrigin.Manual,
@@ -188,20 +188,20 @@ public class LedgerUpdaterService : ILedgerUpdaterService
         RecalculateBalances(bankAccountId, dateUtc, balanceBF);
 
         //  Add the balancing transaction
-        balanceBF = GetBalancePriorTo(transferBankAccountId, dateUtc);
+        balanceBF = GetBalancePriorTo(transferInstitutionAccountId, dateUtc);
 
         var balancingLedger = new Ledger
         {
-            BankAccountId = transferBankAccountId,
+            InstitutionAccountId = transferInstitutionAccountId,
             DateUtc = dateUtc,
-            RowNumber = NextRowNumber(transferBankAccountId, dateUtc),
+            RowNumber = NextRowNumber(transferInstitutionAccountId, dateUtc),
             Description = description,
             Reference = reference,
             TransactionType = "TRANIN",
             MoneyIn = moneyOut,
             MoneyOut = null,
             Balance = balanceBF + moneyOut,
-            TransferBankAccountId = bankAccountId,
+            TransferInstitutionAccountId = bankAccountId,
             CategoryId = categoryId,
             SubcategoryId = subcategoryId,
             TransactionOrigin = TransactionOrigin.Manual,
@@ -209,7 +209,7 @@ public class LedgerUpdaterService : ILedgerUpdaterService
 
         _ledgerRepo.Add(balancingLedger);
 
-        RecalculateBalances(transferBankAccountId, dateUtc, balanceBF);
+        RecalculateBalances(transferInstitutionAccountId, dateUtc, balanceBF);
 
         _ledgerRepo.SaveChanges();
 

@@ -1,11 +1,11 @@
 ﻿using Tuber.Application.Enums;
 
 namespace Tuber.Domain.Dtos;
-public class GetImportByBankAccountId_Import
+public class GetImportByInstitutionAccountId_Import
 {
     public Guid ImportId { get; set; }
-    public Guid BankAccountId { get; set; }
-    public string BankAccountBankAccountName { get; init; } = "";
+    public Guid InstitutionAccountId { get; set; }
+    public string InstitutionAccountInstitutionAccountName { get; init; } = "";
     public int ImportRowNumber { get; set; }
     public string? DateValueISO8601 { get; set; }
     public string? DescriptionOnStatementValue { get; set; }

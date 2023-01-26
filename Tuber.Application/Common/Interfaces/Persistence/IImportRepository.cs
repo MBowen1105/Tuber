@@ -7,9 +7,9 @@ public interface IImportRepository : IRepository<Import>
     Import Add(Import import);
 
     Import Update(Guid importId, Guid categoryId, Guid? subcategoryId, string? notes);
-    void Clear(Guid bankAccountId);
+    void Clear(Guid institutionAccountId);
 
     //  Repository Queries
-    List<Import> GetByBankAccountId(Guid bankAccountId);
+    List<Import> GetByInstitutionAccountId(Guid institutionAccountId);
   
 }

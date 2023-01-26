@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Tuber.Application.BankAccounts;
+using Tuber.Application.InstitutionAccounts;
 
-namespace Tuber.Application.UnitTests.BankAccounts;
-internal class BankAccountProfile_UnitTests
+namespace Tuber.Application.UnitTests.InstitutionAccounts;
+internal class InstitutionAccountProfile_UnitTests
 {
     [Test]
-    public void BankAccountProfile_IsValid()
+    public void InstitutionAccountProfile_IsValid()
     {
-        var config = new MapperConfiguration(cfg => cfg.AddProfile<BankAccountProfile>());
+        var config = new MapperConfiguration(cfg => cfg.AddProfile<InstitutionAccountProfile>());
 
         config.AssertConfigurationIsValid();
     }

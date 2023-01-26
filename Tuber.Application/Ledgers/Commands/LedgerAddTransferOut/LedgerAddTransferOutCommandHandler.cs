@@ -15,9 +15,9 @@ public class LedgerAddTransferOutCommandHandler
 
     public Task<LedgerAddTransferOutCommandResponse> Handle(LedgerAddTransferOutCommandRequest request, CancellationToken cancellationToken)
     {
-        var serviceResult = _ledgerUpdaterService.AddTransferOut(request.BankAccountId, request.DateUtc,
+        var serviceResult = _ledgerUpdaterService.AddTransferOut(request.InstitutionAccountId, request.DateUtc,
              request.Description, request.Reference, request.MoneyOut, request.CategoryId, 
-             request.SubcategoryId, request.TransferBankAccountId);
+             request.SubcategoryId, request.TransferInstitutionAccountId);
 
         return Task.FromResult(new LedgerAddTransferOutCommandResponse
         {

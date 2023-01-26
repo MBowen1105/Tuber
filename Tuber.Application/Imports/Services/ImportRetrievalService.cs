@@ -13,9 +13,9 @@ public class ImportRetrievalService : IImportRetrievalService
         _importRepo = importRepo;
     }
 
-    public ServiceResult<List<Import>> GetByBankAccountId(Guid bankAccountId)
+    public ServiceResult<List<Import>> GetByInstitutionAccountId(Guid bankAccountId)
     {
-        var importList = _importRepo.GetByBankAccountId(bankAccountId);
+        var importList = _importRepo.GetByInstitutionAccountId(bankAccountId);
         
         return new ServiceResult<List<Import>>(importList);
     }

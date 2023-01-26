@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
-using Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
+using Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetPaged;
 
-namespace Tuber.Application.BankAccounts.PipelineValidators;
-public class BankAccountGetPagedQueryRequestValidator : AbstractValidator<BankAccountGetPagedQueryRequest>
+namespace Tuber.Application.InstitutionAccounts.PipelineValidators;
+public class InstitutionAccountGetPagedQueryRequestValidator : AbstractValidator<InstitutionAccountGetPagedQueryRequest>
 {
-    public BankAccountGetPagedQueryRequestValidator()
+    public InstitutionAccountGetPagedQueryRequestValidator()
     {
         RuleFor(x => x.PageNumber)
             .NotEmpty()

@@ -4,32 +4,32 @@ using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Exceptions;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.BankAccounts.Services;
-public  class BankAccountRetrievalService : IBankAccountRetrievalService
+namespace Tuber.Application.InstitutionAccounts.Services;
+public  class InstitutionAccountRetrievalService : IInstitutionAccountRetrievalService
 {
-    private readonly IBankAccountRepository _bankAccountRepository;
+    private readonly IInstitutionAccountRepository _bankAccountRepository;
 
-    public BankAccountRetrievalService(IBankAccountRepository bankAccountRepo)
+    public InstitutionAccountRetrievalService(IInstitutionAccountRepository bankAccountRepo)
     {
         _bankAccountRepository = bankAccountRepo;
     }
 
-    public ServiceResult<BankAccount> GetById(Guid bankAccountId)
+    public ServiceResult<InstitutionAccount> GetById(Guid bankAccountId)
     {
         var bankAccount = _bankAccountRepository.GetById(bankAccountId);
 
-        if (bankAccount.BankAccountId == Guid.Empty)
-            return new ServiceResult<BankAccount>(
+        if (bankAccount.InstitutionAccountId == Guid.Empty)
+            return new ServiceResult<InstitutionAccount>(
                 payload: bankAccount,
-                exception: new EntityDoesNotExistException(BankAccount.FriendlyName, bankAccount.BankAccountId));
+                exception: new EntityDoesNotExistException(InstitutionAccount.FriendlyName, bankAccount.InstitutionAccountId));
 
-        return new ServiceResult<BankAccount>(
+        return new ServiceResult<InstitutionAccount>(
             payload: bankAccount);
     }
 
-    public ServiceResult<List<BankAccount>> GetPaged(int pageNumber, int pageSize)
+    public ServiceResult<List<InstitutionAccount>> GetPaged(int pageNumber, int pageSize)
     {
-        return new ServiceResult<List<BankAccount>>(
+        return new ServiceResult<List<InstitutionAccount>>(
             payload: _bankAccountRepository.GetPaged(pageNumber, pageSize));
     }
 

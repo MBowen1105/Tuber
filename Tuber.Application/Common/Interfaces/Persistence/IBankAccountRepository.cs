@@ -1,11 +1,11 @@
 ﻿using Tuber.Domain.Models;
 
 namespace Tuber.Application.Common.Interfaces.Persistence;
-public interface IBankAccountRepository : IRepository<BankAccount>
+public interface IInstitutionAccountRepository : IRepository<InstitutionAccount>
 {
-    BankAccount Add(BankAccount bankAccount);
-    BankAccount Update(BankAccount bankAccount);
-    List<BankAccount> GetPaged(int pageNumber, int pageSize);
-    BankAccount GetById(Guid bankAccountId);
+    InstitutionAccount Add(InstitutionAccount bankAccount);
+    InstitutionAccount Update(InstitutionAccount bankAccount);
+    List<InstitutionAccount> GetPaged(int pageNumber, int pageSize);
+    InstitutionAccount GetById(Guid bankAccountId);
     int CountPages(int pageSize);
 }

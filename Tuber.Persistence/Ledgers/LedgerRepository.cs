@@ -55,12 +55,12 @@ public class LedgerRepository : ILedgerRepository
     public List<Ledger> GetPaged(Guid bankAccountId, int pageNumber, int pageSize)
     {
         var result = _context.Ledgers
-            .Include(x => x.BankAccount)
+            .Include(x => x.InstitutionAccount)
             .Include(x => x.Category)
             .Include(x => x.Subcategory)
             .Include(x => x.CreatedByUser)
             .Include(x => x.UpdatedByUser)
-            .Where(x => x.BankAccountId == bankAccountId && x.IsDeleted == false)
+            .Where(x => x.InstitutionAccountId == bankAccountId && x.IsDeleted == false)
             .OrderBy(x => x.DateUtc)
             .ThenBy(x => x.RowNumber)
             .Skip(pageNumber * pageSize - pageSize)
@@ -72,7 +72,7 @@ public class LedgerRepository : ILedgerRepository
     public int NextRowNumber(Guid bankAccountId, DateTime dateUtc)
     {
         var ledger = _context.Ledgers
-            .Where(x => x.BankAccountId == bankAccountId
+            .Where(x => x.InstitutionAccountId == bankAccountId
                 && x.DateUtc == dateUtc
                 && x.IsDeleted == false)
             .OrderByDescending(x => x.RowNumber)
@@ -96,7 +96,7 @@ public class LedgerRepository : ILedgerRepository
         Guid bankAccountId, DateTime fromDate, DateTime toDate)
     {
         return _context.Ledgers
-            .Where(x => x.BankAccountId == bankAccountId &&
+            .Where(x => x.InstitutionAccountId == bankAccountId &&
                 x.DateUtc >= fromDate && x.DateUtc <= toDate)
             .ToList();
     }
@@ -104,7 +104,7 @@ public class LedgerRepository : ILedgerRepository
     public Ledger GetByValues(Guid bankAccountId, DateTime dateUtc, string description, double? moneyIn, double? moneyOut)
     {
         var ledger = _context.Ledgers
-        .FirstOrDefault(x => x.BankAccountId == bankAccountId &&
+        .FirstOrDefault(x => x.InstitutionAccountId == bankAccountId &&
                 x.DateUtc == dateUtc &&
                 x.Description == description &&
                 x.MoneyIn == moneyIn &&
@@ -116,7 +116,7 @@ public class LedgerRepository : ILedgerRepository
     public double? GetBalancePriorTo(Guid bankAccountId, DateTime dateUtc)
     {
         var ledger = _context.Ledgers
-            .Where(x => x.BankAccountId == bankAccountId
+            .Where(x => x.InstitutionAccountId == bankAccountId
                 && x.DateUtc < dateUtc
                 && x.IsDeleted == false)
             .OrderByDescending(x => x.DateUtc)

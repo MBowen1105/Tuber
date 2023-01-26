@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Tuber.Application.CategorySubcategories.Commands.AddCategorySubcategory;
-using Tuber.Application.CategorySubcategories.Commands.BankAdd;
+using Tuber.Application.CategorySubcategories.Commands.InstitutionAdd;
 using Tuber.Application.CategorySubcategories.Commands.CategorySubcategoryAdd;
 using Tuber.Application.CategorySubcategories.Queries.CategorySubcategoryGetById;
 using Tuber.Domain.Models;

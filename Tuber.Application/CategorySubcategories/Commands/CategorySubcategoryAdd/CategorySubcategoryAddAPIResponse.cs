@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.CategorySubcategories.Commands.BankAdd;
+﻿namespace Tuber.Application.CategorySubcategories.Commands.InstitutionAdd;
 public class CategorySubcategoryAddAPIResponse
 {
     public Guid CategorySubcategoryId { get; init; }

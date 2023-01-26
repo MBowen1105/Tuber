@@ -49,7 +49,7 @@ public class ImportUpdaterService : IImportUpdaterService
             var import = new Import
             {
                 ImportId = Guid.NewGuid(),
-                BankAccountId = bankAccountId,
+                InstitutionAccountId = bankAccountId,
                 ImportRowNumber = row.ImportRowNumber,
                 DateValueISO8601 = row.DateValueISO8601,
                 DescriptionOnStatementValue = row.DescriptionOnStatementValue,

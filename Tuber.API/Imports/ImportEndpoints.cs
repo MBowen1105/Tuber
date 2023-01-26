@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Tuber.Application.Imports.Commands.ImportAccept;
 using Tuber.Application.Imports.Commands.ImportAdd;
 using Tuber.Application.Imports.Commands.ImportUpdate;
-using Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
+using Tuber.Application.Imports.Queries.ImportGetByInstitutionAccountId;
 
-namespace Tuber.API.Banks;
+namespace Tuber.API.Institutions;
 
 public static class ImportEndpoints
 {
@@ -65,7 +65,7 @@ public static class ImportEndpoints
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(new ImportAcceptCommandRequest
             {
-                BankAccountId = bankAccountId
+                InstitutionAccountId = bankAccountId
             });
 
             if (queryResponse.HasExceptions)
@@ -86,19 +86,19 @@ public static class ImportEndpoints
             [FromServices] IMapper mapper) =>
         {
             // Call query handler. This first invokes the pipeline behaviour.
-            var queryResponse = await mediator.Send(new ImportGetByBankAccountIdQueryRequest
+            var queryResponse = await mediator.Send(new ImportGetByInstitutionAccountIdQueryRequest
             {
-                BankAccountId = bankAccountId
+                InstitutionAccountId = bankAccountId
             });
 
             if (queryResponse.HasExceptions)
                 return Results.BadRequest(queryResponse.Exceptions);
 
             //  Map Handler response to API Response and return.
-            var apiResponse = mapper.Map<ImportGetByBankAccountIdQueryResponse, ImportGetByBankAccountIdAPIResponse>(queryResponse);
+            var apiResponse = mapper.Map<ImportGetByInstitutionAccountIdQueryResponse, ImportGetByInstitutionAccountIdAPIResponse>(queryResponse);
 
             return Results.Ok(apiResponse);
         })
-        .WithName("ImportGetByBankAccountId");
+        .WithName("ImportGetByInstitutionAccountId");
     }
 }

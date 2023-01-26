@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using AutoMapper.Internal;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tuber.Application.Banks.Commands.BankAdd;
 using Tuber.Application.Ledgers.Commands.LedgerAddCredit;
 using Tuber.Application.Ledgers.Commands.LedgerAddDebit;
 using Tuber.Application.Ledgers.Commands.LedgerAddTransferOut;
@@ -92,7 +90,7 @@ public static class LedgerEndpoints
             // Call query handler. This first invokes the pipeline behaviour.
             var queryResponse = await mediator.Send(new LedgerGetPagedQueryRequest
             {
-                BankAccountId = APIRequest.BankAccountId,
+                InstitutionAccountId = APIRequest.InstitutionAccountId,
                 PageNumber = APIRequest.PageNumber,
                 PageSize = APIRequest.PageSize
             });

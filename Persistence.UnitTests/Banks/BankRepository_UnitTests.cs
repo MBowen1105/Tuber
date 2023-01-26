@@ -1,4 +1,4 @@
-﻿namespace Persistence.UnitTests.Banks;
-internal class BankRepository_UnitTests
+﻿namespace Persistence.UnitTests.Institutions;
+internal class InstitutionRepository_UnitTests
 {
 }

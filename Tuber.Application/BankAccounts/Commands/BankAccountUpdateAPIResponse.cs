@@ -1,11 +1,11 @@
-﻿namespace Tuber.Application.BankAccounts.Commands.BankAccountUpdate;
-public class BankAccountUpdateAPIResponse
+﻿namespace Tuber.Application.InstitutionAccounts.Commands.InstitutionAccountUpdate;
+public class InstitutionAccountUpdateAPIResponse
 {
-    public Guid BankAccountId { get; init; }
-    public string BankAccountName { get; init; } = "";
+    public Guid InstitutionAccountId { get; init; }
+    public string InstitutionAccountName { get; init; } = "";
     public string? UKSortCode { get; set; }
-    public string? UKBankAccountAccount { get; set; }
+    public string? UKInstitutionAccountAccount { get; set; }
     public int OrderBy { get; set; }
-    public Guid BankId { get; set; }
+    public Guid InstitutionId { get; set; }
     public Guid? ImportTemplateId { get; set; }
 }

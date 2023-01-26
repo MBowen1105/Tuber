@@ -21,12 +21,12 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
         public Task<ImportAcceptCommandResponse> Handle(ImportAcceptCommandRequest request, CancellationToken cancellationToken)
         {
             //  Get all imports for the given bank account.
-            var getImportServiceResult = _importRetrievalService.GetByBankAccountId(request.BankAccountId);
+            var getImportServiceResult = _importRetrievalService.GetByInstitutionAccountId(request.InstitutionAccountId);
 
             if (getImportServiceResult.HasFailed)
                 return Task.FromResult(new ImportAcceptCommandResponse
                 {
-                    BankAccountId = request.BankAccountId,
+                    InstitutionAccountId = request.InstitutionAccountId,
                     TotalAcceptedRowCount = 0,
                     TotalCreatedRowCount = 0,
                     TotalUpdatedRowCount = 0,
@@ -40,25 +40,25 @@ namespace Tuber.Application.Imports.Commands.ImportAccept
             if (hasUncodedItems)
                 return Task.FromResult(new ImportAcceptCommandResponse
                 {
-                    BankAccountId = request.BankAccountId,
+                    InstitutionAccountId = request.InstitutionAccountId,
                     TotalAcceptedRowCount = 0,
                     TotalCreatedRowCount = 0,
                     TotalUpdatedRowCount = 0,
                     TotalAlreadyReconciledCount = 0,
                     Exceptions = new List<Exception>
                     {
-                        new ImportHasUnassignedCategoriesException(request.BankAccountId),
+                        new ImportHasUnassignedCategoriesException(request.InstitutionAccountId),
                     }
                 });
 
             //  Copy the coded imports to the appropriate Ledger.
             var serviceResult = _ledgerUpdaterService.Accept(
-                request.BankAccountId,
+                request.InstitutionAccountId,
                 getImportServiceResult.Payload);
 
             var response = new ImportAcceptCommandResponse
             {
-                BankAccountId = serviceResult.Payload.BankAccountId,
+                InstitutionAccountId = serviceResult.Payload.InstitutionAccountId,
                 TotalAcceptedRowCount = serviceResult.Payload.TotalAcceptedRowCount,
                 TotalCreatedRowCount = serviceResult.Payload.TotalCreatedRowCount,
                 TotalUpdatedRowCount = serviceResult.Payload.TotalUpdatedRowCount,

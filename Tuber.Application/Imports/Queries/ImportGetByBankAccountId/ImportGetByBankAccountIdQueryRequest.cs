@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
-namespace Tuber.Application.Imports.Queries.ImportGetByBankAccountId;
-public class ImportGetByBankAccountIdQueryRequest : IRequest<ImportGetByBankAccountIdQueryResponse>
+namespace Tuber.Application.Imports.Queries.ImportGetByInstitutionAccountId;
+public class ImportGetByInstitutionAccountIdQueryRequest : IRequest<ImportGetByInstitutionAccountIdQueryResponse>
 {
-    public Guid BankAccountId { get; init; }
+    public Guid InstitutionAccountId { get; init; }
 }

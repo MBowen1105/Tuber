@@ -3,25 +3,25 @@ using MediatR;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Domain.Models;
 
-namespace Tuber.Application.BankAccounts.Queries.BankAccountGetById
+namespace Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetById
 {
-    public class BankAccountGetByIdQueryHandler : IRequestHandler<BankAccountGetByIdQueryRequest, BankAccountGetByIdQueryResponse>
+    public class InstitutionAccountGetByIdQueryHandler : IRequestHandler<InstitutionAccountGetByIdQueryRequest, InstitutionAccountGetByIdQueryResponse>
     {
-        private readonly IBankAccountRetrievalService _bankAccountRetrievalService;
+        private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
         private readonly IMapper _mapper;
 
-        public BankAccountGetByIdQueryHandler(
-            IBankAccountRetrievalService bankAccountRetrievalService, IMapper mapper)
+        public InstitutionAccountGetByIdQueryHandler(
+            IInstitutionAccountRetrievalService bankAccountRetrievalService, IMapper mapper)
         {
             _bankAccountRetrievalService = bankAccountRetrievalService;
             _mapper = mapper;
         }
 
-        public Task<BankAccountGetByIdQueryResponse> Handle(BankAccountGetByIdQueryRequest request, CancellationToken cancellationToken)
+        public Task<InstitutionAccountGetByIdQueryResponse> Handle(InstitutionAccountGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var serviceResult = _bankAccountRetrievalService.GetById(request.BankAccountId);
+            var serviceResult = _bankAccountRetrievalService.GetById(request.InstitutionAccountId);
 
-            var response = _mapper.Map<BankAccount, BankAccountGetByIdQueryResponse>(serviceResult.Payload);
+            var response = _mapper.Map<InstitutionAccount, InstitutionAccountGetByIdQueryResponse>(serviceResult.Payload);
             
             response.Exceptions = serviceResult.Exceptions;
 

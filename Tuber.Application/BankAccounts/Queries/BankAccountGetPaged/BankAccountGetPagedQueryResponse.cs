@@ -1,9 +1,9 @@
 ﻿using Tuber.Core.Common;
 using Tuber.Domain.Dtos;
 
-namespace Tuber.Application.BankAccounts.Queries.BankAccountGetPaged;
-public class BankAccountGetPagedQueryResponse : PagedQueryResponseBase
+namespace Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetPaged;
+public class InstitutionAccountGetPagedQueryResponse : PagedQueryResponseBase
 {
-    public int BankAccountCount { get; init; } = 0;
-    public List<BankAccountGetPaged_BankAccount> BankAccounts { get; init; } = new();
+    public int InstitutionAccountCount { get; init; } = 0;
+    public List<InstitutionAccountGetPaged_InstitutionAccount> InstitutionAccounts { get; init; } = new();
 }

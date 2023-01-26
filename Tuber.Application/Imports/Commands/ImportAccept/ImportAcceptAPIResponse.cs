@@ -3,7 +3,7 @@
 namespace Tuber.Application.Imports.Commands.ImportAccept;
 public class ImportAcceptAPIResponse : CommandQueryResponseBase
 {
-    public Guid BankAccountId { get; init; }
+    public Guid InstitutionAccountId { get; init; }
     public int TotalAcceptedRowCount { get; init; } = 0;
     public int TotalCreatedRowCount { get; init; } = 0;
     public int TotalUpdatedRowCount { get; init; } = 0;

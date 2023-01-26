@@ -1,8 +1,8 @@
 ﻿namespace Tuber.Application.Exceptions;
-public class InvalidUKBankAccountException : Exception
+public class InvalidUKInstitutionAccountException : Exception
 {
-    public InvalidUKBankAccountException(string badValue)
-        : base($"Invalid UK Bank Accout \"{badValue}\"")
+    public InvalidUKInstitutionAccountException(string badValue)
+        : base($"Invalid UK Institution Accout \"{badValue}\"")
     {
     }
 }

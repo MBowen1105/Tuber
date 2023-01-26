@@ -4,8 +4,8 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tuber.Application.AppConfigs.Services;
-using Tuber.Application.BankAccounts.Services;
-using Tuber.Application.Banks.Services;
+using Tuber.Application.InstitutionAccounts.Services;
+using Tuber.Application.Institutions.Services;
 using Tuber.Application.Categories.Services;
 using Tuber.Application.CategorySubcategories.Services;
 using Tuber.Application.Common.Interfaces;
@@ -31,12 +31,12 @@ public static class DependencyInjection
 
         services.AddAutoMapper(assembly);
 
-        services.AddScoped<IBankAccountRetrievalService, BankAccountRetrievalService>();
-        services.AddScoped<IBankAccountUpdaterService, BankAccountUpdaterService>();
+        services.AddScoped<IInstitutionAccountRetrievalService, InstitutionAccountRetrievalService>();
+        services.AddScoped<IInstitutionAccountUpdaterService, InstitutionAccountUpdaterService>();
 
-        services.AddScoped<IBankRetrievalService, BankRetrievalService>();
-        services.AddScoped<IBankUpdaterService, BankUpdaterService>();
-        services.AddScoped<IBankDeletionService, BankDeletionService>();
+        services.AddScoped<IInstitutionRetrievalService, InstitutionRetrievalService>();
+        services.AddScoped<IInstitutionUpdaterService, InstitutionUpdaterService>();
+        services.AddScoped<IInstitutionDeletionService, InstitutionDeletionService>();
 
         services.AddScoped<ICategoryRetrievalService, CategoryRetrievalService>();
         services.AddScoped<ICategoryUpdaterService, CategoryUpdaterService>();

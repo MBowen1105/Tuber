@@ -3,7 +3,7 @@ using Tuber.Application.ValueObjects;
 
 namespace Domain.UnitTests.ValueObjects;
 
-public class UKBankAccount_UnitTests
+public class UKInstitutionAccount_UnitTests
 {
     [SetUp]
     public void Setup()
@@ -14,15 +14,15 @@ public class UKBankAccount_UnitTests
     [TestCase("")]
     [TestCase("1234 5678")]
     [TestCase("1234567-")]
-    public void UKBankAccount_RejectsInvalidValues(string invalidValue)
+    public void UKInstitutionAccount_RejectsInvalidValues(string invalidValue)
     {
-        Assert.Throws<InvalidUKBankAccountException>(() => UKBankAccount.From(invalidValue));
+        Assert.Throws<InvalidUKInstitutionAccountException>(() => UKInstitutionAccount.From(invalidValue));
     }
 
     [Test, Parallelizable]
     [TestCase("12345678")]
-    public void UKBankAccount_AcceptsValidValues(string validValue)
+    public void UKInstitutionAccount_AcceptsValidValues(string validValue)
     {
-        Assert.DoesNotThrow(() => UKBankAccount.From(validValue));
+        Assert.DoesNotThrow(() => UKInstitutionAccount.From(validValue));
     }
 }

@@ -14,29 +14,29 @@ internal class ServiceResult_UnitTests
     [Test]
     public void WithJustAPayload_ReturnsIsSuccessWithNoExceptions()
     {
-        var sut = new ServiceResult<Bank>(new Bank());
+        var sut = new ServiceResult<Institution>(new Institution());
 
         sut.IsSuccess.Should().BeTrue();
         sut.HasFailed.Should().BeFalse();
         sut.Exceptions.Should().BeEquivalentTo(new List<Exception>());
-        sut.Payload.Should().BeEquivalentTo(new Bank());
+        sut.Payload.Should().BeEquivalentTo(new Institution());
     }
 
     [Test]
     public void WithAPayloadAndOneException_ReturnsHasFailedOneExceptions()
     {
-        var sut = new ServiceResult<Bank>(new Bank(), new Exception("Test"));
+        var sut = new ServiceResult<Institution>(new Institution(), new Exception("Test"));
 
         sut.IsSuccess.Should().BeFalse();
         sut.HasFailed.Should().BeTrue();
         sut.Exceptions.Count.Should().Be(1);
-        sut.Payload.Should().BeEquivalentTo(new Bank());
+        sut.Payload.Should().BeEquivalentTo(new Institution());
     }
 
     [Test]
     public void WithAPayloadAndMultipleExceptions_ReturnsHasFailedMultipleExceptions()
     {
-        var sut = new ServiceResult<Bank>(new Bank(), new List<Exception>() {
+        var sut = new ServiceResult<Institution>(new Institution(), new List<Exception>() {
             new Exception("Exception 1"),
             new Exception("Exception 2"),
             new Exception("Exception 3"),
@@ -45,6 +45,6 @@ internal class ServiceResult_UnitTests
         sut.IsSuccess.Should().BeFalse();
         sut.HasFailed.Should().BeTrue();
         sut.Exceptions.Count.Should().Be(3);
-        sut.Payload.Should().BeEquivalentTo(new Bank());
+        sut.Payload.Should().BeEquivalentTo(new Institution());
     }
 }

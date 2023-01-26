@@ -10,5 +10,5 @@ public interface ILedgerUpdaterService
     ServiceResult<Ledger> AddDebit(Guid bankAccountId, DateTime dateUtc, string description, string? reference,
         string transactionType, double moneyOut, Guid categoryId, Guid? subcategoryId);
     ServiceResult<Ledger> AddTransferOut(Guid bankAccountId, DateTime dateUtc, string description, 
-        string? reference, double moneyOut, Guid categoryId, Guid? subcategoryId, Guid transferBankAccountId);
+        string? reference, double moneyOut, Guid categoryId, Guid? subcategoryId, Guid transferInstitutionAccountId);
 }

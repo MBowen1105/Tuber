@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Banks\Tests\" />
+    <Folder Include="Institutions\Tests\" />
     <Folder Include="Subcategories\Commands\SubcategoryUpdate\" />
     <Folder Include="Subcategories\Queries\SubcategoriesGetByCategoryPaged\" />
   </ItemGroup>

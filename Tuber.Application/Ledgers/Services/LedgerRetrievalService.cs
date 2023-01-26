@@ -13,7 +13,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     private readonly ISystemClock _systemClock;
 
     private List<Ledger> _ledgerTransactionList = new();
-    private Guid _currentBankAccountId = Guid.Empty;
+    private Guid _currentInstitutionAccountId = Guid.Empty;
 
 
 
@@ -31,7 +31,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
         Guid bankAccountId, string? description, string? reference,
         double? moneyIn, double? moneyOut)
     {
-        if (_currentBankAccountId != bankAccountId)
+        if (_currentInstitutionAccountId != bankAccountId)
         {
             var settings = _appConfigRepo.Get();
             var toDate = _systemClock.TodayUtc();
@@ -42,11 +42,11 @@ public class LedgerRetrievalService : ILedgerRetrievalService
                 fromDate, toDate);
         }
 
-        _currentBankAccountId = bankAccountId;
+        _currentInstitutionAccountId = bankAccountId;
 
         var resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.BankAccountId == bankAccountId
+            .Where(x => x.InstitutionAccountId == bankAccountId
                 && x.Description == description
                 && x.Reference == reference
                 && x.MoneyIn == moneyIn
@@ -58,7 +58,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
 
         resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.BankAccountId == bankAccountId
+            .Where(x => x.InstitutionAccountId == bankAccountId
                 && x.Description == description
                 && x.Reference == reference)
             .ToList();
@@ -68,7 +68,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
 
         resultList = _ledgerTransactionList
             .OrderByDescending(x => x.DateUtc)
-            .Where(x => x.BankAccountId == bankAccountId
+            .Where(x => x.InstitutionAccountId == bankAccountId
                 && x.Description == description)
             .ToList();
 

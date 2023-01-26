@@ -15,7 +15,7 @@ internal class ImportValidationService_CoOp_UnitTests
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
     private readonly Mock<ISystemClock> _mockSystemClock = new();
     private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
-    private readonly Mock<IBankAccountRetrievalService> _mockBankAccountRetrievalService = new();
+    private readonly Mock<IInstitutionAccountRetrievalService> _mockInstitutionAccountRetrievalService = new();
 
     private readonly Guid _bankAccountId = Guid.NewGuid();
     private IImportValidationService _sut;
@@ -58,18 +58,18 @@ internal class ImportValidationService_CoOp_UnitTests
             It.Is<double>(x => x == 0)))
                 .Returns(new ServiceResult<Ledger>(new Ledger()));
 
-        _mockBankAccountRetrievalService.Setup(x => x.GetById(
+        _mockInstitutionAccountRetrievalService.Setup(x => x.GetById(
             It.Is<Guid>(x => x.Equals(_bankAccountId))))
-            .Returns(new ServiceResult<BankAccount>(new BankAccount
+            .Returns(new ServiceResult<InstitutionAccount>(new InstitutionAccount
             {
-                BankAccountId = Guid.NewGuid(),
+                InstitutionAccountId = Guid.NewGuid(),
             }));
 
         _sut = new ImportValidationService(
             _mockCurrentUserService.Object,
             _mockSystemClock.Object,
             _mockLedgerRetrievalService.Object,
-            _mockBankAccountRetrievalService.Object);
+            _mockInstitutionAccountRetrievalService.Object);
     }
 
     #region "Validate"

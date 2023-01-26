@@ -1,1 +1,1 @@
-Area = Bank, BankAccount, Catagory etc.
+Area = Institution, InstitutionAccount, Catagory etc.

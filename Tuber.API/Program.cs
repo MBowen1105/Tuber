@@ -1,9 +1,9 @@
 using Tuber.API.AppConfigs;
-using Tuber.API.BankAccounts;
-using Tuber.API.Banks;
 using Tuber.API.Categories;
 using Tuber.API.CategorySubcategories;
 using Tuber.API.ImportTemplates;
+using Tuber.API.InstitutionAccounts;
+using Tuber.API.Institutions;
 using Tuber.API.Ledgers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,11 +29,11 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 
-BankEndpoints.CommandEndpoints(app);
-BankEndpoints.QueryEndpoints(app);
+InstitutionEndpoints.CommandEndpoints(app);
+InstitutionEndpoints.QueryEndpoints(app);
 
-BankAccountEndpoints.CommandEndpoints(app);
-BankAccountEndpoints.QueryEndpoints(app);
+InstitutionAccountEndpoints.CommandEndpoints(app);
+InstitutionAccountEndpoints.QueryEndpoints(app);
 
 ImportTemplateEndpoints.CommandEndpoints(app);
 ImportTemplateEndpoints.QueryEndpoints(app);

@@ -3,5 +3,5 @@
 namespace Tuber.Application.Common.Interfaces;
 public interface IImportRetrievalService
 {
-    ServiceResult<List<Import>> GetByBankAccountId(Guid bankAccountId);
+    ServiceResult<List<Import>> GetByInstitutionAccountId(Guid bankAccountId);
 }

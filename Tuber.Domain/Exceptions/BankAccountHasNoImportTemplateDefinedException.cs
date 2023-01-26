@@ -1,8 +1,8 @@
 ﻿namespace Tuber.Application.Exceptions;
-public class BankAccountHasNoImportTemplateDefinedException : Exception
+public class InstitutionAccountHasNoImportTemplateDefinedException : Exception
 {
-    public BankAccountHasNoImportTemplateDefinedException(string bankAccountName)
-        : base($"The Bank Account {bankAccountName} has no Import Template defined.")
+    public InstitutionAccountHasNoImportTemplateDefinedException(string bankAccountName)
+        : base($"The Institution Account {bankAccountName} has no Import Template defined.")
     {
     }
 }

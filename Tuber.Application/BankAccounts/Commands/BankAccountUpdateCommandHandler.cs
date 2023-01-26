@@ -1,30 +1,30 @@
 ﻿using MediatR;
 using Tuber.Application.Common.Interfaces;
 
-namespace Tuber.Application.BankAccounts.Commands.BankAccountUpdate
+namespace Tuber.Application.InstitutionAccounts.Commands.InstitutionAccountUpdate
 {
-    public class BankAccountUpdateCommandHandler : IRequestHandler<BankAccountUpdateCommandRequest, BankAccountUpdateCommandResponse>
+    public class InstitutionAccountUpdateCommandHandler : IRequestHandler<InstitutionAccountUpdateCommandRequest, InstitutionAccountUpdateCommandResponse>
     {
-        private readonly IBankAccountUpdaterService _bankAccountUpdaterService;
+        private readonly IInstitutionAccountUpdaterService _bankAccountUpdaterService;
 
-        public BankAccountUpdateCommandHandler(IBankAccountUpdaterService bankAccountUpdaterService)
+        public InstitutionAccountUpdateCommandHandler(IInstitutionAccountUpdaterService bankAccountUpdaterService)
         {
             _bankAccountUpdaterService = bankAccountUpdaterService;
         }
 
-        public Task<BankAccountUpdateCommandResponse> Handle(BankAccountUpdateCommandRequest request, CancellationToken cancellationToken)
+        public Task<InstitutionAccountUpdateCommandResponse> Handle(InstitutionAccountUpdateCommandRequest request, CancellationToken cancellationToken)
         {
-            //TODO: Validate BankAccount object
+            //TODO: Validate InstitutionAccount object
 
             var serviceResult = _bankAccountUpdaterService.Update(
-                bankAccountId: request.BankAccountId,
-                bankAccountName: request.BankAccountName,
+                bankAccountId: request.InstitutionAccountId,
+                bankAccountName: request.InstitutionAccountName,
                 orderBy: request.OrderBy);
 
-            return Task.FromResult(new BankAccountUpdateCommandResponse
+            return Task.FromResult(new InstitutionAccountUpdateCommandResponse
             {
-                BankAccountId = serviceResult.Payload.BankAccountId,
-                BankAccountName = serviceResult.Payload.BankAccountName,
+                InstitutionAccountId = serviceResult.Payload.InstitutionAccountId,
+                InstitutionAccountName = serviceResult.Payload.InstitutionAccountName,
                 OrderBy = serviceResult.Payload.OrderBy,
                 Exceptions = serviceResult.Exceptions,
             });

@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Persistence.AppConfigs;
-using Tuber.Persistence.BankAccounts;
-using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.CategorySubcategories;
 using Tuber.Persistence.Imports;
+using Tuber.Persistence.InstitutionAccounts;
+using Tuber.Persistence.Institutions;
 using Tuber.Persistence.Ledgers;
 using Tuber.Persistence.Subcategories;
 
@@ -31,8 +31,8 @@ public static class DependencyInjection
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddDebug())));
 
 
-        services.AddScoped<IBankRepository, BankRepository>();
-        services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+        services.AddScoped<IInstitutionRepository, InstitutionRepository>();
+        services.AddScoped<IInstitutionAccountRepository, InstitutionAccountRepository>();
         services.AddScoped<IImportTemplateRepository, ImportTemplateRepository>();
         services.AddScoped<IImportRepository, ImportRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();

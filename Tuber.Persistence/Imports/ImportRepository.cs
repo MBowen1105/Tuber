@@ -36,10 +36,10 @@ public class ImportRepository : IImportRepository
     }
 
 
-    public void Clear(Guid bankAccountId)
+    public void Clear(Guid institutionAccountId)
     {
         var existingRows = _context.Imports
-            .Where(x => x.BankAccountId == bankAccountId);
+            .Where(x => x.InstitutionAccountId == institutionAccountId);
 
         _context.Imports.RemoveRange(existingRows);
     }
@@ -53,14 +53,14 @@ public class ImportRepository : IImportRepository
     #endregion
 
     #region "Queries"
-    public List<Import> GetByBankAccountId(Guid bankAccountId)
+    public List<Import> GetByInstitutionAccountId(Guid institutionAccountId)
     {
         var imports = _context.Imports
-            .Include(x => x.BankAccount)
+            .Include(x => x.InstitutionAccount)
             .Include(x => x.Category)
             .Include(x => x.Subcategory)
             .Include(x => x.ImportedByUser)
-            .Where(x => x.BankAccountId == bankAccountId)
+            .Where(x => x.InstitutionAccountId == institutionAccountId)
             .OrderBy(x => x.DateValueISO8601)
             .ThenBy(x => x.ImportRowNumber);
         return imports.ToList();

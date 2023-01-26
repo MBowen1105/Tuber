@@ -10,7 +10,7 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
     {
         builder.ToTable("Imports");
 
-        builder.HasOne(x => x.BankAccount);
+        builder.HasOne(x => x.InstitutionAccount);
 
         builder.HasOne(x => x.Category);
 
@@ -19,7 +19,7 @@ public class ImportConfiguration : IEntityTypeConfiguration<Import>
         builder.HasOne(x => x.ImportedByUser);
 
 
-        builder.Property(x => x.BankAccountId)
+        builder.Property(x => x.InstitutionAccountId)
             .IsRequired();
 
         builder.Property(x => x.ImportRowNumber)

@@ -7,7 +7,7 @@ public class ImportAddAddCommandRequestValidator : AbstractValidator<ImportAddCo
 {
     public ImportAddAddCommandRequestValidator()
     {
-        RuleFor(x => x.BankAccountId)
+        RuleFor(x => x.InstitutionAccountId)
             .NotEmpty();
 
         RuleFor(x => x.ImportFileName)

@@ -4,12 +4,12 @@ using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 using Tuber.Persistence.AppConfigs;
-using Tuber.Persistence.BankAccounts;
-using Tuber.Persistence.Banks;
 using Tuber.Persistence.Categories;
 using Tuber.Persistence.CategorySubcategories;
 using Tuber.Persistence.Imports;
 using Tuber.Persistence.ImportTemplates;
+using Tuber.Persistence.InstitutionAccounts;
+using Tuber.Persistence.Institutions;
 using Tuber.Persistence.Ledgers;
 using Tuber.Persistence.Subcategories;
 using Tuber.Persistence.Users;
@@ -21,8 +21,8 @@ public class ApplicationDbContext : DbContext
     private readonly ISystemClock _systemClock;
     private readonly ICurrentUserService _currentUserService;
 
-    public DbSet<Bank> Banks { get; set; }
-    public DbSet<BankAccount> BankAccounts { get; set; }
+    public DbSet<Institution> Institutions { get; set; }
+    public DbSet<InstitutionAccount> InstitutionAccounts { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<ImportTemplate> ImportTemplates { get; set; }
     public DbSet<Import> Imports { get; set; }
@@ -72,8 +72,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new BankConfiguration());
-        modelBuilder.ApplyConfiguration(new BankAccountConfiguration());
+        modelBuilder.ApplyConfiguration(new InstitutionConfiguration());
+        modelBuilder.ApplyConfiguration(new InstitutionAccountConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new ImportTemplateConfiguration());
         modelBuilder.ApplyConfiguration(new ImportConfiguration());
