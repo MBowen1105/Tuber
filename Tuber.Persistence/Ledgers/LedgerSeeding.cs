@@ -567,6 +567,26 @@ public static class LedgerSeeding
                 IsDeleted = false,
                 CreatedOnUtc = DateTime.UtcNow,
                 CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
+            },
+            new Ledger
+            {
+                LedgerId = Guid.Parse("6cd73668-eb60-4d7b-94be-d2247f8ea4cc"),
+                BankAccountId = BankAccounts.BankAccountSeeding.CoOpSalaryAccountId,
+                DateUtc = new DateTime(2022, 4, 28),
+                RowNumber = 2,
+                Description = "CAMELOT LOTTERY",
+                Reference = "A00143/3965",
+                TransactionType = "DD",
+                MoneyIn = null,
+                MoneyOut = 8.00,
+                Balance = -84.74,
+                CategoryId = Categories.CategorySeeding.EntertainmentCategoryId,
+                SubcategoryId = Subcategories.SubcategorySeeding.GamblingSubcategoryId,
+                TransferBankAccountId = null,
+                TransactionOrigin = TransactionOrigin.Seeded,
+                IsDeleted = false,
+                CreatedOnUtc = DateTime.UtcNow,
+                CreatedByUserId = UserSeeding.ADMIN_USER.UserId,
             });
     }
 }
