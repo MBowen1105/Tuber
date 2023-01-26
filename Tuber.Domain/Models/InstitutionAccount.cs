@@ -6,27 +6,27 @@ public class InstitutionAccount : AuditableEntity
     public static readonly string FriendlyName = "Institution Account";
 
     //TODO: Remove constructor?
-    public InstitutionAccount()
-    {
-        InstitutionAccountId = Guid.Empty;
-        InstitutionAccountName = "";
-        UKSortCode = "";
-        UKInstitutionAccount = "";
-        OpeningBalance = 0;
-        OrderBy = int.MaxValue;
-        InstitutionId = Guid.Empty;
-        IsDeleted = false;
-    }
+    //public InstitutionAccount()
+    //{
+        
+    //    InstitutionAccountName = "";
+    //    UKSortCode = "";
+    //    UKInstitutionAccount = "";
+    //    OpeningBalance = 0;
+    //    OrderBy = int.MaxValue;
+    //    InstitutionId = Guid.Empty;
+    //    IsDeleted = false;
+    //}
 
-    public Guid InstitutionAccountId { get; set; }
-    public string InstitutionAccountName { get; set; }
-    public string UKSortCode { get; set; }
-    public string UKInstitutionAccount { get; set; }
-    public int OrderBy { get; set; }
-    public Guid InstitutionId { get; set; }
-    public Guid? ImportTemplateId { get; set; }
-    public double OpeningBalance { get; set; }
-    public bool IsDeleted { get; set; }
+    public Guid InstitutionAccountId { get; set; } = Guid.Empty;
+    public string InstitutionAccountName { get; set; } = string.Empty;
+    public string UKSortCode { get; set; } = string.Empty;
+    public string UKInstitutionAccount { get; set; } = string.Empty;
+    public int OrderBy { get; set; } = int.MaxValue;
+    public Guid InstitutionId { get; set; } = Guid.Empty;
+    public Guid? ImportTemplateId { get; set; } = Guid.Empty;
+    public double OpeningBalance { get; set; } = 0.00;
+    public bool IsDeleted { get; set; } = false;
     public virtual Institution? Institution { get; set; }
     public virtual ImportTemplate? ImportTemplate { get; set; }   
 }
