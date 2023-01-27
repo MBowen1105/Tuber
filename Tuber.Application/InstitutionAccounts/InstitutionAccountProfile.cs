@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tuber.Application.InstitutionAccounts.Commands.InstitutionAccountUpdate;
 using Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetById;
 using Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetPaged;
 using Tuber.Domain.Dtos;
@@ -20,6 +21,9 @@ public class InstitutionAccountProfile : Profile
 
         //  TODO: InstitutionAccountAdd
         //  TODO: InstitutionAccountUpdate
+        CreateMap<InstitutionAccountUpdateAPIRequest, InstitutionAccountUpdateCommandRequest>();
+        CreateMap<InstitutionAccountUpdateCommandResponse, InstitutionAccountUpdateAPIResponse>();
+
         //  TODO: InstitutionAccountDelete
     }
 

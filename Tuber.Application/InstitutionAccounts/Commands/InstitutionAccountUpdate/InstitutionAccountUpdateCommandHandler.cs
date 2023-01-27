@@ -5,21 +5,24 @@ namespace Tuber.Application.InstitutionAccounts.Commands.InstitutionAccountUpdat
 {
     public class InstitutionAccountUpdateCommandHandler : IRequestHandler<InstitutionAccountUpdateCommandRequest, InstitutionAccountUpdateCommandResponse>
     {
-        private readonly IInstitutionAccountUpdaterService _bankAccountUpdaterService;
+        private readonly IInstitutionAccountUpdaterService _institutionAccountUpdaterService;
 
-        public InstitutionAccountUpdateCommandHandler(IInstitutionAccountUpdaterService bankAccountUpdaterService)
+        public InstitutionAccountUpdateCommandHandler(IInstitutionAccountUpdaterService institutionAccountUpdaterService)
         {
-            _bankAccountUpdaterService = bankAccountUpdaterService;
+            _institutionAccountUpdaterService = institutionAccountUpdaterService;
         }
 
         public Task<InstitutionAccountUpdateCommandResponse> Handle(InstitutionAccountUpdateCommandRequest request, CancellationToken cancellationToken)
         {
             //TODO: Validate InstitutionAccount object
 
-            var serviceResult = _bankAccountUpdaterService.Update(
-                bankAccountId: request.InstitutionAccountId,
-                bankAccountName: request.InstitutionAccountName,
-                orderBy: request.OrderBy);
+            var serviceResult = _institutionAccountUpdaterService.Update(
+                request.InstitutionAccountId,
+                request.InstitutionAccountName,
+                request.UKSortCode, request.UKInstitutionAccount,
+                request.OrderBy,
+                request.ImportTemplateId,
+                request.OpeningBalance);
 
             return Task.FromResult(new InstitutionAccountUpdateCommandResponse
             {

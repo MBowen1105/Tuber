@@ -8,4 +8,5 @@ public class InstitutionAccountUpdateAPIRequest
     public int OrderBy { get; set; }
     public Guid InstitutionId { get; set; }
     public Guid? ImportTemplateId { get; set; }
+    public double OpeningBalance { get; set; }
 }

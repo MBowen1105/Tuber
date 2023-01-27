@@ -3,6 +3,9 @@
 namespace Tuber.Application.Common.Interfaces;
 public interface IInstitutionAccountUpdaterService
 {
-    ServiceResult<InstitutionAccount> Add(string bankAccountName, int orderBy);
-    ServiceResult<InstitutionAccount> Update(Guid bankAccountId, string bankAccountName, int orderBy);
+    ServiceResult<InstitutionAccount> Add(string institutionAccountName, string UKSortCode, string UKInstitutionAccount,
+        int orderBy, Guid? importTemplateId, double openingBalance);
+    ServiceResult<InstitutionAccount> Update(Guid institutionAccountId, 
+        string institutionAccountName, string UKSortCode, string UKInstitutionAccount,
+        int orderBy, Guid? importTemplateId, double openingBalance);
 }

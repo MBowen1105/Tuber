@@ -3,9 +3,9 @@
 namespace Tuber.Application.Common.Interfaces.Persistence;
 public interface IInstitutionAccountRepository : IRepository<InstitutionAccount>
 {
-    InstitutionAccount Add(InstitutionAccount bankAccount);
-    InstitutionAccount Update(InstitutionAccount bankAccount);
+    InstitutionAccount Add(InstitutionAccount institutionAccount);
+    InstitutionAccount Update(InstitutionAccount institutionAccount);
     List<InstitutionAccount> GetPaged(int pageNumber, int pageSize);
-    InstitutionAccount GetById(Guid bankAccountId);
+    InstitutionAccount GetById(Guid institutionAccountId);
     int CountPages(int pageSize);
 }

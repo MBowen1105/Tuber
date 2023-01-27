@@ -6,33 +6,33 @@ public class Ledger : AuditableEntity
 {
     public static readonly string FriendlyName = "Ledger";
 
-    public Ledger()
-    {
-        LedgerId = Guid.Empty;
-        InstitutionAccountId = Guid.Empty;
-        DateUtc = DateTime.MinValue;
-        RowNumber = 0;
-        Description = string.Empty;
-        Reference = string.Empty;
-        TransactionType = string.Empty;
-        MoneyIn = 0;
-        MoneyOut = 0;
-        Balance = 0;
-        CategoryId = Guid.Empty;
-        SubcategoryId = null;
-        TransferInstitutionAccountId = null;
-        TransactionOrigin = TransactionOrigin.Unknown;
-        IsReconciled = false;
-        IsDeleted = false;
-    }
+    //public Ledger()
+    //{
+    //    LedgerId = Guid.Empty;
+    //    InstitutionAccountId = Guid.Empty;
+    //    DateUtc = DateTime.MinValue;
+    //    RowNumber = 0;
+    //    Description = string.Empty;
+    //    Reference = string.Empty;
+    //    TransactionType = string.Empty;
+    //    MoneyIn = 0;
+    //    MoneyOut = 0;
+    //    Balance = 0;
+    //    CategoryId = Guid.Empty;
+    //    SubcategoryId = null;
+    //    TransferInstitutionAccountId = null;
+    //    TransactionOrigin = TransactionOrigin.Unknown;
+    //    IsReconciled = false;
+    //    IsDeleted = false;
+    //}
 
     public Guid LedgerId { get; init; }
     public Guid InstitutionAccountId { get; set; }
     public DateTime DateUtc { get; set; }
     public int RowNumber { get; set; }
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty;
     public string? Reference { get; set; }
-    public string TransactionType { get; set; }
+    public string TransactionType { get; set; } = string.Empty;
     public double? MoneyIn { get; set; }
     public double? MoneyOut { get; set; }
     public double Balance { get; set; }

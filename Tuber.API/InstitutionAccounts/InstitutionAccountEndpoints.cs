@@ -65,7 +65,7 @@ public static class InstitutionAccountEndpoints
     .WithName("InstitutionAccountsGetPaged");
 
 
-        app.MapGet("/institutionAccount/get/{id}", async (Guid institutionAccountId,
+        app.MapGet("/InstitutionAccount/get/{institutionAccountId}", async (Guid institutionAccountId,
         [FromServices] IMediator mediator,
         [FromServices] IMapper mapper) =>
         {

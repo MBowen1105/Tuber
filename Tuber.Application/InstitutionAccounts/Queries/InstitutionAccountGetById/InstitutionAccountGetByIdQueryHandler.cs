@@ -7,19 +7,19 @@ namespace Tuber.Application.InstitutionAccounts.Queries.InstitutionAccountGetByI
 {
     public class InstitutionAccountGetByIdQueryHandler : IRequestHandler<InstitutionAccountGetByIdQueryRequest, InstitutionAccountGetByIdQueryResponse>
     {
-        private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
+        private readonly IInstitutionAccountRetrievalService _institutionAccountRetrievalService;
         private readonly IMapper _mapper;
 
         public InstitutionAccountGetByIdQueryHandler(
-            IInstitutionAccountRetrievalService bankAccountRetrievalService, IMapper mapper)
+            IInstitutionAccountRetrievalService institutionAccountRetrievalService, IMapper mapper)
         {
-            _bankAccountRetrievalService = bankAccountRetrievalService;
+            _institutionAccountRetrievalService = institutionAccountRetrievalService;
             _mapper = mapper;
         }
 
         public Task<InstitutionAccountGetByIdQueryResponse> Handle(InstitutionAccountGetByIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var serviceResult = _bankAccountRetrievalService.GetById(request.InstitutionAccountId);
+            var serviceResult = _institutionAccountRetrievalService.GetById(request.InstitutionAccountId);
 
             var response = _mapper.Map<InstitutionAccount, InstitutionAccountGetByIdQueryResponse>(serviceResult.Payload);
             
