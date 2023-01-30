@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Core", "Tuber.Core\Tu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Persistence", "Tuber.Persistence\Tuber.Persistence.csproj", "{7CE29D90-D0AE-4812-8FD4-7B8FCC5F3CAF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.SystemClock", "Tuber.SystemClock\Tuber.SystemClock.csproj", "{E4268970-8E77-42D6-8BFD-D30039D59488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Clock", "Tuber.Clock\Tuber.Clock.csproj", "{E4268970-8E77-42D6-8BFD-D30039D59488}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tuber.Authentication", "Tuber.Users\Tuber.Authentication.csproj", "{3C676D60-43DC-4718-AC74-A5703781D402}"
 EndProject
@@ -41,7 +41,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystem.UnitTests", "Fil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{347C6D68-4920-4E8F-81AF-FFD20FD431A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.UnitTests", "Persistence.UnitTests\Persistence.UnitTests.csproj", "{ECCD78D5-1752-4F8B-B37F-01598E7FF459}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.UnitTests", "Persistence.UnitTests\Persistence.UnitTests.csproj", "{ECCD78D5-1752-4F8B-B37F-01598E7FF459}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,14 +6,14 @@ using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
 using Tuber.Application.Imports.Services;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
 {
     private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
-    private readonly Mock<ISystemClock> _mockSystemClock = new();
+    private readonly Mock<IClock> _mockSystemClock = new();
     private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
     private readonly Mock<IInstitutionAccountRetrievalService> _mockInstitutionAccountRetrievalService = new();
 

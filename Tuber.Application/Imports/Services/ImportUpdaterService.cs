@@ -3,7 +3,7 @@ using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Enums;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Services;
@@ -11,12 +11,12 @@ public class ImportUpdaterService : IImportUpdaterService
 {
     private readonly IImportRepository _importRepo;
     private readonly ICurrentUserService _currentUserService;
-    private readonly ISystemClock _dateTimeService;
+    private readonly IClock _dateTimeService;
 
     public ImportUpdaterService(
         IImportRepository importRepo,
         ICurrentUserService currentUserService,
-        ISystemClock dateTimeService)
+        IClock dateTimeService)
     {
         _importRepo = importRepo;
         _currentUserService = currentUserService;

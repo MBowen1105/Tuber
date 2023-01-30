@@ -16,7 +16,7 @@ Tuber.API.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.Application.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.Persistence.DependencyInjection.AddDependencyInjection(builder.Services, builder.Configuration);
 Tuber.FileSystem.DependencyInjection.AddDependencyInjection(builder.Services);
-Tuber.SystemClock.DependencyInjection.AddDependencyInjection(builder.Services);
+Tuber.Clock.DependencyInjection.AddDependencyInjection(builder.Services);
 Tuber.Authentication.DependencyInjection.AddDependencyInjection(builder.Services);
 
 var app = builder.Build();

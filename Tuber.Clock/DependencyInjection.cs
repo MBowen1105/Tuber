@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 
-namespace Tuber.SystemClock;
+namespace Tuber.Clock;
 public static class DependencyInjection
 {
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddScoped<ISystemClock, SystemClock>();
+        services.AddScoped<IClock, Clock>();
 
         return services;
     }

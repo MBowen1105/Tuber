@@ -21,9 +21,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tuber.Application\Tuber.Application.csproj" />
+    <ProjectReference Include="..\Tuber.Clock\Tuber.Clock.csproj" />
     <ProjectReference Include="..\Tuber.FileSystem\Tuber.FileSystem.csproj" />
     <ProjectReference Include="..\Tuber.Persistence\Tuber.Persistence.csproj" />
-    <ProjectReference Include="..\Tuber.SystemClock\Tuber.SystemClock.csproj" />
     <ProjectReference Include="..\Tuber.Users\Tuber.Authentication.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces.Authentication;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Domain.Models;
 using Tuber.Persistence.AppConfigs;
 using Tuber.Persistence.Categories;
@@ -18,7 +18,7 @@ namespace Tuber.Persistence;
 
 public class ApplicationDbContext : DbContext
 {
-    private readonly ISystemClock _systemClock;
+    private readonly IClock _systemClock;
     private readonly ICurrentUserService _currentUserService;
 
     public DbSet<Institution> Institutions { get; set; }
@@ -33,7 +33,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<AppConfig> AppConfigs { get; set; }
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-        ISystemClock systemClock,
+        IClock systemClock,
         ICurrentUserService currentUserService)
         : base(options)
     {

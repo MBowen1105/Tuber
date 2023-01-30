@@ -2,7 +2,7 @@
 using Moq;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Application.Ledgers.Services;
 using Tuber.Domain.Models;
 
@@ -11,7 +11,7 @@ public class LedgerRetrievalService_SuggestCategorisation_UnitTests
 {
     private readonly Mock<ILedgerRepository> _mockLedgerRepo = new();
     private readonly Mock<IAppConfigRepository> _mockAppConfigRepo = new();
-    private readonly Mock<ISystemClock> _mockSystemClock = new();
+    private readonly Mock<IClock> _mockSystemClock = new();
     private readonly DateTime TodayUtc = new(2023, 1, 6);
 
     private readonly Guid InstitutionAccountId = Guid.NewGuid();

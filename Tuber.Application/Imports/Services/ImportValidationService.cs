@@ -3,7 +3,7 @@ using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Domain.Models;
 using Tuber.Core.Validation;
 
@@ -13,13 +13,13 @@ public class ImportValidationService : IImportValidationService
     public static readonly char ValidationMessageSeperator = '\n';
 
     private readonly ICurrentUserService _currentUserService;
-    private readonly ISystemClock _dateTimeService;
+    private readonly IClock _dateTimeService;
     private readonly ILedgerRetrievalService _ledgerRetrievalService;
     private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
 
     public ImportValidationService(
         ICurrentUserService currentUserService,
-        ISystemClock dateTimeService,
+        IClock dateTimeService,
         ILedgerRetrievalService transactionRetrievalService,
         IInstitutionAccountRetrievalService bankAccountRetrievalService)
     {

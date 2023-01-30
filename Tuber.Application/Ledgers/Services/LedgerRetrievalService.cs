@@ -1,7 +1,7 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Common.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.Clock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Ledgers.Services;
@@ -10,7 +10,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     private readonly ILedgerRepository _ledgerRepo;
     private readonly IAppConfigRepository _appConfigRepo;
 
-    private readonly ISystemClock _systemClock;
+    private readonly IClock _systemClock;
 
     private List<Ledger> _ledgerTransactionList = new();
     private Guid _currentInstitutionAccountId = Guid.Empty;
@@ -20,7 +20,7 @@ public class LedgerRetrievalService : ILedgerRetrievalService
     public LedgerRetrievalService(
         ILedgerRepository ledgerRepository,
         IAppConfigRepository appConfigRepo,
-        ISystemClock systemClock)
+        IClock systemClock)
     {
         _ledgerRepo = ledgerRepository;
         _appConfigRepo = appConfigRepo;
