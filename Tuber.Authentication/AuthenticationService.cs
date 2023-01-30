@@ -3,7 +3,7 @@ using Tuber.Domain.Models;
 
 namespace Tuber.Authentication;
 
-public class CurrentUserService : ICurrentUserService
+public class AuthenticationService : IAuthenticationService
 {
     public User AdminUser() => new()
     {

@@ -7,9 +7,9 @@ namespace Tuber.Application.PipelineBehaviours;
 public class RequestLogger<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>, IRequestlogger<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILogger _logger;
-    private readonly ICurrentUserService _currentUserService;
+    private readonly IAuthenticationService _currentUserService;
 
-    public RequestLogger(ILogger<RequestLogger<TRequest, TResponse>> logger, ICurrentUserService currentUserService)
+    public RequestLogger(ILogger<RequestLogger<TRequest, TResponse>> logger, IAuthenticationService currentUserService)
     {
         _logger = logger;
         _currentUserService = currentUserService;

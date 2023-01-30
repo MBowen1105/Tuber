@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="C:\Users\MarkBowen\source\repos\Tuber\Tuber.Authentication\CurrentUserService.cs" Link="CurrentUserService.cs" />
+    <Compile Include="C:\Users\MarkBowen\source\repos\Tuber\Tuber.Authentication\AuthenticationService.cs" Link="AuthenticationService.cs" />
   </ItemGroup>
 
   <ItemGroup>

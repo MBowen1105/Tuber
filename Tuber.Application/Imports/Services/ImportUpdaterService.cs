@@ -10,12 +10,12 @@ namespace Tuber.Application.Imports.Services;
 public class ImportUpdaterService : IImportUpdaterService
 {
     private readonly IImportRepository _importRepo;
-    private readonly ICurrentUserService _currentUserService;
+    private readonly IAuthenticationService _currentUserService;
     private readonly IClock _dateTimeService;
 
     public ImportUpdaterService(
         IImportRepository importRepo,
-        ICurrentUserService currentUserService,
+        IAuthenticationService currentUserService,
         IClock dateTimeService)
     {
         _importRepo = importRepo;

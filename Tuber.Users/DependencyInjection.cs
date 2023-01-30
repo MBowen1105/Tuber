@@ -9,7 +9,7 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
 
         return services;
     }

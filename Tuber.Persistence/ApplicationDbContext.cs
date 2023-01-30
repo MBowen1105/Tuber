@@ -19,7 +19,7 @@ namespace Tuber.Persistence;
 public class ApplicationDbContext : DbContext
 {
     private readonly IClock _systemClock;
-    private readonly ICurrentUserService _currentUserService;
+    private readonly IAuthenticationService _currentUserService;
 
     public DbSet<Institution> Institutions { get; set; }
     public DbSet<InstitutionAccount> InstitutionAccounts { get; set; }
@@ -34,7 +34,7 @@ public class ApplicationDbContext : DbContext
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
         IClock systemClock,
-        ICurrentUserService currentUserService)
+        IAuthenticationService currentUserService)
         : base(options)
     {
         _systemClock = systemClock;

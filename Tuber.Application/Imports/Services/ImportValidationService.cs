@@ -12,13 +12,13 @@ public class ImportValidationService : IImportValidationService
 {
     public static readonly char ValidationMessageSeperator = '\n';
 
-    private readonly ICurrentUserService _currentUserService;
+    private readonly IAuthenticationService _currentUserService;
     private readonly IClock _dateTimeService;
     private readonly ILedgerRetrievalService _ledgerRetrievalService;
     private readonly IInstitutionAccountRetrievalService _bankAccountRetrievalService;
 
     public ImportValidationService(
-        ICurrentUserService currentUserService,
+        IAuthenticationService currentUserService,
         IClock dateTimeService,
         ILedgerRetrievalService transactionRetrievalService,
         IInstitutionAccountRetrievalService bankAccountRetrievalService)

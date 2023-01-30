@@ -12,7 +12,7 @@ using Tuber.Domain.Models;
 namespace Tuber.Application.UnitTests.Imports.Services;
 internal class ImportValidationService_CoOp_UnitTests
 {
-    private readonly Mock<ICurrentUserService> _mockCurrentUserService = new();
+    private readonly Mock<IAuthenticationService> _mockAuthenticationService = new();
     private readonly Mock<IClock> _mockSystemClock = new();
     private readonly Mock<ILedgerRetrievalService> _mockLedgerRetrievalService = new();
     private readonly Mock<IInstitutionAccountRetrievalService> _mockInstitutionAccountRetrievalService = new();
@@ -44,7 +44,7 @@ internal class ImportValidationService_CoOp_UnitTests
     [SetUp]
     public void Setup()
     {
-        _mockCurrentUserService.Setup(x => x.User())
+        _mockAuthenticationService.Setup(x => x.User())
             .Returns(new User { UserId = Guid.NewGuid() });
 
         _mockSystemClock.Setup(x => x.NowUtc())
@@ -66,7 +66,7 @@ internal class ImportValidationService_CoOp_UnitTests
             }));
 
         _sut = new ImportValidationService(
-            _mockCurrentUserService.Object,
+            _mockAuthenticationService.Object,
             _mockSystemClock.Object,
             _mockLedgerRetrievalService.Object,
             _mockInstitutionAccountRetrievalService.Object);
