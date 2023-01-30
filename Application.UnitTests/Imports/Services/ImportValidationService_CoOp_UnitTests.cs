@@ -6,7 +6,7 @@ using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Enums;
 using Tuber.Application.Exceptions;
 using Tuber.Application.Imports.Services;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.UnitTests.Imports.Services;

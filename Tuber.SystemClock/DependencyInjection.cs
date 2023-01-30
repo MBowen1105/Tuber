@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 
 namespace Tuber.SystemClock;
 public static class DependencyInjection

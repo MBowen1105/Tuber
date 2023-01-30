@@ -1,4 +1,4 @@
-﻿using Tuber.Application.Interfaces.SystemClock;
+﻿using Tuber.Application.Common.Interfaces.SystemClock;
 
 namespace Tuber.SystemClock
 {

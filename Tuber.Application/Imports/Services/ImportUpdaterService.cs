@@ -3,7 +3,7 @@ using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Authentication;
 using Tuber.Application.Common.Interfaces.Persistence;
 using Tuber.Application.Enums;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Imports.Services;

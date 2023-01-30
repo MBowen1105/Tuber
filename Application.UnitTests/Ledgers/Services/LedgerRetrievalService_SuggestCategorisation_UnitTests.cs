@@ -2,7 +2,7 @@
 using Moq;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 using Tuber.Application.Ledgers.Services;
 using Tuber.Domain.Models;
 

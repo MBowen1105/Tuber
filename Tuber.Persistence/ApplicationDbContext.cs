@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces.Authentication;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 using Tuber.Persistence.AppConfigs;
 using Tuber.Persistence.Categories;

@@ -1,5 +1,5 @@
 ﻿using Moq;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 
 namespace Persistence.UnitTests.Common;
 public static class MockSystemClock

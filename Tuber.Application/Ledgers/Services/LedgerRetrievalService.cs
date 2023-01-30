@@ -1,7 +1,7 @@
 ﻿using Tuber.Application.Common;
 using Tuber.Application.Common.Interfaces;
 using Tuber.Application.Common.Interfaces.Persistence;
-using Tuber.Application.Interfaces.SystemClock;
+using Tuber.Application.Common.Interfaces.SystemClock;
 using Tuber.Domain.Models;
 
 namespace Tuber.Application.Ledgers.Services;

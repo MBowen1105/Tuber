@@ -1,4 +1,4 @@
-﻿namespace Tuber.Application.Interfaces.SystemClock;
+﻿namespace Tuber.Application.Common.Interfaces.SystemClock;
 public interface ISystemClock
 {
     DateTime NowUtc();
